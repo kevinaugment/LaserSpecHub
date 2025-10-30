@@ -1,13 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Image optimization configuration
+  // Image optimization configuration for Vercel
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // Cloudflare Images configuration
-    loader: 'custom',
-    loaderFile: './lib/cloudflare-image-loader.ts',
   },
 
   // Headers for security and performance
@@ -61,9 +58,6 @@ const nextConfig = {
     return config;
   },
 
-  // Optimize bundle
-  swcMinify: true,
-  
   // Enable strict mode
   reactStrictMode: true,
 

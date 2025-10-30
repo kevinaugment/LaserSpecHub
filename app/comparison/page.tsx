@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import type { LaserEquipment } from '@/types/equipment';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { EquipmentSelector } from '@/components/comparison/equipment-selector';
 import { ComparisonTable } from '@/components/comparison/comparison-table';
 
-export default function ComparisonPage() {
+function ComparisonContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [allEquipment, setAllEquipment] = useState<LaserEquipment[]>([]);
@@ -214,5 +214,20 @@ export default function ComparisonPage() {
         </Card>
       )}
     </div>
+  );
+}
+
+export default function ComparisonPage() {
+  return (
+    <Suspense fallback={
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
+        <div className="text-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading comparison...</p>
+        </div>
+      </div>
+    }>
+      <ComparisonContent />
+    </Suspense>
   );
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { generatePageMetadata } from '@/lib/utils/metadata';
 import { getDatabase } from '@/lib/db/client';
 import type { LaserEquipment } from '@/types/equipment';
@@ -118,7 +119,14 @@ export default async function EquipmentPage({
         </p>
       </div>
       
-      <EquipmentGridClient equipment={equipment} brands={brands} />
+      <Suspense fallback={
+        <div className="text-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading equipment...</p>
+        </div>
+      }>
+        <EquipmentGridClient equipment={equipment} brands={brands} />
+      </Suspense>
     </div>
   );
 }
