@@ -1,0 +1,31 @@
+# Dependencies
+node_modules
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build output
+.next
+out
+dist
+build
+.wrangler
+
+# Cache
+.cache
+.turbo
+
+# Database
+*.db
+*.db-journal
+*.sqlite
+
+# Misc
+.DS_Store
+*.log
+
+# Configuration that should preserve formatting
+wrangler.toml
+
+
+

@@ -1,0 +1,61 @@
+name = "laserspec-hub"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = ".next"
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "laserspec-db"
+database_id = "YOUR_DATABASE_ID" # Replace with actual ID after creating database
+
+# KV namespace for caching (optional)
+# [[kv_namespaces]]
+# binding = "CACHE"
+# id = "YOUR_KV_ID"
+
+# Environment variables
+[vars]
+ENVIRONMENT = "production"
+NEXT_PUBLIC_SITE_URL = "https://laserspec-hub.pages.dev"
+
+# Build configuration
+[build]
+command = "npm run build"
+
+# Development configuration
+[env.development]
+name = "laserspec-hub-dev"
+
+[env.development.vars]
+ENVIRONMENT = "development"
+NEXT_PUBLIC_SITE_URL = "http://localhost:3000"
+
+[[env.development.d1_databases]]
+binding = "DB"
+database_name = "laserspec-db-dev"
+database_id = "YOUR_DEV_DATABASE_ID"
+
+# Staging configuration
+[env.staging]
+name = "laserspec-hub-staging"
+
+[env.staging.vars]
+ENVIRONMENT = "staging"
+NEXT_PUBLIC_SITE_URL = "https://staging.laserspec-hub.pages.dev"
+
+[[env.staging.d1_databases]]
+binding = "DB"
+database_name = "laserspec-db-staging"
+database_id = "YOUR_STAGING_DATABASE_ID"
+
+# Routes configuration
+# [[routes]]
+# pattern = "/api/*"
+# custom_domain = true
+
+# Analytics
+[analytics_engine_datasets]
+# binding = "ANALYTICS"
+
+
+
