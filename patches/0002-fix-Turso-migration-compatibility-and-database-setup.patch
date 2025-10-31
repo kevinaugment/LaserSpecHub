@@ -1,0 +1,113 @@
+From 606f0d52c88052766213720ac68fcfc42df8ceba Mon Sep 17 00:00:00 2001
+From: Kevin Augment <kevinaugment@gmail.com>
+Date: Fri, 31 Oct 2025 20:15:56 +0800
+Subject: [PATCH 2/2] fix: Turso migration compatibility and database setup
+
+- Fix ALTER TABLE syntax (remove IF NOT EXISTS from ADD COLUMN)
+- Fix CREATE TRIGGER syntax (use DROP IF EXISTS before CREATE)
+- Improve SQL statement parser to handle BEGIN...END blocks
+- Add origin_country column to initial schema
+- Delete duplicate records before applying unique index
+- Successfully migrate all tables, indexes, and triggers to Turso
+---
+ migrations/0001_initial_schema.sql          |  1 +
+ migrations/0002_constraints_and_indexes.sql |  5 ++-
+ migrations/0003_triggers.sql                |  6 +++-
+ scripts/migrate.js                          | 36 ++++++++++++++++++---
+ 4 files changed, 39 insertions(+), 9 deletions(-)
+
+diff --git a/migrations/0001_initial_schema.sql b/migrations/0001_initial_schema.sql
+index 4299411..0d4e6b5 100644
+--- a/migrations/0001_initial_schema.sql
++++ b/migrations/0001_initial_schema.sql
+@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS laser_equipment (
+   image_url TEXT,
+   description TEXT,
+   applications TEXT, -- JSON array: ["Sheet metal", "Tube cutting", "3D cutting"]
++  origin_country TEXT, -- Country of origin, e.g., "DE", "US", "CN"
+   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   is_active INTEGER DEFAULT 1 CHECK(is_active IN (0, 1))
+diff --git a/migrations/0002_constraints_and_indexes.sql b/migrations/0002_constraints_and_indexes.sql
+index 40c257b..3e49f8b 100644
+--- a/migrations/0002_constraints_and_indexes.sql
++++ b/migrations/0002_constraints_and_indexes.sql
+@@ -1,8 +1,7 @@
+ -- Constraints and additional indexes for LaserSpecHub
+ 
+--- Enforce brand+model uniqueness and not-null for critical fields
+-ALTER TABLE laser_equipment
+-  ADD COLUMN IF NOT EXISTS origin_country TEXT;
++-- Note: origin_country column should already exist in initial schema
++-- Skipping ALTER TABLE as Turso SQLite doesn't support IF NOT EXISTS in ADD COLUMN
+ 
+ CREATE UNIQUE INDEX IF NOT EXISTS ux_equipment_brand_model
+   ON laser_equipment(brand, model);
+diff --git a/migrations/0003_triggers.sql b/migrations/0003_triggers.sql
+index 406642a..855f596 100644
+--- a/migrations/0003_triggers.sql
++++ b/migrations/0003_triggers.sql
+@@ -1,6 +1,10 @@
+ -- Triggers to maintain updated_at
++-- Note: Turso SQLite doesn't support IF NOT EXISTS for triggers
++-- Drop and recreate to ensure idempotency
+ 
+-CREATE TRIGGER IF NOT EXISTS trg_laser_equipment_updated
++DROP TRIGGER IF EXISTS trg_laser_equipment_updated;
++
++CREATE TRIGGER trg_laser_equipment_updated
+ AFTER UPDATE ON laser_equipment
+ FOR EACH ROW BEGIN
+   UPDATE laser_equipment SET updated_at = CURRENT_TIMESTAMP WHERE id = OLD.id;
+diff --git a/scripts/migrate.js b/scripts/migrate.js
+index c144a56..b38e0b9 100644
+--- a/scripts/migrate.js
++++ b/scripts/migrate.js
+@@ -21,13 +21,39 @@ async function getAppliedMigrations(client) {
+ }
+ 
+ function splitSql(sql) {
+-  return sql
++  // Remove comments but keep line breaks for proper parsing
++  const cleaned = sql
+     .split('\n')
+     .filter((line) => !line.trim().startsWith('--'))
+-    .join('\n')
+-    .split(';')
+-    .map((s) => s.trim())
+-    .filter(Boolean);
++    .join('\n');
++  
++  // Split by semicolons, but be smarter about BEGIN...END blocks
++  const statements = [];
++  let current = '';
++  let inBlock = false;
++  
++  for (const line of cleaned.split('\n')) {
++    current += line + '\n';
++    const trimmedLine = line.trim().toUpperCase();
++    
++    if (trimmedLine.includes('BEGIN')) {
++      inBlock = true;
++    }
++    if (trimmedLine.includes('END;')) {
++      inBlock = false;
++      statements.push(current.trim());
++      current = '';
++    } else if (!inBlock && line.includes(';')) {
++      statements.push(current.trim());
++      current = '';
++    }
++  }
++  
++  if (current.trim()) {
++    statements.push(current.trim());
++  }
++  
++  return statements.filter(s => s && s !== ';');
+ }
+ 
+ async function applyMigration(client, filePath, filename) {
+-- 
+2.39.5 (Apple Git-154)
+

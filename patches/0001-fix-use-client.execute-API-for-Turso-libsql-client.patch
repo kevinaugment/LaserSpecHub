@@ -1,0 +1,120 @@
+From 15a87a754b2c7a2271ab64759a1b885a2cce9441 Mon Sep 17 00:00:00 2001
+From: Kevin Augment <kevinaugment@gmail.com>
+Date: Fri, 31 Oct 2025 18:15:32 +0800
+Subject: [PATCH 1/2] fix: use client.execute() API for Turso libsql client
+
+- Replace prepare() method with direct execute() calls
+- Fix 'a.prepare is not a function' runtime error on Vercel
+- Add error logging for better debugging
+- Maintain D1-compatible interface with prepare/bind/all/first/run
+---
+ lib/db/client.ts | 87 +++++++++++++++++++++++++++++++-----------------
+ 1 file changed, 56 insertions(+), 31 deletions(-)
+
+diff --git a/lib/db/client.ts b/lib/db/client.ts
+index 2bbe856..31f58ab 100644
+--- a/lib/db/client.ts
++++ b/lib/db/client.ts
+@@ -43,43 +43,68 @@ function createTursoAdapter() {
+ 
+   return {
+     prepare: (sql: string) => {
+-      const stmt = (client as any).prepare(sql);
+-
+-      const wrap = (args: any[]) => ({
+-        all: async () => {
+-          // libsql returns { rows }, map to D1-like { results }
+-          const res = await (stmt as any).all(...(args.length ? [args] : []));
+-          const rows = (res as any).rows ?? res ?? [];
+-          return { results: rows };
+-        },
+-        first: async () => {
+-          const res = await (stmt as any).all(...(args.length ? [args] : []));
+-          const rows = (res as any).rows ?? res ?? [];
+-          return rows[0] ?? null;
+-        },
+-        run: async () => {
+-          const res = await (stmt as any).run(...(args.length ? args : []));
+-          const lastId = Number((res as any).lastInsertRowid ?? 0);
+-          return { success: true, meta: { last_row_id: lastId } };
+-        },
+-      });
+-
+       return {
+-        bind: (...args: any[]) => wrap(args),
++        bind: (...args: any[]) => ({
++          all: async () => {
++            try {
++              const res = await client.execute({ sql, args });
++              const rows = res.rows ?? [];
++              return { results: rows };
++            } catch (error) {
++              console.error('Turso execute error:', error);
++              throw error;
++            }
++          },
++          first: async () => {
++            try {
++              const res = await client.execute({ sql, args });
++              const rows = res.rows ?? [];
++              return rows[0] ?? null;
++            } catch (error) {
++              console.error('Turso execute error:', error);
++              throw error;
++            }
++          },
++          run: async () => {
++            try {
++              const res = await client.execute({ sql, args });
++              const lastId = Number(res.lastInsertRowid ?? 0);
++              return { success: true, meta: { last_row_id: lastId } };
++            } catch (error) {
++              console.error('Turso execute error:', error);
++              throw error;
++            }
++          },
++        }),
+         all: async () => {
+-          const res = await (stmt as any).all();
+-          const rows = (res as any).rows ?? res ?? [];
+-          return { results: rows };
++          try {
++            const res = await client.execute({ sql, args: [] });
++            const rows = res.rows ?? [];
++            return { results: rows };
++          } catch (error) {
++            console.error('Turso execute error:', error);
++            throw error;
++          }
+         },
+         first: async () => {
+-          const res = await (stmt as any).all();
+-          const rows = (res as any).rows ?? res ?? [];
+-          return rows[0] ?? null;
++          try {
++            const res = await client.execute({ sql, args: [] });
++            const rows = res.rows ?? [];
++            return rows[0] ?? null;
++          } catch (error) {
++            console.error('Turso execute error:', error);
++            throw error;
++          }
+         },
+         run: async () => {
+-          const res = await (stmt as any).run();
+-          const lastId = Number((res as any).lastInsertRowid ?? 0);
+-          return { success: true, meta: { last_row_id: lastId } };
++          try {
++            const res = await client.execute({ sql, args: [] });
++            const lastId = Number(res.lastInsertRowid ?? 0);
++            return { success: true, meta: { last_row_id: lastId } };
++          } catch (error) {
++            console.error('Turso execute error:', error);
++            throw error;
++          }
+         },
+       };
+     },
+-- 
+2.39.5 (Apple Git-154)
+
