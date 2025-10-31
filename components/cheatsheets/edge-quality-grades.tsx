@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { QualityGrade, VisualDefect, VISUAL_DEFECTS, IMPROVEMENT_METHODS } from '@/lib/data/cheatsheets/edge-quality-data';
+import type { QualityGrade } from '@/lib/data/cheatsheets/edge-quality-data';
+import { VISUAL_DEFECTS, IMPROVEMENT_METHODS } from '@/lib/data/cheatsheets/edge-quality-data';
 
 interface EdgeQualityGradesProps {
   grades: QualityGrade[];

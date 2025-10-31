@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { PowerCategory, PowerLevelGuide } from '@/lib/data/cheatsheets/power-selection-data';
+import type { PowerCategory } from '@/lib/data/cheatsheets/power-selection-data';
 
 interface PowerSelectionCardsProps {
   categoryData: PowerCategory;

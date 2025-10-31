@@ -1,11 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { 
-  LaserTypeSpeedData, 
-  MaterialSpeedData,
-  CuttingSpeedEntry 
-} from '@/lib/data/cheatsheets/cutting-speed-data';
+import type { LaserTypeSpeedData } from '@/lib/data/cheatsheets/cutting-speed-data';
 
 interface CuttingSpeedTableProps {
   laserData: LaserTypeSpeedData;

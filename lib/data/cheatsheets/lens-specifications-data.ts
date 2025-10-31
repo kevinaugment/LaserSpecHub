@@ -384,7 +384,7 @@ export function getLensByFocalLength(focalLengthMm: number): LensSpecification |
   return LENS_FOCAL_LENGTHS.find(l => l.focalLengthMm === focalLengthMm) || null;
 }
 
-export function getRecommendedLens(material: string, thickness: number): LensSpecification[] {
+export function getRecommendedLens(material: string, _thickness: number): LensSpecification[] {
   const guides = LENS_SELECTION_GUIDE.filter(g => 
     g.material.toLowerCase().includes(material.toLowerCase())
   );

@@ -173,7 +173,7 @@ export function LensSpecsComparison({ lensData }: LensSpecsComparisonProps) {
                 <th className="px-4 py-3 text-left text-sm font-medium text-gray-500">Specification</th>
                 {selectedForCompare.map((index) => (
                   <th key={index} className="px-4 py-3 text-left text-sm font-medium text-gray-900">
-                    {lensData[index].focalLength}
+                    {lensData[index]?.focalLength}
                   </th>
                 ))}
               </tr>
@@ -182,37 +182,37 @@ export function LensSpecsComparison({ lensData }: LensSpecsComparisonProps) {
               <tr>
                 <td className="px-4 py-3 text-sm font-medium text-gray-700">Spot Size</td>
                 {selectedForCompare.map((index) => (
-                  <td key={index} className="px-4 py-3 text-sm text-gray-900">{lensData[index].spotSize}</td>
+                  <td key={index} className="px-4 py-3 text-sm text-gray-900">{lensData[index]?.spotSize}</td>
                 ))}
               </tr>
               <tr className="bg-gray-50">
                 <td className="px-4 py-3 text-sm font-medium text-gray-700">Depth of Focus</td>
                 {selectedForCompare.map((index) => (
-                  <td key={index} className="px-4 py-3 text-sm text-gray-900">{lensData[index].depthOfFocus}</td>
+                  <td key={index} className="px-4 py-3 text-sm text-gray-900">{lensData[index]?.depthOfFocus}</td>
                 ))}
               </tr>
               <tr>
                 <td className="px-4 py-3 text-sm font-medium text-gray-700">Metal Thickness</td>
                 {selectedForCompare.map((index) => (
-                  <td key={index} className="px-4 py-3 text-sm text-gray-900">{lensData[index].maxThickness.metal}</td>
+                  <td key={index} className="px-4 py-3 text-sm text-gray-900">{lensData[index]?.maxThickness.metal}</td>
                 ))}
               </tr>
               <tr className="bg-gray-50">
                 <td className="px-4 py-3 text-sm font-medium text-gray-700">Power Density</td>
                 {selectedForCompare.map((index) => (
-                  <td key={index} className="px-4 py-3 text-sm text-gray-900">{lensData[index].powerDensity}</td>
+                  <td key={index} className="px-4 py-3 text-sm text-gray-900">{lensData[index]?.powerDensity}</td>
                 ))}
               </tr>
               <tr>
                 <td className="px-4 py-3 text-sm font-medium text-gray-700">Working Distance</td>
                 {selectedForCompare.map((index) => (
-                  <td key={index} className="px-4 py-3 text-sm text-gray-900">{lensData[index].workingDistance}</td>
+                  <td key={index} className="px-4 py-3 text-sm text-gray-900">{lensData[index]?.workingDistance}</td>
                 ))}
               </tr>
               <tr className="bg-gray-50">
                 <td className="px-4 py-3 text-sm font-medium text-gray-700">Best For</td>
                 {selectedForCompare.map((index) => (
-                  <td key={index} className="px-4 py-3 text-sm text-gray-900">{lensData[index].bestFor}</td>
+                  <td key={index} className="px-4 py-3 text-sm text-gray-900">{lensData[index]?.bestFor}</td>
                 ))}
               </tr>
             </tbody>

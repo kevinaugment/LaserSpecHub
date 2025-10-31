@@ -356,7 +356,7 @@ export function findPowerLevelByThickness(
     
     // Parse range like "0.5-5mm"
     const match = range.match(/([\d.]+)-([\d.]+)mm/);
-    if (match) {
+    if (match && match[1] && match[2]) {
       const min = parseFloat(match[1]);
       const max = parseFloat(match[2]);
       if (thickness >= min && thickness <= max) {

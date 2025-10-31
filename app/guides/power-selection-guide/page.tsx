@@ -186,14 +186,14 @@ export default function PowerSelectionGuidePage() {
           <div className="mb-12">
             <div className="bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-t-lg px-6 py-4">
               <h2 className="text-2xl font-bold">
-                {ALL_POWER_GUIDES[0].category}
+                {ALL_POWER_GUIDES[0]?.category}
               </h2>
               <p className="text-primary-100 mt-1">
-                {ALL_POWER_GUIDES[0].wavelength} • High efficiency for steel, stainless steel, aluminum
+                {ALL_POWER_GUIDES[0]?.wavelength} • High efficiency for steel, stainless steel, aluminum
               </p>
             </div>
             <div className="bg-white border-x border-b border-gray-200 rounded-b-lg p-6">
-              <PowerSelectionCards categoryData={ALL_POWER_GUIDES[0]} />
+              {ALL_POWER_GUIDES[0] && <PowerSelectionCards categoryData={ALL_POWER_GUIDES[0]} />}
             </div>
           </div>
 
@@ -201,14 +201,14 @@ export default function PowerSelectionGuidePage() {
           <div className="mb-12">
             <div className="bg-gradient-to-r from-green-600 to-green-700 text-white rounded-t-lg px-6 py-4">
               <h2 className="text-2xl font-bold">
-                {ALL_POWER_GUIDES[1].category}
+                {ALL_POWER_GUIDES[1]?.category}
               </h2>
               <p className="text-green-100 mt-1">
-                {ALL_POWER_GUIDES[1].wavelength} • Versatile for acrylic, wood, plastics, fabrics
+                {ALL_POWER_GUIDES[1]?.wavelength} • Versatile for acrylic, wood, plastics, fabrics
               </p>
             </div>
             <div className="bg-white border-x border-b border-gray-200 rounded-b-lg p-6">
-              <PowerSelectionCards categoryData={ALL_POWER_GUIDES[1]} />
+              {ALL_POWER_GUIDES[1] && <PowerSelectionCards categoryData={ALL_POWER_GUIDES[1]} />}
             </div>
           </div>
 

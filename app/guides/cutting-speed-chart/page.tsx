@@ -144,14 +144,14 @@ export default function CuttingSpeedChartPage() {
           <div className="mb-12">
             <div className="bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-t-lg px-6 py-4">
               <h2 className="text-2xl font-bold">
-                {ALL_LASER_SPEED_DATA[0].laserType} ({ALL_LASER_SPEED_DATA[0].wavelength})
+                {ALL_LASER_SPEED_DATA[0]?.laserType} ({ALL_LASER_SPEED_DATA[0]?.wavelength})
               </h2>
               <p className="text-primary-100 mt-1">
                 High-efficiency metal cutting - Best for steel, stainless steel, aluminum
               </p>
             </div>
             <div className="bg-white border-x border-b border-gray-200 rounded-b-lg p-6">
-              <CuttingSpeedTable laserData={ALL_LASER_SPEED_DATA[0]} />
+              {ALL_LASER_SPEED_DATA[0] && <CuttingSpeedTable laserData={ALL_LASER_SPEED_DATA[0]} />}
             </div>
           </div>
 
@@ -159,14 +159,14 @@ export default function CuttingSpeedChartPage() {
           <div className="mb-12">
             <div className="bg-gradient-to-r from-green-600 to-green-700 text-white rounded-t-lg px-6 py-4">
               <h2 className="text-2xl font-bold">
-                {ALL_LASER_SPEED_DATA[1].laserType} ({ALL_LASER_SPEED_DATA[1].wavelength})
+                {ALL_LASER_SPEED_DATA[1]?.laserType} ({ALL_LASER_SPEED_DATA[1]?.wavelength})
               </h2>
               <p className="text-green-100 mt-1">
                 Versatile non-metal cutting - Best for acrylic, wood, plastics
               </p>
             </div>
             <div className="bg-white border-x border-b border-gray-200 rounded-b-lg p-6">
-              <CuttingSpeedTable laserData={ALL_LASER_SPEED_DATA[1]} />
+              {ALL_LASER_SPEED_DATA[1] && <CuttingSpeedTable laserData={ALL_LASER_SPEED_DATA[1]} />}
             </div>
           </div>
 

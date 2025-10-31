@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { EquipmentSelector } from '@/components/comparison/equipment-selector';
 import { ComparisonTable } from '@/components/comparison/comparison-table';
+import { StructuredData } from '@/components/ui/structured-data';
 
 function ComparisonContent() {
   const searchParams = useSearchParams();
@@ -92,8 +93,24 @@ function ComparisonContent() {
     );
   }
 
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Laser Equipment Comparison Tool',
+    description: 'Compare up to 5 laser cutting machines side-by-side with detailed specifications and key differences highlighted.',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Any',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+  };
+
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
+    <>
+      <StructuredData data={structuredData} />
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
       <div className="mb-8">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
           Equipment Comparison Tool
@@ -214,6 +231,7 @@ function ComparisonContent() {
         </Card>
       )}
     </div>
+    </>
   );
 }
 

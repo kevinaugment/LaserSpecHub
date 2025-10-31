@@ -1,8 +1,34 @@
 import Link from 'next/link';
+import { StructuredData } from '@/components/ui/structured-data';
 
 export default function HomePage() {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'LaserSpecHub',
+    url: 'https://laserspec hub.com',
+    description: 'Compare laser cutting equipment specifications, calculate power requirements, and find the perfect machine for your manufacturing needs.',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://laserspec hub.com/equipment?search={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
+  };
+
+  const organizationData = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'LaserSpecHub',
+    url: 'https://laserspec hub.com',
+    description: 'Professional laser equipment comparison and selection platform',
+    sameAs: [],
+  };
+
   return (
-    <main className="min-h-screen">
+    <>
+      <StructuredData data={structuredData} />
+      <StructuredData data={organizationData} />
+      <main className="min-h-screen">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-50 to-primary-100 py-20">
         <div className="container mx-auto px-4 max-w-6xl">
@@ -79,6 +105,7 @@ export default function HomePage() {
         </div>
       </section>
     </main>
+    </>
   );
 }
 

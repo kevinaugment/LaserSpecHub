@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { generatePageMetadata } from '@/lib/utils/metadata';
+import { StructuredData } from '@/components/ui/structured-data';
 
 async function getEquipmentById(id: string): Promise<LaserEquipment | null> {
   const db = getDatabase();
@@ -93,8 +94,50 @@ export default async function EquipmentDetailPage({
     }
   };
 
+  // Generate structured data for SEO
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: `${equipment.brand} ${equipment.model}`,
+    description: equipment.description || `${equipment.brand} ${equipment.model} ${equipment.laser_type} laser cutting machine`,
+    brand: {
+      '@type': 'Brand',
+      name: equipment.brand,
+    },
+    offers: equipment.price_range ? {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'USD',
+      lowPrice: equipment.price_range.split('-')[0],
+      highPrice: equipment.price_range.split('-')[1],
+    } : undefined,
+    additionalProperty: [
+      {
+        '@type': 'PropertyValue',
+        name: 'Laser Type',
+        value: equipment.laser_type,
+      },
+      {
+        '@type': 'PropertyValue',
+        name: 'Laser Power',
+        value: `${equipment.power_kw} kW`,
+      },
+      equipment.wavelength ? {
+        '@type': 'PropertyValue',
+        name: 'Wavelength',
+        value: `${equipment.wavelength} nm`,
+      } : undefined,
+      equipment.control_system ? {
+        '@type': 'PropertyValue',
+        name: 'Control System',
+        value: equipment.control_system,
+      } : undefined,
+    ].filter(Boolean),
+  };
+
   return (
-    <div className="max-w-6xl mx-auto px-4 md:px-6 py-10">
+    <>
+      <StructuredData data={structuredData} />
+      <div className="max-w-6xl mx-auto px-4 md:px-6 py-10">
       {/* Breadcrumb */}
       <nav className="mb-6 text-sm text-gray-600">
         <Link href="/" className="hover:text-primary-600">Home</Link>
@@ -379,6 +422,7 @@ export default async function EquipmentDetailPage({
         </Link>
       </div>
     </div>
+    </>
   );
 }
 

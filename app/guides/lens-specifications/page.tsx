@@ -158,7 +158,7 @@ export default function LensSpecificationsPage() {
                   <div className="text-sm text-gray-600 mt-1">Special Applications</div>
                 </div>
                 <ul className="text-sm text-gray-700 space-y-1">
-                  <li>• Ultra-thick (>25mm)</li>
+                  <li>• Ultra-thick (&gt;25mm)</li>
                   <li>• 3D tube cutting</li>
                   <li>• Remote processing</li>
                   <li>• Deep engraving</li>
@@ -250,7 +250,7 @@ export default function LensSpecificationsPage() {
               <div className="border-l-4 border-purple-500 pl-4">
                 <h3 className="font-medium text-gray-900 mb-1">Consider Material Flatness</h3>
                 <p className="text-sm text-gray-700">
-                  If you work with warped sheets or materials with height variations >2mm, use longer 
+                  If you work with warped sheets or materials with height variations &gt;2mm, use longer 
                   focal lengths (190mm or 254mm) for their larger depth of focus. Short focal lengths 
                   require excellent height control - invest in auto-focus sensors if using 50-75mm lenses.
                 </p>

@@ -1,11 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { 
+import {
   MATERIAL_ABSORPTION_DATA,
-  LASER_TYPES,
-  MaterialAbsorptionData,
-  LaserTypeInfo
+  LASER_TYPES
 } from '@/lib/data/cheatsheets/wavelength-absorption-data';
 
 export function WavelengthAbsorptionMatrix() {
