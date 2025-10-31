@@ -127,6 +127,72 @@ export default function LaserSafetyPage() {
                 safety audits for facilities operating Class 4 lasers. Non-compliance can result in citations, fines, increased 
                 insurance premiums, or loss of coverage.
               </p>
+
+              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Cost of Safety Compliance</h3>
+              <p>
+                <strong>Initial Setup Costs (Class 4 Industrial Laser):</strong> Safety enclosure and interlocks (typically included 
+                with system or $15,000-$40,000 retrofit), laser safety eyewear ($150-$400 per pair, need 3-5 pairs minimum), warning 
+                signage and labels ($200-$500), safety training program development ($2,000-$5,000), initial LSO training and 
+                certification ($1,500-$3,000). Total initial investment: $20,000-$50,000 beyond equipment cost.
+              </p>
+              <p>
+                <strong>Annual Ongoing Costs:</strong> LSO time allocation (10-20 hours/month = $6,000-$15,000 annually), operator 
+                training refreshers ($500-$1,000 per operator annually), PPE replacement ($500-$1,500 annually), third-party safety 
+                audits ($2,000-$5,000 annually), interlock testing and maintenance ($1,000-$2,000 annually). Total annual costs: 
+                $10,000-$25,000 for typical single-machine facility.
+              </p>
+              <p>
+                While these costs may seem substantial, they pale in comparison to the cost of a single serious laser injury (medical 
+                costs $50,000-$500,000+, OSHA fines $7,000-$70,000 per violation, litigation costs potentially millions, reputation 
+                damage immeasurable). Comprehensive safety programs demonstrate due diligence and typically reduce insurance premiums 
+                by 10-20%, partially offsetting compliance costs.
+              </p>
+
+              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Common Safety Violations and How to Avoid Them</h3>
+              <p>
+                <strong>Violation #1: Disabled or Bypassed Interlocks</strong> - Operators sometimes disable interlocks to "save time" 
+                during setup or maintenance. This is the most dangerous and frequently cited violation. Prevention: Implement tamper-evident 
+                seals on interlock switches, require two-person authorization for any interlock override, log all interlock events 
+                electronically, and establish clear disciplinary policies for violations.
+              </p>
+              <p>
+                <strong>Violation #2: Inadequate or Missing PPE</strong> - Eyewear left in lockers, wrong wavelength protection, or 
+                damaged eyewear. Prevention: Provide dedicated eyewear storage at each laser station, implement eyewear inspection 
+                checklists (check for scratches, cracks, degraded coatings monthly), color-code eyewear by wavelength, and maintain 
+                spare sets for visitors and replacements.
+              </p>
+              <p>
+                <strong>Violation #3: Insufficient Training Documentation</strong> - Verbal training without records, outdated training 
+                materials, no competency verification. Prevention: Implement formal training program with written curriculum, require 
+                written tests (80% passing score), document hands-on competency evaluations, maintain training records for duration of 
+                employment plus 3 years, and update training materials annually or when procedures change.
+              </p>
+              <p>
+                <strong>Violation #4: Inadequate Warning Signage</strong> - Missing signs, faded signs, signs in wrong locations, or 
+                incorrect hazard classification. Prevention: Use durable, UV-resistant signage materials, install signs at all entry 
+                points to laser areas, include illuminated warning lights that activate when laser is operational, and audit signage 
+                quarterly for visibility and accuracy.
+              </p>
+
+              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Emergency Response Procedures</h3>
+              <p>
+                Every facility must have documented emergency procedures for laser incidents. <strong>For eye exposure:</strong> 
+                Immediately cease laser operation, do not rub eyes, flush with clean water if contamination present, cover both eyes 
+                with clean cloth, seek immediate medical attention from ophthalmologist familiar with laser injuries (pre-identify and 
+                post contact information), and document incident details while fresh.
+              </p>
+              <p>
+                <strong>For fire incidents:</strong> Class 4 lasers can ignite combustible materials. Activate fire alarm, evacuate 
+                personnel, use appropriate fire extinguisher (ABC rated for most materials, DO NOT use water on metal fires), shut 
+                down laser power at main disconnect if safe to do so, and notify fire department (inform them of laser hazard and 
+                high-voltage electrical equipment).
+              </p>
+              <p>
+                <strong>Post-incident requirements:</strong> All laser incidents (injuries, near-misses, equipment failures) must be 
+                investigated and documented. Root cause analysis should identify contributing factors (equipment failure, procedural 
+                gaps, training deficiencies, environmental factors). Implement corrective actions and communicate lessons learned to 
+                all personnel. OSHA requires reporting of serious injuries (hospitalization, amputation, loss of eye) within 24 hours.
+              </p>
             </div>
           </div>
 
