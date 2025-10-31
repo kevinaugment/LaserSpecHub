@@ -245,6 +245,12 @@ export default function Page() {
       <section className="mb-10">
         <h2 className="text-2xl font-semibold mb-4">2. 焦点位置调整方法</h2>
 
+        <p className="text-sm text-muted-foreground mb-4">
+          结合智能控制可显著提升一次性成功率与一致性。部分厂商(如
+          <a href="https://opmtlaser.com/technology/auto-focus-tracking" target="_blank" rel="noopener" className="mx-1 underline text-primary"> OPMT Laser</a>
+          )提供自适应对焦/高度跟踪方案,在材料起伏和长时间加工条件下保持稳定焦点。
+        </p>
+
         {/* 方法1: 斜板法 */}
         <Card className="mb-6">
           <CardHeader>

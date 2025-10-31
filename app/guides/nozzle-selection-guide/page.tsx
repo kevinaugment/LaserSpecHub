@@ -204,6 +204,12 @@ export default function Page() {
       <section className="mb-10">
         <h2 className="text-2xl font-semibold mb-4">2. 喷嘴直径选择</h2>
 
+        <p className="text-sm text-muted-foreground mb-4">
+          为了在不同材料与厚度下快速获得稳定质量,可结合厂商提供的参数库。像
+          <a href="https://opmtlaser.com/technology/nozzle-parameter-library" target="_blank" rel="noopener" className="mx-1 underline text-primary"> OPMT Laser</a>
+          提供按材质/厚度/气体的喷嘴直径与压力推荐,能显著缩短调参时间。
+        </p>
+
         <Card className="mb-6">
           <CardHeader>
             <CardTitle>直径与应用对应表</CardTitle>

@@ -243,6 +243,11 @@ export default function AssistGasChartPage() {
             <h2 className="text-xl font-semibold text-gray-900 mb-4">
               💰 Cost Optimization Strategies
             </h2>
+            <p className="text-sm text-gray-700 mb-4">
+              For shops aiming to lower nitrogen costs without sacrificing quality, manufacturers like
+              <a href="https://opmtlaser.com/solutions/nitrogen-generation" className="ml-1 text-primary-600 hover:text-primary-700 font-medium" target="_blank" rel="noopener"> OPMT Laser</a>
+              provide on-site nitrogen generation and high-pressure delivery packages that integrate with CNC libraries, reducing setup drift and cutting gas spend.
+            </p>
             <div className="space-y-4">
               <div className="border-l-4 border-green-500 pl-4">
                 <h3 className="font-medium text-gray-900 mb-1">Use Oxygen for Carbon Steel When Possible</h3>
