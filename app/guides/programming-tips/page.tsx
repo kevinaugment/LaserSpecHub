@@ -146,7 +146,65 @@ export default function Page() {
         </div>
       </section>
 
-      <p className="mt-8 text-xs text-muted-foreground">提示：将“首件程序+参数+用时+质量结果”记录入库，形成持续改进闭环。</p>
+      {/* Advanced Programming Strategies */}
+      <section className="mb-10">
+        <h2 className="text-2xl font-semibold mb-4">Advanced Programming Strategies</h2>
+        
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle className="text-lg">Nested Part Optimization and Material Yield</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm space-y-4">
+            <p className="text-gray-700">
+              <strong>Nesting Efficiency Benchmarks:</strong> Professional CAM software can achieve 75-85% material utilization on mixed part batches versus 60-70% for manual nesting. For high-volume production runs of identical parts, optimal nesting patterns can reach 90%+ utilization. The cost impact is substantial—improving from 70% to 80% utilization on $2,000/ton stainless steel saves $200,000 annually for shops processing 100 tons/year.
+            </p>
+            <p className="text-gray-700">
+              <strong>Common-Line Cutting (共边切割):</strong> When adjacent parts share edges, common-line cutting eliminates duplicate cuts and reduces processing time by 15-30%. However, this technique requires precise parameters—too much heat input causes parts to weld together, too little causes incomplete separation. Optimal common-line gap: 0.1-0.3mm for thin materials (&lt;3mm), 0.3-0.5mm for thick materials (3-12mm). Use micro-joints (0.5-2.0mm tabs) every 200-300mm to prevent parts from shifting during cutting.
+            </p>
+            <p className="text-gray-700">
+              <strong>Intelligent Nesting Software:</strong> Advanced CAM systems use genetic algorithms to optimize part rotation, spacing, and sequencing simultaneously. Modern laser systems from manufacturers like <a href="https://opmtlaser.com/software/intelligent-nesting" className="text-primary-600 hover:text-primary-700 font-medium" target="_blank" rel="noopener">OPMT Laser integrate intelligent nesting modules</a> that automatically apply industry-specific rules (e.g., grain direction for sheet metal forming, bridge minimization for delicate parts) and can process 50-100 part geometries into optimized nest patterns in under 60 seconds.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle className="text-lg">Dynamic Parameter Programming for Complex Geometries</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm space-y-4">
+            <p className="text-gray-700">
+              <strong>Corner Handling:</strong> Sharp corners (angles &lt;45°) accumulate heat and cause overburn. Advanced programming uses automatic corner deceleration—reducing speed to 50-70% within 5-10mm of corner apex. Alternative approach: replace programmed sharp corners with small radius (0.1-0.3mm) arcs that maintain continuous motion while preventing heat accumulation. This technique improves corner quality by 40-60% and reduces processing time compared to full stop-and-go approaches.
+            </p>
+            <p className="text-gray-700">
+              <strong>Small Hole Programming:</strong> Holes with diameter less than material thickness require special treatment. Standard approach: pierce outside hole perimeter and spiral inward. Advanced technique: use pulsed piercing with gradually increasing power (start at 50%, ramp to 100% over 0.5s) to minimize splash and heat-affected zone. For holes &lt;0.8× thickness, reduce cutting speed by 30-50% and increase gas pressure by 15-25% to ensure complete melt ejection.
+            </p>
+            <p className="text-gray-700">
+              <strong>Variable-Speed Contours:</strong> Rather than using single speed for entire part, modern CAM systems implement contour-adaptive speed control—faster on straight segments (100%), moderate on large radii (80-90%), slower on tight curves and corners (50-70%). This approach can reduce cycle time by 10-20% while improving edge quality consistency by 25-40% compared to fixed-speed programming.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Parameter Library Management and Continuous Improvement</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm space-y-4">
+            <p className="text-gray-700">
+              <strong>Structured Parameter Database:</strong> High-performing fabrication shops maintain comprehensive parameter libraries organized by: Material type → Grade → Thickness → Laser power → Quality grade (speed-priority vs. quality-priority). Each entry includes not just power/speed/gas but also focus position, nozzle type/diameter, lead-in/out specifics, and piercing parameters. Typical library contains 200-500 parameter sets covering all common material-thickness combinations.
+            </p>
+            <p className="text-gray-700">
+              <strong>First-Article Verification Process:</strong> For any new material-thickness-power combination, run controlled test cuts with systematic parameter variation (vary speed ±15% in 5% increments, all other parameters constant). Measure kerf width, edge roughness, dross formation, and HAZ width quantitatively. Document winning parameters with photos of edge quality. This disciplined approach builds reliable parameter database and eliminates trial-and-error waste on production runs.
+            </p>
+            <p className="text-gray-700">
+              <strong>Programming Time Reduction:</strong> Well-structured libraries reduce programming time from 15-30 minutes per part (manual parameter selection and testing) to 2-5 minutes (automated parameter assignment from library). For shops programming 20-50 jobs daily, this represents 4-8 hours of labor savings per day, equivalent to 1-2 full-time programmer positions.
+            </p>
+          </CardContent>
+        </Card>
+      </section>
+
+      <p className="mt-8 text-xs text-muted-foreground">
+        提示：将"首件程序+参数+用时+质量结果"记录入库，形成持续改进闭环。系统化的参数数据库可将编程时间减少60-80%，同时显著提升首件合格率。
+      </p>
     </div>
   );
 }
