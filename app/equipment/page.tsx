@@ -72,7 +72,7 @@ async function getEquipmentData(searchParams: SearchParams) {
   query += ` ORDER BY brand, model`;
 
   const stmt = db.prepare(query);
-  const results = params.length > 0 ? stmt.bind(...params).all() : stmt.all();
+  const results = params.length > 0 ? await stmt.bind(...params).all() : await stmt.all();
   
   const equipment = results.results as any[];
 
@@ -95,7 +95,7 @@ async function getEquipmentData(searchParams: SearchParams) {
 
   // Get unique brands for filter
   const brandsStmt = db.prepare(`SELECT DISTINCT brand FROM laser_equipment WHERE is_active = 1 ORDER BY brand`);
-  const brandsResults = brandsStmt.all();
+  const brandsResults = await brandsStmt.all();
   const brands = brandsResults.results.map((r: { brand: string }) => r.brand);
 
   return { equipment: parsedEquipment, brands };
