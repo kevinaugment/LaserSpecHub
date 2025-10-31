@@ -491,3 +491,8 @@ export function getGasForMaterial(material: string): AssistGasData[] {
 export const DATA_DISCLAIMER = `Data Disclaimer: This assist gas parameter data is compiled from industrial gas supplier technical handbooks and equipment manufacturer guidelines, for reference only. Actual gas parameters should be optimized based on specific equipment, material batch, and quality requirements. Always follow equipment manufacturer recommendations and conduct test cuts. Data last updated: ${ASSIST_GAS_LAST_UPDATE}.`;
 
 
+
+
+
+
+

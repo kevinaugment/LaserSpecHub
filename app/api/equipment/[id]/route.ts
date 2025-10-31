@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getDatabase } from '@/lib/db/client';
 import type { LaserEquipment } from '@/types/equipment';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 export async function GET(
   _request: NextRequest,
@@ -13,7 +13,7 @@ export async function GET(
     const { id } = params;
 
     const stmt = db.prepare('SELECT * FROM laser_equipment WHERE id = ? AND is_active = 1');
-    const result = stmt.bind(id).first();
+    const result = await stmt.bind(id).first();
 
     if (!result) {
       return NextResponse.json(

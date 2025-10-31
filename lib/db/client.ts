@@ -1,9 +1,10 @@
 /**
- * D1 Database client utilities
- * Provides type-safe database operations for Cloudflare D1
+ * Database client utilities
+ * Provides a unified adapter around Turso (libsql) and a dev-time mock.
  */
 
 import type { LaserEquipment, EquipmentFilters } from '@/types/equipment';
+import { createClient, Client } from '@libsql/client';
 
 /**
  * Get D1 database instance from Cloudflare Workers environment
@@ -21,27 +22,102 @@ export function getDb(env: any) {
  * In production, this will use Cloudflare's platform binding
  * In development, returns a mock database for build purposes
  */
+let tursoClientSingleton: Client | null = null;
+
+function getTursoClient(): Client {
+  if (tursoClientSingleton) return tursoClientSingleton;
+
+  const url = process.env.TURSO_DATABASE_URL;
+  const authToken = process.env.TURSO_AUTH_TOKEN;
+
+  if (!url || !authToken) {
+    throw new Error('Turso configuration missing: set TURSO_DATABASE_URL and TURSO_AUTH_TOKEN');
+  }
+
+  tursoClientSingleton = createClient({ url, authToken });
+  return tursoClientSingleton;
+}
+
+function createTursoAdapter() {
+  const client = getTursoClient();
+
+  return {
+    prepare: (sql: string) => {
+      const stmt = client.prepare(sql);
+
+      const wrap = (args: any[]) => ({
+        all: async () => {
+          // libsql returns { rows }
+          // map to D1-like { results }
+          // @ts-ignore
+          const res = await (stmt as any).all(...(args.length ? [args] : []));
+          const rows = (res as any).rows ?? res ?? [];
+          return { results: rows };
+        },
+        first: async () => {
+          // @ts-ignore
+          const res = await (stmt as any).all(...(args.length ? [args] : []));
+          const rows = (res as any).rows ?? res ?? [];
+          return rows[0] ?? null;
+        },
+        run: async () => {
+          // @ts-ignore
+          const res = await (stmt as any).run(...(args.length ? args : []));
+          const lastId = Number((res as any).lastInsertRowid ?? 0);
+          return { success: true, meta: { last_row_id: lastId } };
+        },
+      });
+
+      return {
+        bind: (...args: any[]) => wrap(args),
+        all: async () => {
+          // @ts-ignore
+          const res = await (stmt as any).all();
+          const rows = (res as any).rows ?? res ?? [];
+          return { results: rows };
+        },
+        first: async () => {
+          // @ts-ignore
+          const res = await (stmt as any).all();
+          const rows = (res as any).rows ?? res ?? [];
+          return rows[0] ?? null;
+        },
+        run: async () => {
+          // @ts-ignore
+          const res = await (stmt as any).run();
+          const lastId = Number((res as any).lastInsertRowid ?? 0);
+          return { success: true, meta: { last_row_id: lastId } };
+        },
+      };
+    },
+  };
+}
+
 export function getDatabase() {
-  // In production (Cloudflare Pages), access via process.env
+  // Prefer Turso if configured
+  if (process.env.TURSO_DATABASE_URL && process.env.TURSO_AUTH_TOKEN) {
+    return createTursoAdapter();
+  }
+
+  // In Cloudflare runtime, a D1 binding might be present
   if (typeof process !== 'undefined' && (process.env as any).DB) {
     return (process.env as any).DB;
   }
-  
-  // For development/build - return a mock database
-  // This allows the build to succeed. In actual runtime, API routes handle DB access
+
+  // Fallback: dev-time mock to avoid build failures
   const mockDb = {
-    prepare: () => ({
+    prepare: (_sql: string) => ({
       bind: (..._args: any[]) => ({
-        all: () => ({ results: [] }),
-        first: () => null,
-        run: () => ({ success: true, meta: { last_row_id: 0 } }),
+        all: async () => ({ results: [] as any[] }),
+        first: async () => null,
+        run: async () => ({ success: true, meta: { last_row_id: 0 } }),
       }),
-      all: () => ({ results: [] }),
-      first: () => null,
-      run: () => ({ success: true, meta: { last_row_id: 0 } }),
+      all: async () => ({ results: [] as any[] }),
+      first: async () => null,
+      run: async () => ({ success: true, meta: { last_row_id: 0 } }),
     }),
   };
-  
+
   return mockDb;
 }
 

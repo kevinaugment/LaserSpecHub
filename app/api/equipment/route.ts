@@ -2,14 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getDatabase } from '@/lib/db/client';
 import type { LaserEquipment } from '@/types/equipment';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 export async function GET(request: NextRequest) {
   try {
     const db = getDatabase();
     const searchParams = request.nextUrl.searchParams;
     
-    // Build query with optional filters
     let query = 'SELECT * FROM laser_equipment WHERE is_active = 1';
     const params: (string | number)[] = [];
 
@@ -40,6 +39,30 @@ export async function GET(request: NextRequest) {
       params.push(brand);
     }
 
+    // Origin filter
+    const origin = searchParams.get('origin');
+    if (origin) {
+      query += ' AND origin_country = ?';
+      params.push(origin);
+    }
+
+    // Work area filters
+    const lenMin = searchParams.get('lengthMin');
+    const lenMax = searchParams.get('lengthMax');
+    const widMin = searchParams.get('widthMin');
+    const widMax = searchParams.get('widthMax');
+    if (lenMin) { query += ' AND work_area_length >= ?'; params.push(parseFloat(lenMin)); }
+    if (lenMax) { query += ' AND work_area_length <= ?'; params.push(parseFloat(lenMax)); }
+    if (widMin) { query += ' AND work_area_width >= ?'; params.push(parseFloat(widMin)); }
+    if (widMax) { query += ' AND work_area_width <= ?'; params.push(parseFloat(widMax)); }
+
+    // Applications contains
+    const application = searchParams.get('application');
+    if (application) {
+      query += ' AND applications LIKE ?';
+      params.push(`%${application}%`);
+    }
+
     // Search filter
     const search = searchParams.get('search');
     if (search) {
@@ -48,11 +71,23 @@ export async function GET(request: NextRequest) {
       params.push(searchTerm, searchTerm, searchTerm);
     }
 
-    query += ' ORDER BY brand, model';
+    // Sorting
+    const sortBy = searchParams.get('sortBy') || 'brand';
+    const sortDir = (searchParams.get('sortDir') || 'asc').toLowerCase() === 'desc' ? 'DESC' : 'ASC';
+    const sortable = new Set(['brand', 'model', 'power_kw']);
+    const sortColumn = sortable.has(sortBy) ? sortBy : 'brand';
+    query += ` ORDER BY ${sortColumn} ${sortDir}`;
+
+    // Pagination
+    const page = Math.max(parseInt(searchParams.get('page') || '1', 10), 1);
+    const pageSize = Math.min(Math.max(parseInt(searchParams.get('pageSize') || '20', 10), 1), 100);
+    const offset = (page - 1) * pageSize;
+    query += ' LIMIT ? OFFSET ?';
+    params.push(pageSize, offset);
 
     const stmt = db.prepare(query);
-    const results = params.length > 0 ? stmt.bind(...params).all() : stmt.all();
-    
+    const results = params.length > 0 ? await stmt.bind(...params).all() : await stmt.all();
+
     const equipment = results.results as any[];
 
     // Parse JSON fields
@@ -72,11 +107,7 @@ export async function GET(request: NextRequest) {
         : [],
     }));
 
-    return NextResponse.json({
-      success: true,
-      data: parsedEquipment,
-      count: parsedEquipment.length,
-    });
+    return NextResponse.json({ success: true, data: parsedEquipment, count: parsedEquipment.length, page, pageSize });
   } catch (error) {
     console.error('API Error:', error);
     return NextResponse.json(

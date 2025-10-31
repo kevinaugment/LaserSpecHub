@@ -1,0 +1,34 @@
+[
+  {
+    "brand": "OPMT Laser",
+    "model": "FL-6000",
+    "laser_type": "Fiber",
+    "power_kw": 6,
+    "work_area_length": 3000,
+    "work_area_width": 1500,
+    "max_cutting_thickness": { "steel": 20, "aluminum": 12, "stainless": 15 },
+    "cutting_speed": { "steel_10mm": 2.8, "aluminum_5mm": 5.2 },
+    "positioning_accuracy": 0.03,
+    "repeat_accuracy": 0.02,
+    "beam_quality": 1.8,
+    "wavelength": 1070,
+    "control_system": "Cypcut CNC",
+    "cooling_type": "Water",
+    "power_consumption": 45,
+    "dimensions": { "length": 6800, "width": 2600, "height": 2100 },
+    "weight": 4500,
+    "price_range": "65000-85000",
+    "manufacturer_url": "https://example.com/opmt/fl-6000",
+    "spec_sheet_url": "https://example.com/opmt/fl-6000/spec.pdf",
+    "image_url": "https://example.com/opmt/fl-6000.jpg",
+    "description": "High-performance fiber laser cutting machine",
+    "applications": ["Sheet metal fabrication", "Automotive parts", "Industrial machinery"],
+    "origin_country": "CN"
+  }
+]
+
+
+
+
+
+

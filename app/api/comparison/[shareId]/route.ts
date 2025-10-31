@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getDatabase } from '@/lib/db/client';
 import type { LaserEquipment } from '@/types/equipment';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 export async function GET(
   _request: NextRequest,

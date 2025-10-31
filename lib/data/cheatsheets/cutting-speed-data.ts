@@ -745,3 +745,8 @@ export function getSpeed(
 export const DATA_DISCLAIMER = `Data Disclaimer: This cutting speed data is compiled from mainstream laser equipment manufacturer technical documentation and industry standards, for reference only. Actual cutting parameters are affected by equipment model, material batch, environmental conditions, and other factors. Please refer to the equipment manufacturer's latest technical manual and on-site testing. Data last updated: ${CUTTING_SPEED_LAST_UPDATE}.`;
 
 
+
+
+
+
+

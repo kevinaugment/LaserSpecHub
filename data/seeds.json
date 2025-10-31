@@ -1,0 +1,11 @@
+[
+  { "brand": "Bystronic", "model": "ByStar Fiber", "url": "https://www.bystronic.com/en/products/laser-cutting-systems/bystar-fiber" },
+  { "brand": "Bystronic", "model": "BySmart Fiber", "url": "https://www.bystronic.com/en/products/laser-cutting-systems/bysmart-fiber" },
+  { "brand": "Han's Laser", "model": "G3015F", "url": "https://www.hanslaser.net/product/laser-cutting/g3015f" },
+  { "brand": "Han's Laser", "model": "G4020H", "url": "https://www.hanslaser.net/product/laser-cutting/g4020h" },
+  { "brand": "Epilog", "model": "Fusion Pro 48", "url": "https://www.epiloglaser.com/laser-machines/fusion-pro-laser-series/" },
+  { "brand": "Epilog", "model": "Fusion Edge", "url": "https://www.epiloglaser.com/laser-machines/fusion-edge-laser-series/" },
+  { "brand": "Bodor", "model": "M5", "url": "https://www.bodor.com/product/m-series" },
+  { "brand": "Bodor", "model": "Q0 Pro", "url": "https://www.bodor.com/product/q0-pro" },
+  { "brand": "ULS", "model": "VLS 6.60", "url": "https://www.ulsinc.com/products/vls-660" }
+]

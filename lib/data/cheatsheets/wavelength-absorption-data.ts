@@ -292,3 +292,8 @@ export function getBestLaserForMaterial(materialId: string): LaserTypeInfo[] {
 export const DATA_DISCLAIMER = `Data Disclaimer: This wavelength absorption data is based on published scientific literature and laser physics principles, for reference only. Actual absorption rates vary with surface condition, temperature, material purity, and specific alloy composition. Always conduct material tests before production. Data last updated: ${WAVELENGTH_ABSORPTION_LAST_UPDATE}.`;
 
 
+
+
+
+
+

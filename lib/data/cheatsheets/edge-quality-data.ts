@@ -409,3 +409,8 @@ export function getDefectsBySeverity(severity: 'critical' | 'major' | 'minor'): 
 export const DATA_DISCLAIMER = `Data Disclaimer: This edge quality data is based on ISO 9013:2017 international standard and industry best practices, for reference only. Actual quality grades and acceptance criteria depend on specific application requirements, customer specifications, and industry standards. Always refer to applicable standards and customer drawings. Data last updated: ${EDGE_QUALITY_LAST_UPDATE}.`;
 
 
+
+
+
+
+

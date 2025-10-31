@@ -1,0 +1,55 @@
+[
+  {
+    "brand": "Bystronic",
+    "model": "ByStar Fiber 4020",
+    "manufacturer_url": "https://www.bystronic.com/en/products/laser-cutting-systems/bystar-fiber",
+    "laser_type": "Fiber",
+    "power_kw": null,
+    "work_area_length": null,
+    "work_area_width": null,
+    "wavelength": 1070,
+    "control_system": null,
+    "cooling_type": "Water",
+    "image_url": "https://www.bystronic.com/sites/default/files/styles/opengraph/public/2024-05/Advanced%20Metalworking%20Solutions%20Bystronic%20Press%20Brakes%2C%20Laser%20Cutting%20Systems%2C%20and%20More.jpg?h=8f9cfe54&itok=9btt6P6I",
+    "description": "您的最佳板材加工机器选择",
+    "spec_sheet_url": null,
+    "max_cutting_thickness": null,
+    "cutting_speed": null
+  },
+  {
+    "brand": "Han's Laser",
+    "model": "G3015F",
+    "manufacturer_url": "https://www.hanslaser.net/product/laser-cutting/g3015f",
+    "laser_type": "Fiber",
+    "power_kw": null,
+    "work_area_length": null,
+    "work_area_width": null,
+    "wavelength": 1070,
+    "control_system": null,
+    "cooling_type": "Water",
+    "image_url": null,
+    "description": "Products",
+    "spec_sheet_url": null,
+    "max_cutting_thickness": null,
+    "cutting_speed": null
+  },
+  {
+    "brand": "Epilog",
+    "model": "Fusion Pro 48",
+    "manufacturer_url": "https://www.epiloglaser.com/laser-machines/fusion-pro-laser-series/",
+    "laser_type": "Fiber",
+    "power_kw": null,
+    "work_area_length": null,
+    "work_area_width": null,
+    "wavelength": 1070,
+    "control_system": null,
+    "cooling_type": "Water",
+    "image_url": "https://www.epiloglaser.com/assets/img/fusion-pro_series.webp",
+    "description": "The Epilog Fusion Pro delivers our fastest speeds, largest work area, and highest engraving quality yet, along with a brand-new state-of-the-art camera system.",
+    "spec_sheet_url": null,
+    "max_cutting_thickness": {
+      "stainless": 17
+    },
+    "cutting_speed": null
+  }
+]

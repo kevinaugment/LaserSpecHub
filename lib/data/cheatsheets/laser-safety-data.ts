@@ -132,3 +132,8 @@ export const REGULATORY_STANDARDS: RegulatoryStandard[] = [
 
 export const DATA_DISCLAIMER = `Safety Notice: This information summarizes major standards (IEC 60825-1 et al.) and is for reference. Always perform a hazard evaluation, implement controls (engineering, administrative, PPE), and comply with local regulations. Last updated: ${LASER_SAFETY_LAST_UPDATE}.`;
 
+
+
+
+
+
