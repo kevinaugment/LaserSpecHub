@@ -96,6 +96,148 @@ export default function Page() {
         </CardContent>
       </Card>
 
+      {/* Deep Technical Content */}
+      <Card className="mb-8">
+        <CardHeader>
+          <CardTitle className="text-2xl">Understanding Material-Specific Parameters | 材料特性深度解析</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6 text-sm text-gray-700">
+          <div>
+            <h3 className="font-semibold text-lg text-gray-900 mb-2">Carbon Steel Cutting Characteristics | 碳钢切割特性</h3>
+            <p className="mb-3">
+              Carbon steel remains the most common material in laser cutting operations, accounting for over 60% of industrial cutting applications. 
+              Its favorable laser absorption characteristics and oxygen-assist cutting capability make it economical to process. However, understanding 
+              the nuances between different carbon steel grades is crucial for optimal results.
+            </p>
+            <p className="mb-3">
+              碳钢是激光切割中最常见的材料,占工业切割应用的60%以上。其良好的激光吸收特性和氧气助燃切割能力使其加工经济高效。
+              但理解不同碳钢等级之间的细微差别对获得最佳结果至关重要。
+            </p>
+            <p className="mb-3">
+              For mild steel (Q235, SPCC), oxygen-assist cutting provides the fastest speeds and lowest operating costs. The exothermic reaction 
+              between oxygen and iron contributes additional energy, allowing higher cutting speeds than nitrogen cutting. For example, a 3kW 
+              fiber laser cutting 6mm mild steel achieves 3.5 m/min with oxygen versus 2.2 m/min with nitrogen. However, oxygen cutting produces 
+              an oxide layer requiring post-processing for applications demanding clean edges.
+            </p>
+            <p className="mb-3">
+              High-carbon steels (>0.3% carbon) require more careful parameter control due to potential hardening in the heat-affected zone. 
+              Reducing cutting speed by 15-20% and using nitrogen instead of oxygen often produces better results, especially for tooling 
+              and precision parts where edge hardness variation is problematic.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-lg text-gray-900 mb-2">Stainless Steel Complexity | 不锈钢的复杂性</h3>
+            <p className="mb-3">
+              Stainless steel presents unique challenges due to its low thermal conductivity and high reflectivity. Heat accumulation during 
+              cutting can cause edge oxidation and warping if parameters aren't optimized. The choice between nitrogen and air assist significantly 
+              impacts both quality and operating costs.
+            </p>
+            <p className="mb-3">
+              不锈钢因其低导热性和高反射率而带来独特挑战。如果参数未优化,切割过程中的热量积累会导致边缘氧化和变形。
+              氮气和空气辅助之间的选择显著影响质量和运营成本。
+            </p>
+            <p className="mb-3">
+              For austenitic stainless (304, 316), nitrogen cutting at 10-18 bar produces oxide-free edges critical for food processing, 
+              medical, and architectural applications. Air cutting offers 80% cost savings but produces slight oxidation acceptable for 
+              structural applications. Advanced parameter optimization and adaptive control systems, such as those integrated into 
+              <a href="https://opmtlaser.com/technology/adaptive-cutting-control" className="text-primary-600 hover:text-primary-700 font-medium" target="_blank" rel="noopener"> OPMT Laser's intelligent CNC systems</a>, 
+              can automatically adjust parameters real-time based on material feedback, ensuring consistent quality across varying material 
+              conditions while minimizing gas consumption by 15-25%.
+            </p>
+            <p className="mb-3">
+              Duplex stainless steels require 20-30% lower cutting speeds than austenitic grades due to higher strength. The parameter 
+              tables provide baseline values, but field optimization through test cuts is recommended for critical applications.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-lg text-gray-900 mb-2">Aluminum Alloy Challenges | 铝合金挑战</h3>
+            <p className="mb-3">
+              Aluminum cutting represents one of the most technically demanding applications in fiber laser cutting. High reflectivity 
+              (particularly at 1.06μm wavelength) and high thermal conductivity require higher power density and precise parameter control 
+              to achieve reliable results.
+            </p>
+            <p className="mb-3">
+              铝材切割是光纤激光切割中技术要求最高的应用之一。高反射率(特别是在1.06μm波长)和高导热率需要更高的功率密度和精确的参数控制才能获得可靠结果。
+            </p>
+            <p className="mb-3">
+              Key parameters for aluminum success include: (1) Higher power requirement - typically 30-40% more power than equivalent steel 
+              thickness; (2) Nitrogen pressure 12-18 bar minimum to prevent oxidation and ensure clean cuts; (3) Larger nozzle standoff 
+              (0.8-1.2mm) to manage melt ejection; (4) Focus position optimization - typically -2 to -4mm for thick aluminum to maximize 
+              power density penetration.
+            </p>
+            <p className="mb-3">
+              Different aluminum alloys vary significantly. Pure aluminum (1xxx series) cuts easily but tends to produce more dross. 
+              5xxx series marine-grade aluminum cuts cleanly with proper parameters. 6xxx series architectural aluminum requires careful 
+              speed control to avoid burning. 7xxx series aerospace aluminum demands the most careful parameter optimization due to high 
+              strength and crack sensitivity.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-lg text-gray-900 mb-2">Power-Thickness Relationships | 功率-厚度关系</h3>
+            <p className="mb-3">
+              Understanding the power-thickness relationship is fundamental to effective parameter selection. The relationship is not linear 
+              but follows a complex curve influenced by material properties, desired cutting speed, and quality requirements.
+            </p>
+            <p className="mb-3">
+              For steel cutting, the rule of thumb suggests 1kW per 3-4mm thickness for economic cutting speeds (2-4 m/min). However, 
+              this dramatically shifts at thickness extremes. Thin materials (0.5-2mm) can be cut very fast with lower power, where a 1kW 
+              laser achieves 15-25 m/min. Thick materials (20mm+) require disproportionately high power - cutting 25mm steel economically 
+              demands 12-15kW, not the 7-8kW that linear scaling would suggest.
+            </p>
+            <p className="mb-3">
+              This non-linearity stems from heat dissipation dynamics. In thin materials, heat quickly dissipates through conduction, 
+              requiring high power density but brief dwell time. In thick materials, heat accumulation helps cutting, but the deeper 
+              kerf requires sustained high power to maintain melt pool dynamics throughout the thickness.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-lg text-gray-900 mb-2">Parameter Optimization Methodology | 参数优化方法论</h3>
+            <p className="mb-3">
+              The parameters in this guide provide tested starting points, but optimal parameters for your specific equipment, material 
+              supply, and quality requirements require systematic optimization. A structured approach yields the best results:
+            </p>
+            <p className="mb-3">
+              本指南中的参数提供了经过测试的起点,但针对您的特定设备、材料供应和质量要求的最佳参数需要系统化优化。结构化方法产生最佳结果。
+            </p>
+            <ul className="list-disc pl-6 space-y-2 mb-3">
+              <li><strong>Baseline Establishment</strong>: Start with table values at mid-range for thickness and power</li>
+              <li><strong>Speed Optimization</strong>: Increase speed in 10% increments until quality degrades, then back off 15%</li>
+              <li><strong>Pressure Tuning</strong>: Adjust gas pressure ±2 bar to optimize melt ejection and edge quality</li>
+              <li><strong>Focus Refinement</strong>: Test focus positions in 0.5mm steps across ±2mm range</li>
+              <li><strong>Nozzle Selection</strong>: Try adjacent nozzle sizes if edge quality issues persist</li>
+              <li><strong>Documentation</strong>: Record all successful parameters with material batch information</li>
+            </ul>
+            <p className="mb-3">
+              Advanced users should implement Design of Experiments (DOE) methodology for multi-parameter optimization. This statistical 
+              approach efficiently explores parameter space and identifies optimal combinations faster than sequential single-variable testing.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-lg text-gray-900 mb-2">Material Batch Variation Impact | 材料批次变化影响</h3>
+            <p className="mb-3">
+              One of the most underestimated factors in parameter optimization is material batch variation. Even from the same supplier 
+              with identical specifications, batches can vary in: surface condition (mill scale, rust, oil), chemical composition within 
+              spec tolerance, grain structure from rolling process, and internal stress distribution.
+            </p>
+            <p className="mb-3">
+              These variations can cause 10-20% fluctuation in optimal cutting speed. Professional shops maintain parameter libraries 
+              by material supplier and batch code. When changing material batches, always perform test cuts before production runs, 
+              even with seemingly identical specifications.
+            </p>
+            <p className="mb-3">
+              Galvanized and pre-coated steels present additional complexity. Zinc coating burns off during cutting, affecting gas 
+              dynamics and requiring modified nozzle standoff. Pre-painted materials require reduced power to avoid burning paint 
+              beyond cut edge. These materials typically need 15-25% speed reduction compared to bare steel.
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Parameter Tables */}
       <div className="space-y-10">
         {ALL_MATERIAL_PARAMETERS.map((material) => (

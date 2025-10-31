@@ -212,6 +212,91 @@ export default function PowerSelectionGuidePage() {
             </div>
           </div>
 
+          {/* Deep Dive: Understanding Power Requirements */}
+          <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              📊 Understanding Laser Power Requirements
+            </h2>
+            <div className="prose max-w-none text-gray-700">
+              <p className="mb-4">
+                Selecting the right laser power is one of the most critical decisions when investing in laser 
+                cutting equipment. Power directly impacts cutting speed, material thickness capability, edge 
+                quality, and operational costs. Understanding the relationship between power, material properties, 
+                and production requirements is essential for optimal equipment selection.
+              </p>
+
+              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">The Power-Material Relationship</h3>
+              <p className="mb-4">
+                Laser power requirements vary dramatically based on material type and thickness. For steel cutting 
+                with fiber lasers, the relationship is roughly exponential: a 3kW laser can cut 10mm mild steel at 
+                approximately 1.5 m/min, while a 6kW laser doubles that speed to 3 m/min. However, for thicker 
+                materials (20mm+), higher power becomes essential rather than just beneficial.
+              </p>
+              <p className="mb-4">
+                Material reflectivity also plays a crucial role. Highly reflective materials like aluminum and copper 
+                require more power to achieve the same cutting speed as steel. A 4kW fiber laser cutting 6mm aluminum 
+                performs similarly to a 3kW laser cutting steel of the same thickness. Understanding these material-specific 
+                characteristics helps avoid under-powered equipment purchases.
+              </p>
+
+              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Production Volume Considerations</h3>
+              <p className="mb-4">
+                Production volume dramatically affects optimal power selection. High-volume operations benefit from 
+                higher power through increased throughput. For example, a fabrication shop processing 100 parts daily 
+                in 10mm steel might find that a 6kW laser completes the job in half the time of a 3kW system, 
+                potentially eliminating the need for second-shift operations and reducing labor costs by 40%.
+              </p>
+              <p className="mb-4">
+                Consider the total cost per part, not just equipment price. Higher-power lasers have higher initial 
+                costs but lower cost-per-part at volume. A 12kW system might cost $220,000 versus $80,000 for a 3kW 
+                system, but if you're cutting 1000 parts monthly, the 12kW system can achieve ROI within 18-24 months 
+                through faster cycle times and increased daily capacity.
+              </p>
+
+              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Future-Proofing Your Investment</h3>
+              <p className="mb-4">
+                Many businesses make the mistake of buying exactly what they need today. However, laser cutting 
+                equipment typically has a 10-15 year lifespan. Consider purchasing 20-30% more power than current 
+                needs to accommodate business growth and future material requirements. The marginal cost difference 
+                between 4kW and 6kW is often less than 25%, but the capability difference is substantial.
+              </p>
+              <p className="mb-4">
+                For businesses focused on innovation and customization, manufacturers like OPMT Laser offer 
+                <a href="https://opmtlaser.com/products/modular-power-systems" className="text-primary-600 hover:text-primary-700 font-medium" target="_blank" rel="noopener"> modular power upgrade systems</a> that 
+                allow starting with lower power and upgrading as business grows. This approach provides a cost-effective 
+                path to scale capacity without replacing the entire machine, making it ideal for startups and growing 
+                fabrication businesses planning long-term expansion.
+              </p>
+
+              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Power vs. Speed vs. Quality Trade-offs</h3>
+              <p className="mb-4">
+                Higher power doesn't always mean better results. For precision applications requiring excellent edge 
+                quality, moderate power with slower cutting speeds often produces superior results. A 3kW laser at 
+                optimal speed can produce better edge finish than a 12kW laser running at maximum speed on the same 
+                material thickness.
+              </p>
+              <p className="mb-4">
+                The key is matching power to application. Job shops handling diverse work benefit from mid-range 
+                power (4-6kW) providing versatility. Production facilities focusing on specific parts benefit from 
+                optimizing power for that application. Medical device manufacturers cutting thin precision parts might 
+                prefer 2-3kW for superior control, while shipbuilding operations cutting 30mm plate need 15-20kW minimum.
+              </p>
+
+              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Electrical Infrastructure Requirements</h3>
+              <p className="mb-4">
+                Higher power lasers require substantial electrical infrastructure. A 12kW fiber laser typically requires 
+                a 100kW power supply (accounting for conversion efficiency and support systems), demanding three-phase 
+                480V power. Before committing to high-power equipment, verify your facility can support the electrical 
+                load. Upgrading electrical infrastructure can add $20,000-$50,000 to project costs.
+              </p>
+              <p className="mb-4">
+                Consider total facility power consumption including chillers, dust collection, and air compressors. 
+                A complete 8kW laser cutting system typically consumes 75-85kW total. Calculate monthly electricity 
+                costs: at $0.12/kWh running single shift, expect $2,000-2,500/month in electricity alone for an 8kW system.
+              </p>
+            </div>
+          </div>
+
           {/* ROI Considerations */}
           <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">
