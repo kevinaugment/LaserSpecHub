@@ -13,7 +13,7 @@ async function getEquipmentById(id: string): Promise<LaserEquipment | null> {
   const db = getDatabase();
   
   const stmt = db.prepare('SELECT * FROM laser_equipment WHERE id = ? AND is_active = 1');
-  const result = stmt.bind(id).first();
+  const result = await stmt.bind(id).first();
   
   if (!result) {
     return null;
