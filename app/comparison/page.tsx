@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import Head from 'next/head';
 import type { LaserEquipment } from '@/types/equipment';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -107,18 +108,45 @@ function ComparisonContent() {
     },
   };
 
+  // Generate dynamic page title based on selected equipment
+  useEffect(() => {
+    if (typeof window !== 'undefined' && selectedEquipment.length > 0) {
+      const brands = selectedEquipment.map(eq => eq.brand).join(' vs ');
+      document.title = `${brands} Comparison - Laser Equipment | LaserSpecHub`;
+    } else if (typeof window !== 'undefined') {
+      document.title = 'Laser Equipment Comparison Tool - Compare Up to 5 Machines | LaserSpecHub';
+    }
+  }, [selectedEquipment]);
+
   return (
     <>
+      <Head>
+        <meta name="description" content="Compare laser cutting machines side-by-side with detailed specifications, pricing, and performance metrics. Free comparison tool for fiber lasers, CO2 lasers, and more. Export to PDF or share your comparison." />
+        <meta name="keywords" content="laser equipment comparison, laser cutter comparison, fiber laser vs CO2, laser machine specs, equipment comparison tool, laser specifications, laser price comparison" />
+        <meta property="og:title" content="Laser Equipment Comparison Tool - Compare Specifications & Pricing" />
+        <meta property="og:description" content="Compare up to 5 laser cutting machines side-by-side. Detailed specs, pricing, performance metrics. Export to PDF or share link." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://laserspechub.com/comparison" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Laser Equipment Comparison Tool" />
+        <meta name="twitter:description" content="Compare laser cutting machines side-by-side with detailed specifications and pricing" />
+        <link rel="canonical" href="https://laserspechub.com/comparison" />
+      </Head>
       <StructuredData data={structuredData} />
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
-      <div className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Equipment Comparison Tool
-        </h1>
-        <p className="text-lg text-gray-600">
-          Compare up to 5 laser cutting machines side-by-side with detailed specifications and key differences highlighted.
-        </p>
-      </div>
+        <div className="mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Laser Equipment Comparison Tool
+          </h1>
+          <p className="text-xl text-gray-600 mb-4">
+            Compare up to 5 laser cutting machines side-by-side with detailed specifications, pricing, and key differences highlighted. Make informed decisions with our free comparison tool.
+          </p>
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+            <p className="text-blue-900 text-sm">
+              <strong>💡 Pro Tip:</strong> Select equipment from different manufacturers or power classes to understand your options. All comparisons can be exported to PDF or shared via link for team discussions.
+            </p>
+          </div>
+        </div>
 
       <div className="grid lg:grid-cols-4 gap-6 mb-6">
         <div className="lg:col-span-1">
@@ -230,6 +258,135 @@ function ComparisonContent() {
           </CardContent>
         </Card>
       )}
+
+      {/* SEO Content Section */}
+      <div className="mt-12 pt-12 border-t-2 border-gray-200">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          Why Use Our Laser Equipment Comparison Tool?
+        </h2>
+        
+        <div className="grid md:grid-cols-2 gap-8 mb-8">
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">Make Data-Driven Decisions</h3>
+            <p className="text-gray-700 mb-4">
+              Purchasing laser cutting equipment represents a significant capital investment (often $50,000-$500,000+). Our comparison tool helps you evaluate multiple options side-by-side, highlighting critical differences in specifications, performance, and pricing that impact your ROI.
+            </p>
+            <p className="text-gray-700">
+              Compare key parameters including laser power (1kW-30kW), work area dimensions, positioning accuracy (±0.02-0.10mm), cutting speed, beam quality (M² factor), and total cost of ownership across leading manufacturers like TRUMPF, Bystronic, Mazak, Amada, HSG, and OPMT.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">Comprehensive Specification Analysis</h3>
+            <p className="text-gray-700 mb-4">
+              Our database covers 50+ laser cutting systems spanning fiber lasers (1064nm), CO2 lasers (10600nm), and hybrid systems. Each comparison includes detailed technical specifications: power consumption, cooling requirements, control systems (Siemens, Beckhoff, Cypcut), and typical price ranges.
+            </p>
+            <p className="text-gray-700">
+              The tool automatically highlights differences in critical parameters—helping you quickly identify which systems meet your material thickness requirements, production volume needs, and budget constraints.
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Key Comparison Parameters</h3>
+          <div className="grid md:grid-cols-3 gap-4 text-sm">
+            <div>
+              <strong className="text-gray-900">Technical Specifications:</strong>
+              <ul className="text-gray-700 mt-2 space-y-1 ml-4">
+                <li>• Laser type & wavelength</li>
+                <li>• Power output (kW)</li>
+                <li>• Work area dimensions</li>
+                <li>• Positioning accuracy</li>
+                <li>• Repeat accuracy</li>
+                <li>• Beam quality (M²)</li>
+              </ul>
+            </div>
+            <div>
+              <strong className="text-gray-900">System Configuration:</strong>
+              <ul className="text-gray-700 mt-2 space-y-1 ml-4">
+                <li>• Control system type</li>
+                <li>• Cooling system</li>
+                <li>• Power consumption</li>
+                <li>• Physical dimensions</li>
+                <li>• Equipment weight</li>
+                <li>• Electrical requirements</li>
+              </ul>
+            </div>
+            <div>
+              <strong className="text-gray-900">Performance & Cost:</strong>
+              <ul className="text-gray-700 mt-2 space-y-1 ml-4">
+                <li>• Max cutting thickness</li>
+                <li>• Cutting speed ranges</li>
+                <li>• Price range estimates</li>
+                <li>• Application suitability</li>
+                <li>• Manufacturer support</li>
+                <li>• Spare parts availability</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-8">
+          <h3 className="text-lg font-semibold text-gray-900 mb-3">Common Comparison Scenarios</h3>
+          <div className="space-y-3 text-gray-700">
+            <div className="flex items-start">
+              <span className="font-semibold text-blue-600 mr-2">•</span>
+              <span><strong>Fiber vs CO2 Lasers:</strong> Compare 1064nm fiber lasers (higher efficiency, lower maintenance) against 10600nm CO2 lasers (better for non-metals, thicker acrylic/wood).</span>
+            </div>
+            <div className="flex items-start">
+              <span className="font-semibold text-blue-600 mr-2">•</span>
+              <span><strong>Power Class Selection:</strong> Evaluate 3kW entry-level systems vs 6kW mainstream vs 12kW+ high-power machines based on material thickness and production speed requirements.</span>
+            </div>
+            <div className="flex items-start">
+              <span className="font-semibold text-blue-600 mr-2">•</span>
+              <span><strong>Brand Comparison:</strong> Compare European premium brands (TRUMPF, Bystronic) against Asian value options (HSG, Bodor, OPMT) considering total cost of ownership over 10 years.</span>
+            </div>
+            <div className="flex items-start">
+              <span className="font-semibold text-blue-600 mr-2">•</span>
+              <span><strong>Work Area Sizing:</strong> Compare 1m×1m compact platforms vs 2m×3m standard vs 3m×6m large-format systems based on typical workpiece dimensions and material utilization.</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <Card variant="bordered">
+            <CardHeader>
+              <CardTitle className="text-base">🔄 Share & Collaborate</CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-gray-700">
+              <p className="mb-3">
+                Share your comparison with team members via unique URL. Perfect for procurement committees, engineering reviews, and vendor negotiations. Each comparison link preserves your selected equipment and highlights key differences.
+              </p>
+              <p>
+                Export comparisons to PDF for offline analysis, vendor discussions, and capital approval presentations. PDFs include full specification tables, pricing estimates, and application notes.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card variant="bordered">
+            <CardHeader>
+              <CardTitle className="text-base">📊 Data Transparency</CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-gray-700">
+              <p className="mb-3">
+                All specifications sourced from manufacturer datasheets, verified installation databases, and industry testing reports. Price ranges reflect typical 2025 market conditions for new equipment (FOB, excluding installation/training).
+              </p>
+              <p>
+                Equipment database updated quarterly with new models, discontinued systems flagged, and pricing adjusted for market trends. User-submitted corrections reviewed by technical team within 48 hours.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="bg-blue-50 border-l-4 border-blue-500 p-4">
+          <p className="text-blue-900 text-sm">
+            <strong>📌 Related Resources:</strong> After comparing equipment, use our{' '}
+            <a href="/tools/power-calculator" className="text-blue-700 underline hover:text-blue-900">Power Calculator</a> to determine required laser power for your materials, check{' '}
+            <a href="/guides/power-selection-guide" className="text-blue-700 underline hover:text-blue-900">Power Selection Guide</a> for detailed recommendations, or review our{' '}
+            <a href="/guides/reports" className="text-blue-700 underline hover:text-blue-900">2025 Market Research Report</a> covering 50+ systems and industry trends.
+          </p>
+        </div>
+      </div>
     </div>
     </>
   );
