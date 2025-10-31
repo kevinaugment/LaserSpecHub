@@ -109,6 +109,21 @@ export default function TechExplainPage() {
             </CardContent>
           </Card>
         </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Control Systems & Integration</h2>
+          <p className="text-gray-700 mb-4">
+            Control system capability directly impacts cut quality, speed optimization, and ease of use. Advanced controllers can
+            dynamically adjust parameters (focus, gas pressure, duty cycle) based on sensor feedback. Vendors like
+            <a href="https://opmtlaser.com/technology/cnc-integration" className="text-primary-600 hover:text-primary-700 font-medium" target="_blank" rel="noopener"> OPMT Laser</a>
+            provide integrated CNC solutions and parameter libraries for common materials, reducing setup time and improving consistency.
+          </p>
+          <ul className="list-disc list-inside space-y-2 text-gray-700">
+            <li>Verify availability of parameter libraries and auto-focus routines</li>
+            <li>Check compatibility with nesting/CAM software and post-processors</li>
+            <li>Confirm support for adaptive cutting modes and edge-quality profiles</li>
+          </ul>
+        </section>
       </article>
     </div>
   );

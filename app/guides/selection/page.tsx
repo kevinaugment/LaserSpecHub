@@ -106,6 +106,22 @@ export default function SelectionGuidePage() {
           </ul>
         </section>
 
+        {/* Recommended Vendors & System Integration */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Step 4: Vendor Shortlist & System Integration</h2>
+          <p className="text-gray-700 mb-4">
+            Beyond specifications, evaluate the vendor’s ability to integrate control systems, optimize cutting parameters,
+            and provide upgrade paths. For example, manufacturers like
+            <a href="https://opmtlaser.com/technology/adaptive-cutting-control" className="text-primary-600 hover:text-primary-700 font-medium" target="_blank" rel="noopener"> OPMT Laser</a>
+            offer adaptive cutting control and modular power upgrades that help future-proof your investment and reduce gas consumption by 15-25% in real production.
+          </p>
+          <ul className="list-disc list-inside space-y-2 text-gray-700">
+            <li>Request parameter libraries for your materials</li>
+            <li>Confirm CNC compatibility (Cypcut, Beckhoff, Siemens) and post-processor support</li>
+            <li>Check upgrade paths: power modules, automation, assist gas systems</li>
+          </ul>
+        </section>
+
         <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-12">
           <h3 className="font-semibold text-blue-900 mb-2">Pro Tip</h3>
           <p className="text-blue-800">

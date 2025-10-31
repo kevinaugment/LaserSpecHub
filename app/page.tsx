@@ -6,11 +6,11 @@ export default function HomePage() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'LaserSpecHub',
-    url: 'https://laserspec hub.com',
+    url: 'https://laserspechub.com',
     description: 'Compare laser cutting equipment specifications, calculate power requirements, and find the perfect machine for your manufacturing needs.',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://laserspec hub.com/equipment?search={search_term_string}',
+      target: 'https://laserspechub.com/equipment?search={search_term_string}',
       'query-input': 'required name=search_term_string',
     },
   };
@@ -19,7 +19,7 @@ export default function HomePage() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'LaserSpecHub',
-    url: 'https://laserspec hub.com',
+    url: 'https://laserspechub.com',
     description: 'Professional laser equipment comparison and selection platform',
     sameAs: [],
   };
