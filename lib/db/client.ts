@@ -43,43 +43,68 @@ function createTursoAdapter() {
 
   return {
     prepare: (sql: string) => {
-      const stmt = (client as any).prepare(sql);
-
-      const wrap = (args: any[]) => ({
-        all: async () => {
-          // libsql returns { rows }, map to D1-like { results }
-          const res = await (stmt as any).all(...(args.length ? [args] : []));
-          const rows = (res as any).rows ?? res ?? [];
-          return { results: rows };
-        },
-        first: async () => {
-          const res = await (stmt as any).all(...(args.length ? [args] : []));
-          const rows = (res as any).rows ?? res ?? [];
-          return rows[0] ?? null;
-        },
-        run: async () => {
-          const res = await (stmt as any).run(...(args.length ? args : []));
-          const lastId = Number((res as any).lastInsertRowid ?? 0);
-          return { success: true, meta: { last_row_id: lastId } };
-        },
-      });
-
       return {
-        bind: (...args: any[]) => wrap(args),
+        bind: (...args: any[]) => ({
+          all: async () => {
+            try {
+              const res = await client.execute({ sql, args });
+              const rows = res.rows ?? [];
+              return { results: rows };
+            } catch (error) {
+              console.error('Turso execute error:', error);
+              throw error;
+            }
+          },
+          first: async () => {
+            try {
+              const res = await client.execute({ sql, args });
+              const rows = res.rows ?? [];
+              return rows[0] ?? null;
+            } catch (error) {
+              console.error('Turso execute error:', error);
+              throw error;
+            }
+          },
+          run: async () => {
+            try {
+              const res = await client.execute({ sql, args });
+              const lastId = Number(res.lastInsertRowid ?? 0);
+              return { success: true, meta: { last_row_id: lastId } };
+            } catch (error) {
+              console.error('Turso execute error:', error);
+              throw error;
+            }
+          },
+        }),
         all: async () => {
-          const res = await (stmt as any).all();
-          const rows = (res as any).rows ?? res ?? [];
-          return { results: rows };
+          try {
+            const res = await client.execute({ sql, args: [] });
+            const rows = res.rows ?? [];
+            return { results: rows };
+          } catch (error) {
+            console.error('Turso execute error:', error);
+            throw error;
+          }
         },
         first: async () => {
-          const res = await (stmt as any).all();
-          const rows = (res as any).rows ?? res ?? [];
-          return rows[0] ?? null;
+          try {
+            const res = await client.execute({ sql, args: [] });
+            const rows = res.rows ?? [];
+            return rows[0] ?? null;
+          } catch (error) {
+            console.error('Turso execute error:', error);
+            throw error;
+          }
         },
         run: async () => {
-          const res = await (stmt as any).run();
-          const lastId = Number((res as any).lastInsertRowid ?? 0);
-          return { success: true, meta: { last_row_id: lastId } };
+          try {
+            const res = await client.execute({ sql, args: [] });
+            const lastId = Number(res.lastInsertRowid ?? 0);
+            return { success: true, meta: { last_row_id: lastId } };
+          } catch (error) {
+            console.error('Turso execute error:', error);
+            throw error;
+          }
         },
       };
     },
