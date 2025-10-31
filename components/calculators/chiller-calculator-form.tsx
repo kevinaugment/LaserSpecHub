@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { calculateChiller, ChillerInput } from '@/lib/calculators/chiller-calculator';
@@ -58,16 +58,11 @@ export default function ChillerCalculatorForm() {
             <label className="mb-1 block text-sm text-muted-foreground">激光类型</label>
             <Select
               value={state.laserType}
-              onValueChange={(v) => setState((s) => ({ ...s, laserType: v as FormState['laserType'] }))}
+              onChange={(e) => setState((s) => ({ ...s, laserType: e.target.value as FormState['laserType'] }))}
             >
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="fiber">光纤</SelectItem>
-                <SelectItem value="co2">CO2</SelectItem>
-                <SelectItem value="solid_state">固体</SelectItem>
-              </SelectContent>
+              <option value="fiber">光纤</option>
+              <option value="co2">CO2</option>
+              <option value="solid_state">固体</option>
             </Select>
           </div>
           <div>

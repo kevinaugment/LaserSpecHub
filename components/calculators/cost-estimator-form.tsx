@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -133,17 +133,12 @@ export default function CostEstimatorForm() {
             </div>
             <div>
               <label className="mb-1 block text-sm text-muted-foreground">材料</label>
-              <Select value={state.material} onValueChange={(v) => setState((s) => ({ ...s, material: v as SupportedMaterialForCost }))}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {Object.entries(MATERIAL_LABELS_FOR_COST).map(([val, label]) => (
-                    <SelectItem key={val} value={val}>
-                      {label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
+              <Select value={state.material} onChange={(e) => setState((s) => ({ ...s, material: e.target.value as SupportedMaterialForCost }))}>
+                {Object.entries(MATERIAL_LABELS_FOR_COST).map(([val, label]) => (
+                  <option key={val} value={val}>
+                    {label}
+                  </option>
+                ))}
               </Select>
             </div>
             <div>
@@ -184,15 +179,10 @@ export default function CostEstimatorForm() {
           <CardContent className="grid grid-cols-3 gap-4">
             <div>
               <label className="mb-1 block text-sm text-muted-foreground">气体类型</label>
-              <Select value={state.assistGas} onValueChange={(v) => setState((s) => ({ ...s, assistGas: v as FormState['assistGas'] }))}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="oxygen">氧气</SelectItem>
-                  <SelectItem value="nitrogen">氮气</SelectItem>
-                  <SelectItem value="air">空气</SelectItem>
-                </SelectContent>
+              <Select value={state.assistGas} onChange={(e) => setState((s) => ({ ...s, assistGas: e.target.value as FormState['assistGas'] }))}>
+                <option value="oxygen">氧气</option>
+                <option value="nitrogen">氮气</option>
+                <option value="air">空气</option>
               </Select>
             </div>
             <div>

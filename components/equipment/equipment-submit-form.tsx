@@ -57,36 +57,82 @@ export default function EquipmentSubmitForm() {
       }}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Input name="brand" label="品牌*" required placeholder="如：OPMT" />
-        <Input name="model" label="型号*" required placeholder="如：FL-6000" />
+        <div>
+          <label className="mb-1 block text-sm font-medium">品牌*</label>
+          <Input name="brand" required placeholder="如：OPMT" />
+        </div>
+        <div>
+          <label className="mb-1 block text-sm font-medium">型号*</label>
+          <Input name="model" required placeholder="如：FL-6000" />
+        </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Select name="laser_type" label="激光类型*" required options={[
-          { value: 'Fiber', label: 'Fiber' },
-          { value: 'CO2', label: 'CO2' },
-          { value: 'Solid', label: 'Solid' },
-          { value: 'Hybrid', label: 'Hybrid' },
-        ]} />
-        <Input name="power_kw" type="number" step="0.1" label="功率(kW)" />
+        <div>
+          <label className="mb-1 block text-sm font-medium">激光类型*</label>
+          <Select name="laser_type" required>
+            <option value="">-- 选择 --</option>
+            <option value="Fiber">Fiber</option>
+            <option value="CO2">CO2</option>
+            <option value="Solid">Solid</option>
+            <option value="Hybrid">Hybrid</option>
+          </Select>
+        </div>
+        <div>
+          <label className="mb-1 block text-sm font-medium">功率(kW)</label>
+          <Input name="power_kw" type="number" step="0.1" />
+        </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Input name="work_area_length" type="number" label="工作区长度(mm)" />
-        <Input name="work_area_width" type="number" label="工作区宽度(mm)" />
+        <div>
+          <label className="mb-1 block text-sm font-medium">工作区长度(mm)</label>
+          <Input name="work_area_length" type="number" />
+        </div>
+        <div>
+          <label className="mb-1 block text-sm font-medium">工作区宽度(mm)</label>
+          <Input name="work_area_width" type="number" />
+        </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Input name="origin_country" label="原产地(国家)" />
-        <Input name="price_range" label="价格区间" />
+        <div>
+          <label className="mb-1 block text-sm font-medium">原产地(国家)</label>
+          <Input name="origin_country" />
+        </div>
+        <div>
+          <label className="mb-1 block text-sm font-medium">价格区间</label>
+          <Input name="price_range" />
+        </div>
       </div>
-      <Input name="manufacturer_url" label="制造商页面URL" />
-      <Input name="spec_sheet_url" label="规格书URL" />
-      <Input name="image_url" label="图片URL" />
-      <Input name="description" label="描述" />
+      <div>
+        <label className="mb-1 block text-sm font-medium">制造商页面URL</label>
+        <Input name="manufacturer_url" />
+      </div>
+      <div>
+        <label className="mb-1 block text-sm font-medium">规格书URL</label>
+        <Input name="spec_sheet_url" />
+      </div>
+      <div>
+        <label className="mb-1 block text-sm font-medium">图片URL</label>
+        <Input name="image_url" />
+      </div>
+      <div>
+        <label className="mb-1 block text-sm font-medium">描述</label>
+        <Input name="description" />
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Input name="submitter_name" label="提交人姓名" />
-        <Input name="submitter_email" type="email" label="提交人邮箱" />
+        <div>
+          <label className="mb-1 block text-sm font-medium">提交人姓名</label>
+          <Input name="submitter_name" />
+        </div>
+        <div>
+          <label className="mb-1 block text-sm font-medium">提交人邮箱</label>
+          <Input name="submitter_email" type="email" />
+        </div>
       </div>
-      <Input name="source_url" label="数据来源URL" />
+      <div>
+        <label className="mb-1 block text-sm font-medium">数据来源URL</label>
+        <Input name="source_url" />
+      </div>
 
       <div className="flex items-center gap-3">
         <Button type="submit" disabled={loading}>{loading ? '提交中...' : '提交设备'}</Button>

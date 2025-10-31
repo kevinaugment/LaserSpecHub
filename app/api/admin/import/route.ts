@@ -41,7 +41,7 @@ function parseCsv(text: string): { headers: string[]; rows: string[][] } {
     return out.map((v) => v.trim());
   };
 
-  const headers = parseLine(lines[0]);
+  const headers = parseLine(lines[0] || '');
   const rows = lines.slice(1).map(parseLine);
   return { headers, rows };
 }

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { calculateKerf, KerfInput, SupportedMaterial, MATERIAL_LABELS } from '@/lib/calculators/kerf-calculator';
@@ -73,18 +73,13 @@ export default function KerfCalculatorForm() {
             <label className="mb-1 block text-sm text-muted-foreground">材料类型</label>
             <Select
               value={state.material}
-              onValueChange={(v) => setState((s) => ({ ...s, material: v as SupportedMaterial }))}
+              onChange={(e) => setState((s) => ({ ...s, material: e.target.value as SupportedMaterial }))}
             >
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {Object.entries(MATERIAL_LABELS).map(([value, label]) => (
-                  <SelectItem key={value} value={value}>
-                    {label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
+              {Object.entries(MATERIAL_LABELS).map(([value, label]) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
             </Select>
           </div>
         </div>

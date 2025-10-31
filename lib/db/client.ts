@@ -43,25 +43,21 @@ function createTursoAdapter() {
 
   return {
     prepare: (sql: string) => {
-      const stmt = client.prepare(sql);
+      const stmt = (client as any).prepare(sql);
 
       const wrap = (args: any[]) => ({
         all: async () => {
-          // libsql returns { rows }
-          // map to D1-like { results }
-          // @ts-ignore
+          // libsql returns { rows }, map to D1-like { results }
           const res = await (stmt as any).all(...(args.length ? [args] : []));
           const rows = (res as any).rows ?? res ?? [];
           return { results: rows };
         },
         first: async () => {
-          // @ts-ignore
           const res = await (stmt as any).all(...(args.length ? [args] : []));
           const rows = (res as any).rows ?? res ?? [];
           return rows[0] ?? null;
         },
         run: async () => {
-          // @ts-ignore
           const res = await (stmt as any).run(...(args.length ? args : []));
           const lastId = Number((res as any).lastInsertRowid ?? 0);
           return { success: true, meta: { last_row_id: lastId } };
@@ -71,19 +67,16 @@ function createTursoAdapter() {
       return {
         bind: (...args: any[]) => wrap(args),
         all: async () => {
-          // @ts-ignore
           const res = await (stmt as any).all();
           const rows = (res as any).rows ?? res ?? [];
           return { results: rows };
         },
         first: async () => {
-          // @ts-ignore
           const res = await (stmt as any).all();
           const rows = (res as any).rows ?? res ?? [];
           return rows[0] ?? null;
         },
         run: async () => {
-          // @ts-ignore
           const res = await (stmt as any).run();
           const lastId = Number((res as any).lastInsertRowid ?? 0);
           return { success: true, meta: { last_row_id: lastId } };

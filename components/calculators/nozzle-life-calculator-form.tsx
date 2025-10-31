@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -86,36 +86,26 @@ export default function NozzleLifeCalculatorForm() {
                 <label className="mb-1 block text-sm font-medium">喷嘴材质</label>
                 <Select
                   value={state.nozzleMaterial}
-                  onValueChange={(v) => setState((s) => ({ ...s, nozzleMaterial: v as NozzleMaterial }))}
+                  onChange={(e) => setState((s) => ({ ...s, nozzleMaterial: e.target.value as NozzleMaterial }))}
                 >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.entries(NOZZLE_MATERIAL_LABELS).map(([value, label]) => (
-                      <SelectItem key={value} value={value}>
-                        {label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
+                  {Object.entries(NOZZLE_MATERIAL_LABELS).map(([value, label]) => (
+                    <option key={value} value={value}>
+                      {label}
+                    </option>
+                  ))}
                 </Select>
               </div>
               <div>
                 <label className="mb-1 block text-sm font-medium">喷嘴类型</label>
                 <Select
                   value={state.nozzleType}
-                  onValueChange={(v) => setState((s) => ({ ...s, nozzleType: v as NozzleType }))}
+                  onChange={(e) => setState((s) => ({ ...s, nozzleType: e.target.value as NozzleType }))}
                 >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.entries(NOZZLE_TYPE_LABELS).map(([value, label]) => (
-                      <SelectItem key={value} value={value}>
-                        {label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
+                  {Object.entries(NOZZLE_TYPE_LABELS).map(([value, label]) => (
+                    <option key={value} value={value}>
+                      {label}
+                    </option>
+                  ))}
                 </Select>
               </div>
             </div>
@@ -133,36 +123,26 @@ export default function NozzleLifeCalculatorForm() {
                 <label className="mb-1 block text-sm font-medium">切割材料</label>
                 <Select
                   value={state.cuttingMaterial}
-                  onValueChange={(v) => setState((s) => ({ ...s, cuttingMaterial: v as CuttingMaterial }))}
+                  onChange={(e) => setState((s) => ({ ...s, cuttingMaterial: e.target.value as CuttingMaterial }))}
                 >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.entries(CUTTING_MATERIAL_LABELS).map(([value, label]) => (
-                      <SelectItem key={value} value={value}>
-                        {label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
+                  {Object.entries(CUTTING_MATERIAL_LABELS).map(([value, label]) => (
+                    <option key={value} value={value}>
+                      {label}
+                    </option>
+                  ))}
                 </Select>
               </div>
               <div>
                 <label className="mb-1 block text-sm font-medium">辅助气体</label>
                 <Select
                   value={state.assistGas}
-                  onValueChange={(v) => setState((s) => ({ ...s, assistGas: v as AssistGas }))}
+                  onChange={(e) => setState((s) => ({ ...s, assistGas: e.target.value as AssistGas }))}
                 >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.entries(ASSIST_GAS_LABELS).map(([value, label]) => (
-                      <SelectItem key={value} value={value}>
-                        {label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
+                  {Object.entries(ASSIST_GAS_LABELS).map(([value, label]) => (
+                    <option key={value} value={value}>
+                      {label}
+                    </option>
+                  ))}
                 </Select>
               </div>
             </div>

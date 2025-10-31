@@ -9,7 +9,7 @@ export default function Page() {
   const [loading, setLoading] = useState(false);
 
   const sample = 'brand,model,laser_type,power_kw,work_area_length,work_area_width,max_cutting_thickness,cutting_speed,positioning_accuracy,repeat_accuracy,beam_quality,wavelength,control_system,cooling_type,power_consumption,dimensions,weight,price_range,manufacturer_url,spec_sheet_url,image_url,description,applications,origin_country\n' +
-    'TRUMPF,TruLaser 5030,Fiber,5,3000,1500,"{\"steel\":20,\"stainless\":16}","{\"steel_10mm\":3}",0.025,0.015,1.75,1070,Siemens 840D,Water,48,"{\"length\":7500,\"width\":2900,\"height\":2300}",5800,"150000-190000",https://www.trumpf.com/,https://www.trumpf.com/,https://example.com/t.jpg,Premium German fiber laser,"[\"Aerospace\",\"Defense\"]",DE';
+    'TRUMPF,TruLaser 5030,Fiber,5,3000,1500,"{\\"steel\\":20,\\"stainless\\":16}","{\\"steel_10mm\\":3}",0.025,0.015,1.75,1070,Siemens 840D,Water,48,"{\\"length\\":7500,\\"width\\":2900,\\"height\\":2300}",5800,"150000-190000",https://www.trumpf.com/,https://www.trumpf.com/,https://example.com/t.jpg,Premium German fiber laser,"[\\"Aerospace\\",\\"Defense\\"]",DE';
 
   async function upload() {
     setLoading(true);
