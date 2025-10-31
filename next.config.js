@@ -63,6 +63,14 @@ const nextConfig = {
 
   // Disable x-powered-by header
   poweredByHeader: false,
+
+  // Optimize production build
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,
+  },
+
+  // Output configuration for serverless functions
+  output: 'standalone',
 };
 
 module.exports = nextConfig;
