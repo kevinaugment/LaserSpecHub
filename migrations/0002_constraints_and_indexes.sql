@@ -1,8 +1,7 @@
 -- Constraints and additional indexes for LaserSpecHub
 
--- Enforce brand+model uniqueness and not-null for critical fields
-ALTER TABLE laser_equipment
-  ADD COLUMN IF NOT EXISTS origin_country TEXT;
+-- Note: origin_country column should already exist in initial schema
+-- Skipping ALTER TABLE as Turso SQLite doesn't support IF NOT EXISTS in ADD COLUMN
 
 CREATE UNIQUE INDEX IF NOT EXISTS ux_equipment_brand_model
   ON laser_equipment(brand, model);

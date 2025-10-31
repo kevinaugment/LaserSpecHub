@@ -21,13 +21,39 @@ async function getAppliedMigrations(client) {
 }
 
 function splitSql(sql) {
-  return sql
+  // Remove comments but keep line breaks for proper parsing
+  const cleaned = sql
     .split('\n')
     .filter((line) => !line.trim().startsWith('--'))
-    .join('\n')
-    .split(';')
-    .map((s) => s.trim())
-    .filter(Boolean);
+    .join('\n');
+  
+  // Split by semicolons, but be smarter about BEGIN...END blocks
+  const statements = [];
+  let current = '';
+  let inBlock = false;
+  
+  for (const line of cleaned.split('\n')) {
+    current += line + '\n';
+    const trimmedLine = line.trim().toUpperCase();
+    
+    if (trimmedLine.includes('BEGIN')) {
+      inBlock = true;
+    }
+    if (trimmedLine.includes('END;')) {
+      inBlock = false;
+      statements.push(current.trim());
+      current = '';
+    } else if (!inBlock && line.includes(';')) {
+      statements.push(current.trim());
+      current = '';
+    }
+  }
+  
+  if (current.trim()) {
+    statements.push(current.trim());
+  }
+  
+  return statements.filter(s => s && s !== ';');
 }
 
 async function applyMigration(client, filePath, filename) {

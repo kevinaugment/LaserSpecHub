@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS laser_equipment (
   image_url TEXT,
   description TEXT,
   applications TEXT, -- JSON array: ["Sheet metal", "Tube cutting", "3D cutting"]
+  origin_country TEXT, -- Country of origin, e.g., "DE", "US", "CN"
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   is_active INTEGER DEFAULT 1 CHECK(is_active IN (0, 1))
