@@ -93,7 +93,7 @@ export default function Page() {
           <Card>
             <CardHeader><CardTitle className="text-lg">特殊几何</CardTitle></CardHeader>
             <CardContent className="text-sm text-muted-foreground space-y-2">
-              <div>• 小孔：直径<板厚时速度-50%</div>
+              <div>• 小孔：直径{'<'}板厚时速度-50%</div>
               <div>• 尖角：拐角减速与圆角过渡</div>
             </CardContent>
           </Card>

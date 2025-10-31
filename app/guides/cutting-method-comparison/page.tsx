@@ -145,7 +145,7 @@ export default function Page() {
               <div>✓ 薄板高精度（≤10mm）</div>
               <div>✓ 不锈钢亮面切割</div>
               <div>✓ 复杂轮廓与小孔</div>
-              <div>✗ 超厚板（>30mm）</div>
+              <div>✗ 超厚板（{'>'} 30mm）</div>
               <div>✗ 预算极度有限</div>
             </CardContent>
           </Card>
@@ -182,7 +182,7 @@ export default function Page() {
         <Card>
           <CardContent className="pt-6 text-sm text-muted-foreground space-y-2">
             <div>• 主要材料：金属→优先激光/等离子；非金属→优先水刀</div>
-            <div>• 厚度范围：<10mm→激光；10-30mm→激光/等离子；>30mm→等离子/水刀</div>
+            <div>• 厚度范围：{'<'}10mm→激光；10-30mm→激光/等离子；{'>'}30mm→等离子/水刀</div>
             <div>• 精度等级：±0.1mm→激光；±0.5mm→等离子；±0.2mm→水刀</div>
             <div>• 预算：低→等离子；中→激光；高→激光或水刀</div>
           </CardContent>

@@ -111,7 +111,7 @@ export default function Page() {
               <CardTitle className="text-lg">余料管理</CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground space-y-2">
-              <div>• 余料分类：A≥500×500、B 200~500、C<200</div>
+              <div>• 余料分类：A≥500×500、B 200~500、C{'<'}200</div>
               <div>• 余料库：尺寸标记与优先排版</div>
             </CardContent>
           </Card>
