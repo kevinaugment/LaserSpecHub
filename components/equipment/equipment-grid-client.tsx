@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import type { LaserEquipment } from '@/types/equipment';
 import { EquipmentCard } from './equipment-card';
@@ -10,9 +11,35 @@ interface EquipmentGridClientProps {
   brands: string[];
 }
 
+const COMPARISON_STORAGE_KEY = 'laser-equipment-comparison';
+const MAX_COMPARISON_ITEMS = 5;
+
 export function EquipmentGridClient({ equipment, brands }: EquipmentGridClientProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [comparisonItems, setComparisonItems] = useState<LaserEquipment[]>([]);
+
+  // Load comparison items from localStorage on mount
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(COMPARISON_STORAGE_KEY);
+      if (stored) {
+        const items = JSON.parse(stored) as LaserEquipment[];
+        setComparisonItems(items);
+      }
+    } catch (error) {
+      console.error('Failed to load comparison items:', error);
+    }
+  }, []);
+
+  // Save comparison items to localStorage whenever they change
+  useEffect(() => {
+    try {
+      localStorage.setItem(COMPARISON_STORAGE_KEY, JSON.stringify(comparisonItems));
+    } catch (error) {
+      console.error('Failed to save comparison items:', error);
+    }
+  }, [comparisonItems]);
 
   const handleFilterChange = (filters: FilterValues) => {
     const params = new URLSearchParams();
@@ -25,6 +52,43 @@ export function EquipmentGridClient({ equipment, brands }: EquipmentGridClientPr
     if (filters.coolingType !== 'all') params.set('coolingType', filters.coolingType);
 
     router.push(`/equipment?${params.toString()}`);
+  };
+
+  const handleCompareClick = (equipment: LaserEquipment) => {
+    const isAlreadyAdded = comparisonItems.some(item => item.id === equipment.id);
+    
+    if (isAlreadyAdded) {
+      // Remove from comparison
+      setComparisonItems(items => items.filter(item => item.id !== equipment.id));
+    } else {
+      // Add to comparison (max 5 items)
+      if (comparisonItems.length >= MAX_COMPARISON_ITEMS) {
+        alert(`You can compare up to ${MAX_COMPARISON_ITEMS} items at once. Please remove an item before adding another.`);
+        return;
+      }
+      setComparisonItems(items => [...items, equipment]);
+    }
+  };
+
+  const handleViewComparison = () => {
+    if (comparisonItems.length < 2) {
+      alert('Please select at least 2 items to compare.');
+      return;
+    }
+    
+    // Navigate to comparison page with selected equipment IDs
+    const ids = comparisonItems.map(item => item.id).join(',');
+    router.push(`/equipment/compare?ids=${ids}`);
+  };
+
+  const handleClearComparison = () => {
+    if (confirm('Remove all items from comparison?')) {
+      setComparisonItems([]);
+    }
+  };
+
+  const isInComparison = (id: number) => {
+    return comparisonItems.some(item => item.id === id);
   };
 
   const initialFilters = {
@@ -43,6 +107,37 @@ export function EquipmentGridClient({ equipment, brands }: EquipmentGridClientPr
         onFilterChange={handleFilterChange}
         initialFilters={initialFilters}
       />
+
+      {/* Comparison Bar */}
+      {comparisonItems.length > 0 && (
+        <div className="sticky top-0 z-10 bg-blue-600 text-white px-4 py-3 mb-6 rounded-lg shadow-lg">
+          <div className="flex items-center justify-between flex-wrap gap-2">
+            <div className="flex items-center gap-3">
+              <span className="font-medium">
+                {comparisonItems.length} {comparisonItems.length === 1 ? 'item' : 'items'} selected for comparison
+              </span>
+              <span className="text-blue-200 text-sm">
+                ({comparisonItems.map(item => `${item.brand} ${item.model}`).join(', ')})
+              </span>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={handleViewComparison}
+                disabled={comparisonItems.length < 2}
+                className="bg-white text-blue-600 px-4 py-1.5 rounded font-medium hover:bg-blue-50 transition disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+              >
+                Compare ({comparisonItems.length})
+              </button>
+              <button
+                onClick={handleClearComparison}
+                className="bg-blue-700 text-white px-4 py-1.5 rounded font-medium hover:bg-blue-800 transition text-sm"
+              >
+                Clear
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {equipment.length === 0 ? (
         <div className="bg-gray-50 rounded-lg p-12 text-center">
@@ -78,10 +173,8 @@ export function EquipmentGridClient({ equipment, brands }: EquipmentGridClientPr
                 key={item.id} 
                 equipment={item}
                 showCompareButton={true}
-                onCompareClick={(eq) => {
-                  // TODO: Implement comparison state management
-                  console.log('Add to comparison:', eq.brand, eq.model);
-                }}
+                isInComparison={isInComparison(item.id)}
+                onCompareClick={handleCompareClick}
               />
             ))}
           </div>
@@ -90,6 +183,8 @@ export function EquipmentGridClient({ equipment, brands }: EquipmentGridClientPr
     </>
   );
 }
+
+
 
 
 
