@@ -9,7 +9,7 @@ interface PageMetadataProps {
   noIndex?: boolean;
 }
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://laserspec-hub.pages.dev';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.laserspechub.com';
 const SITE_NAME = 'LaserSpecHub';
 
 export function generatePageMetadata({
@@ -155,6 +155,20 @@ export function generateBreadcrumbSchema(items: Array<{ name: string; url: strin
     })),
   };
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

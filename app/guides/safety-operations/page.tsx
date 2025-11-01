@@ -19,8 +19,8 @@ export const metadata: Metadata = {
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
-  name: '工业激光安全操作规程',
-  description: 'PPE、检查清单、SOP与应急流程',
+  name: 'Industrial Laser Safety Operations',
+  description: 'PPE, Checklists, SOPs and Emergency Procedures',
 };
 
 export default function Page() {
@@ -565,15 +565,6 @@ export default function Page() {
           </div>
         </div>
       </section>
-
-      {/* Chinese Content Section */}
-      <section className="mt-12 pt-12 border-t-2 border-gray-200">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-3 text-gray-800">激光切割安全操作规程 (Chinese Version)</h1>
-          <p className="text-lg text-muted-foreground">保障人员与设备安全的标准流程</p>
-        </div>
-
-      {/* 1. 个人防护（PPE） */}
 
       {/* 1. 个人防护（PPE） */}
       <section className="mb-10">

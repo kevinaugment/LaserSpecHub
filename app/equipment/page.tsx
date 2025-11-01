@@ -5,6 +5,9 @@ import { getDatabase } from '@/lib/db/client';
 import type { LaserEquipment } from '@/types/equipment';
 import { EquipmentGridClient } from '@/components/equipment/equipment-grid-client';
 
+// Force dynamic rendering to avoid build-time database access
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = generatePageMetadata({
   title: 'Laser Equipment Database',
   description:

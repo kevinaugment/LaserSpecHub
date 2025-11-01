@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Complete Laser Equipment Selection Guide - Buyer's Decision Framework 2025',
+  title: 'Complete Laser Equipment Selection Guide - Buyer Decision Framework 2025',
   description:
     'Comprehensive 2000+ word guide to selecting laser cutting equipment. Detailed evaluation criteria, vendor comparison matrix, ROI calculation, and decision frameworks for $50k-$500k+ investments.',
   path: '/guides/selection',

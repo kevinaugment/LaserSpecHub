@@ -10,23 +10,23 @@ import {
 } from '@/lib/data/cheatsheets/material-thickness-parameters-data';
 
 export const metadata: Metadata = {
-  title: '激光切割材料厚度参数速查表 | Cutting Parameters Guide - LaserSpecHub',
+  title: 'Laser Cutting Material Thickness Parameters Guide - LaserSpecHub',
   description:
-    '全面的激光切割材料厚度参数速查表,包含碳钢、不锈钢、铝合金等材料在不同功率和厚度下的切割速度、气体压力、喷嘴直径和焦点位置参数。基于TRUMPF、Bystronic等主流厂商数据。',
+    'Comprehensive laser cutting material thickness parameter reference table, including cutting speed, gas pressure, nozzle diameter and focus position parameters for carbon steel, stainless steel, aluminum alloy and other materials at different powers and thicknesses. Based on data from mainstream manufacturers like TRUMPF and Bystronic.',
   keywords: [
-    '激光切割参数',
     'laser cutting parameters',
-    '切割速度表',
-    '材料厚度参数',
-    '工艺参数速查',
+    'cutting speed table',
+    'material thickness parameters',
+    'process parameter reference',
+    'cutting parameters',
   ],
   alternates: {
     canonical: 'https://laserspechub.com/guides/material-thickness-parameters',
   },
   openGraph: {
-    title: '激光切割材料厚度参数速查表 - 完整工艺参数指南',
+    title: 'Laser Cutting Material Thickness Parameters - Complete Process Parameter Guide',
     description:
-      '快速查找不同材料、厚度和功率对应的切割参数,包括速度、气压、喷嘴和焦点位置。',
+      'Quickly find cutting parameters for different materials, thicknesses and powers, including speed, gas pressure, nozzle and focus position.',
     type: 'article',
     url: 'https://laserspechub.com/guides/material-thickness-parameters',
   },
@@ -35,8 +35,8 @@ export const metadata: Metadata = {
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'TechArticle',
-  headline: '激光切割材料厚度参数速查表',
-  description: '详细的激光切割工艺参数数据库',
+  headline: 'Laser Cutting Material Thickness Parameters Guide',
+  description: 'Detailed laser cutting process parameter database',
   author: {
     '@type': 'Organization',
     name: 'LaserSpecHub',
@@ -52,14 +52,14 @@ export default function Page() {
 
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-3">激光切割材料厚度参数速查表</h1>
+        <h1 className="text-3xl font-bold mb-3">Laser Cutting Material Thickness Parameters Guide</h1>
         <p className="text-muted-foreground">
-          基于TRUMPF、Bystronic、Amada、Mazak等主流激光设备制造商的工艺手册整理。
-          涵盖碳钢、不锈钢、铝合金等常用材料在不同功率和厚度下的推荐切割参数。
+          Compiled based on process manuals from mainstream laser equipment manufacturers such as TRUMPF, Bystronic, Amada, and Mazak.
+          Covers recommended cutting parameters for common materials like carbon steel, stainless steel, and aluminum alloy at different powers and thicknesses.
         </p>
         <div className="mt-2 text-sm text-muted-foreground">
-          数据版本: {MATERIAL_PARAMETERS_VERSION} | 
-          更新日期: {MATERIAL_PARAMETERS_LAST_UPDATE}
+          Data Version: {MATERIAL_PARAMETERS_VERSION} | 
+          Last Updated: {MATERIAL_PARAMETERS_LAST_UPDATE}
         </div>
       </div>
 
@@ -120,7 +120,7 @@ export default function Page() {
               an oxide layer requiring post-processing for applications demanding clean edges.
             </p>
             <p className="mb-3">
-              High-carbon steels (>0.3% carbon) require more careful parameter control due to potential hardening in the heat-affected zone. 
+              High-carbon steels (&gt;0.3% carbon) require more careful parameter control due to potential hardening in the heat-affected zone. 
               Reducing cutting speed by 15-20% and using nitrogen instead of oxygen often produces better results, especially for tooling 
               and precision parts where edge hardness variation is problematic.
             </p>

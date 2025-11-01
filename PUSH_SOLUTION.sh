@@ -33,3 +33,17 @@ echo "# 在有网络的机器上："
 echo "git am *.patch"
 echo "git push origin main"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

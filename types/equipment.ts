@@ -57,6 +57,7 @@ export interface LaserEquipment {
   image_url: string | null;
   description: string | null;
   applications: string[] | null;
+  origin_country?: string | null;
   created_at: string;
   updated_at: string;
   is_active: boolean;
@@ -112,6 +113,20 @@ export interface ComparisonResult {
     hasDifference: boolean;
   }[];
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

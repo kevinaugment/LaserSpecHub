@@ -40,7 +40,7 @@ export default function Page() {
 
       <article className="prose max-w-none">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          激光设备工作区尺寸选择：1米、2米还是3米平台？
+          Laser Equipment Work Area Size Selection: 1m, 2m or 3m Platform?
         </h1>
         <h2 className="text-2xl text-gray-700 mb-4">
           Laser Work Area Size Selection: 1m, 2m or 3m Platform?
@@ -90,20 +90,20 @@ export default function Page() {
 
         {/* Material Utilization */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">材料利用率分析 | Material Utilization Analysis</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Material Utilization Analysis</h2>
           
-          <h3 className="text-xl font-semibold text-gray-900 mb-3">标准板材尺寸匹配 | Standard Sheet Size Matching</h3>
+          <h3 className="text-xl font-semibold text-gray-900 mb-3">Standard Sheet Size Matching</h3>
           <p className="text-gray-700 mb-4">
             Material utilization is the percentage of raw material converted to finished parts. Poor matching between 
             work area and standard sheet sizes leads to waste. Understanding regional material standards is critical.
           </p>
 
           <div className="not-prose mb-6">
-            <h4 className="font-semibold text-gray-900 mb-2">常见板材尺寸 Common Sheet Sizes</h4>
+            <h4 className="font-semibold text-gray-900 mb-2">Common Sheet Sizes</h4>
             <div className="grid md:grid-cols-2 gap-4">
               <Card variant="bordered">
                 <CardHeader>
-                  <CardTitle>中国标准 China Standard</CardTitle>
+                  <CardTitle>China Standard</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700 space-y-1">
                   <div>• 1000×2000mm (1m×2m)</div>
@@ -117,7 +117,7 @@ export default function Page() {
               </Card>
               <Card variant="bordered">
                 <CardHeader>
-                  <CardTitle>国际标准 International</CardTitle>
+                  <CardTitle>International Standard</CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm text-gray-700 space-y-1">
                   <div>• 4'×8' (1220×2440mm) - US/UK</div>

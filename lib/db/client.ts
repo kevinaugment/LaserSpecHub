@@ -1,29 +1,19 @@
 /**
  * Database client utilities
- * Provides a unified adapter around Turso (libsql) and a dev-time mock.
+ * Turso SQLite database adapter for Vercel deployment
  */
 
 import type { LaserEquipment, EquipmentFilters } from '@/types/equipment';
 import { createClient, Client } from '@libsql/client';
 
 /**
- * Get D1 database instance from Cloudflare Workers environment
- * This should be called from API routes or server components
- */
-export function getDb(env: any) {
-  if (!env?.DB) {
-    throw new Error('D1 database not available in environment');
-  }
-  return env.DB;
-}
-
-/**
- * Get database instance for development/server components
- * In production, this will use Cloudflare's platform binding
- * In development, returns a mock database for build purposes
+ * Turso client singleton
  */
 let tursoClientSingleton: Client | null = null;
 
+/**
+ * Get Turso database client
+ */
 function getTursoClient(): Client {
   if (tursoClientSingleton) return tursoClientSingleton;
 
@@ -31,13 +21,18 @@ function getTursoClient(): Client {
   const authToken = process.env.TURSO_AUTH_TOKEN;
 
   if (!url || !authToken) {
-    throw new Error('Turso configuration missing: set TURSO_DATABASE_URL and TURSO_AUTH_TOKEN');
+    throw new Error(
+      'Turso configuration missing: set TURSO_DATABASE_URL and TURSO_AUTH_TOKEN environment variables'
+    );
   }
 
   tursoClientSingleton = createClient({ url, authToken });
   return tursoClientSingleton;
 }
 
+/**
+ * Create database adapter with unified interface
+ */
 function createTursoAdapter() {
   const client = getTursoClient();
 
@@ -111,18 +106,28 @@ function createTursoAdapter() {
   };
 }
 
+/**
+ * Get database instance
+ * Returns Turso adapter for production/development
+ */
 export function getDatabase() {
-  // Prefer Turso if configured
+  // Check if Turso is configured
   if (process.env.TURSO_DATABASE_URL && process.env.TURSO_AUTH_TOKEN) {
     return createTursoAdapter();
   }
 
-  // In Cloudflare runtime, a D1 binding might be present
-  if (typeof process !== 'undefined' && (process.env as any).DB) {
-    return (process.env as any).DB;
+  // Fallback: throw error in production, return mock in development
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error(
+      'Turso database not configured. Please set TURSO_DATABASE_URL and TURSO_AUTH_TOKEN environment variables.'
+    );
   }
 
-  // Fallback: dev-time mock to avoid build failures
+  // Development fallback: mock database to avoid build failures
+  console.warn(
+    '⚠️ Using mock database. Configure Turso to use real data.'
+  );
+
   const mockDb = {
     prepare: (_sql: string) => ({
       bind: (..._args: any[]) => ({
@@ -335,6 +340,3 @@ export async function getPowerStats(db: any): Promise<{
     avg: result?.avg || 0,
   };
 }
-
-
-

@@ -4,23 +4,23 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 
 export const metadata: Metadata = {
-  title: '激光切割喷嘴选择指南 | Nozzle Selection Guide - LaserSpecHub',
+  title: 'Laser Cutting Nozzle Selection Guide - LaserSpecHub',
   description:
-    '全面的激光切割喷嘴选择指南。详解单层、双层、高速喷嘴的特点,喷嘴直径与材料厚度的匹配关系,喷嘴高度设置方法,以及维护保养技巧。基于Precitec、Raytools技术手册。',
+    'Comprehensive laser cutting nozzle selection guide. Detailed explanation of single-layer, double-layer, and high-speed nozzle characteristics, matching nozzle diameter with material thickness, nozzle height setting methods, and maintenance tips. Based on Precitec and Raytools technical manuals.',
   keywords: [
-    '激光喷嘴',
+    'laser nozzle',
     'nozzle selection',
-    '喷嘴选择',
-    '喷嘴直径',
-    '切割喷嘴',
+    'nozzle diameter',
+    'cutting nozzle',
+    'nozzle maintenance',
   ],
   alternates: {
     canonical: 'https://laserspechub.com/guides/nozzle-selection-guide',
   },
   openGraph: {
-    title: '激光切割喷嘴选择指南 - 如何选择合适的喷嘴',
+    title: 'Laser Cutting Nozzle Selection Guide - How to Choose the Right Nozzle',
     description:
-      '了解不同类型喷嘴的特点,掌握喷嘴选择和维护的最佳实践',
+      'Understand the characteristics of different nozzle types, master best practices for nozzle selection and maintenance',
     type: 'article',
     url: 'https://laserspechub.com/guides/nozzle-selection-guide',
   },

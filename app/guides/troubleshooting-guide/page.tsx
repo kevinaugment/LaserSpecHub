@@ -4,14 +4,14 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 
 export const metadata: Metadata = {
-  title: '激光切割故障排除指南 | Troubleshooting Guide - LaserSpecHub',
+  title: 'Laser Cutting Troubleshooting Guide - LaserSpecHub',
   description:
-    '系统化的激光切割故障排除指南：切割质量问题、设备运行故障、激光器与控制系统问题的症状-原因-对策决策树。',
-  keywords: ['激光切割 故障', 'troubleshooting', '质量问题', '报警', '诊断'],
+    'Systematic laser cutting troubleshooting guide: cutting quality issues, equipment malfunctions, laser and control system problems with symptom-cause-solution decision trees.',
+  keywords: ['laser cutting troubleshooting', 'quality problems', 'equipment fault', 'diagnostics', 'laser repair'],
   alternates: { canonical: 'https://laserspechub.com/guides/troubleshooting-guide' },
   openGraph: {
-    title: '激光切割故障排除指南 - 系统诊断与快速修复',
-    description: '覆盖质量问题与设备故障的分步诊断流程与对策',
+    title: 'Laser Cutting Troubleshooting Guide - System Diagnostics & Quick Fixes',
+    description: 'Step-by-step diagnostic procedures and solutions for quality issues and equipment failures',
     type: 'article',
     url: 'https://laserspechub.com/guides/troubleshooting-guide',
   },
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'TechArticle',
-  headline: '激光切割故障排除指南',
-  description: '常见故障的症状、原因与解决方案',
+  headline: 'Laser Cutting Troubleshooting Guide',
+  description: 'Common faults: symptoms, causes, and solutions',
   datePublished: '2025-10-31',
   dateModified: '2025-10-31',
 };
@@ -32,57 +32,56 @@ export default function Page() {
       <StructuredData type="TechArticle" data={structuredData} />
 
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-3">激光切割故障排除指南</h1>
-        <p className="text-lg text-muted-foreground">按类别组织的故障排查与解决方案</p>
+        <h1 className="text-3xl font-bold mb-3">Laser Cutting Troubleshooting Guide</h1>
+        <p className="text-lg text-muted-foreground">Organized troubleshooting solutions by category</p>
       </div>
 
-      {/* 导航 */}
+      {/* Navigation */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle className="text-lg">故障分类导航</CardTitle>
+          <CardTitle className="text-lg">Fault Category Navigation</CardTitle>
         </CardHeader>
         <CardContent className="text-sm text-muted-foreground grid gap-2 md:grid-cols-2">
-          <a href="#quality">切割质量问题（9）</a>
-          <a href="#machine">设备运行故障（7）</a>
-          <a href="#laser">激光器问题（5）</a>
-          <a href="#control">控制系统故障（6）</a>
+          <a href="#quality">Cutting Quality Issues (9)</a>
+          <a href="#machine">Equipment Operation Faults (7)</a>
+          <a href="#laser">Laser Source Problems (5)</a>
+          <a href="#control">Control System Faults (6)</a>
         </CardContent>
       </Card>
 
-      {/* 第一部分：切割质量问题 */}
+      {/* Section 1: Cutting Quality Issues */}
       <section id="quality" className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">第一部分：切割质量问题</h2>
+        <h2 className="text-2xl font-semibold mb-4">Section 1: Cutting Quality Issues</h2>
 
-        {/* 故障示例：毛刺/挂渣/不穿透等只写代表性几项，保持结构可扩展 */}
         <div className="grid gap-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">故障1：切割断面有毛刺</CardTitle>
+              <CardTitle className="text-lg">Issue 1: Burrs on Cut Edge</CardTitle>
             </CardHeader>
             <CardContent className="text-sm space-y-3">
               <div>
-                <strong>可能原因（占比）</strong>
+                <strong>Possible Causes (Frequency)</strong>
                 <ul className="mt-1 ml-4 list-disc text-muted-foreground">
-                  <li>焦点位置不正确（40%）</li>
-                  <li>辅助气体压力不足（30%）</li>
-                  <li>切割速度过快（20%）</li>
-                  <li>喷嘴磨损/污染（10%）</li>
+                  <li>Incorrect focus position (40%)</li>
+                  <li>Insufficient assist gas pressure (30%)</li>
+                  <li>Cutting speed too high (20%)</li>
+                  <li>Worn/contaminated nozzle (10%)</li>
                 </ul>
               </div>
               <div>
-                <strong>解决方案</strong>
+                <strong>Solutions</strong>
                 <ul className="mt-1 ml-4 list-disc text-muted-foreground">
                   <li>
-                    重新调整焦点位置（参考
-                    <Link href="/guides/focus-position-guide" className="underline">焦点调整指南</Link>
-                    ）
+                    Readjust focus position (refer to{' '}
+                    <Link href="/guides/focus-position-guide" className="underline">Focus Adjustment Guide</Link>
+                    )
                   </li>
-                  <li>增加气体压力至推荐范围</li>
-                  <li>速度降低15-20%重新测试</li>
+                  <li>Increase gas pressure to recommended range</li>
+                  <li>Reduce speed by 15-20% and retest</li>
                   <li>
-                    清洁或更换喷嘴（查看
-                    <Link href="/guides/nozzle-selection-guide" className="underline">喷嘴指南</Link>
-                    ）
+                    Clean or replace nozzle (see{' '}
+                    <Link href="/guides/nozzle-selection-guide" className="underline">Nozzle Guide</Link>
+                    )
                   </li>
                 </ul>
               </div>
@@ -91,26 +90,26 @@ export default function Page() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">故障2：切割不穿透</CardTitle>
+              <CardTitle className="text-lg">Issue 2: Incomplete Penetration</CardTitle>
             </CardHeader>
             <CardContent className="text-sm space-y-3">
               <div>
-                <strong>可能原因</strong>
+                <strong>Possible Causes</strong>
                 <ul className="mt-1 ml-4 list-disc text-muted-foreground">
-                  <li>焦点过高</li>
-                  <li>功率不足或能量密度不够</li>
-                  <li>气体压力或流量不足</li>
+                  <li>Focus position too high</li>
+                  <li>Insufficient power or energy density</li>
+                  <li>Insufficient gas pressure or flow</li>
                 </ul>
               </div>
               <div>
-                <strong>对策</strong>
+                <strong>Solutions</strong>
                 <ul className="mt-1 ml-4 list-disc text-muted-foreground">
-                  <li>下移焦点位置</li>
-                  <li>提高功率或降低速度（参考
-                    <Link href="/tools/power-density-calculator" className="underline">功率密度计算器</Link>
-                    ）
+                  <li>Lower focus position</li>
+                  <li>Increase power or reduce speed (refer to{' '}
+                    <Link href="/tools/power-density-calculator" className="underline">Power Density Calculator</Link>
+                    )
                   </li>
-                  <li>提高气体压力/检查管路堵塞</li>
+                  <li>Increase gas pressure/check for blockages</li>
                 </ul>
               </div>
             </CardContent>
@@ -118,23 +117,23 @@ export default function Page() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">故障3：切割断面不垂直</CardTitle>
+              <CardTitle className="text-lg">Issue 3: Non-Perpendicular Cut Surface</CardTitle>
             </CardHeader>
             <CardContent className="text-sm space-y-3">
               <div>
-                <strong>可能原因</strong>
+                <strong>Possible Causes</strong>
                 <ul className="mt-1 ml-4 list-disc text-muted-foreground">
-                  <li>焦点偏移/光轴不正</li>
-                  <li>喷嘴不同心</li>
-                  <li>参数不匹配（速度过快、功率不足）</li>
+                  <li>Focus offset/beam axis misalignment</li>
+                  <li>Nozzle misalignment</li>
+                  <li>Parameter mismatch (speed too high, insufficient power)</li>
                 </ul>
               </div>
               <div>
-                <strong>对策</strong>
+                <strong>Solutions</strong>
                 <ul className="mt-1 ml-4 list-disc text-muted-foreground">
-                  <li>校准光路与焦点</li>
-                  <li>检查喷嘴同心度并更换</li>
-                  <li>降低速度或提高功率</li>
+                  <li>Calibrate beam path and focus</li>
+                  <li>Check nozzle concentricity and replace</li>
+                  <li>Reduce speed or increase power</li>
                 </ul>
               </div>
             </CardContent>
@@ -142,29 +141,29 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 第二部分：设备运行故障 */}
+      {/* Section 2: Equipment Operation Faults */}
       <section id="machine" className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">第二部分：设备运行故障</h2>
+        <h2 className="text-2xl font-semibold mb-4">Section 2: Equipment Operation Faults</h2>
         <div className="grid gap-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">故障10：激光器不出光</CardTitle>
+              <CardTitle className="text-lg">Issue 10: Laser Not Emitting</CardTitle>
             </CardHeader>
             <CardContent className="text-sm space-y-3">
               <div>
-                <strong>检查清单</strong>
+                <strong>Checklist</strong>
                 <ul className="mt-1 ml-4 list-disc text-muted-foreground">
-                  <li>急停是否释放/联锁是否闭合</li>
-                  <li>冷却器运行与水温/水位</li>
-                  <li>激光器准备就绪状态</li>
+                  <li>Emergency stop released/interlocks closed</li>
+                  <li>Chiller running with proper temperature/water level</li>
+                  <li>Laser ready status indicator</li>
                 </ul>
               </div>
               <div>
-                <strong>对策</strong>
+                <strong>Solutions</strong>
                 <ul className="mt-1 ml-4 list-disc text-muted-foreground">
-                  <li>复位联锁，解除急停</li>
-                  <li>恢复冷却条件</li>
-                  <li>联系维护人员进行诊断</li>
+                  <li>Reset interlocks, release emergency stop</li>
+                  <li>Restore cooling conditions</li>
+                  <li>Contact maintenance personnel for diagnosis</li>
                 </ul>
               </div>
             </CardContent>
@@ -172,21 +171,21 @@ export default function Page() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">故障14：冷却器报警</CardTitle>
+              <CardTitle className="text-lg">Issue 14: Chiller Alarm</CardTitle>
             </CardHeader>
             <CardContent className="text-sm space-y-3">
               <div>
-                <strong>可能原因</strong>
+                <strong>Possible Causes</strong>
                 <ul className="mt-1 ml-4 list-disc text-muted-foreground">
-                  <li>水温过高/水位不足</li>
-                  <li>水路堵塞或过滤器脏污</li>
+                  <li>Water temperature too high/insufficient water level</li>
+                  <li>Water circuit blockage or dirty filter</li>
                 </ul>
               </div>
               <div>
-                <strong>对策</strong>
+                <strong>Solutions</strong>
                 <ul className="mt-1 ml-4 list-disc text-muted-foreground">
-                  <li>补水与降低环境温度</li>
-                  <li>清洗过滤器与检查管路</li>
+                  <li>Add water and reduce ambient temperature</li>
+                  <li>Clean filter and check piping</li>
                 </ul>
               </div>
             </CardContent>
@@ -216,11 +215,11 @@ export default function Page() {
 
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle className="text-lg">Material-Specific Troubleshooting / 材料特定故障</CardTitle>
+            <CardTitle className="text-lg">Material-Specific Troubleshooting</CardTitle>
           </CardHeader>
           <CardContent className="text-sm space-y-4">
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Stainless Steel (不锈钢) Issues</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Stainless Steel Issues</h3>
               <p className="text-gray-700 mb-2">
                 <strong>Symptom:</strong> Yellow/blue discoloration on nitrogen cutting. <strong>Cause:</strong> Insufficient nitrogen pressure (&lt;12 bar) or purity (&lt;99.5%). <strong>Solution:</strong> Increase pressure to 14-18 bar, verify nitrogen purity with oxygen analyzer (target: &lt;100ppm O₂).
               </p>
@@ -230,7 +229,7 @@ export default function Page() {
             </div>
             
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Aluminum (铝合金) Challenges</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Aluminum Challenges</h3>
               <p className="text-gray-700 mb-2">
                 <strong>Symptom:</strong> Inconsistent cutting or frequent breakthrough failures. <strong>Cause:</strong> High reflectivity (90%+) causes power instability. <strong>Solution:</strong> Use fiber lasers with aluminum-optimized wavelength control, increase nitrogen pressure to 16-20 bar for strong melt ejection, reduce speed by 30-40% vs. equivalent steel thickness.
               </p>
@@ -240,7 +239,7 @@ export default function Page() {
             </div>
 
             <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Thick Plate Cutting (厚板切割) Problems</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Thick Plate Cutting Problems</h3>
               <p className="text-gray-700 mb-2">
                 <strong>Symptom:</strong> Taper or non-perpendicular edges on 15mm+ material. <strong>Cause:</strong> Insufficient depth of focus or power density gradient through thickness. <strong>Solution:</strong> Switch to multi-mode laser with larger focus spot (M²=2.0-2.5), use negative focus (-2 to -4mm) to position focal waist mid-thickness, reduce speed to allow adequate melt time.
               </p>
@@ -266,29 +265,29 @@ export default function Page() {
         </Card>
       </section>
 
-      {/* 故障索引与链接 */}
+      {/* Quick Links */}
       <Card>
         <CardHeader>
-          <CardTitle>快速链接</CardTitle>
+          <CardTitle>Quick Links</CardTitle>
         </CardHeader>
         <CardContent className="text-sm space-y-2">
           <div>
-            <Link href="/guides/focus-position-guide" className="underline">焦点调整指南</Link>
+            <Link href="/guides/focus-position-guide" className="underline">Focus Adjustment Guide</Link>
           </div>
           <div>
-            <Link href="/guides/nozzle-selection-guide" className="underline">喷嘴选择指南</Link>
+            <Link href="/guides/nozzle-selection-guide" className="underline">Nozzle Selection Guide</Link>
           </div>
           <div>
-            <Link href="/guides/material-thickness-parameters" className="underline">材料厚度参数表</Link>
+            <Link href="/guides/material-thickness-parameters" className="underline">Material Thickness Parameters</Link>
           </div>
           <div>
-            <Link href="/guides/process-optimization-guide" className="underline">工艺优化指南</Link>
+            <Link href="/guides/process-optimization-guide" className="underline">Process Optimization Guide</Link>
           </div>
         </CardContent>
       </Card>
 
       <p className="mt-8 text-xs text-muted-foreground">
-        提示：建议建立"首件检查与异常记录"机制，便于快速复现与定位问题。系统化的故障记录与参数数据库可将排障效率提升50-70%。
+        Tip: Establish a "first-piece inspection and anomaly logging" system for faster problem reproduction and identification. Systematic fault logging and parameter databases can improve troubleshooting efficiency by 50-70%.
       </p>
     </div>
   );

@@ -270,8 +270,8 @@ export function generateMarketReportPDF(data: MarketReportData): void {
   doc.setFillColor(240, 240, 240);
   doc.rect(startX, yPosition, contentWidth, 8, 'F');
   doc.text('Parameter', startX + 2, yPosition + 5);
-  doc.text('CO2 Laser', startX + colWidths[0] + 2, yPosition + 5);
-  doc.text('Fiber Laser', startX + colWidths[0] + colWidths[1] + 2, yPosition + 5);
+  doc.text('CO2 Laser', startX + (colWidths[0] || 0) + 2, yPosition + 5);
+  doc.text('Fiber Laser', startX + (colWidths[0] || 0) + (colWidths[1] || 0) + 2, yPosition + 5);
   yPosition += 8;
 
   // Table rows
@@ -285,8 +285,8 @@ export function generateMarketReportPDF(data: MarketReportData): void {
     }
     
     doc.text(row.param, startX + 2, yPosition + 4);
-    doc.text(row.co2, startX + colWidths[0] + 2, yPosition + 4);
-    doc.text(row.fiber, startX + colWidths[0] + colWidths[1] + 2, yPosition + 4);
+    doc.text(row.co2, startX + (colWidths[0] || 0) + 2, yPosition + 4);
+    doc.text(row.fiber, startX + (colWidths[0] || 0) + (colWidths[1] || 0) + 2, yPosition + 4);
     yPosition += 6;
   });
 
@@ -764,4 +764,15 @@ export function generateMarketReportPDF(data: MarketReportData): void {
   const filename = `LaserSpecHub-Market-Report-${data.version}.pdf`;
   doc.save(filename);
 }
+
+
+
+
+
+
+
+
+
+
+
 

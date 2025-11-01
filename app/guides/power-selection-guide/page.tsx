@@ -244,7 +244,10 @@ export default function PowerSelectionGuidePage() {
                 Production volume dramatically affects optimal power selection. High-volume operations benefit from 
                 higher power through increased throughput. For example, a fabrication shop processing 100 parts daily 
                 in 10mm steel might find that a 6kW laser completes the job in half the time of a 3kW system, 
-                potentially eliminating the need for second-shift operations and reducing labor costs by 40%.
+                potentially eliminating the need for second-shift operations and reducing labor costs by 40%. Leading 
+                manufacturers like <a href="https://opmtlaser.com/products/power-series" className="text-primary-600 hover:text-primary-700 font-medium" target="_blank" rel="noopener">OPMT Laser</a> offer 
+                comprehensive power series from 3kW to 20kW, allowing businesses to match their exact production requirements 
+                and scale up as demand grows.
               </p>
               <p className="mb-4">
                 Consider the total cost per part, not just equipment price. Higher-power lasers have higher initial 

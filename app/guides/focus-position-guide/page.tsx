@@ -4,24 +4,24 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 
 export const metadata: Metadata = {
-  title: '激光切割焦点位置调整指南 | Focus Position Guide - LaserSpecHub',
+  title: 'Laser Cutting Focus Position Guide - LaserSpecHub',
   description:
-    '详细的激光切割焦点位置调整操作指南。包含正焦、零焦、负焦的定义,斜板法、打点法等3种调整方法的步骤,不同材料的焦点位置推荐表,以及焦点错误的诊断方法。基于TRUMPF、Bystronic操作手册。',
+    'Detailed laser cutting focus position adjustment guide. Includes definitions of positive, zero, and negative focus, step-by-step methods for ramp test and dot test, focus position recommendations for different materials, and diagnostic methods for focus errors. Based on TRUMPF and Bystronic operation manuals.',
   keywords: [
-    '激光焦点调整',
+    'laser focus adjustment',
     'focus position',
-    '焦点校准',
-    '斜板法',
-    '打点法',
-    '激光对焦',
+    'focus calibration',
+    'ramp test',
+    'dot test',
+    'laser focusing',
   ],
   alternates: {
     canonical: 'https://laserspechub.com/guides/focus-position-guide',
   },
   openGraph: {
-    title: '激光切割焦点位置调整指南 - 完整操作步骤',
+    title: 'Laser Cutting Focus Position Guide - Complete Operation Steps',
     description:
-      '学习正确调整和校准激光焦点位置,掌握斜板法、打点法等实用方法',
+      'Learn to correctly adjust and calibrate laser focus position, master practical methods like ramp test and dot test',
     type: 'article',
     url: 'https://laserspechub.com/guides/focus-position-guide',
   },

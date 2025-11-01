@@ -150,7 +150,7 @@ export function EquipmentCard({
           </Link>
           {showCompareButton && onCompareClick && (
             <Button
-              variant={isInComparison ? 'success' : 'primary'}
+              variant={isInComparison ? 'secondary' : 'primary'}
               onClick={() => onCompareClick(equipment)}
               className="flex-1"
             >

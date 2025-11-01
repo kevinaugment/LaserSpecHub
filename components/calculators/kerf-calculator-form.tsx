@@ -51,7 +51,7 @@ export default function KerfCalculatorForm() {
       setOutput(result);
     } catch (e: any) {
       setOutput(null);
-      setError(e?.message ?? '计算失败，请检查输入');
+      setError(e?.message ?? 'Calculation failed, please check inputs');
     }
   }
 
@@ -60,7 +60,7 @@ export default function KerfCalculatorForm() {
       <div className="md:col-span-3 grid gap-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="mb-1 block text-sm text-muted-foreground">激光功率 (kW)</label>
+            <label className="mb-1 block text-sm text-muted-foreground">Laser Power (kW)</label>
             <Input
               type="number"
               min={0.5}
@@ -70,7 +70,7 @@ export default function KerfCalculatorForm() {
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm text-muted-foreground">材料类型</label>
+            <label className="mb-1 block text-sm text-muted-foreground">Material Type</label>
             <Select
               value={state.material}
               onChange={(e) => setState((s) => ({ ...s, material: e.target.value as SupportedMaterial }))}
@@ -86,7 +86,7 @@ export default function KerfCalculatorForm() {
 
         <div className="grid grid-cols-3 gap-4">
           <div>
-            <label className="mb-1 block text-sm text-muted-foreground">材料厚度 (mm)</label>
+            <label className="mb-1 block text-sm text-muted-foreground">Material Thickness (mm)</label>
             <Input
               type="number"
               min={0.5}
@@ -96,7 +96,7 @@ export default function KerfCalculatorForm() {
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm text-muted-foreground">喷嘴直径 (mm)</label>
+            <label className="mb-1 block text-sm text-muted-foreground">Nozzle Diameter (mm)</label>
             <Input
               type="number"
               min={0.8}
@@ -106,7 +106,7 @@ export default function KerfCalculatorForm() {
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm text-muted-foreground">切割速度 (mm/min)</label>
+            <label className="mb-1 block text-sm text-muted-foreground">Cutting Speed (mm/min)</label>
             <Input
               type="number"
               min={100}
@@ -119,7 +119,7 @@ export default function KerfCalculatorForm() {
 
         <div className="pt-2">
           <Button onClick={onCalculate} disabled={!canCalculate}>
-            计算
+            Calculate
           </Button>
           {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
         </div>
@@ -128,33 +128,33 @@ export default function KerfCalculatorForm() {
       <div className="md:col-span-2">
         <Card>
           <CardHeader>
-            <CardTitle>结果</CardTitle>
+            <CardTitle>Results</CardTitle>
           </CardHeader>
           <CardContent>
             {output ? (
               <div className="space-y-2 text-sm">
                 <div>
-                  <span className="text-muted-foreground">预估切缝 (mm)：</span>
+                  <span className="text-muted-foreground">Estimated Kerf (mm):</span>
                   <span className="ml-2 font-medium">{output.kerfMm}</span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">补偿建议 (mm)：</span>
+                  <span className="text-muted-foreground">Compensation Suggestion (mm):</span>
                   <span className="ml-2 font-medium">{output.compensationMm}</span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">建议零件间距 (mm)：</span>
+                  <span className="text-muted-foreground">Recommended Part Spacing (mm):</span>
                   <span className="ml-2 font-medium">{output.recommendedSpacingMm}</span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">材料利用率影响 (%)：</span>
+                  <span className="text-muted-foreground">Material Utilization Impact (%):</span>
                   <span className="ml-2 font-medium">{output.utilizationImpactPct}</span>
                 </div>
                 <div className="pt-2 text-xs text-muted-foreground">
-                  说明：结果基于硬编码材料系数与输入范围进行估算，建议结合实测微调。
+                  Note: Results are estimated based on hardcoded material coefficients and input ranges. Fine-tune with actual measurements.
                 </div>
               </div>
             ) : (
-              <p className="text-sm text-muted-foreground">输入参数后点击计算以查看结果。</p>
+              <p className="text-sm text-muted-foreground">Enter parameters and click Calculate to view results.</p>
             )}
           </CardContent>
         </Card>

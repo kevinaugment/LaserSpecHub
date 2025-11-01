@@ -68,22 +68,21 @@ export default function NozzleLifeCalculatorForm() {
       setOutput(result);
     } catch (e: any) {
       setOutput(null);
-      setError(e?.message ?? '计算失败,请检查输入');
+      setError(e?.message ?? 'Calculation failed, please check inputs');
     }
   }
 
   return (
     <div className="grid gap-6 lg:grid-cols-5">
       <div className="lg:col-span-3 space-y-6">
-        {/* 喷嘴配置 */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">喷嘴配置</CardTitle>
+            <CardTitle className="text-lg">Nozzle Configuration</CardTitle>
           </CardHeader>
           <CardContent className="grid gap-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="mb-1 block text-sm font-medium">喷嘴材质</label>
+                <label className="mb-1 block text-sm font-medium">Nozzle Material</label>
                 <Select
                   value={state.nozzleMaterial}
                   onChange={(e) => setState((s) => ({ ...s, nozzleMaterial: e.target.value as NozzleMaterial }))}
@@ -96,7 +95,7 @@ export default function NozzleLifeCalculatorForm() {
                 </Select>
               </div>
               <div>
-                <label className="mb-1 block text-sm font-medium">喷嘴类型</label>
+                <label className="mb-1 block text-sm font-medium">Nozzle Type</label>
                 <Select
                   value={state.nozzleType}
                   onChange={(e) => setState((s) => ({ ...s, nozzleType: e.target.value as NozzleType }))}
@@ -112,15 +111,14 @@ export default function NozzleLifeCalculatorForm() {
           </CardContent>
         </Card>
 
-        {/* 切割参数 */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">切割参数</CardTitle>
+            <CardTitle className="text-lg">Cutting Parameters</CardTitle>
           </CardHeader>
           <CardContent className="grid gap-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="mb-1 block text-sm font-medium">切割材料</label>
+                <label className="mb-1 block text-sm font-medium">Cutting Material</label>
                 <Select
                   value={state.cuttingMaterial}
                   onChange={(e) => setState((s) => ({ ...s, cuttingMaterial: e.target.value as CuttingMaterial }))}
@@ -133,7 +131,7 @@ export default function NozzleLifeCalculatorForm() {
                 </Select>
               </div>
               <div>
-                <label className="mb-1 block text-sm font-medium">辅助气体</label>
+                <label className="mb-1 block text-sm font-medium">Assist Gas</label>
                 <Select
                   value={state.assistGas}
                   onChange={(e) => setState((s) => ({ ...s, assistGas: e.target.value as AssistGas }))}
@@ -149,7 +147,7 @@ export default function NozzleLifeCalculatorForm() {
 
             <div className="grid grid-cols-3 gap-4">
               <div>
-                <label className="mb-1 block text-sm font-medium">材料厚度 (mm)</label>
+                <label className="mb-1 block text-sm font-medium">Material Thickness (mm)</label>
                 <Input
                   type="number"
                   min={0.5}
@@ -160,7 +158,7 @@ export default function NozzleLifeCalculatorForm() {
                 />
               </div>
               <div>
-                <label className="mb-1 block text-sm font-medium">激光功率 (kW)</label>
+                <label className="mb-1 block text-sm font-medium">Laser Power (kW)</label>
                 <Input
                   type="number"
                   min={1}
@@ -171,7 +169,7 @@ export default function NozzleLifeCalculatorForm() {
                 />
               </div>
               <div>
-                <label className="mb-1 block text-sm font-medium">日均工作时间 (h)</label>
+                <label className="mb-1 block text-sm font-medium">Daily Working Hours (h)</label>
                 <Input
                   type="number"
                   min={1}
@@ -187,79 +185,77 @@ export default function NozzleLifeCalculatorForm() {
 
         <div>
           <Button onClick={onCalculate} disabled={!canCalculate} className="w-full md:w-auto">
-            计算喷嘴寿命
+            Calculate Nozzle Life
           </Button>
           {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
         </div>
       </div>
 
       <div className="lg:col-span-2 space-y-4">
-        {/* 主要结果 */}
         <Card>
           <CardHeader>
-            <CardTitle>预测结果</CardTitle>
+            <CardTitle>Prediction Results</CardTitle>
           </CardHeader>
           <CardContent>
             {output ? (
               <div className="space-y-4">
                 <div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-950">
-                  <div className="text-sm text-muted-foreground">预估使用寿命</div>
+                  <div className="text-sm text-muted-foreground">Estimated Lifespan</div>
                   <div className="mt-1 text-3xl font-bold text-blue-600 dark:text-blue-400">
-                    {output.lifespanHours} <span className="text-lg">小时</span>
+                    {output.lifespanHours} <span className="text-lg">hours</span>
                   </div>
                   <div className="mt-1 text-sm text-muted-foreground">
-                    约 {output.lifespanDays} 天 (按每天 {state.dailyHours} 小时)
+                    Approx. {output.lifespanDays} days (at {state.dailyHours} hours/day)
                   </div>
                 </div>
 
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">喷嘴单价:</span>
+                    <span className="text-muted-foreground">Nozzle Unit Price:</span>
                     <span className="font-medium">¥{output.nozzlePriceYuan}</span>
                   </div>
                   <div className="flex justify-between border-t pt-2">
-                    <span className="text-muted-foreground">月度消耗成本:</span>
+                    <span className="text-muted-foreground">Monthly Consumption Cost:</span>
                     <span className="font-medium text-orange-600">¥{output.monthlyCostYuan}</span>
                   </div>
                 </div>
               </div>
             ) : (
-              <p className="text-sm text-muted-foreground">输入参数后点击计算查看结果</p>
+              <p className="text-sm text-muted-foreground">Enter parameters and click Calculate to view results</p>
             )}
           </CardContent>
         </Card>
 
-        {/* 计算明细 */}
         {output && (
           <Card>
             <CardHeader>
-              <CardTitle className="text-base">计算明细</CardTitle>
+              <CardTitle className="text-base">Calculation Breakdown</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-xs">
               <div className="flex justify-between">
-                <span className="text-muted-foreground">基础寿命:</span>
+                <span className="text-muted-foreground">Base Life:</span>
                 <span>{output.breakdown.baseLife}h</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">功率系数:</span>
+                <span className="text-muted-foreground">Power Factor:</span>
                 <Badge variant={output.breakdown.powerFactor > 1.2 ? 'destructive' : 'secondary'}>
                   {output.breakdown.powerFactor}x
                 </Badge>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">厚度系数:</span>
+                <span className="text-muted-foreground">Thickness Factor:</span>
                 <Badge variant={output.breakdown.thicknessFactor > 1.1 ? 'destructive' : 'secondary'}>
                   {output.breakdown.thicknessFactor}x
                 </Badge>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">材料系数:</span>
+                <span className="text-muted-foreground">Material Factor:</span>
                 <Badge variant={output.breakdown.materialFactor > 1.1 ? 'destructive' : 'secondary'}>
                   {output.breakdown.materialFactor}x
                 </Badge>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">气体系数:</span>
+                <span className="text-muted-foreground">Gas Factor:</span>
                 <Badge variant={output.breakdown.gasFactor > 1.1 ? 'destructive' : 'secondary'}>
                   {output.breakdown.gasFactor}x
                 </Badge>
@@ -268,11 +264,10 @@ export default function NozzleLifeCalculatorForm() {
           </Card>
         )}
 
-        {/* 延长寿命建议 */}
         {output && output.tips.length > 0 && (
           <Card>
             <CardHeader>
-              <CardTitle className="text-base">延长寿命建议</CardTitle>
+              <CardTitle className="text-base">Lifespan Extension Tips</CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="space-y-2 text-xs text-muted-foreground">

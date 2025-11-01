@@ -208,3 +208,17 @@ export function ComparisonTable({ equipment, onRemove }: ComparisonTableProps) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

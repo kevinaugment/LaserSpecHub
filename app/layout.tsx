@@ -8,7 +8,7 @@ import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://laserspec-hub.pages.dev'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.laserspechub.com'),
   title: {
     default: 'LaserSpecHub - Laser Equipment Specification Comparison Platform',
     template: '%s | LaserSpecHub',

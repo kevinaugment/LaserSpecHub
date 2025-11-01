@@ -39,7 +39,7 @@ export default function PowerDensityCalculatorForm() {
       setOutput(result);
     } catch (e: any) {
       setOutput(null);
-      setError(e?.message ?? '计算失败，请检查输入');
+      setError(e?.message ?? 'Calculation failed, please check inputs');
     }
   }
 
@@ -48,7 +48,7 @@ export default function PowerDensityCalculatorForm() {
       <div className="md:col-span-3 grid gap-4">
         <div className="grid grid-cols-3 gap-4">
           <div>
-            <label className="mb-1 block text-sm text-muted-foreground">激光功率 (W)</label>
+            <label className="mb-1 block text-sm text-muted-foreground">Laser Power (W)</label>
             <Input
               type="number"
               min={100}
@@ -58,7 +58,7 @@ export default function PowerDensityCalculatorForm() {
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm text-muted-foreground">聚焦光斑直径 (mm)</label>
+            <label className="mb-1 block text-sm text-muted-foreground">Focused Spot Diameter (mm)</label>
             <Input
               type="number"
               min={0.05}
@@ -68,7 +68,7 @@ export default function PowerDensityCalculatorForm() {
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm text-muted-foreground">M² (可选)</label>
+            <label className="mb-1 block text-sm text-muted-foreground">M² (Optional)</label>
             <Input
               type="number"
               min={1.0}
@@ -81,7 +81,7 @@ export default function PowerDensityCalculatorForm() {
 
         <div className="pt-2">
           <Button onClick={onCalculate} disabled={!canCalculate}>
-            计算
+            Calculate
           </Button>
           {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
         </div>
@@ -90,39 +90,39 @@ export default function PowerDensityCalculatorForm() {
       <div className="md:col-span-2">
         <Card>
           <CardHeader>
-            <CardTitle>结果</CardTitle>
+            <CardTitle>Results</CardTitle>
           </CardHeader>
           <CardContent>
             {output ? (
               <div className="space-y-2 text-sm">
                 <div>
-                  <span className="text-muted-foreground">光斑面积 (mm²)：</span>
+                  <span className="text-muted-foreground">Spot Area (mm²):</span>
                   <span className="ml-2 font-medium">{output.spotAreaMm2}</span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">功率密度 (W/mm²)：</span>
+                  <span className="text-muted-foreground">Power Density (W/mm²):</span>
                   <span className="ml-2 font-medium">{output.powerDensityWPerMm2}</span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">工艺适用性：</span>
+                  <span className="text-muted-foreground">Process Applicability:</span>
                   <span className="ml-2 font-medium">
                     {output.processHint === 'cutting'
-                      ? '切割'
+                      ? 'Cutting'
                       : output.processHint === 'welding'
-                      ? '焊接'
+                      ? 'Welding'
                       : output.processHint === 'marking'
-                      ? '打标'
-                      : '未知'}
+                      ? 'Marking'
+                      : 'Unknown'}
                   </span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">焦深估算 (mm)：</span>
+                  <span className="text-muted-foreground">Depth of Focus Estimate (mm):</span>
                   <span className="ml-2 font-medium">{output.focalDepthEstimateMm}</span>
                 </div>
-                <div className="pt-2 text-xs text-muted-foreground">说明：为简化估算，实际需结合M²、镜头、材料验证。</div>
+                <div className="pt-2 text-xs text-muted-foreground">Note: Simplified estimate. Actual results require validation with M², lens, and material testing.</div>
               </div>
             ) : (
-              <p className="text-sm text-muted-foreground">输入参数后点击计算以查看结果。</p>
+              <p className="text-sm text-muted-foreground">Enter parameters and click Calculate to view results.</p>
             )}
           </CardContent>
         </Card>
@@ -130,6 +130,16 @@ export default function PowerDensityCalculatorForm() {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

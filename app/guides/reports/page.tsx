@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Head from 'next/head';
+import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { StructuredData } from '@/components/ui/structured-data';
@@ -37,7 +37,7 @@ export default function MarketReportPage() {
       const equipment = equipmentData.default || equipmentData;
       
       generateMarketReportPDF({
-        equipment: equipment,
+        equipment: equipment as any,
         reportDate: new Date(),
         version: '2025.1',
       });
@@ -333,12 +333,12 @@ export default function MarketReportPage() {
               <p className="text-sm text-muted-foreground mb-3">
                 Browse our interactive equipment database with advanced filtering and comparison tools.
               </p>
-              <a
+              <Link
                 href="/equipment"
                 className="text-primary-600 hover:text-primary-700 font-medium text-sm"
               >
                 Explore Equipment →
-              </a>
+              </Link>
             </CardContent>
           </Card>
 

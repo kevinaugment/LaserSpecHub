@@ -41,3 +41,17 @@ CREATE INDEX IF NOT EXISTS idx_eq_submissions_status_created ON equipment_submis
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

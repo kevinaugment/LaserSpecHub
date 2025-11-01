@@ -47,6 +47,16 @@ function ComparisonContent() {
     loadEquipment();
   }, [searchParams]);
 
+  // Generate dynamic page title based on selected equipment
+  useEffect(() => {
+    if (typeof window !== 'undefined' && selectedEquipment.length > 0) {
+      const brands = selectedEquipment.map(eq => eq.brand).join(' vs ');
+      document.title = `${brands} Comparison - Laser Equipment | LaserSpecHub`;
+    } else if (typeof window !== 'undefined') {
+      document.title = 'Laser Equipment Comparison Tool - Compare Up to 5 Machines | LaserSpecHub';
+    }
+  }, [selectedEquipment]);
+
   const handleSelectEquipment = (equipment: LaserEquipment) => {
     const newSelected = [...selectedEquipment, equipment];
     setSelectedEquipment(newSelected);
@@ -107,16 +117,6 @@ function ComparisonContent() {
       priceCurrency: 'USD',
     },
   };
-
-  // Generate dynamic page title based on selected equipment
-  useEffect(() => {
-    if (typeof window !== 'undefined' && selectedEquipment.length > 0) {
-      const brands = selectedEquipment.map(eq => eq.brand).join(' vs ');
-      document.title = `${brands} Comparison - Laser Equipment | LaserSpecHub`;
-    } else if (typeof window !== 'undefined') {
-      document.title = 'Laser Equipment Comparison Tool - Compare Up to 5 Machines | LaserSpecHub';
-    }
-  }, [selectedEquipment]);
 
   return (
     <>

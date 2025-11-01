@@ -24,13 +24,13 @@ export function MaterialParametersTable({ materialData }: MaterialParametersTabl
         <div>
           <h3 className="text-lg font-semibold">{materialData.materialName}</h3>
           <p className="text-sm text-muted-foreground">
-            辅助气体: {materialData.assistGas}
-            {materialData.gasPurity && ` | 纯度: ${materialData.gasPurity}`}
+            Assist Gas: {materialData.assistGas}
+            {materialData.gasPurity && ` | Purity: ${materialData.gasPurity}`}
           </p>
         </div>
         
         <div className="w-full sm:w-auto">
-          <label className="block text-sm font-medium mb-1.5">激光功率</label>
+          <label className="block text-sm font-medium mb-1.5">Laser Power</label>
           <select
             value={selectedPower}
             onChange={(e) => setSelectedPower(e.target.value)}
@@ -51,22 +51,22 @@ export function MaterialParametersTable({ materialData }: MaterialParametersTabl
           <thead className="bg-muted/50">
             <tr>
               <th className="px-4 py-3 text-left text-sm font-semibold">
-                厚度 (mm)
+                Thickness (mm)
               </th>
               <th className="px-4 py-3 text-left text-sm font-semibold">
-                切割速度<br />(m/min)
+                Cutting Speed<br />(m/min)
               </th>
               <th className="px-4 py-3 text-left text-sm font-semibold">
-                气体压力<br />(bar)
+                Gas Pressure<br />(bar)
               </th>
               <th className="px-4 py-3 text-left text-sm font-semibold">
-                喷嘴直径<br />(mm)
+                Nozzle Diameter<br />(mm)
               </th>
               <th className="px-4 py-3 text-left text-sm font-semibold">
-                焦点位置<br />(mm)
+                Focus Position<br />(mm)
               </th>
               <th className="px-4 py-3 text-left text-sm font-semibold">
-                备注
+                Notes
               </th>
             </tr>
           </thead>

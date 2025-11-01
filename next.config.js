@@ -69,8 +69,8 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error', 'warn'] } : false,
   },
 
-  // Output configuration for serverless functions
-  output: 'standalone',
+  // Vercel serverless output
+  // output: 'standalone', // Remove this for Vercel deployment
 };
 
 module.exports = nextConfig;

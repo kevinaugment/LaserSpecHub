@@ -68,3 +68,17 @@ export default function EquipmentNotFound() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

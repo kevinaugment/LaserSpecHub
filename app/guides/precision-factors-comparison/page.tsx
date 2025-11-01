@@ -138,7 +138,7 @@ export default function PrecisionFactorsComparisonPage() {
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-semibold text-lg text-gray-900 mb-2">Positioning Accuracy (定位精度)</h4>
+                    <h4 className="font-semibold text-lg text-gray-900 mb-2">Positioning Accuracy</h4>
                     <p className="text-gray-700 mb-2">
                       The maximum deviation between the <strong>commanded position</strong> and the <strong>actual position</strong> 
                       reached by the cutting head. This measures systematic errors in the machine's ability to move to a specific coordinate.
@@ -154,7 +154,7 @@ export default function PrecisionFactorsComparisonPage() {
                   </div>
 
                   <div>
-                    <h4 className="font-semibold text-lg text-gray-900 mb-2">Repeat Accuracy / Repeatability (重复定位精度)</h4>
+                    <h4 className="font-semibold text-lg text-gray-900 mb-2">Repeat Accuracy / Repeatability</h4>
                     <p className="text-gray-700 mb-2">
                       The consistency of returning to the <strong>same position multiple times</strong>. This measures random errors 
                       and is typically 2-3× better than positioning accuracy.

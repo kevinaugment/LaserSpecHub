@@ -187,7 +187,7 @@ export default function CuttingSpeedChartPage() {
                 production speeds.
               </p>
               <p>
-                Aluminum presents the greatest challenge for fiber lasers due to extreme reflectivity (>90% at 1.06μm) and high thermal 
+                Aluminum presents the greatest challenge for fiber lasers due to extreme reflectivity (&gt;90% at 1.06μm) and high thermal 
                 conductivity. Successful aluminum cutting requires 30-50% more power than equivalent steel thickness. Modern fiber lasers 
                 with specialized aluminum cutting modes, such as those offered in 
                 <a href="https://opmtlaser.com/solutions/aluminum-cutting-systems" className="text-primary-600 hover:text-primary-700 font-medium" target="_blank" rel="noopener"> OPMT Laser's aluminum-optimized cutting systems</a>, 

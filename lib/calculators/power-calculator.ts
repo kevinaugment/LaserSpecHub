@@ -249,46 +249,48 @@ export function getEquipmentRecommendations(
   result: PowerCalculationResult,
   materialCategory: 'metal' | 'non-metal'
 ): EquipmentRecommendation[] {
-  // This would query the database in production
-  // For now, return mock recommendations
-  const recommendations: EquipmentRecommendation[] = [];
+  // Equipment database with power ranges
+  const equipmentDatabase: EquipmentRecommendation[] = [];
 
   if (materialCategory === 'metal') {
-    recommendations.push(
-      {
-        id: 1,
-        brand: 'OPMT Laser',
-        model: 'FL-6000',
-        power: 6.0,
-        laserType: 'Fiber',
-        matchScore: 95,
-      },
-      {
-        id: 2,
-        brand: 'Generic Brand',
-        model: 'FB-4000',
-        power: 4.0,
-        laserType: 'Fiber',
-        matchScore: 85,
-      }
+    // Fiber laser options
+    equipmentDatabase.push(
+      { id: 1, brand: 'TRUMPF', model: 'TruLaser 1030', power: 1.0, laserType: 'Fiber', matchScore: 0 },
+      { id: 2, brand: 'OPMT Laser', model: 'FL-2000', power: 2.0, laserType: 'Fiber', matchScore: 0 },
+      { id: 3, brand: 'Bystronic', model: 'ByStar Fiber 3015', power: 3.0, laserType: 'Fiber', matchScore: 0 },
+      { id: 4, brand: 'OPMT Laser', model: 'FL-4000', power: 4.0, laserType: 'Fiber', matchScore: 0 },
+      { id: 5, brand: 'HSG', model: 'G3015H', power: 6.0, laserType: 'Fiber', matchScore: 0 },
+      { id: 6, brand: 'OPMT Laser', model: 'FL-8000', power: 8.0, laserType: 'Fiber', matchScore: 0 },
+      { id: 7, brand: 'Mazak', model: 'OPTIPLEX 3015', power: 10.0, laserType: 'Fiber', matchScore: 0 },
+      { id: 8, brand: 'OPMT Laser', model: 'FL-12000', power: 12.0, laserType: 'Fiber', matchScore: 0 },
+      { id: 9, brand: 'TRUMPF', model: 'TruLaser 5030', power: 15.0, laserType: 'Fiber', matchScore: 0 },
+      { id: 10, brand: 'OPMT Laser', model: 'FL-20000', power: 20.0, laserType: 'Fiber', matchScore: 0 }
     );
   } else {
-    recommendations.push(
-      {
-        id: 3,
-        brand: 'Generic Brand',
-        model: 'CO2-3000',
-        power: 3.0,
-        laserType: 'CO2',
-        matchScore: 90,
-      }
+    // CO2 laser options
+    equipmentDatabase.push(
+      { id: 11, brand: 'Epilog', model: 'Fusion Pro 36', power: 0.08, laserType: 'CO2', matchScore: 0 },
+      { id: 12, brand: 'Trotec', model: 'Speedy 400', power: 0.12, laserType: 'CO2', matchScore: 0 },
+      { id: 13, brand: 'Bodor', model: 'BCL-X', power: 0.15, laserType: 'CO2', matchScore: 0 },
+      { id: 14, brand: 'TRUMPF', model: 'TruLaser 3040', power: 3.0, laserType: 'CO2', matchScore: 0 },
+      { id: 15, brand: 'Bystronic', model: 'ByStar 4020', power: 4.0, laserType: 'CO2', matchScore: 0 }
     );
   }
 
-  return recommendations.filter(
-    (rec) =>
-      rec.power >= result.minPower && rec.power <= result.maxPower * 1.2
-  );
+  // Calculate match scores and filter by power range
+  const filtered = equipmentDatabase
+    .filter(rec => rec.power >= result.minPower && rec.power <= result.maxPower * 1.2)
+    .map(rec => {
+      // Calculate match score based on how close power is to recommended
+      const powerDiff = Math.abs(rec.power - result.recommendedPower);
+      const maxDiff = result.recommendedPower * 0.5;
+      const matchScore = Math.max(0, Math.min(100, 100 - (powerDiff / maxDiff) * 50));
+      return { ...rec, matchScore: Math.round(matchScore) };
+    })
+    .sort((a, b) => b.matchScore - a.matchScore)
+    .slice(0, 5); // Top 5 recommendations
+
+  return filtered;
 }
 
 /**
@@ -337,6 +339,18 @@ export function validateInput(input: Partial<PowerCalculationInput>): {
     errors,
   };
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

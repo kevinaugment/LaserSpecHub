@@ -46,7 +46,7 @@ export default function ChillerCalculatorForm() {
       setOutput(result);
     } catch (e: any) {
       setOutput(null);
-      setError(e?.message ?? '计算失败，请检查输入');
+      setError(e?.message ?? 'Calculation failed, please check inputs');
     }
   }
 
@@ -55,18 +55,18 @@ export default function ChillerCalculatorForm() {
       <div className="md:col-span-3 grid gap-4">
         <div className="grid grid-cols-3 gap-4">
           <div>
-            <label className="mb-1 block text-sm text-muted-foreground">激光类型</label>
+            <label className="mb-1 block text-sm text-muted-foreground">Laser Type</label>
             <Select
               value={state.laserType}
               onChange={(e) => setState((s) => ({ ...s, laserType: e.target.value as FormState['laserType'] }))}
             >
-              <option value="fiber">光纤</option>
+              <option value="fiber">Fiber</option>
               <option value="co2">CO2</option>
-              <option value="solid_state">固体</option>
+              <option value="solid_state">Solid State</option>
             </Select>
           </div>
           <div>
-            <label className="mb-1 block text-sm text-muted-foreground">激光功率 (kW)</label>
+            <label className="mb-1 block text-sm text-muted-foreground">Laser Power (kW)</label>
             <Input
               type="number"
               min={1}
@@ -76,7 +76,7 @@ export default function ChillerCalculatorForm() {
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm text-muted-foreground">环境温度 (℃)</label>
+            <label className="mb-1 block text-sm text-muted-foreground">Ambient Temp (℃)</label>
             <Input
               type="number"
               min={10}
@@ -89,7 +89,7 @@ export default function ChillerCalculatorForm() {
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="mb-1 block text-sm text-muted-foreground">工作占空比 (%)</label>
+            <label className="mb-1 block text-sm text-muted-foreground">Duty Cycle (%)</label>
             <Input
               type="number"
               min={10}
@@ -100,7 +100,7 @@ export default function ChillerCalculatorForm() {
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm text-muted-foreground">安全系数</label>
+            <label className="mb-1 block text-sm text-muted-foreground">Safety Factor</label>
             <Input
               type="number"
               min={1.05}
@@ -114,7 +114,7 @@ export default function ChillerCalculatorForm() {
 
         <div className="pt-2">
           <Button onClick={onCalculate} disabled={!canCalculate}>
-            计算
+            Calculate
           </Button>
           {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
         </div>
@@ -123,27 +123,27 @@ export default function ChillerCalculatorForm() {
       <div className="md:col-span-2">
         <Card>
           <CardHeader>
-            <CardTitle>结果</CardTitle>
+            <CardTitle>Results</CardTitle>
           </CardHeader>
           <CardContent>
             {output ? (
               <div className="space-y-2 text-sm">
                 <div>
-                  <span className="text-muted-foreground">所需制冷量 (kW)：</span>
+                  <span className="text-muted-foreground">Required Cooling (kW):</span>
                   <span className="ml-2 font-medium">{output.coolingCapacityKw}</span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">所需制冷量 (kcal/h)：</span>
+                  <span className="text-muted-foreground">Required Cooling (kcal/h):</span>
                   <span className="ml-2 font-medium">{output.coolingCapacityKcalPerH}</span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">建议冷却水流量 (L/min)：</span>
+                  <span className="text-muted-foreground">Recommended Flow Rate (L/min):</span>
                   <span className="ml-2 font-medium">{output.suggestedFlowLpm}</span>
                 </div>
-                <div className="pt-2 text-xs text-muted-foreground">说明：不同冷却器设计会有差异，请结合厂商规格选型。</div>
+                <div className="pt-2 text-xs text-muted-foreground">Note: Different chiller designs vary. Please refer to manufacturer specifications for selection.</div>
               </div>
             ) : (
-              <p className="text-sm text-muted-foreground">输入参数后点击计算以查看结果。</p>
+              <p className="text-sm text-muted-foreground">Enter parameters and click Calculate to view results.</p>
             )}
           </CardContent>
         </Card>

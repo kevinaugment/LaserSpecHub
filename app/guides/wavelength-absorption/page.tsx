@@ -272,7 +272,7 @@ export default function WavelengthAbsorptionPage() {
                   <p className="text-gray-700">
                     <strong>Decision:</strong> Dual-wavelength solution: 500W green laser (532nm) for aluminum cutting, 50W UV 
                     laser (355nm) for PCB micro-machining. Green laser's 7x better aluminum absorption vs fiber enables clean 
-                    cutting at lower power with minimal dross. UV laser's 355nm wavelength provides <10μm spot size for precision 
+                    cutting at lower power with minimal dross. UV laser's 355nm wavelength provides &lt;10μm spot size for precision 
                     PCB features (via drilling, trace cutting) with negligible thermal damage to surrounding components.
                   </p>
                   <p className="text-gray-700">

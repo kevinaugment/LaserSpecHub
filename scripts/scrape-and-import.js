@@ -352,7 +352,7 @@ function extractTables($) {
 async function fetchPage(url) {
   const res = await fetch(url, {
     headers: {
-      'User-Agent': 'Mozilla/5.0 (compatible; LaserSpecHubBot/1.0; +https://example.com)'
+      'User-Agent': 'Mozilla/5.0 (compatible; LaserSpecHubBot/1.0; +https://www.laserspechub.com)'
     },
   });
   if (!res.ok) throw new Error(`Failed to fetch ${url}: ${res.status}`);
@@ -473,7 +473,7 @@ async function parsePdfSpecs(url) {
 }
 
 async function main() {
-  const baseImportUrl = process.env.IMPORT_URL || 'http://localhost:3000/api/admin/import';
+  const baseImportUrl = process.env.IMPORT_URL || 'https://www.laserspechub.com/api/admin/import';
   const onlyBrand = process.env.BRAND || process.argv.slice(2).find((a) => a.startsWith('--brand='))?.split('=')[1];
   const dryRun = String(process.env.DRY_RUN || '').toLowerCase() === 'true' || process.argv.includes('--dry');
   const outputPath = process.env.OUTPUT || (process.argv.find((a) => a.startsWith('--output='))?.split('=')[1]);

@@ -104,7 +104,7 @@ export function Footer() {
               &copy; {currentYear} LaserSpecHub. All rights reserved.
             </p>
             <div className="flex items-center gap-6 text-sm text-gray-600">
-              <span>Built with Next.js & Cloudflare</span>
+              <span>Built with Next.js & Turso on Vercel</span>
             </div>
           </div>
         </div>
@@ -112,6 +112,20 @@ export function Footer() {
     </footer>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

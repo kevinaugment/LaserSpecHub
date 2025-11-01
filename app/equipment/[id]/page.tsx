@@ -9,6 +9,9 @@ import { Button } from '@/components/ui/button';
 import { generatePageMetadata } from '@/lib/utils/metadata';
 import { StructuredData } from '@/components/ui/structured-data';
 
+// Force dynamic rendering to avoid build-time database access
+export const dynamic = 'force-dynamic';
+
 async function getEquipmentById(id: string): Promise<LaserEquipment | null> {
   const db = getDatabase();
   

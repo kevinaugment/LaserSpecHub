@@ -19,8 +19,8 @@ export const metadata: Metadata = {
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'TechArticle',
-  headline: '激光 vs 等离子 vs 水刀 对比',
-  description: '多维度技术与成本对比的选型指南',
+  headline: 'Laser vs Plasma vs Waterjet Comparison',
+  description: 'Multi-dimensional technology and cost comparison guide for equipment selection',
   datePublished: '2025-10-31',
   dateModified: '2025-10-31',
 };
@@ -612,8 +612,8 @@ export default function Page() {
           <p className="text-lg text-muted-foreground">技术性能与成本的客观对比，辅助设备选型</p>
         </div>
 
-      {/* 1. 综合性能对比 */}
-      <section className="mb-10">
+        {/* 1. 综合性能对比 */}
+        <section className="mb-10">
         <h2 className="text-2xl font-semibold mb-4">1. 综合性能对比</h2>
         <Card>
           <CardContent className="pt-6">
@@ -767,6 +767,7 @@ export default function Page() {
       </section>
 
       <p className="mt-8 text-xs text-muted-foreground">注：以上数据基于公开资料与行业经验，实际性能因设备型号与工艺设置而异。</p>
+      </section>
     </div>
   );
 }

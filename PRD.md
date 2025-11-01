@@ -248,9 +248,9 @@
 ### 技术架构
 
 技术栈:
-- 与主站相同：Next.js 14 + Cloudflare + D1
+- 与主站相同：Next.js 15 + Vercel + Turso SQLite
 - 特殊需求：
-  - 设备数据库（D1表结构）
+  - 设备数据库（Turso表结构）
   - 对比工具状态管理（Zustand或Jotai）
   - PDF生成（jsPDF或服务端生成）
 

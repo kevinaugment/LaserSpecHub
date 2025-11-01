@@ -38,11 +38,11 @@ export default function EquipmentSubmitForm() {
       });
       const json = await res.json();
       if (!res.ok || !json.success) {
-        throw new Error(json.error || '提交失败');
+        throw new Error(json.error || 'Submission failed');
       }
-      setSuccess('提交成功，等待审核。');
+      setSuccess('Submitted successfully, pending review.');
     } catch (e: any) {
-      setError(e.message || '提交失败');
+      setError(e.message || 'Submission failed');
     } finally {
       setLoading(false);
     }
@@ -58,19 +58,19 @@ export default function EquipmentSubmitForm() {
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="mb-1 block text-sm font-medium">品牌*</label>
-          <Input name="brand" required placeholder="如：OPMT" />
+          <label className="mb-1 block text-sm font-medium">Brand*</label>
+          <Input name="brand" required placeholder="e.g., TRUMPF" />
         </div>
         <div>
-          <label className="mb-1 block text-sm font-medium">型号*</label>
-          <Input name="model" required placeholder="如：FL-6000" />
+          <label className="mb-1 block text-sm font-medium">Model*</label>
+          <Input name="model" required placeholder="e.g., TruLaser 5030" />
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="mb-1 block text-sm font-medium">激光类型*</label>
+          <label className="mb-1 block text-sm font-medium">Laser Type*</label>
           <Select name="laser_type" required>
-            <option value="">-- 选择 --</option>
+            <option value="">-- Select --</option>
             <option value="Fiber">Fiber</option>
             <option value="CO2">CO2</option>
             <option value="Solid">Solid</option>
@@ -78,64 +78,64 @@ export default function EquipmentSubmitForm() {
           </Select>
         </div>
         <div>
-          <label className="mb-1 block text-sm font-medium">功率(kW)</label>
+          <label className="mb-1 block text-sm font-medium">Power (kW)</label>
           <Input name="power_kw" type="number" step="0.1" />
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="mb-1 block text-sm font-medium">工作区长度(mm)</label>
+          <label className="mb-1 block text-sm font-medium">Work Area Length (mm)</label>
           <Input name="work_area_length" type="number" />
         </div>
         <div>
-          <label className="mb-1 block text-sm font-medium">工作区宽度(mm)</label>
+          <label className="mb-1 block text-sm font-medium">Work Area Width (mm)</label>
           <Input name="work_area_width" type="number" />
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="mb-1 block text-sm font-medium">原产地(国家)</label>
+          <label className="mb-1 block text-sm font-medium">Country of Origin</label>
           <Input name="origin_country" />
         </div>
         <div>
-          <label className="mb-1 block text-sm font-medium">价格区间</label>
+          <label className="mb-1 block text-sm font-medium">Price Range</label>
           <Input name="price_range" />
         </div>
       </div>
       <div>
-        <label className="mb-1 block text-sm font-medium">制造商页面URL</label>
+        <label className="mb-1 block text-sm font-medium">Manufacturer Website URL</label>
         <Input name="manufacturer_url" />
       </div>
       <div>
-        <label className="mb-1 block text-sm font-medium">规格书URL</label>
+        <label className="mb-1 block text-sm font-medium">Specification Sheet URL</label>
         <Input name="spec_sheet_url" />
       </div>
       <div>
-        <label className="mb-1 block text-sm font-medium">图片URL</label>
+        <label className="mb-1 block text-sm font-medium">Image URL</label>
         <Input name="image_url" />
       </div>
       <div>
-        <label className="mb-1 block text-sm font-medium">描述</label>
+        <label className="mb-1 block text-sm font-medium">Description</label>
         <Input name="description" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="mb-1 block text-sm font-medium">提交人姓名</label>
+          <label className="mb-1 block text-sm font-medium">Submitter Name</label>
           <Input name="submitter_name" />
         </div>
         <div>
-          <label className="mb-1 block text-sm font-medium">提交人邮箱</label>
+          <label className="mb-1 block text-sm font-medium">Submitter Email</label>
           <Input name="submitter_email" type="email" />
         </div>
       </div>
       <div>
-        <label className="mb-1 block text-sm font-medium">数据来源URL</label>
+        <label className="mb-1 block text-sm font-medium">Data Source URL</label>
         <Input name="source_url" />
       </div>
 
       <div className="flex items-center gap-3">
-        <Button type="submit" disabled={loading}>{loading ? '提交中...' : '提交设备'}</Button>
+        <Button type="submit" disabled={loading}>{loading ? 'Submitting...' : 'Submit Equipment'}</Button>
         {success && <span className="text-green-600 text-sm">{success}</span>}
         {error && <span className="text-red-600 text-sm">{error}</span>}
       </div>

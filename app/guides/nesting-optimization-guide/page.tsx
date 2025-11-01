@@ -1,7 +1,7 @@
-import { Metadata } from 'next';
-import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
+import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Laser Cutting Nesting Optimization Guide - Maximize Material Utilization | LaserSpecHub',
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'TechArticle',
-  headline: '激光切割排版优化指南',
-  description: '提升材料利用率与效率的系统方法',
+  headline: 'Laser Cutting Nesting Optimization Guide',
+  description: 'Systematic methods to improve material utilization and efficiency',
   datePublished: '2025-10-31',
   dateModified: '2025-10-31',
 };
@@ -288,7 +288,7 @@ export default function Page() {
                 </ul>
               </div>
               <p className="text-gray-700 mt-3">
-                <strong>Removal:</strong> Hand snap-off for 0.2-0.3mm tabs on <3mm material. Light grinding for thicker 
+                <strong>Removal:</strong> Hand snap-off for 0.2-0.3mm tabs on &lt;3mm material. Light grinding for thicker 
                 materials or 0.4-0.5mm tabs. Budget 15-30 seconds removal time per part (still faster than individual 
                 part extraction during cutting).
               </p>
@@ -504,104 +504,6 @@ export default function Page() {
                 costs $18,000-30,000/year on $600K material spend. Premium software typically recovers price premium in 
                 3-6 months through better algorithms.
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* Chinese Content Section */}
-      <section>
-        <div className="mb-8 mt-12">
-          <h1 className="text-3xl font-bold mb-3 text-gray-800">激光切割排版优化指南 (Chinese Version)</h1>
-          <p className="text-lg text-muted-foreground">以"更高材料利用率+更短加工时间"为导向的系统方法</p>
-      </div>
-
-      {/* 1. 排版原则与方法 */}
-      <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">1. 排版原则与方法</h2>
-        <div className="grid gap-6 md:grid-cols-2">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">基本排版原则</CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm text-muted-foreground space-y-2">
-              <div>• 大件优先/边角利用/方向统一</div>
-              <div>• 最小边距3-5mm，零件间距1-3mm</div>
-              <div>• 切割顺序规划与穿孔点选择</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">常见排版方法</CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm text-muted-foreground space-y-2">
-              <div>• 矩形排列：规则件，75-85%利用率</div>
-              <div>• 嵌套排列：异形件，80-90%</div>
-              <div>• 共边切割：相同零件，85-92%，切割时间-15-25%</div>
-              <div>• 智能算法：遗传/模拟退火，88-95%</div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* 2. 软件应用与技巧 */}
-      <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">2. 软件应用与技巧</h2>
-        <div className="grid gap-6 md:grid-cols-2">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">主流软件对比</CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm text-muted-foreground space-y-2">
-              <div>• Sigmanest：自动优化强，90-95%</div>
-              <div>• FastCAM：通用性好，85-90%</div>
-              <div>• Lantek：系统集成好，85-92%</div>
-              <div>• 国产：性价比高，80-88%</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">使用技巧</CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm text-muted-foreground space-y-2">
-              <div>• 约束条件：方向/间距/共边边数</div>
-              <div>• 参数设置：边距优先/路径最短</div>
-              <div>• 手工干预：关键零件锁定与分区排版</div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* 3. 特殊排版技术 */}
-      <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">3. 特殊排版技术</h2>
-        <div className="grid gap-6 md:grid-cols-3">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">共边切割</CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm text-muted-foreground space-y-2">
-              <div>• 条件：材料/质量一致，轮廓匹配</div>
-              <div>• 步骤：CAD处理 → 软件设置 → 路径验证</div>
-              <div>• 效果：材料+8~12%，时间-15~25%</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">余料管理</CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm text-muted-foreground space-y-2">
-              <div>• 余料分类：A≥500×500、B 200~500、C{'<'}200</div>
-              <div>• 余料库：尺寸标记与优先排版</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">微连接技术</CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm text-muted-foreground space-y-2">
-              <div>• 宽度0.2-0.5mm，数量随尺寸</div>
-              <div>• 减少穿孔与零件掉落</div>
             </CardContent>
           </Card>
         </div>

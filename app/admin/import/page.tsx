@@ -2,12 +2,13 @@
 import { useState, useRef } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { AdminNav } from '@/components/admin/admin-nav';
 
 interface ParsedRow {
   brand: string;
   model: string;
   laser_type: string;
-  power_kw: number;
+  power_kw: string | number;
   [key: string]: any;
 }
 
@@ -27,8 +28,16 @@ export default function Page() {
   const [showPreview, setShowPreview] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const sample = 'brand,model,laser_type,power_kw,work_area_length,work_area_width,max_cutting_thickness,cutting_speed,positioning_accuracy,repeat_accuracy,beam_quality,wavelength,control_system,cooling_type,power_consumption,dimensions,weight,price_range,manufacturer_url,spec_sheet_url,image_url,description,applications,origin_country\n' +
-    'TRUMPF,TruLaser 5030,Fiber,5,3000,1500,"{\\"steel\\":20,\\"stainless\\":16}","{\\"steel_10mm\\":3}",0.025,0.015,1.75,1070,Siemens 840D,Water,48,"{\\"length\\":7500,\\"width\\":2900,\\"height\\":2300}",5800,"150000-190000",https://www.trumpf.com/,https://www.trumpf.com/,https://example.com/t.jpg,Premium German fiber laser,"[\\"Aerospace\\",\\"Defense\\"]",DE';
+  // 完整的CSV模板（包含多个示例数据）
+  const csvTemplate = `brand,model,laser_type,power_kw,work_area_length,work_area_width,max_cutting_thickness,cutting_speed,positioning_accuracy,repeat_accuracy,beam_quality,wavelength,control_system,cooling_type,power_consumption,dimensions,weight,price_range,manufacturer_url,spec_sheet_url,image_url,description,applications,origin_country
+TRUMPF,TruLaser 5030,Fiber,5,3000,1500,"{\\"steel\\":20,\\"stainless\\":16,\\"aluminum\\":12}","{\\"steel_10mm\\":3.0,\\"steel_5mm\\":6.5}",0.025,0.015,1.75,1070,Siemens 840D,Water,48,"{\\"length\\":7500,\\"width\\":2900,\\"height\\":2300}",5800,150000-190000,https://www.trumpf.com/,https://www.trumpf.com/specs.pdf,,Premium German fiber laser with exceptional reliability,"[\\"Aerospace\\",\\"Defense\\"]",DE
+OPMT Laser,FL-6000,Fiber,6,3000,1500,"{\\"steel\\":20,\\"aluminum\\":12,\\"stainless\\":15}","{\\"steel_10mm\\":2.8,\\"aluminum_5mm\\":5.2}",0.03,0.02,1.8,1070,Cypcut CNC,Water,45,"{\\"length\\":6800,\\"width\\":2600,\\"height\\":2100}",4500,65000-85000,https://opmtlaser.com/,https://opmtlaser.com/specs/FL-6000.pdf,,High-performance fiber laser cutting machine,"[\\"Sheet metal fabrication\\",\\"Automotive parts\\"]",CN
+Han's Laser,G3015F,Fiber,3,3000,1500,"{\\"steel\\":16,\\"aluminum\\":10,\\"stainless\\":12}","{\\"steel_10mm\\":2.0,\\"aluminum_5mm\\":3.8}",0.04,0.025,1.9,1070,Cypcut,Water,32,"{\\"length\\":6900,\\"width\\":2650,\\"height\\":2050}",4200,45000-60000,https://hanslaser.com/,https://hanslaser.com/products/G3015F.pdf,,Cost-effective fiber laser for small businesses,"[\\"General metalworking\\",\\"Job shops\\"]",CN
+Epilog,Fusion Pro 48,CO2,1.2,1219,914,"{\\"acrylic\\":20,\\"wood\\":15,\\"fabric\\":10}","{\\"acrylic_5mm\\":25,\\"wood_5mm\\":30}",0.08,0.05,2.8,10600,Epilog Control,Air,15,"{\\"length\\":1930,\\"width\\":1420,\\"height\\":1120}",340,45000-55000,https://www.epiloglaser.com/,https://www.epiloglaser.com/specs/,,Professional CO2 laser for signage and engraving,"[\\"Signage\\",\\"Awards\\",\\"Personalization\\"]",US`;
+
+  // 简化的示例（用于页面显示）
+  const sample = `brand,model,laser_type,power_kw,work_area_length,work_area_width,max_cutting_thickness,cutting_speed,positioning_accuracy,repeat_accuracy,beam_quality,wavelength,control_system,cooling_type,power_consumption,dimensions,weight,price_range,manufacturer_url,spec_sheet_url,image_url,description,applications,origin_country
+TRUMPF,TruLaser 5030,Fiber,5,3000,1500,"{\\"steel\\":20,\\"stainless\\":16}","{\\"steel_10mm\\":3}",0.025,0.015,1.75,1070,Siemens 840D,Water,48,"{\\"length\\":7500,\\"width\\":2900,\\"height\\":2300}",5800,150000-190000,https://www.trumpf.com/,https://www.trumpf.com/specs.pdf,,Premium German fiber laser,"[\\"Aerospace\\",\\"Defense\\"]",DE`;
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -48,11 +57,13 @@ export default function Page() {
     const lines = csvText.trim().split('\n');
     if (lines.length < 2) return [];
 
-    const headers = lines[0].split(',').map(h => h.trim());
+    const headers = lines[0]?.split(',').map(h => h.trim()) || [];
     const rows: ParsedRow[] = [];
 
     for (let i = 1; i < lines.length; i++) {
-      const values = parseCSVLine(lines[i]);
+      const line = lines[i];
+      if (!line) continue;
+      const values = parseCSVLine(line);
       if (values.length !== headers.length) continue;
 
       const row: any = {};
@@ -103,12 +114,14 @@ export default function Page() {
       if (!row.model || row.model.trim() === '') {
         errors.push({ row: index + 1, field: 'model', value: row.model, message: '型号不能为空' });
       }
-      if (!row.laser_type || !['Fiber', 'CO2', 'Solid-state'].includes(row.laser_type)) {
-        errors.push({ row: index + 1, field: 'laser_type', value: row.laser_type, message: '激光类型必须是 Fiber、CO2 或 Solid-state' });
+      const validLaserTypes = ['Fiber', 'CO2', 'Solid', 'Hybrid', 'Solid-state'];
+      const normalizedType = row.laser_type?.trim();
+      if (!normalizedType || !validLaserTypes.includes(normalizedType)) {
+        errors.push({ row: index + 1, field: 'laser_type', value: row.laser_type, message: `激光类型必须是 ${validLaserTypes.join('、')} 之一` });
       }
 
       // Numeric fields validation
-      const power = parseFloat(row.power_kw);
+      const power = parseFloat(String(row.power_kw));
       if (isNaN(power) || power <= 0) {
         errors.push({ row: index + 1, field: 'power_kw', value: row.power_kw, message: '功率必须是大于0的数字' });
       }
@@ -152,7 +165,14 @@ export default function Page() {
       });
       const json = await res.json();
       if (!res.ok || !json.success) throw new Error(json.error || '导入失败');
-      setResult(`✅ 导入成功：${json.inserted} 条设备数据已添加到数据库`);
+      const message = json.inserted > 0 && json.updated > 0
+        ? `✅ 导入成功：${json.inserted} 条新设备已添加，${json.updated} 条设备已更新`
+        : json.inserted > 0
+        ? `✅ 导入成功：${json.inserted} 条新设备已添加到数据库`
+        : json.updated > 0
+        ? `✅ 导入成功：${json.updated} 条设备已更新（无新设备）`
+        : '✅ 导入完成（无变化）';
+      setResult(message);
       setCsv('');
       setShowPreview(false);
       setPreviewData([]);
@@ -165,12 +185,16 @@ export default function Page() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-7xl">
-      {/* Page Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">设备数据批量导入</h1>
-        <p className="text-gray-600">通过CSV文件批量导入激光设备技术规格数据</p>
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      {/* Navigation */}
+      <AdminNav />
+
+      <div className="container mx-auto px-4 py-8 max-w-7xl">
+        {/* Page Header */}
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">设备数据批量导入</h1>
+          <p className="text-gray-600">通过CSV文件批量导入激光设备技术规格数据</p>
+        </div>
 
       {/* Main Import Card */}
       <Card>
@@ -197,27 +221,47 @@ export default function Page() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          {/* CSV Format Example */}
-          <div className="mb-4">
-            <div className="flex items-center justify-between mb-2">
-              <label className="text-sm font-medium text-gray-700">CSV 格式示例</label>
-              <button
-                className="text-xs text-blue-600 hover:text-blue-800"
+          {/* CSV Template Download */}
+          <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">📥 CSV 模板下载</h3>
+                <p className="text-sm text-gray-600">下载包含完整字段说明和示例数据的模板文件</p>
+              </div>
+              <Button
                 onClick={() => {
-                  const blob = new Blob([sample], { type: 'text/csv' });
+                  const blob = new Blob([csvTemplate], { type: 'text/csv;charset=utf-8;' });
                   const url = URL.createObjectURL(blob);
                   const a = document.createElement('a');
                   a.href = url;
-                  a.download = 'sample-equipment.csv';
+                  a.download = 'equipment-import-template.csv';
+                  document.body.appendChild(a);
                   a.click();
+                  document.body.removeChild(a);
+                  URL.revokeObjectURL(url);
                 }}
               >
-                下载示例文件
-              </button>
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                下载完整模板（包含3个示例）
+              </Button>
             </div>
-            <pre className="p-3 bg-gray-50 rounded text-xs overflow-auto border border-gray-200">{sample}</pre>
+            <div className="text-xs text-gray-600 space-y-1">
+              <p>✓ 模板包含所有字段的列标题和数据类型说明</p>
+              <p>✓ 包含3条完整示例数据供参考</p>
+              <p>✓ 支持在Excel或Google Sheets中直接编辑后保存为CSV</p>
+            </div>
+          </div>
+
+          {/* CSV Format Example */}
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-2">CSV 格式预览（前2列示例）</label>
+            <div className="p-3 bg-gray-50 rounded border border-gray-200 overflow-x-auto">
+              <pre className="text-xs font-mono">{sample.split('\n').slice(0, 3).join('\n')}...</pre>
+            </div>
             <div className="mt-2 text-xs text-gray-500">
-              ⚠️ 注意：JSON字段（max_cutting_thickness, cutting_speed, dimensions, applications）需要转义双引号
+              ⚠️ 注意：JSON字段（max_cutting_thickness, cutting_speed, dimensions, applications）在CSV中需要转义双引号
             </div>
           </div>
 
@@ -395,6 +439,114 @@ export default function Page() {
         </Card>
       )}
 
+      {/* Field Reference Card */}
+      <Card className="mt-6">
+        <CardHeader>
+          <CardTitle>📋 字段说明参考</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <table className="min-w-full text-sm">
+              <thead>
+                <tr className="bg-gray-50">
+                  <th className="px-4 py-2 text-left font-semibold">字段名</th>
+                  <th className="px-4 py-2 text-left font-semibold">类型</th>
+                  <th className="px-4 py-2 text-left font-semibold">必填</th>
+                  <th className="px-4 py-2 text-left font-semibold">说明</th>
+                  <th className="px-4 py-2 text-left font-semibold">示例</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                <tr>
+                  <td className="px-4 py-2 font-mono text-xs">brand</td>
+                  <td className="px-4 py-2">文本</td>
+                  <td className="px-4 py-2 text-red-600">✓</td>
+                  <td className="px-4 py-2">制造商品牌</td>
+                  <td className="px-4 py-2 text-gray-600">TRUMPF</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 font-mono text-xs">model</td>
+                  <td className="px-4 py-2">文本</td>
+                  <td className="px-4 py-2 text-red-600">✓</td>
+                  <td className="px-4 py-2">设备型号</td>
+                  <td className="px-4 py-2 text-gray-600">TruLaser 5030</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 font-mono text-xs">laser_type</td>
+                  <td className="px-4 py-2">文本</td>
+                  <td className="px-4 py-2 text-red-600">✓</td>
+                  <td className="px-4 py-2">激光类型</td>
+                  <td className="px-4 py-2 text-gray-600">Fiber, CO2, Solid, Hybrid</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 font-mono text-xs">power_kw</td>
+                  <td className="px-4 py-2">数字</td>
+                  <td className="px-4 py-2 text-red-600">✓</td>
+                  <td className="px-4 py-2">激光功率（千瓦）</td>
+                  <td className="px-4 py-2 text-gray-600">5, 6, 12</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 font-mono text-xs">max_cutting_thickness</td>
+                  <td className="px-4 py-2">JSON</td>
+                  <td className="px-4 py-2">-</td>
+                  <td className="px-4 py-2">最大切割厚度（JSON格式，需转义双引号）</td>
+                  <td className="px-4 py-2 text-gray-600 font-mono text-xs">{"{\"steel\":20,\"aluminum\":12}"}</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 font-mono text-xs">cutting_speed</td>
+                  <td className="px-4 py-2">JSON</td>
+                  <td className="px-4 py-2">-</td>
+                  <td className="px-4 py-2">切割速度（JSON格式，需转义双引号）</td>
+                  <td className="px-4 py-2 text-gray-600 font-mono text-xs">{"{\"steel_10mm\":3.0}"}</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 font-mono text-xs">dimensions</td>
+                  <td className="px-4 py-2">JSON</td>
+                  <td className="px-4 py-2">-</td>
+                  <td className="px-4 py-2">设备尺寸（JSON格式，需转义双引号）</td>
+                  <td className="px-4 py-2 text-gray-600 font-mono text-xs">{"{\"length\":7500,\"width\":2900}"}</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 font-mono text-xs">applications</td>
+                  <td className="px-4 py-2">JSON数组</td>
+                  <td className="px-4 py-2">-</td>
+                  <td className="px-4 py-2">应用领域（JSON数组，需转义双引号）</td>
+                  <td className="px-4 py-2 text-gray-600 font-mono text-xs">{"[\"Aerospace\",\"Defense\"]"}</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 font-mono text-xs">work_area_length</td>
+                  <td className="px-4 py-2">数字</td>
+                  <td className="px-4 py-2">-</td>
+                  <td className="px-4 py-2">工作区长度（毫米）</td>
+                  <td className="px-4 py-2 text-gray-600">3000</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 font-mono text-xs">work_area_width</td>
+                  <td className="px-4 py-2">数字</td>
+                  <td className="px-4 py-2">-</td>
+                  <td className="px-4 py-2">工作区宽度（毫米）</td>
+                  <td className="px-4 py-2 text-gray-600">1500</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 font-mono text-xs">price_range</td>
+                  <td className="px-4 py-2">文本</td>
+                  <td className="px-4 py-2">-</td>
+                  <td className="px-4 py-2">价格范围（美元）</td>
+                  <td className="px-4 py-2 text-gray-600">150000-190000</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2 font-mono text-xs">origin_country</td>
+                  <td className="px-4 py-2">文本</td>
+                  <td className="px-4 py-2">-</td>
+                  <td className="px-4 py-2">原产国代码</td>
+                  <td className="px-4 py-2 text-gray-600">DE, CN, US, JP</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Instructions Card */}
       <Card className="mt-6">
         <CardHeader>
@@ -403,38 +555,55 @@ export default function Page() {
         <CardContent>
           <div className="space-y-3 text-sm text-gray-700">
             <div className="flex items-start">
-              <span className="font-semibold text-blue-600 mr-2">1.</span>
-              <span>准备CSV文件，确保包含所有必需字段（brand, model, laser_type, power_kw 为必填项）</span>
+              <span className="font-semibold text-blue-600 mr-2 w-6">1.</span>
+              <span><strong>下载模板</strong>：点击"下载完整模板"按钮，获得包含所有字段和3条示例数据的CSV模板文件</span>
             </div>
             <div className="flex items-start">
-              <span className="font-semibold text-blue-600 mr-2">2.</span>
-              <span>可以点击"下载示例文件"获取正确的CSV格式模板</span>
+              <span className="font-semibold text-blue-600 mr-2 w-6">2.</span>
+              <span><strong>编辑数据</strong>：在Excel、Google Sheets或文本编辑器中打开模板，按照示例格式填入您的设备数据（支持批量复制粘贴）</span>
             </div>
             <div className="flex items-start">
-              <span className="font-semibold text-blue-600 mr-2">3.</span>
-              <span>通过"上传CSV文件"按钮选择文件，或直接将CSV内容粘贴到文本框</span>
+              <span className="font-semibold text-blue-600 mr-2 w-6">3.</span>
+              <span><strong>保存CSV</strong>：编辑完成后，保存为CSV格式（UTF-8编码，使用逗号分隔）</span>
             </div>
             <div className="flex items-start">
-              <span className="font-semibold text-blue-600 mr-2">4.</span>
-              <span>点击"预览数据"检查数据格式和验证错误</span>
+              <span className="font-semibold text-blue-600 mr-2 w-6">4.</span>
+              <span><strong>上传导入</strong>：点击"上传CSV文件"按钮选择文件，或直接粘贴CSV内容到文本框</span>
             </div>
             <div className="flex items-start">
-              <span className="font-semibold text-blue-600 mr-2">5.</span>
-              <span>确认无误后，点击"开始导入"将数据写入数据库</span>
+              <span className="font-semibold text-blue-600 mr-2 w-6">5.</span>
+              <span><strong>预览验证</strong>：点击"预览数据"检查数据格式和验证错误，修复所有错误后再导入</span>
+            </div>
+            <div className="flex items-start">
+              <span className="font-semibold text-blue-600 mr-2 w-6">6.</span>
+              <span><strong>开始导入</strong>：确认无误后，点击"开始导入"将数据批量写入数据库</span>
             </div>
           </div>
           
+          <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <strong className="text-blue-900 block mb-2">💡 批量导入技巧：</strong>
+            <ul className="space-y-1 text-blue-800 text-sm ml-4">
+              <li>• <strong>Excel批量编辑</strong>：在Excel中打开模板，可以使用填充柄、公式等功能快速批量生成数据</li>
+              <li>• <strong>JSON字段处理</strong>：JSON字段在Excel中可以直接输入JSON格式，保存为CSV时会自动处理引号</li>
+              <li>• <strong>数据验证</strong>：建议每批次导入50-100条，方便检查和验证</li>
+              <li>• <strong>重复数据</strong>：如果品牌和型号相同，系统会自动更新而不是创建新记录</li>
+            </ul>
+          </div>
+
           <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded text-sm">
-            <strong className="text-yellow-900">⚠️ 注意事项：</strong>
-            <ul className="mt-2 space-y-1 text-yellow-800 ml-4">
-              <li>• JSON格式字段（如 max_cutting_thickness）必须转义双引号</li>
-              <li>• 数字字段不要包含逗号或其他非数字字符</li>
-              <li>• 激光类型只能是: Fiber, CO2, Solid-state</li>
-              <li>• 导入前建议先预览并修复所有验证错误</li>
+            <strong className="text-yellow-900 block mb-2">⚠️ 重要注意事项：</strong>
+            <ul className="space-y-1 text-yellow-800 ml-4">
+              <li>• <strong>必填字段</strong>：brand, model, laser_type, power_kw 为必填项，不能为空</li>
+              <li>• <strong>JSON格式</strong>：JSON字段（max_cutting_thickness, cutting_speed, dimensions, applications）在CSV中需要转义双引号（用 \" 代替 "）</li>
+              <li>• <strong>数据类型</strong>：数字字段（power_kw, work_area_length等）必须是纯数字，不能包含逗号、货币符号等</li>
+              <li>• <strong>激光类型</strong>：只能是 Fiber, CO2, Solid, Hybrid 之一（区分大小写）</li>
+              <li>• <strong>冷却类型</strong>：只能是 Water, Air, Hybrid, Other 之一（区分大小写）</li>
+              <li>• <strong>编码格式</strong>：CSV文件必须使用UTF-8编码，避免中文乱码</li>
             </ul>
           </div>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }

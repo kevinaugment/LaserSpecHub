@@ -40,7 +40,7 @@ export default function Page() {
 
       <article className="prose max-w-none">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          激光设备控制系统对比：国产vs进口系统的差异分析
+          Laser Equipment Control System Comparison: Domestic vs Imported Systems Analysis
         </h1>
         <h2 className="text-2xl text-gray-700 mb-4">
           Laser CNC Control Systems: Domestic vs Imported Comparison
@@ -53,18 +53,18 @@ export default function Page() {
 
         {/* Market Overview */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">市场格局 | Market Landscape</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Market Landscape</h2>
           
           <div className="grid md:grid-cols-2 gap-6 not-prose mb-6">
             <Card variant="bordered">
               <CardHeader>
-                <CardTitle>国产主流系统 | Domestic Leaders</CardTitle>
+                <CardTitle>Domestic Leaders</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-gray-700 space-y-2">
-                <div><strong>Cypcut (柏楚电子):</strong> 60%+ market share in China, integrated solution</div>
-                <div><strong>Friendess (维宏):</strong> Strong in mid-range, good software ecosystem</div>
-                <div><strong>Fscut (奥森迪科):</strong> Budget-friendly, basic functionality</div>
-                <div><strong>RayTools (锐科):</strong> Emerging player, fiber laser integration</div>
+                <div><strong>Cypcut:</strong> 60%+ market share in China, integrated solution</div>
+                <div><strong>Friendess:</strong> Strong in mid-range, good software ecosystem</div>
+                <div><strong>Fscut:</strong> Budget-friendly, basic functionality</div>
+                <div><strong>RayTools:</strong> Emerging player, fiber laser integration</div>
                 <div className="text-xs text-gray-600 pt-2">
                   Domestic systems dominate Chinese market due to cost, localization and rapid support.
                 </div>
@@ -73,13 +73,13 @@ export default function Page() {
 
             <Card variant="bordered">
               <CardHeader>
-                <CardTitle>进口主流系统 | Imported Leaders</CardTitle>
+                <CardTitle>Imported Leaders</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-gray-700 space-y-2">
-                <div><strong>Beckhoff (德国):</strong> PC-based, TwinCAT software, high flexibility</div>
-                <div><strong>Siemens (德国):</strong> 840D/828D, industrial-grade reliability</div>
-                <div><strong>PA (Power Automation, 以色列):</strong> Laser-specialized, advanced algorithms</div>
-                <div><strong>NUM (瑞士):</strong> Precision control, aerospace applications</div>
+                <div><strong>Beckhoff (Germany):</strong> PC-based, TwinCAT software, high flexibility</div>
+                <div><strong>Siemens (Germany):</strong> 840D/828D, industrial-grade reliability</div>
+                <div><strong>PA (Power Automation, Israel):</strong> Laser-specialized, advanced algorithms</div>
+                <div><strong>NUM (Switzerland):</strong> Precision control, aerospace applications</div>
                 <div className="text-xs text-gray-600 pt-2">
                   Imported systems preferred for high-end applications, export markets, and demanding quality requirements.
                 </div>

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { AdminNav } from '@/components/admin/admin-nav';
 
 interface EquipmentStats {
   total: number;
@@ -42,8 +42,8 @@ export default function AdminDashboard() {
           byBrand[item.brand] = (byBrand[item.brand] || 0) + 1;
         });
 
-        // Get recent equipment (last 30 days - simplified check)
-        const recentCount = equipment.length; // Simplified for now
+        // 计算最近添加的设备数量（简化版：统计所有设备）
+        const recentCount = equipment.length;
 
         setStats({
           total: equipment.length,
@@ -63,8 +63,9 @@ export default function AdminDashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 p-8">
-        <div className="max-w-7xl mx-auto">
+      <div className="min-h-screen bg-gray-50">
+        <AdminNav />
+        <div className="max-w-7xl mx-auto p-8">
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
             <p className="mt-4 text-gray-600">加载中...</p>
@@ -76,27 +77,8 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">管理后台</h1>
-              <p className="text-sm text-gray-600 mt-1">LaserSpecHub 设备数据管理系统</p>
-            </div>
-            <div className="flex gap-3">
-              <Link href="/">
-                <Button variant="outline" className="text-sm">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                  </svg>
-                  前台网站
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Navigation */}
+      <AdminNav />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {error && (
@@ -180,34 +162,50 @@ export default function AdminDashboard() {
             <CardTitle>快速操作</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Link href="/admin/import">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <Link href="/admin/equipment">
                 <div className="p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition cursor-pointer">
                   <div className="flex items-center">
                     <div className="p-2 bg-blue-100 rounded-lg mr-3">
                       <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                       </svg>
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-900">批量导入设备</p>
-                      <p className="text-xs text-gray-600">通过CSV文件批量导入</p>
+                      <p className="font-semibold text-gray-900">设备管理</p>
+                      <p className="text-xs text-gray-600">完整的CRUD管理功能</p>
                     </div>
                   </div>
                 </div>
               </Link>
 
-              <Link href="/equipment">
+              <Link href="/admin/equipment/new">
                 <div className="p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-green-500 hover:bg-green-50 transition cursor-pointer">
                   <div className="flex items-center">
                     <div className="p-2 bg-green-100 rounded-lg mr-3">
                       <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                       </svg>
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-900">查看设备列表</p>
-                      <p className="text-xs text-gray-600">浏览所有设备数据</p>
+                      <p className="font-semibold text-gray-900">新增设备</p>
+                      <p className="text-xs text-gray-600">手动添加新设备</p>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+
+              <Link href="/admin/import">
+                <div className="p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-orange-500 hover:bg-orange-50 transition cursor-pointer">
+                  <div className="flex items-center">
+                    <div className="p-2 bg-orange-100 rounded-lg mr-3">
+                      <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-900">批量导入</p>
+                      <p className="text-xs text-gray-600">通过CSV文件批量导入</p>
                     </div>
                   </div>
                 </div>
@@ -224,7 +222,7 @@ export default function AdminDashboard() {
                     </svg>
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900">刷新统计数据</p>
+                    <p className="font-semibold text-gray-900">刷新统计</p>
                     <p className="text-xs text-gray-600">重新加载最新数据</p>
                   </div>
                 </div>
@@ -316,7 +314,7 @@ export default function AdminDashboard() {
               </div>
               <div>
                 <p className="text-gray-600 mb-1">部署平台</p>
-                <p className="font-semibold text-gray-900">Cloudflare Pages</p>
+                <p className="font-semibold text-gray-900">Vercel</p>
               </div>
               <div>
                 <p className="text-gray-600 mb-1">框架版本</p>
@@ -333,4 +331,14 @@ export default function AdminDashboard() {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
 

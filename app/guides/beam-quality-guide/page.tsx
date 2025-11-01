@@ -4,24 +4,24 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 
 export const metadata: Metadata = {
-  title: '激光光束质量M²因子详解 | Beam Quality Guide - LaserSpecHub',
+  title: 'Laser Beam Quality M² Factor Guide - LaserSpecHub',
   description:
-    '深入解析激光光束质量M²因子的物理定义、测量方法和实际影响。了解M²值如何影响切割性能、焦斑尺寸和焦深,以及如何根据M²值选择合适的激光器。基于ISO 11146标准。',
+    'In-depth analysis of laser beam quality M² factor physical definition, measurement methods and practical impacts. Understand how M² value affects cutting performance, focal spot size and depth of focus, and how to select suitable lasers based on M² values. Based on ISO 11146 standard.',
   keywords: [
-    '激光光束质量',
-    'M²因子',
+    'laser beam quality',
+    'M² factor',
     'M2 factor',
     'beam quality',
-    '光束参数积',
+    'beam parameter product',
     'BPP',
   ],
   alternates: {
     canonical: 'https://laserspechub.com/guides/beam-quality-guide',
   },
   openGraph: {
-    title: '激光光束质量M²因子详解 - 从原理到应用',
+    title: 'Laser Beam Quality M² Factor Guide - From Theory to Application',
     description:
-      '全面解析M²因子的物理意义、测量标准和对切割性能的影响',
+      'Comprehensive analysis of M² factor physical meaning, measurement standards and impact on cutting performance',
     type: 'article',
     url: 'https://laserspechub.com/guides/beam-quality-guide',
   },
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'TechArticle',
-  headline: '激光光束质量M²因子详解',
-  description: '激光束质量评价标准与应用指南',
+  headline: 'Laser Beam Quality M² Factor Guide',
+  description: 'Laser beam quality evaluation standard and application guide',
   author: {
     '@type': 'Organization',
     name: 'LaserSpecHub',
@@ -46,33 +46,33 @@ export default function Page() {
       <StructuredData type="TechArticle" data={structuredData} />
 
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-3">激光光束质量M²因子详解</h1>
+        <h1 className="text-3xl font-bold mb-3">Laser Beam Quality M² Factor Guide</h1>
         <p className="text-lg text-muted-foreground">
-          从物理原理到实际应用,全面理解激光束质量评价标准
+          From physical principles to practical applications, comprehensive understanding of laser beam quality evaluation standards
         </p>
       </div>
 
-      {/* 1. M²因子基础概念 */}
+      {/* 1. M² Factor Basics */}
       <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">1. 什么是M²因子</h2>
+        <h2 className="text-2xl font-semibold mb-4">1. What is M² Factor</h2>
         
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle>物理定义</CardTitle>
+            <CardTitle>Physical Definition</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-sm leading-relaxed">
-              M²(读作"M平方")是衡量激光束质量的国际标准参数,定义为实际激光束的光束参数积(BPP)与理想高斯光束BPP的比值。
+              M² (pronounced "M-squared") is the international standard parameter for measuring laser beam quality, defined as the ratio of the beam parameter product (BPP) of an actual laser beam to that of an ideal Gaussian beam.
             </p>
             
             <div className="bg-blue-50 dark:bg-blue-950/30 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
-              <h4 className="font-semibold text-sm mb-2">数学表达式</h4>
+              <h4 className="font-semibold text-sm mb-2">Mathematical Expression</h4>
               <div className="font-mono text-sm space-y-2">
-                <div>M² = BPP<sub>实际</sub> / BPP<sub>理想</sub></div>
-                <div className="text-xs text-muted-foreground mt-3">其中:</div>
-                <div className="text-xs">BPP = θ × w₀ (光束参数积)</div>
-                <div className="text-xs">θ = 发散角半角 (rad)</div>
-                <div className="text-xs">w₀ = 束腰半径 (mm)</div>
+                <div>M² = BPP<sub>actual</sub> / BPP<sub>ideal</sub></div>
+                <div className="text-xs text-muted-foreground mt-3">Where:</div>
+                <div className="text-xs">BPP = θ × w₀ (Beam Parameter Product)</div>
+                <div className="text-xs">θ = Half-angle divergence (rad)</div>
+                <div className="text-xs">w₀ = Beam waist radius (mm)</div>
               </div>
             </div>
 
@@ -80,25 +80,25 @@ export default function Page() {
               <div className="flex items-start gap-3">
                 <span className="text-green-500 font-bold">✓</span>
                 <div>
-                  <strong>理想高斯光束</strong>: M² = 1.0 (完美的TEM₀₀模式)
+                  <strong>Ideal Gaussian Beam</strong>: M² = 1.0 (Perfect TEM₀₀ mode)
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <span className="text-blue-500 font-bold">•</span>
                 <div>
-                  <strong>高质量激光</strong>: M² = 1.0 - 1.2 (接近高斯分布)
+                  <strong>High-Quality Laser</strong>: M² = 1.0 - 1.2 (Near Gaussian distribution)
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <span className="text-orange-500 font-bold">•</span>
                 <div>
-                  <strong>多模激光</strong>: M² = 1.5 - 5.0 (混合模式)
+                  <strong>Multimode Laser</strong>: M² = 1.5 - 5.0 (Mixed modes)
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <span className="text-red-500 font-bold">×</span>
                 <div>
-                  <strong>低质量激光</strong>: M² {'>'} 5.0 (远离高斯分布)
+                  <strong>Low-Quality Laser</strong>: M² {'>'} 5.0 (Far from Gaussian distribution)
                 </div>
               </div>
             </div>
