@@ -342,7 +342,7 @@ export function calculateWizardResult(answers: WizardAnswers): WizardResult {
     solid: 0,
   };
 
-  let totalWeight = 0;
+  let _totalWeight = 0;
 
   // Calculate scores based on answers
   WIZARD_QUESTIONS.forEach((question) => {
@@ -356,7 +356,7 @@ export function calculateWizardResult(answers: WizardAnswers): WizardResult {
       if (!option) return;
 
       const weight = question.type === 'multiple' ? 0.8 : 1.0;
-      totalWeight += weight;
+      _totalWeight += weight;
 
       (Object.keys(option.scores) as LaserType[]).forEach((type) => {
         scores[type] += (option.scores[type] || 0) * weight;
