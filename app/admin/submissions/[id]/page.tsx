@@ -48,10 +48,6 @@ export default function SubmissionDetailPage({ params }: { params: { id: string 
   const [processing, setProcessing] = useState(false);
   const [notes, setNotes] = useState('');
 
-  useEffect(() => {
-    loadSubmission();
-  }, [params.id]);
-
   const loadSubmission = useCallback(async () => {
     try {
       setLoading(true);
