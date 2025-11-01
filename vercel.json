@@ -1,14 +1,4 @@
 {
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
-    }
-  },
-  "env": {
-    "TURSO_DATABASE_URL": "@turso_database_url",
-    "TURSO_AUTH_TOKEN": "@turso_auth_token",
-    "NEXT_PUBLIC_SITE_URL": "https://www.laserspechub.com"
-  },
   "regions": ["iad1"],
   "framework": "nextjs"
 }
