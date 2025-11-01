@@ -1,0 +1,27 @@
+# Next.js auto-generated files
+next-env.d.ts
+.next/
+out/
+
+# Build outputs
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Testing
+coverage/
+
+# Misc
+.DS_Store
+*.pem
+
