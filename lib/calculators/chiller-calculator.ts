@@ -9,19 +9,19 @@ export type ChillerInput = {
 };
 
 export type ChillerOutput = {
-  coolingCapacityKw: number; // 目标制冷量
-  coolingCapacityKcalPerH: number; // 换算
-  suggestedFlowLpm: number; // 水流量估算（L/min）
+  coolingCapacityKw: number; // Target cooling capacity
+  coolingCapacityKcalPerH: number; // Conversion
+  suggestedFlowLpm: number; // Estimated water flow rate (L/min)
 };
 
 export function calculateChiller(input: ChillerInput): ChillerOutput {
   validate(input);
 
-  // 激光器有效散热需求估算系数（热负载占比）
-  // 说明：光纤转换效率较高，CO2较低；固体介于两者之间。
+  // Laser effective heat dissipation requirement estimation coefficient (heat load ratio)
+  // Note: Fiber lasers have higher conversion efficiency, CO2 lower; solid-state between the two.
   const heatLoadFactor = input.laserType === 'fiber' ? 0.35 : input.laserType === 'co2' ? 1.2 : 0.6;
 
-  // 环境温度修正（相对25°C）
+  // Ambient temperature adjustment (relative to 25°C)
   const ambientAdj = 1 + Math.max(-0.1, Math.min(0.25, (input.ambientC - 25) * 0.015));
 
   const duty = input.dutyCyclePct / 100;
@@ -29,10 +29,10 @@ export function calculateChiller(input: ChillerInput): ChillerOutput {
   const baseKw = input.laserPowerKw * heatLoadFactor * duty * ambientAdj;
   const capacityKw = round(baseKw * input.safetyFactor, 2);
 
-  // kcal/h 换算（1 kW ≈ 860 kcal/h）
+  // kcal/h conversion (1 kW ≈ 860 kcal/h)
   const capacityKcal = round(capacityKw * 860, 0);
 
-  // 流量估算：经验范围 3-6 L/min 每kW热负载（取中值4.5）
+  // Flow estimation: Empirical range 3-6 L/min per kW heat load (using median 4.5)
   const flow = round(Math.max(3, Math.min(6, 4.5)) * baseKw, 2);
 
   return {
@@ -43,10 +43,10 @@ export function calculateChiller(input: ChillerInput): ChillerOutput {
 }
 
 function validate(i: ChillerInput) {
-  if (i.laserPowerKw < 1 || i.laserPowerKw > 30) throw new Error('激光功率范围应在 1-30 kW');
-  if (i.ambientC < 10 || i.ambientC > 45) throw new Error('环境温度范围应在 10-45 ℃');
-  if (i.dutyCyclePct < 10 || i.dutyCyclePct > 100) throw new Error('占空比范围应在 10-100 %');
-  if (i.safetyFactor < 1.05 || i.safetyFactor > 1.8) throw new Error('安全系数范围应在 1.05-1.8');
+  if (i.laserPowerKw < 1 || i.laserPowerKw > 30) throw new Error('Laser power range should be 1-30 kW');
+  if (i.ambientC < 10 || i.ambientC > 45) throw new Error('Ambient temperature range should be 10-45°C');
+  if (i.dutyCyclePct < 10 || i.dutyCyclePct > 100) throw new Error('Duty cycle range should be 10-100%');
+  if (i.safetyFactor < 1.05 || i.safetyFactor > 1.8) throw new Error('Safety factor range should be 1.05-1.8');
 }
 
 function round(n: number, d = 2) {

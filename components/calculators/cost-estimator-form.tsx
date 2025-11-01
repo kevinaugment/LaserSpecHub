@@ -42,19 +42,19 @@ const DEFAULT_STATE: FormState = {
   sheetAreaM2: '1.5',
   thicknessMm: '3',
   material: 'carbon_steel',
-  materialPricePerKg: '5.0',
+  materialPricePerKg: '0.8',
 
   laserPowerKw: '6',
-  electricalPricePerKwh: '1.0',
+  electricalPricePerKwh: '0.12',
   processEfficiency: '0.6',
 
   assistGas: 'oxygen',
-  gasPricePerM3: '2.0',
+  gasPricePerM3: '0.15',
   gasFlowM3PerH: '8',
 
-  machinePrice: '1200000',
+  machinePrice: '180000',
   machineLifeHours: '20000',
-  laborPricePerHour: '35',
+  laborPricePerHour: '25',
   operatorShare: '0.7',
 
   averageSpeedMmPerMin: '2500',
@@ -142,7 +142,7 @@ export default function CostEstimatorForm() {
               </Select>
             </div>
             <div>
-              <label className="mb-1 block text-sm text-muted-foreground">Material Price (¥/kg)</label>
+              <label className="mb-1 block text-sm text-muted-foreground">Material Price (USD/kg)</label>
               <Input type="number" min={0.1} step={0.1} value={state.materialPricePerKg} onChange={(e) => setState((s) => ({ ...s, materialPricePerKg: e.target.value }))} />
             </div>
           </CardContent>
@@ -158,8 +158,8 @@ export default function CostEstimatorForm() {
               <Input type="number" min={1} step={0.1} value={state.laserPowerKw} onChange={(e) => setState((s) => ({ ...s, laserPowerKw: e.target.value }))} />
             </div>
             <div>
-              <label className="mb-1 block text-sm text-muted-foreground">Electricity Price (¥/kWh)</label>
-              <Input type="number" min={0.1} step={0.1} value={state.electricalPricePerKwh} onChange={(e) => setState((s) => ({ ...s, electricalPricePerKwh: e.target.value }))} />
+              <label className="mb-1 block text-sm text-muted-foreground">Electricity Price (USD/kWh)</label>
+              <Input type="number" min={0.1} step={0.01} value={state.electricalPricePerKwh} onChange={(e) => setState((s) => ({ ...s, electricalPricePerKwh: e.target.value }))} />
             </div>
             <div>
               <label className="mb-1 block text-sm text-muted-foreground">Efficiency Factor</label>
@@ -186,8 +186,8 @@ export default function CostEstimatorForm() {
               </Select>
             </div>
             <div>
-              <label className="mb-1 block text-sm text-muted-foreground">Gas Price (¥/m³)</label>
-              <Input type="number" min={0} step={0.1} value={state.gasPricePerM3} onChange={(e) => setState((s) => ({ ...s, gasPricePerM3: e.target.value }))} />
+              <label className="mb-1 block text-sm text-muted-foreground">Gas Price (USD/m³)</label>
+              <Input type="number" min={0} step={0.01} value={state.gasPricePerM3} onChange={(e) => setState((s) => ({ ...s, gasPricePerM3: e.target.value }))} />
             </div>
             <div>
               <label className="mb-1 block text-sm text-muted-foreground">Flow Rate (m³/h)</label>
@@ -202,7 +202,7 @@ export default function CostEstimatorForm() {
           </CardHeader>
           <CardContent className="grid grid-cols-4 gap-4">
             <div>
-              <label className="mb-1 block text-sm text-muted-foreground">Machine Price (¥)</label>
+              <label className="mb-1 block text-sm text-muted-foreground">Machine Price (USD)</label>
               <Input type="number" min={0} step={1000} value={state.machinePrice} onChange={(e) => setState((s) => ({ ...s, machinePrice: e.target.value }))} />
             </div>
             <div>
@@ -210,7 +210,7 @@ export default function CostEstimatorForm() {
               <Input type="number" min={1} step={100} value={state.machineLifeHours} onChange={(e) => setState((s) => ({ ...s, machineLifeHours: e.target.value }))} />
             </div>
             <div>
-              <label className="mb-1 block text-sm text-muted-foreground">Labor Rate (¥/h)</label>
+              <label className="mb-1 block text-sm text-muted-foreground">Labor Rate (USD/h)</label>
               <Input type="number" min={0} step={1} value={state.laborPricePerHour} onChange={(e) => setState((s) => ({ ...s, laborPricePerHour: e.target.value }))} />
             </div>
             <div>
@@ -255,34 +255,34 @@ export default function CostEstimatorForm() {
                   <span className="ml-2 font-medium">{output.processingTimeMin}</span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">Material Cost (¥):</span>
-                  <span className="ml-2 font-medium">{output.materialCost}</span>
+                  <span className="text-muted-foreground">Material Cost (USD):</span>
+                  <span className="ml-2 font-medium">${output.materialCost.toFixed(2)}</span>
                   <span className="ml-2 text-muted-foreground">({output.breakdownPct.material}%)</span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">Electricity Cost (¥):</span>
-                  <span className="ml-2 font-medium">{output.electricityCost}</span>
+                  <span className="text-muted-foreground">Electricity Cost (USD):</span>
+                  <span className="ml-2 font-medium">${output.electricityCost.toFixed(2)}</span>
                   <span className="ml-2 text-muted-foreground">({output.breakdownPct.electricity}%)</span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">Gas Cost (¥):</span>
-                  <span className="ml-2 font-medium">{output.gasCost}</span>
+                  <span className="text-muted-foreground">Gas Cost (USD):</span>
+                  <span className="ml-2 font-medium">${output.gasCost.toFixed(2)}</span>
                   <span className="ml-2 text-muted-foreground">({output.breakdownPct.gas}%)</span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">Depreciation Cost (¥):</span>
-                  <span className="ml-2 font-medium">{output.depreciationCost}</span>
+                  <span className="text-muted-foreground">Depreciation Cost (USD):</span>
+                  <span className="ml-2 font-medium">${output.depreciationCost.toFixed(2)}</span>
                   <span className="ml-2 text-muted-foreground">({output.breakdownPct.depreciation}%)</span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">Labor Cost (¥):</span>
-                  <span className="ml-2 font-medium">{output.laborCost}</span>
+                  <span className="text-muted-foreground">Labor Cost (USD):</span>
+                  <span className="ml-2 font-medium">${output.laborCost.toFixed(2)}</span>
                   <span className="ml-2 text-muted-foreground">({output.breakdownPct.labor}%)</span>
                 </div>
                 <div className="pt-2 border-t" />
                 <div className="text-base">
-                  <span className="text-muted-foreground">Total Cost (¥):</span>
-                  <span className="ml-2 font-semibold">{output.totalCost}</span>
+                  <span className="text-muted-foreground">Total Cost (USD):</span>
+                  <span className="ml-2 font-semibold">${output.totalCost.toFixed(2)}</span>
                 </div>
                 <div className="pt-2 text-xs text-muted-foreground">Note: This estimate depends on input parameters and constant density. Recommend calibrating with factory data.</div>
               </div>

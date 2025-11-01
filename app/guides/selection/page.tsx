@@ -210,6 +210,36 @@ export default function SelectionGuidePage() {
           <p className="text-gray-700 mb-6">
             <strong>Key Insight:</strong> Equipment purchase represents only 19% of 5-year TCO. Operating costs (25%) and labor (44%) dominate. A $50k premium for higher efficiency (lower gas consumption, faster cutting) pays back in 12-18 months through reduced operating costs.
           </p>
+
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">ROI Calculation Framework</h3>
+          <p className="text-gray-700 mb-4">
+            Calculate return on investment using this formula to validate equipment purchase decisions:
+          </p>
+          
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+            <h4 className="font-semibold text-gray-900 mb-3">ROI Formula</h4>
+            <div className="space-y-3 text-sm text-gray-700">
+              <div className="bg-white p-4 rounded border border-blue-200">
+                <p className="font-mono text-base mb-2">ROI = (Net Savings - Initial Investment) / Initial Investment × 100%</p>
+                <p className="text-xs text-gray-600">Net Savings = Annual Revenue Increase + Operating Cost Savings - Annual Operating Costs</p>
+              </div>
+              
+              <div className="mt-4">
+                <p className="font-semibold mb-2">Example Calculation:</p>
+                <ul className="space-y-1 ml-4">
+                  <li>• Initial Investment: $180,000</li>
+                  <li>• Annual Revenue Increase (faster production): $85,000</li>
+                  <li>• Operating Cost Savings (efficiency): $32,000/year</li>
+                  <li>• Annual Operating Costs: $45,000</li>
+                  <li>• Net Savings Year 1: $85,000 + $32,000 - $45,000 = $72,000</li>
+                  <li>• ROI Year 1: ($72,000 - $180,000) / $180,000 = -60% (payback period)</li>
+                  <li>• ROI Year 2: (Cumulative $144,000) = -20%</li>
+                  <li>• ROI Year 3: (Cumulative $216,000) = +20%</li>
+                </ul>
+                <p className="mt-3 font-semibold text-blue-900">Payback Period: 2.5 years | 5-Year ROI: 100%+</p>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section className="mb-12">
@@ -274,27 +304,477 @@ export default function SelectionGuidePage() {
                 Consider software compatibility and learning curve.
               </p>
             </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Beam Quality (M² Value)</h3>
+              <p className="text-gray-700 mb-3">
+                Beam quality directly impacts cutting precision and edge quality. M² value measures how close the laser beam is to an ideal Gaussian beam (M² = 1 is perfect).
+              </p>
+              
+              <div className="overflow-x-auto mb-4">
+                <table className="min-w-full border-collapse border border-gray-300 text-sm">
+                  <thead className="bg-gray-100">
+                    <tr>
+                      <th className="border border-gray-300 px-4 py-2 text-left">M² Value</th>
+                      <th className="border border-gray-300 px-4 py-2 text-left">Beam Quality</th>
+                      <th className="border border-gray-300 px-4 py-2 text-left">Application</th>
+                      <th className="border border-gray-300 px-4 py-2 text-left">Focus Spot Size</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border border-gray-300 px-4 py-2">1.0 - 1.3</td>
+                      <td className="border border-gray-300 px-4 py-2">Excellent</td>
+                      <td className="border border-gray-300 px-4 py-2">Ultra-precise cutting, fine features</td>
+                      <td className="border border-gray-300 px-4 py-2">20-30μm</td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                      <td className="border border-gray-300 px-4 py-2">1.3 - 2.0</td>
+                      <td className="border border-gray-300 px-4 py-2">Very Good</td>
+                      <td className="border border-gray-300 px-4 py-2">High precision cutting, thin materials</td>
+                      <td className="border border-gray-300 px-4 py-2">30-50μm</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300 px-4 py-2">2.0 - 4.0</td>
+                      <td className="border border-gray-300 px-4 py-2">Good</td>
+                      <td className="border border-gray-300 px-4 py-2">Standard cutting, medium thickness</td>
+                      <td className="border border-gray-300 px-4 py-2">50-100μm</td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                      <td className="border border-gray-300 px-4 py-2">4.0 - 8.0</td>
+                      <td className="border border-gray-300 px-4 py-2">Acceptable</td>
+                      <td className="border border-gray-300 px-4 py-2">High-power cutting, thick materials</td>
+                      <td className="border border-gray-300 px-4 py-2">100-200μm</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300 px-4 py-2">&gt; 8.0</td>
+                      <td className="border border-gray-300 px-4 py-2">Poor</td>
+                      <td className="border border-gray-300 px-4 py-2">Rough cutting only, not recommended</td>
+                      <td className="border border-gray-300 px-4 py-2">&gt; 200μm</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-sm text-gray-600">
+                <strong>Recommendation:</strong> For precision work (≤±0.05mm), choose M² ≤ 2.0. For standard work, M² ≤ 4.0 is acceptable. Higher M² values indicate lower beam quality but may be acceptable for high-power thick material cutting.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Cutting Speed Reference</h3>
+              <p className="text-gray-700 mb-3">
+                Reference cutting speeds for common materials (fiber laser, optimal conditions):
+              </p>
+              
+              <div className="overflow-x-auto mb-4">
+                <table className="min-w-full border-collapse border border-gray-300 text-sm">
+                  <thead className="bg-gray-100">
+                    <tr>
+                      <th className="border border-gray-300 px-4 py-2 text-left">Material</th>
+                      <th className="border border-gray-300 px-4 py-2 text-left">Thickness</th>
+                      <th className="border border-gray-300 px-4 py-2 text-left">3kW Speed</th>
+                      <th className="border border-gray-300 px-4 py-2 text-left">6kW Speed</th>
+                      <th className="border border-gray-300 px-4 py-2 text-left">12kW Speed</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border border-gray-300 px-4 py-2" rowSpan={3}>Carbon Steel</td>
+                      <td className="border border-gray-300 px-4 py-2">3mm</td>
+                      <td className="border border-gray-300 px-4 py-2">5.0 m/min</td>
+                      <td className="border border-gray-300 px-4 py-2">8.5 m/min</td>
+                      <td className="border border-gray-300 px-4 py-2">12.0 m/min</td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                      <td className="border border-gray-300 px-4 py-2">6mm</td>
+                      <td className="border border-gray-300 px-4 py-2">2.0 m/min</td>
+                      <td className="border border-gray-300 px-4 py-2">4.5 m/min</td>
+                      <td className="border border-gray-300 px-4 py-2">7.0 m/min</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300 px-4 py-2">10mm</td>
+                      <td className="border border-gray-300 px-4 py-2">0.8 m/min</td>
+                      <td className="border border-gray-300 px-4 py-2">2.5 m/min</td>
+                      <td className="border border-gray-300 px-4 py-2">4.5 m/min</td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                      <td className="border border-gray-300 px-4 py-2" rowSpan={2}>Stainless Steel</td>
+                      <td className="border border-gray-300 px-4 py-2">3mm</td>
+                      <td className="border border-gray-300 px-4 py-2">3.5 m/min</td>
+                      <td className="border border-gray-300 px-4 py-2">6.0 m/min</td>
+                      <td className="border border-gray-300 px-4 py-2">9.0 m/min</td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                      <td className="border border-gray-300 px-4 py-2">6mm</td>
+                      <td className="border border-gray-300 px-4 py-2">1.2 m/min</td>
+                      <td className="border border-gray-300 px-4 py-2">3.0 m/min</td>
+                      <td className="border border-gray-300 px-4 py-2">5.0 m/min</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300 px-4 py-2" rowSpan={2}>Aluminum</td>
+                      <td className="border border-gray-300 px-4 py-2">3mm</td>
+                      <td className="border border-gray-300 px-4 py-2">4.0 m/min</td>
+                      <td className="border border-gray-300 px-4 py-2">7.5 m/min</td>
+                      <td className="border border-gray-300 px-4 py-2">11.0 m/min</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300 px-4 py-2">6mm</td>
+                      <td className="border border-gray-300 px-4 py-2">1.5 m/min</td>
+                      <td className="border border-gray-300 px-4 py-2">4.0 m/min</td>
+                      <td className="border border-gray-300 px-4 py-2">6.5 m/min</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-sm text-gray-600">
+                <strong>Note:</strong> Speeds assume optimal gas pressure, focus position, and material quality. Actual speeds may vary ±15-20% based on equipment condition and material properties.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Assist Gas Selection Guide</h3>
+              <p className="text-gray-700 mb-3">
+                Assist gas selection significantly impacts cut quality, speed, and operating costs:
+              </p>
+              
+              <div className="overflow-x-auto mb-4">
+                <table className="min-w-full border-collapse border border-gray-300 text-sm">
+                  <thead className="bg-gray-100">
+                    <tr>
+                      <th className="border border-gray-300 px-4 py-2 text-left">Gas Type</th>
+                      <th className="border border-gray-300 px-4 py-2 text-left">Material</th>
+                      <th className="border border-gray-300 px-4 py-2 text-left">Cost/m³</th>
+                      <th className="border border-gray-300 px-4 py-2 text-left">Edge Quality</th>
+                      <th className="border border-gray-300 px-4 py-2 text-left">Speed Impact</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="border border-gray-300 px-4 py-2">Oxygen</td>
+                      <td className="border border-gray-300 px-4 py-2">Carbon Steel (3mm+)</td>
+                      <td className="border border-gray-300 px-4 py-2">$0.08-0.15</td>
+                      <td className="border border-gray-300 px-4 py-2">Oxidized edge, good</td>
+                      <td className="border border-gray-300 px-4 py-2">+30-50% faster</td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                      <td className="border border-gray-300 px-4 py-2">Nitrogen</td>
+                      <td className="border border-gray-300 px-4 py-2">Stainless Steel, Aluminum</td>
+                      <td className="border border-gray-300 px-4 py-2">$0.12-0.25</td>
+                      <td className="border border-gray-300 px-4 py-2">Clean, oxide-free</td>
+                      <td className="border border-gray-300 px-4 py-2">Base speed</td>
+                    </tr>
+                    <tr>
+                      <td className="border border-gray-300 px-4 py-2">Compressed Air</td>
+                      <td className="border border-gray-300 px-4 py-2">Thin Carbon Steel</td>
+                      <td className="border border-gray-300 px-4 py-2">$0.02-0.05</td>
+                      <td className="border border-gray-300 px-4 py-2">Slightly oxidized</td>
+                      <td className="border border-gray-300 px-4 py-2">+15-25% faster</td>
+                    </tr>
+                    <tr className="bg-gray-50">
+                      <td className="border border-gray-300 px-4 py-2">Argon</td>
+                      <td className="border border-gray-300 px-4 py-2">Titanium, Reactive Metals</td>
+                      <td className="border border-gray-300 px-4 py-2">$0.30-0.50</td>
+                      <td className="border border-gray-300 px-4 py-2">Excellent, clean</td>
+                      <td className="border border-gray-300 px-4 py-2">-10-20% slower</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                <h4 className="font-semibold text-green-900 mb-2">Cost Comparison Example</h4>
+                <p className="text-sm text-green-800">
+                  For 1000 hours/year operation, 8 m³/h flow rate:<br/>
+                  • Oxygen: $640-1,200/year | Nitrogen: $960-2,000/year | Air: $160-400/year<br/>
+                  <strong>Using compressed air instead of nitrogen saves $560-1,840/year</strong> but requires clean, dry air system ($5k-8k initial investment, payback in 3-5 years for high-volume operations).
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Step 3: Vendor Evaluation</h2>
           
-          <ul className="list-disc list-inside space-y-2 text-gray-700">
-            <li><strong>Reputation & Experience:</strong> Years in business, customer reviews, industry standing</li>
-            <li><strong>Technical Support:</strong> Response times, expertise level, availability</li>
-            <li><strong>Training:</strong> Initial training programs, ongoing education</li>
-            <li><strong>Parts & Service:</strong> Spare parts availability, service network</li>
-            <li><strong>Warranty:</strong> Coverage period, what's included, service terms</li>
-            <li><strong>Customization:</strong> Ability to modify for specific needs</li>
-          </ul>
+          <p className="text-gray-700 mb-6">
+            Use this scoring matrix to objectively compare vendors. Rate each criterion from 1-10, then weight by importance.
+          </p>
+
+          <div className="overflow-x-auto mb-6">
+            <table className="min-w-full border-collapse border border-gray-300 text-sm">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="border border-gray-300 px-4 py-2 text-left">Evaluation Criterion</th>
+                  <th className="border border-gray-300 px-4 py-2 text-center">Weight</th>
+                  <th className="border border-gray-300 px-4 py-2 text-center">Score (1-10)</th>
+                  <th className="border border-gray-300 px-4 py-2 text-left">Evaluation Points</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium">Reputation & Experience</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">15%</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">-</td>
+                  <td className="border border-gray-300 px-4 py-2 text-xs">Years in business, industry awards, customer testimonials</td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="border border-gray-300 px-4 py-2 font-medium">Technical Support</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">20%</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">-</td>
+                  <td className="border border-gray-300 px-4 py-2 text-xs">Response time (target: &lt;4hr), on-site availability, remote support</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium">Parts & Service Network</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">15%</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">-</td>
+                  <td className="border border-gray-300 px-4 py-2 text-xs">Parts lead time, local warehouse, service centers</td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="border border-gray-300 px-4 py-2 font-medium">Training & Documentation</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">10%</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">-</td>
+                  <td className="border border-gray-300 px-4 py-2 text-xs">Initial training hours, materials quality, ongoing support</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium">Warranty Coverage</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">10%</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">-</td>
+                  <td className="border border-gray-300 px-4 py-2 text-xs">Coverage period, included components, service terms</td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="border border-gray-300 px-4 py-2 font-medium">Equipment Performance</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">15%</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">-</td>
+                  <td className="border border-gray-300 px-4 py-2 text-xs">Speed, accuracy, edge quality vs. specifications</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium">Customization Options</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">5%</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">-</td>
+                  <td className="border border-gray-300 px-4 py-2 text-xs">Ability to modify for specific needs, upgrade paths</td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="border border-gray-300 px-4 py-2 font-medium">Total Cost of Ownership</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">10%</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">-</td>
+                  <td className="border border-gray-300 px-4 py-2 text-xs">5-year TCO including operating costs, maintenance</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+            <h4 className="font-semibold text-blue-900 mb-2">Weighted Score Calculation</h4>
+            <p className="text-sm text-blue-800">
+              Final Score = Σ (Criterion Score × Weight). Vendor with highest weighted score (typically 7.5+) should be shortlisted. 
+              For critical operations, set minimum thresholds: Technical Support ≥ 8.0, Parts Availability ≥ 7.0.
+            </p>
+          </div>
+        </section>
+
+        {/* Decision Trees */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Decision Trees: Quick Selection Guides</h2>
+          
+          <div className="space-y-6">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Laser Type Decision Tree</h3>
+              <div className="space-y-3 text-sm text-gray-700">
+                <div className="flex items-start">
+                  <span className="font-bold mr-2">Start:</span>
+                  <span>What is your primary material?</span>
+                </div>
+                <div className="ml-6 space-y-2">
+                  <div className="flex items-start">
+                    <span className="font-bold mr-2">→</span>
+                    <span><strong>Metals (≥70%):</strong> Choose <strong>Fiber Laser</strong> (1064nm wavelength)</span>
+                  </div>
+                  <div className="ml-4 text-xs text-gray-600">
+                    • Carbon Steel: Excellent cutting speed, oxygen assist<br/>
+                    • Stainless Steel: High quality, nitrogen assist required<br/>
+                    • Aluminum: 6kW+ recommended for reflective surface<br/>
+                    • Copper/Brass: Fiber laser optimal, may require higher power
+                  </div>
+                  <div className="flex items-start mt-3">
+                    <span className="font-bold mr-2">→</span>
+                    <span><strong>Non-Metals (≥50%):</strong> Choose <strong>CO2 Laser</strong> (10600nm wavelength)</span>
+                  </div>
+                  <div className="ml-4 text-xs text-gray-600">
+                    • Acrylic/PMMA: Excellent edge quality<br/>
+                    • Wood/MDF: Fast, clean cutting<br/>
+                    • Leather/Fabric: Precise, minimal charring<br/>
+                    • Paper/Cardboard: High-speed processing
+                  </div>
+                  <div className="flex items-start mt-3">
+                    <span className="font-bold mr-2">→</span>
+                    <span><strong>Mixed (40-60% each):</strong> Consider two machines or hybrid system (rare, expensive)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Power Selection Decision Tree</h3>
+              <div className="space-y-3 text-sm text-gray-700">
+                <div className="flex items-start">
+                  <span className="font-bold mr-2">Step 1:</span>
+                  <span>What is your maximum material thickness?</span>
+                </div>
+                <div className="ml-6 space-y-2">
+                  <div className="flex items-start">
+                    <span className="font-bold mr-2">→</span>
+                    <span><strong>&lt; 3mm:</strong> 1-3kW sufficient</span>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="font-bold mr-2">→</span>
+                    <span><strong>3-8mm:</strong> 3-6kW recommended</span>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="font-bold mr-2">→</span>
+                    <span><strong>8-15mm:</strong> 6-8kW required</span>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="font-bold mr-2">→</span>
+                    <span><strong>15-25mm:</strong> 8-12kW needed</span>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="font-bold mr-2">→</span>
+                    <span><strong>&gt; 25mm:</strong> 12kW+ or multiple passes</span>
+                  </div>
+                </div>
+                <div className="flex items-start mt-4">
+                  <span className="font-bold mr-2">Step 2:</span>
+                  <span>What is your production volume?</span>
+                </div>
+                <div className="ml-6 space-y-2">
+                  <div className="flex items-start">
+                    <span className="font-bold mr-2">→</span>
+                    <span><strong>Low (&lt;500 parts/month):</strong> Lower power acceptable, prioritize cost</span>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="font-bold mr-2">→</span>
+                    <span><strong>Medium (500-5000 parts/month):</strong> Match power to thickness, consider speed</span>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="font-bold mr-2">→</span>
+                    <span><strong>High (&gt;5000 parts/month):</strong> Consider 1 power level higher for throughput</span>
+                  </div>
+                </div>
+                <div className="flex items-start mt-4">
+                  <span className="font-bold mr-2">Step 3:</span>
+                  <span>What is your shift schedule?</span>
+                </div>
+                <div className="ml-6 space-y-2">
+                  <div className="flex items-start">
+                    <span className="font-bold mr-2">→</span>
+                    <span><strong>Single shift:</strong> Size power for 70-80% utilization</span>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="font-bold mr-2">→</span>
+                    <span><strong>Double shift:</strong> Size power for 60-70% utilization</span>
+                  </div>
+                  <div className="flex items-start">
+                    <span className="font-bold mr-2">→</span>
+                    <span><strong>24/7 operation:</strong> Size power for 50-60% utilization, prioritize reliability</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Maintenance Cost Analysis */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Maintenance Cost Analysis</h2>
+          
+          <p className="text-gray-700 mb-4">
+            Preventive maintenance costs significantly impact total cost of ownership. Plan for these recurring expenses:
+          </p>
+
+          <div className="overflow-x-auto mb-6">
+            <table className="min-w-full border-collapse border border-gray-300 text-sm">
+              <thead className="bg-gray-100">
+                <tr>
+                  <th className="border border-gray-300 px-4 py-2 text-left">Maintenance Item</th>
+                  <th className="border border-gray-300 px-4 py-2 text-left">Frequency</th>
+                  <th className="border border-gray-300 px-4 py-2 text-left">Cost per Service</th>
+                  <th className="border border-gray-300 px-4 py-2 text-left">Annual Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2">Routine Inspection</td>
+                  <td className="border border-gray-300 px-4 py-2">Monthly</td>
+                  <td className="border border-gray-300 px-4 py-2">$200-400</td>
+                  <td className="border border-gray-300 px-4 py-2">$2,400-4,800</td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="border border-gray-300 px-4 py-2">Optics Cleaning & Alignment</td>
+                  <td className="border border-gray-300 px-4 py-2">Quarterly</td>
+                  <td className="border border-gray-300 px-4 py-2">$500-800</td>
+                  <td className="border border-gray-300 px-4 py-2">$2,000-3,200</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2">Lens Replacement (CO2)</td>
+                  <td className="border border-gray-300 px-4 py-2">6-12 months</td>
+                  <td className="border border-gray-300 px-4 py-2">$800-1,500</td>
+                  <td className="border border-gray-300 px-4 py-2">$800-3,000</td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="border border-gray-300 px-4 py-2">Focusing Lens (Fiber)</td>
+                  <td className="border border-gray-300 px-4 py-2">12-24 months</td>
+                  <td className="border border-gray-300 px-4 py-2">$400-800</td>
+                  <td className="border border-gray-300 px-4 py-2">$200-800</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2">Laser Source Service (CO2 Tube)</td>
+                  <td className="border border-gray-300 px-4 py-2">2,000-8,000 hours</td>
+                  <td className="border border-gray-300 px-4 py-2">$3,000-8,000</td>
+                  <td className="border border-gray-300 px-4 py-2">$3,000-8,000</td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="border border-gray-300 px-4 py-2">Nozzle & Consumables</td>
+                  <td className="border border-gray-300 px-4 py-2">As needed</td>
+                  <td className="border border-gray-300 px-4 py-2">$50-200</td>
+                  <td className="border border-gray-300 px-4 py-2">$1,500-3,000</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2">Motion System Service</td>
+                  <td className="border border-gray-300 px-4 py-2">Annually</td>
+                  <td className="border border-gray-300 px-4 py-2">$1,500-3,000</td>
+                  <td className="border border-gray-300 px-4 py-2">$1,500-3,000</td>
+                </tr>
+                <tr className="bg-gray-50">
+                  <td className="border border-gray-300 px-4 py-2">Electrical System Check</td>
+                  <td className="border border-gray-300 px-4 py-2">Annually</td>
+                  <td className="border border-gray-300 px-4 py-2">$800-1,500</td>
+                  <td className="border border-gray-300 px-4 py-2">$800-1,500</td>
+                </tr>
+                <tr className="font-semibold bg-blue-50">
+                  <td className="border border-gray-300 px-4 py-2">Total Annual Maintenance</td>
+                  <td className="border border-gray-300 px-4 py-2">-</td>
+                  <td className="border border-gray-300 px-4 py-2">-</td>
+                  <td className="border border-gray-300 px-4 py-2 text-blue-900">$12,200-27,300</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+            <h4 className="font-semibold text-yellow-900 mb-2">Fiber vs CO2 Maintenance Cost Comparison</h4>
+            <p className="text-sm text-yellow-800">
+              <strong>Fiber Laser:</strong> Lower maintenance ($12k-20k/year). No CO2 tube replacement, longer diode life (100,000+ hours), fewer optics to maintain.<br/>
+              <strong>CO2 Laser:</strong> Higher maintenance ($20k-27k/year). Tube replacement every 2-8k hours ($3k-8k each), more frequent optics service.<br/>
+              <strong>5-Year Maintenance Savings (Fiber vs CO2):</strong> $40k-35k, partially offsetting higher initial cost.
+            </p>
+          </div>
         </section>
 
         {/* Recommended Vendors & System Integration */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Step 4: Vendor Shortlist & System Integration</h2>
           <p className="text-gray-700 mb-4">
-            Beyond specifications, evaluate the vendor’s ability to integrate control systems, optimize cutting parameters,
+            Beyond specifications, evaluate the vendor's ability to integrate control systems, optimize cutting parameters,
             and provide upgrade paths. For example, manufacturers like
             <a href="https://opmtlaser.com/technology/adaptive-cutting-control" className="text-primary-600 hover:text-primary-700 font-medium" target="_blank" rel="noopener"> OPMT Laser</a>
             offer adaptive cutting control and modular power upgrades that help future-proof your investment and reduce gas consumption by 15-25% in real production.

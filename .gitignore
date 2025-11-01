@@ -65,6 +65,12 @@ wrangler.toml.local
 logs
 *.log
 
+# uploaded files
+/public/uploads/**/*
+!/public/uploads/**/.gitkeep
+
+
+
 
 
 

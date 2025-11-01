@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Select } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
+import { ImageUpload } from '@/components/equipment/image-upload';
 import type { LaserEquipment } from '@/types/equipment';
 
 interface EquipmentFormProps {
@@ -440,6 +441,14 @@ export function EquipmentForm({ equipment, onSubmit, onCancel }: EquipmentFormPr
         </div>
       </div>
 
+      {/* Image Upload Section (for existing equipment only) */}
+      {equipment && equipment.id && (
+        <div className="mt-8 pt-8 border-t border-gray-200">
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">Equipment Images</h3>
+          <ImageUpload equipmentId={equipment.id} />
+        </div>
+      )}
+
       {/* 提交按钮 */}
       <div className="flex items-center gap-4 pt-4 border-t">
         <Button type="submit" disabled={loading}>
@@ -448,7 +457,14 @@ export function EquipmentForm({ equipment, onSubmit, onCancel }: EquipmentFormPr
         <Button type="button" variant="outline" onClick={onCancel}>
           取消
         </Button>
+        {!equipment && (
+          <p className="text-sm text-gray-600 ml-4">
+            Note: Save the equipment first to upload images
+          </p>
+        )}
       </div>
     </form>
   );
 }
+
+

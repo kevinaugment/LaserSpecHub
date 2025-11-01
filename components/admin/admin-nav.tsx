@@ -2,9 +2,11 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSession, signOut } from 'next-auth/react';
 
 export function AdminNav() {
   const pathname = usePathname();
+  const { data: session } = useSession();
 
   const navItems = [
     {
@@ -31,6 +33,15 @@ export function AdminNav() {
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+        </svg>
+      ),
+    },
+    {
+      name: '审核提交',
+      href: '/admin/submissions',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
     },
@@ -88,10 +99,32 @@ export function AdminNav() {
               </svg>
               查看前台
             </Link>
+
+            {/* User Info and Logout */}
+            {session?.user && (
+              <div className="flex items-center space-x-3 pl-3 border-l border-gray-200">
+                <div className="text-sm">
+                  <p className="font-medium text-gray-900">{session.user.name}</p>
+                  <p className="text-xs text-gray-500">{session.user.email}</p>
+                </div>
+                <button
+                  onClick={() => signOut({ callbackUrl: '/admin/login' })}
+                  className="flex items-center px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition"
+                  title="登出"
+                >
+                  <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  </svg>
+                  登出
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
     </nav>
   );
 }
+
+
 

@@ -1,7 +1,7 @@
 /**
- * 激光切割喷嘴寿命预测计算器
- * 数据来源: Precitec技术手册、Raytools产品目录、行业实践经验
- * 更新日期: 2025-10-31
+ * Laser Cutting Nozzle Life Prediction Calculator
+ * Data Sources: Precitec Technical Manuals, Raytools Product Catalogs, Industry Practice
+ * Last Updated: 2025-10-31
  */
 
 export type NozzleMaterial = 'copper' | 'chrome_copper' | 'alloy';
@@ -10,63 +10,63 @@ export type CuttingMaterial = 'carbon_steel' | 'stainless_steel' | 'aluminum' | 
 export type AssistGas = 'oxygen' | 'nitrogen' | 'air';
 
 export const NOZZLE_MATERIAL_LABELS: Record<NozzleMaterial, string> = {
-  copper: '纯铜',
-  chrome_copper: '镀铬铜',
-  alloy: '合金',
+  copper: 'Copper',
+  chrome_copper: 'Chrome-Plated Copper',
+  alloy: 'Alloy',
 };
 
 export const NOZZLE_TYPE_LABELS: Record<NozzleType, string> = {
-  single_layer: '单层喷嘴',
-  double_layer: '双层喷嘴',
-  high_speed: '高速喷嘴',
+  single_layer: 'Single Layer',
+  double_layer: 'Double Layer',
+  high_speed: 'High Speed',
 };
 
 export const CUTTING_MATERIAL_LABELS: Record<CuttingMaterial, string> = {
-  carbon_steel: '碳钢',
-  stainless_steel: '不锈钢',
-  aluminum: '铝合金',
-  copper: '铜',
+  carbon_steel: 'Carbon Steel',
+  stainless_steel: 'Stainless Steel',
+  aluminum: 'Aluminum',
+  copper: 'Copper',
 };
 
 export const ASSIST_GAS_LABELS: Record<AssistGas, string> = {
-  oxygen: '氧气',
-  nitrogen: '氮气',
-  air: '压缩空气',
+  oxygen: 'Oxygen',
+  nitrogen: 'Nitrogen',
+  air: 'Compressed Air',
 };
 
 /**
- * 基础寿命系数 (小时)
- * 来源: Precitec技术手册 & Raytools产品数据
+ * Base Life Factor (hours)
+ * Source: Precitec Technical Manuals & Raytools Product Data
  */
 const BASE_LIFE: Record<NozzleMaterial, number> = {
-  copper: 120,          // 纯铜基础寿命
-  chrome_copper: 180,   // 镀铬铜延长50%寿命
-  alloy: 240,          // 合金寿命最长
+  copper: 120,          // Copper base life
+  chrome_copper: 180,   // Chrome-plated copper extends 50% life
+  alloy: 240,          // Alloy has longest life
 };
 
 /**
- * 喷嘴类型系数
+ * Nozzle Type Factor
  */
 const TYPE_FACTOR: Record<NozzleType, number> = {
-  single_layer: 1.0,    // 标准单层
-  double_layer: 1.3,    // 双层结构延长30%
-  high_speed: 0.8,      // 高速喷嘴磨损更快
+  single_layer: 1.0,    // Standard single layer
+  double_layer: 1.3,    // Double layer structure extends 30% life
+  high_speed: 0.8,      // High-speed nozzles wear faster
 };
 
 /**
- * 功率磨损系数 (归一化到6kW)
+ * Power Wear Factor (normalized to 6kW)
  */
 function getPowerWearFactor(powerKw: number): number {
-  // 功率越高,热负荷越大,磨损越快
-  // 基准: 6kW = 1.0
+  // Higher power increases thermal load and accelerates wear
+  // Baseline: 6kW = 1.0
   return Math.max(0.5, Math.min(2.5, Math.pow(powerKw / 6, 0.7)));
 }
 
 /**
- * 材料厚度磨损系数
+ * Material Thickness Wear Factor
  */
 function getThicknessWearFactor(thicknessMm: number): number {
-  // 厚板切割时间长,喷嘴暴露在高温环境更久
+  // Thick plate cutting takes longer, nozzle exposed to high temperature longer
   if (thicknessMm <= 3) return 0.8;
   if (thicknessMm <= 10) return 1.0;
   if (thicknessMm <= 20) return 1.3;
@@ -74,27 +74,27 @@ function getThicknessWearFactor(thicknessMm: number): number {
 }
 
 /**
- * 切割材料磨损系数
+ * Cutting Material Wear Factor
  */
 const MATERIAL_WEAR_FACTOR: Record<CuttingMaterial, number> = {
-  carbon_steel: 1.0,      // 碳钢标准
-  stainless_steel: 1.2,   // 不锈钢喷溅多
-  aluminum: 0.9,          // 铝相对温和
-  copper: 1.4,            // 铜反射率高,能量损失大
+  carbon_steel: 1.0,      // Carbon steel baseline
+  stainless_steel: 1.2,   // Stainless steel produces more spatter
+  aluminum: 0.9,          // Aluminum relatively mild
+  copper: 1.4,            // Copper has high reflectivity, greater energy loss
 };
 
 /**
- * 辅助气体磨损系数
+ * Assist Gas Wear Factor
  */
 const GAS_WEAR_FACTOR: Record<AssistGas, number> = {
-  oxygen: 1.3,      // 氧气切割温度高,氧化腐蚀
-  nitrogen: 0.9,    // 氮气保护性好
-  air: 1.0,         // 空气标准
+  oxygen: 1.3,      // Oxygen cutting high temperature, oxidation corrosion
+  nitrogen: 0.9,    // Nitrogen provides better protection
+  air: 1.0,         // Air baseline
 };
 
 /**
- * 喷嘴单价 (元)
- * 来源: 市场平均价格 2025年
+ * Nozzle Unit Price (USD)
+ * Source: Market average prices 2025
  */
 const NOZZLE_PRICE: Record<NozzleMaterial, Record<NozzleType, number>> = {
   copper: {
@@ -125,12 +125,12 @@ export type NozzleLifeInput = {
 };
 
 export type NozzleLifeOutput = {
-  lifespanHours: number;        // 预估使用寿命(小时)
-  lifespanDays: number;         // 建议更换周期(天)
-  monthlyCostYuan: number;      // 月度消耗成本(元)
-  nozzlePriceYuan: number;      // 单个喷嘴价格(元)
-  tips: string[];               // 延长寿命建议
-  breakdown: {                  // 计算明细
+  lifespanHours: number;        // Estimated service life (hours)
+  lifespanDays: number;         // Recommended replacement cycle (days)
+  monthlyCostYuan: number;      // Monthly consumable cost (USD)
+  nozzlePriceYuan: number;      // Single nozzle price (USD)
+  tips: string[];               // Life extension recommendations
+  breakdown: {                  // Calculation breakdown
     baseLife: number;
     powerFactor: number;
     thicknessFactor: number;
@@ -142,31 +142,31 @@ export type NozzleLifeOutput = {
 export function calculateNozzleLife(input: NozzleLifeInput): NozzleLifeOutput {
   validateInput(input);
 
-  // 1. 基础寿命
+  // 1. Base life
   const baseLife = BASE_LIFE[input.nozzleMaterial] * TYPE_FACTOR[input.nozzleType];
 
-  // 2. 各项磨损因子
+  // 2. Wear factors
   const powerFactor = getPowerWearFactor(input.powerKw);
   const thicknessFactor = getThicknessWearFactor(input.thicknessMm);
   const materialFactor = MATERIAL_WEAR_FACTOR[input.cuttingMaterial];
   const gasFactor = GAS_WEAR_FACTOR[input.assistGas];
 
-  // 3. 综合磨损系数
+  // 3. Combined wear factor
   const totalWearFactor = powerFactor * thicknessFactor * materialFactor * gasFactor;
 
-  // 4. 调整后寿命
+  // 4. Adjusted life
   const lifespanHours = round(baseLife / totalWearFactor, 1);
 
-  // 5. 更换周期(天)
+  // 5. Replacement cycle (days)
   const lifespanDays = Math.floor(lifespanHours / input.dailyHours);
 
-  // 6. 月度成本
+  // 6. Monthly cost
   const nozzlePrice = NOZZLE_PRICE[input.nozzleMaterial][input.nozzleType];
   const monthlyHours = input.dailyHours * 30;
   const nozzlesPerMonth = monthlyHours / lifespanHours;
   const monthlyCost = round(nozzlesPerMonth * nozzlePrice, 0);
 
-  // 7. 生成建议
+  // 7. Generate recommendations
   const tips = generateTips(input, totalWearFactor);
 
   return {
@@ -188,44 +188,44 @@ export function calculateNozzleLife(input: NozzleLifeInput): NozzleLifeOutput {
 function generateTips(input: NozzleLifeInput, totalWearFactor: number): string[] {
   const tips: string[] = [];
 
-  // 磨损严重时给出建议
+  // Provide recommendations when wear is severe
   if (totalWearFactor > 1.5) {
-    tips.push('当前工况磨损较严重,建议采取以下措施:');
+    tips.push('Current operating conditions show significant wear. Consider the following measures:');
   }
 
-  // 功率建议
+  // Power recommendations
   if (input.powerKw > 10) {
-    tips.push('• 高功率切割可考虑降低功率或提高速度,减少热负荷');
+    tips.push('• High power cutting: Consider reducing power or increasing speed to reduce thermal load');
   }
 
-  // 气体建议
+  // Gas recommendations
   if (input.assistGas === 'oxygen') {
-    tips.push('• 氧气切割温度高,建议定期检查喷嘴氧化情况,及时清洁');
+    tips.push('• Oxygen cutting produces high temperatures: Regularly check nozzle oxidation and clean promptly');
     if (input.cuttingMaterial === 'stainless_steel') {
-      tips.push('• 不锈钢切割建议改用氮气,可延长喷嘴寿命30%以上');
+      tips.push('• Stainless steel cutting: Consider switching to nitrogen, can extend nozzle life by 30% or more');
     }
   }
 
-  // 材质升级建议
+  // Material upgrade recommendations
   if (input.nozzleMaterial === 'copper' && totalWearFactor > 1.3) {
-    tips.push('• 建议升级为镀铬铜喷嘴,寿命延长50%,成本增加约60%');
+    tips.push('• Consider upgrading to chrome-plated copper nozzle: 50% longer life, ~60% cost increase');
   }
 
-  // 厚板建议
+  // Thick plate recommendations
   if (input.thicknessMm > 15) {
-    tips.push('• 厚板切割时间长,建议增加检查频率,避免喷嘴变形影响切割质量');
+    tips.push('• Thick plate cutting takes longer: Increase inspection frequency to avoid nozzle deformation affecting cut quality');
   }
 
-  // 铜材料建议
+  // Copper material recommendations
   if (input.cuttingMaterial === 'copper') {
-    tips.push('• 铜材料反射率高,建议使用专用防反射喷嘴,降低热负荷');
+    tips.push('• Copper has high reflectivity: Consider using anti-reflective nozzle to reduce thermal load');
   }
 
-  // 通用建议
+  // General recommendations
   if (tips.length === 0 || totalWearFactor <= 1.2) {
-    tips.push('• 定期清洁喷嘴,保持同心度,延长使用寿命');
-    tips.push('• 避免喷嘴与工件碰撞,碰撞是喷嘴损坏的主要原因');
-    tips.push('• 建议备用多个喷嘴,避免停机等待');
+    tips.push('• Regularly clean nozzle and maintain concentricity to extend service life');
+    tips.push('• Avoid nozzle collision with workpiece: Collisions are the primary cause of nozzle damage');
+    tips.push('• Keep multiple spare nozzles on hand to avoid downtime');
   }
 
   return tips;
@@ -233,13 +233,13 @@ function generateTips(input: NozzleLifeInput, totalWearFactor: number): string[]
 
 function validateInput(i: NozzleLifeInput) {
   if (i.thicknessMm < 0.5 || i.thicknessMm > 50) {
-    throw new Error('厚度范围应在 0.5-50 mm');
+    throw new Error('Thickness range should be 0.5-50 mm');
   }
   if (i.powerKw < 1 || i.powerKw > 30) {
-    throw new Error('功率范围应在 1-30 kW');
+    throw new Error('Power range should be 1-30 kW');
   }
   if (i.dailyHours < 1 || i.dailyHours > 24) {
-    throw new Error('日均工作时间应在 1-24 小时');
+    throw new Error('Daily operating hours should be 1-24 hours');
   }
 }
 

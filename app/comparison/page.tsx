@@ -2,10 +2,12 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import Head from 'next/head';
 import type { LaserEquipment } from '@/types/equipment';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { EquipmentSelector } from '@/components/comparison/equipment-selector';
 import { ComparisonTable } from '@/components/comparison/comparison-table';
 import { StructuredData } from '@/components/ui/structured-data';
@@ -13,10 +15,15 @@ import { StructuredData } from '@/components/ui/structured-data';
 function ComparisonContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { data: session } = useSession();
   const [allEquipment, setAllEquipment] = useState<LaserEquipment[]>([]);
   const [selectedEquipment, setSelectedEquipment] = useState<LaserEquipment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showSelector, setShowSelector] = useState(false);
+  const [showSaveDialog, setShowSaveDialog] = useState(false);
+  const [saveName, setSaveName] = useState('');
+  const [saving, setSaving] = useState(false);
+  const [savedComparisons, setSavedComparisons] = useState<any[]>([]);
 
   // Load all equipment on mount
   useEffect(() => {
@@ -45,7 +52,24 @@ function ComparisonContent() {
     }
 
     loadEquipment();
-  }, [searchParams]);
+
+    // Load saved comparisons if authenticated
+    if (session?.user) {
+      loadSavedComparisons();
+    }
+  }, [searchParams, session]);
+
+  const loadSavedComparisons = async () => {
+    try {
+      const response = await fetch('/api/user/comparisons');
+      const result = await response.json();
+      if (result.success) {
+        setSavedComparisons(result.data);
+      }
+    } catch (error) {
+      console.error('Failed to load saved comparisons:', error);
+    }
+  };
 
   // Generate dynamic page title based on selected equipment
   useEffect(() => {
@@ -91,6 +115,54 @@ function ComparisonContent() {
     const url = window.location.href;
     navigator.clipboard.writeText(url);
     alert('Comparison link copied to clipboard!');
+  };
+
+  const handleSaveComparison = async () => {
+    if (!session?.user) {
+      router.push('/auth/login?callbackUrl=' + window.location.pathname);
+      return;
+    }
+
+    if (!saveName.trim()) {
+      alert('Please enter a name for this comparison');
+      return;
+    }
+
+    if (selectedEquipment.length === 0) {
+      alert('Please select at least one equipment to compare');
+      return;
+    }
+
+    try {
+      setSaving(true);
+      const response = await fetch('/api/user/comparisons', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: saveName.trim(),
+          equipment_ids: selectedEquipment.map(eq => eq.id),
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        alert('Comparison saved successfully!');
+        setShowSaveDialog(false);
+        setSaveName('');
+        loadSavedComparisons();
+      } else {
+        alert(`Failed to save: ${result.error}`);
+      }
+    } catch (error) {
+      alert('Failed to save comparison');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleLoadSavedComparison = (comparison: any) => {
+    const ids = comparison.equipment_ids.join(',');
+    router.push(`/comparison?ids=${ids}`);
   };
 
   if (isLoading) {
@@ -186,12 +258,25 @@ function ComparisonContent() {
                       Export PDF
                     </Button>
                     {selectedEquipment.length > 0 && (
-                      <Button variant="ghost" fullWidth onClick={handleShare}>
-                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                        </svg>
-                        Share Link
-                      </Button>
+                      <>
+                        <Button variant="ghost" fullWidth onClick={handleShare}>
+                          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                          </svg>
+                          Share Link
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          fullWidth 
+                          onClick={() => session?.user ? setShowSaveDialog(true) : router.push('/auth/login?callbackUrl=' + window.location.pathname)}
+                          className="border-green-500 text-green-600 hover:bg-green-50"
+                        >
+                          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                          Save Comparison
+                        </Button>
+                      </>
                     )}
                   </>
                 )}
@@ -207,6 +292,31 @@ function ComparisonContent() {
                   selectedIds={selectedEquipment.map(eq => eq.id)}
                   onSelect={handleSelectEquipment}
                 />
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Saved Comparisons */}
+          {session?.user && savedComparisons.length > 0 && (
+            <Card variant="bordered" className="mt-6">
+              <CardHeader>
+                <CardTitle className="text-lg">Saved Comparisons</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2 max-h-64 overflow-y-auto">
+                  {savedComparisons.map((comp) => (
+                    <button
+                      key={comp.id}
+                      onClick={() => handleLoadSavedComparison(comp)}
+                      className="w-full text-left px-3 py-2 rounded hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-200"
+                    >
+                      <div className="text-sm font-medium text-gray-900">{comp.name}</div>
+                      <div className="text-xs text-gray-500">
+                        {comp.equipment_ids.length} equipment{comp.equipment_ids.length !== 1 ? 's' : ''} • {new Date(comp.updated_at).toLocaleDateString()}
+                      </div>
+                    </button>
+                  ))}
+                </div>
               </CardContent>
             </Card>
           )}
@@ -257,6 +367,54 @@ function ComparisonContent() {
             </ul>
           </CardContent>
         </Card>
+      )}
+
+      {/* Save Comparison Dialog */}
+      {showSaveDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <Card className="w-full max-w-md mx-4">
+            <CardHeader>
+              <CardTitle>Save Comparison</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Comparison Name
+                  </label>
+                  <Input
+                    type="text"
+                    value={saveName}
+                    onChange={(e) => setSaveName(e.target.value)}
+                    placeholder="e.g., Fiber Lasers Comparison"
+                    disabled={saving}
+                  />
+                </div>
+                <div className="flex gap-3">
+                  <Button
+                    variant="primary"
+                    fullWidth
+                    onClick={handleSaveComparison}
+                    disabled={saving || !saveName.trim()}
+                  >
+                    {saving ? 'Saving...' : 'Save'}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    fullWidth
+                    onClick={() => {
+                      setShowSaveDialog(false);
+                      setSaveName('');
+                    }}
+                    disabled={saving}
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       )}
 
       {/* SEO Content Section */}

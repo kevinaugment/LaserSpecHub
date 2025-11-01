@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { generatePageMetadata } from '@/lib/utils/metadata';
 import { StructuredData } from '@/components/ui/structured-data';
+import { FavoriteButton } from '@/components/equipment/favorite-button';
 
 // Force dynamic rendering to avoid build-time database access
 export const dynamic = 'force-dynamic';
@@ -42,6 +43,19 @@ async function getEquipmentById(id: string): Promise<LaserEquipment | null> {
   };
   
   return parsedEquipment;
+}
+
+async function getEquipmentImages(equipmentId: string) {
+  const db = getDatabase();
+  
+  const stmt = db.prepare(`
+    SELECT * FROM equipment_images
+    WHERE equipment_id = ?
+    ORDER BY display_order ASC, created_at DESC
+  `);
+  
+  const result = await stmt.bind(equipmentId).all();
+  return result.results || [];
 }
 
 export async function generateMetadata({
@@ -83,6 +97,9 @@ export default async function EquipmentDetailPage({
   if (!equipment) {
     notFound();
   }
+
+  // Fetch equipment images
+  const images = await getEquipmentImages(params.id);
 
   const getLaserTypeBadgeVariant = (type: string) => {
     switch (type.toLowerCase()) {
@@ -172,6 +189,7 @@ export default async function EquipmentDetailPage({
             </div>
           </div>
           <div className="flex gap-3">
+            <FavoriteButton equipmentId={equipment.id} />
             <Link href="/comparison">
               <Button variant="primary">
                 Add to Comparison
@@ -193,6 +211,34 @@ export default async function EquipmentDetailPage({
           </div>
         )}
       </div>
+
+      {/* Equipment Images Gallery */}
+      {images.length > 0 && (
+        <div className="mb-8">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Product Images</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {images.map((image: any) => (
+              <div key={image.id} className="relative group overflow-hidden rounded-lg border border-gray-200">
+                <img
+                  src={image.image_url}
+                  alt={image.alt_text || `${equipment.brand} ${equipment.model}`}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-200"
+                />
+                {image.is_primary === 1 && (
+                  <div className="absolute top-2 left-2 px-2 py-1 bg-blue-600 text-white text-xs font-medium rounded">
+                    Primary
+                  </div>
+                )}
+                {image.caption && (
+                  <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white text-xs p-2">
+                    {image.caption}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Main Specifications */}
@@ -336,6 +382,7 @@ export default async function EquipmentDetailPage({
               <CardTitle>Quick Actions</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
+              <FavoriteButton equipmentId={equipment.id} />
               <Link href="/comparison" className="block">
                 <Button variant="primary" fullWidth>
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

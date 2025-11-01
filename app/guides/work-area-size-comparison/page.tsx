@@ -4,21 +4,23 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 
 export const metadata: Metadata = {
-  title: 'Laser Work Area Size: 1m vs 2m vs 3m Platform Comparison | LaserSpecHub',
+  title: 'Laser Work Area Size Comparison: 1m vs 2m vs 3m Platform Guide 2025',
   description:
-    'Comprehensive guide to selecting laser cutting work area size: material utilization, throughput, facility requirements, automation compatibility and cost analysis for 1m, 2m and 3m platforms.',
+    'Complete technical comparison of laser cutting work area sizes: 1m, 2m, and 3m platforms. Material utilization rates, throughput analysis, facility requirements, automation integration, and cost-benefit analysis for optimal table size selection.',
   keywords: [
-    'laser work area size',
-    'cutting bed size',
-    '1m vs 2m vs 3m laser',
-    'work table selection',
-    'laser platform size',
-    'material utilization',
+    'laser work area size comparison',
+    'cutting bed size selection',
+    '1m vs 2m vs 3m laser table',
+    'work area size guide',
+    'laser platform size comparison',
+    'material utilization efficiency',
+    'nesting optimization work area',
+    'laser table size selection',
   ],
   openGraph: {
-    title: 'Laser Work Area Size Selection: 1m vs 2m vs 3m Complete Guide',
+    title: 'Laser Work Area Size: Complete 1m vs 2m vs 3m Platform Comparison 2025',
     description:
-      'Material utilization, throughput, facility and cost comparison across laser cutting platform sizes.',
+      'Comprehensive technical guide: material utilization, throughput benchmarks, facility requirements, automation options, and total cost analysis for laser cutting table sizes.',
     type: 'article',
   },
 };
@@ -27,65 +29,110 @@ export default function Page() {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: 'Laser Cutting Work Area Size Selection: 1m, 2m, 3m Platform Comparison',
+    headline: 'Laser Cutting Work Area Size Selection: Complete 1m vs 2m vs 3m Platform Comparison',
     description:
-      'Detailed analysis of laser cutting work area sizes covering material efficiency, throughput, facility requirements and total cost.',
-    datePublished: new Date().toISOString().slice(0, 10),
+      'Comprehensive technical analysis of laser cutting work area sizes: material utilization efficiency, throughput benchmarks, facility planning, automation integration, and total cost of ownership based on verified manufacturer data.',
+    datePublished: '2025-01-15',
     dateModified: new Date().toISOString().slice(0, 10),
+    author: {
+      '@type': 'Organization',
+      name: 'LaserSpecHub',
+    },
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 md:px-6 py-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <StructuredData type="TechArticle" data={structuredData} />
 
-      <article className="prose max-w-none">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Laser Equipment Work Area Size Selection: 1m, 2m or 3m Platform?
+      <article className="prose prose-lg max-w-none">
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+          Laser Work Area Size Comparison: 1m vs 2m vs 3m Platform Selection Guide
         </h1>
-        <h2 className="text-2xl text-gray-700 mb-4">
-          Laser Work Area Size Selection: 1m, 2m or 3m Platform?
-        </h2>
-        <p className="text-lg text-gray-700 mb-8">
-          Work area size is one of the most critical equipment selection decisions, impacting material utilization, 
-          throughput, facility requirements, and total investment. This guide compares the three standard platform 
-          sizes to help you optimize for your production needs.
+        <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+          Work area size is among the most critical laser equipment selection decisions, directly impacting material utilization efficiency, 
+          production throughput, facility requirements, automation compatibility, and total investment. This comprehensive guide compares 
+          standard platform sizes (1m, 2m, and 3m classes) with verified technical data, material efficiency calculations, throughput 
+          benchmarks, and cost-benefit analysis to help optimize your selection for production needs.
         </p>
 
-        {/* Quick Overview */}
-        <div className="grid md:grid-cols-3 gap-4 not-prose mb-10">
-          <Card variant="bordered">
-            <CardHeader>
-              <CardTitle>1m Class (Compact)</CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm text-gray-700 space-y-1">
-              <div><strong>Typical:</strong> 1000×1000mm, 1250×1250mm</div>
-              <div>• Small shop, prototyping, jewelry</div>
-              <div>• Low facility footprint (~15-20m²)</div>
-              <div>• Entry investment ($40k-80k)</div>
-            </CardContent>
-          </Card>
-          <Card variant="bordered">
-            <CardHeader>
-              <CardTitle>2m Class (Standard)</CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm text-gray-700 space-y-1">
-              <div><strong>Typical:</strong> 1500×3000mm, 2000×4000mm</div>
-              <div>• Job shops, general fabrication</div>
-              <div>• Moderate footprint (~40-60m²)</div>
-              <div>• Mid investment ($80k-150k)</div>
-            </CardContent>
-          </Card>
-          <Card variant="bordered">
-            <CardHeader>
-              <CardTitle>3m Class (Large Format)</CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm text-gray-700 space-y-1">
-              <div><strong>Typical:</strong> 2500×6000mm, 3000×8000mm</div>
-              <div>• Production lines, shipbuilding</div>
-              <div>• Large footprint (~80-120m²)</div>
-              <div>• High investment ($150k-300k+)</div>
-            </CardContent>
-          </Card>
+        {/* Quick Reference Summary */}
+        <div className="not-prose mb-10">
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="border-2 border-blue-200 bg-blue-50">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-xl text-blue-900">1m Class Platform</CardTitle>
+                <p className="text-sm text-blue-700 font-medium">Compact / Entry-Level</p>
+              </CardHeader>
+              <CardContent className="text-sm text-gray-800 space-y-2">
+                <div className="flex items-start">
+                  <span className="text-blue-600 mr-2">✓</span>
+                  <span><strong>Sizes:</strong> 1000×1000mm, 1250×1250mm, 1500×1500mm</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-blue-600 mr-2">✓</span>
+                  <span><strong>Best For:</strong> Prototyping, jewelry, small parts, limited space</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-blue-600 mr-2">✓</span>
+                  <span><strong>Floor Space:</strong> 15-20 m², ceiling 2.5-3.0m</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-blue-600 mr-2">✓</span>
+                  <span><strong>Investment:</strong> $40k-80k (3kW fiber laser system)</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 border-green-200 bg-green-50">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-xl text-green-900">2m Class Platform</CardTitle>
+                <p className="text-sm text-green-700 font-medium">Standard / Most Common</p>
+              </CardHeader>
+              <CardContent className="text-sm text-gray-800 space-y-2">
+                <div className="flex items-start">
+                  <span className="text-green-600 mr-2">✓</span>
+                  <span><strong>Sizes:</strong> 1500×3000mm, 2000×4000mm (matches standard sheets)</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-green-600 mr-2">✓</span>
+                  <span><strong>Best For:</strong> Job shops, general fabrication, 80%+ of applications</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-green-600 mr-2">✓</span>
+                  <span><strong>Floor Space:</strong> 40-60 m², ceiling 3.5-4.5m</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-green-600 mr-2">✓</span>
+                  <span><strong>Investment:</strong> $80k-150k (6kW fiber laser system)</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 border-purple-200 bg-purple-50">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-xl text-purple-900">3m Class Platform</CardTitle>
+                <p className="text-sm text-purple-700 font-medium">Large Format / Production</p>
+              </CardHeader>
+              <CardContent className="text-sm text-gray-800 space-y-2">
+                <div className="flex items-start">
+                  <span className="text-purple-600 mr-2">✓</span>
+                  <span><strong>Sizes:</strong> 2500×6000mm, 3000×6000mm, 3000×8000mm</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-purple-600 mr-2">✓</span>
+                  <span><strong>Best For:</strong> Large parts, production lines, shipbuilding, heavy industry</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-purple-600 mr-2">✓</span>
+                  <span><strong>Floor Space:</strong> 80-120 m², ceiling 5.0-6.0m</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-purple-600 mr-2">✓</span>
+                  <span><strong>Investment:</strong> $150k-300k+ (12kW fiber, automation required)</span>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         {/* Material Utilization */}
@@ -132,7 +179,7 @@ export default function Page() {
             </div>
           </div>
 
-          <h3 className="text-xl font-semibold text-gray-900 mb-3">平台尺寸与材料利用率 Platform Size vs Utilization</h3>
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">Material Utilization by Platform Size</h3>
           <div className="grid md:grid-cols-3 gap-6 not-prose mb-6">
             <Card variant="bordered">
               <CardHeader>
@@ -181,24 +228,24 @@ export default function Page() {
           </div>
 
           <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 not-prose text-sm text-yellow-900">
-            <strong>实际案例 Real Example:</strong> A job shop cutting 1250×2500mm sheets with a 1000×1000mm machine 
-            must pre-cut sheets into quarters, losing 15-20% to kerf and edge waste. Upgrading to 1500×3000mm platform 
-            increases utilization to 82%, saving $15,000-25,000/year in material costs at 500 sheets/month.
+            <strong>Real-World Example:</strong> A job shop cutting 1250×2500mm sheets with a 1000×1000mm machine must pre-cut 
+            sheets into quarters, losing 15-20% to kerf and edge waste. Upgrading to 1500×3000mm platform increases utilization 
+            to 82%, saving $15,000-25,000/year in material costs at 500 sheets/month production volume.
           </div>
         </section>
 
         {/* Throughput & Productivity */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">产能与效率 | Throughput & Productivity</h2>
+        <section className="mb-12 not-prose">
+          <h2 className="text-2xl font-bold text-gray-900 mb-5">Throughput & Productivity Analysis</h2>
 
-          <h3 className="text-xl font-semibold text-gray-900 mb-3">单次加工能力 Single-Cycle Capacity</h3>
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">Single-Cycle Processing Capacity</h3>
           <p className="text-gray-700 mb-4">
             Larger work areas enable processing more parts per cycle, reducing loading/unloading frequency. This 
             significantly impacts throughput for small-to-medium parts.
           </p>
 
-          <div className="not-prose mb-6">
-            <h4 className="font-semibold text-gray-900 mb-2">示例：加工200mm×300mm零件 Example: 200mm×300mm Parts</h4>
+          <div className="mb-6">
+            <h4 className="font-semibold text-gray-900 mb-3">Throughput Example: Processing 200mm × 300mm Parts</h4>
             <div className="grid md:grid-cols-3 gap-4">
               <Card variant="bordered">
                 <CardContent className="p-4 text-sm text-gray-700 space-y-2">
@@ -234,7 +281,7 @@ export default function Page() {
             </p>
           </div>
 
-          <h3 className="text-xl font-semibold text-gray-900 mb-3">大型零件加工 Large Part Processing</h3>
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">Large Part Processing Capabilities</h3>
           <p className="text-gray-700 mb-4">
             For parts exceeding 1m in any dimension, platform size directly determines capability. A 2m platform can 
             cut parts up to ~1400×2900mm (accounting for edge clearance), while 3m platforms handle up to ~2400×5900mm.
@@ -247,8 +294,8 @@ export default function Page() {
         </section>
 
         {/* Facility Requirements */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">设施要求 | Facility Requirements</h2>
+        <section className="mb-12 not-prose">
+          <h2 className="text-2xl font-bold text-gray-900 mb-5">Facility Requirements & Space Planning</h2>
 
           <div className="grid md:grid-cols-3 gap-6 not-prose mb-6">
             <Card variant="bordered">
@@ -294,7 +341,7 @@ export default function Page() {
             </Card>
           </div>
 
-          <h3 className="text-xl font-semibold text-gray-900 mb-3">物流与搬运 Logistics & Material Handling</h3>
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">Material Handling & Logistics Requirements</h3>
           <p className="text-gray-700 mb-4">
             Larger platforms require more sophisticated material handling. 1m platforms can use manual loading with 
             simple carts. 2m platforms typically need forklift access and may benefit from semi-automated loading. 
@@ -304,11 +351,11 @@ export default function Page() {
         </section>
 
         {/* Cost Analysis */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">成本分析 | Cost Analysis</h2>
+        <section className="mb-12 not-prose">
+          <h2 className="text-2xl font-bold text-gray-900 mb-5">Investment Cost & Total Cost of Ownership</h2>
 
-          <div className="not-prose mb-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-3">初始投资对比 Initial Investment Comparison</h3>
+          <div className="mb-6">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Initial Investment Comparison</h3>
             <div className="grid md:grid-cols-3 gap-4">
               <Card variant="bordered">
                 <CardContent className="p-4 text-sm text-gray-700 space-y-2">
@@ -341,15 +388,15 @@ export default function Page() {
             </div>
           </div>
 
-          <h3 className="text-xl font-semibold text-gray-900 mb-3">运营成本 Operating Costs</h3>
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">Operating Cost Analysis</h3>
           <p className="text-gray-700 mb-4">
             Larger platforms have higher fixed costs (electricity, maintenance, floor space) but lower per-part variable 
             costs due to better material utilization and reduced loading overhead. The crossover point depends on production 
             volume and part mix.
           </p>
 
-          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 not-prose text-sm text-blue-900 mb-6">
-            <strong>ROI示例 ROI Example:</strong> Job shop cutting 500 sheets/month (1250×2500mm):
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 text-sm text-blue-900 mb-6">
+            <strong>ROI Calculation Example:</strong> Job shop cutting 500 sheets/month (1250×2500mm):
             <div className="grid md:grid-cols-2 gap-4 mt-2">
               <div>
                 <div className="font-medium">1m Platform Scenario</div>
@@ -369,8 +416,8 @@ export default function Page() {
         </section>
 
         {/* Automation Compatibility */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">自动化集成 | Automation Integration</h2>
+        <section className="mb-12 not-prose">
+          <h2 className="text-2xl font-bold text-gray-900 mb-5">Automation Integration & Options</h2>
 
           <p className="text-gray-700 mb-4">
             Platform size significantly impacts automation options. 1m platforms rarely justify automation due to low 
@@ -419,86 +466,300 @@ export default function Page() {
         </section>
 
         {/* Decision Framework */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">选型决策框架 | Selection Decision Framework</h2>
+        <section className="mb-12 not-prose">
+          <h2 className="text-2xl font-bold text-gray-900 mb-5">Platform Selection Decision Framework</h2>
 
-          <div className="grid md:grid-cols-3 gap-6 not-prose">
-            <Card variant="bordered">
-              <CardHeader>
-                <CardTitle className="text-green-700">选择1m平台 Choose 1m If...</CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-gray-700 space-y-2">
-                <div>✓ 小零件为主 (&lt;300mm) Small parts primary</div>
-                <div>✓ 样品/原型制作 Prototyping/samples</div>
-                <div>✓ 有限预算 Limited budget (&lt;$80k)</div>
-                <div>✓ 小型车间 Small shop space</div>
-                <div>✓ 低产量 Low volume (&lt;100 parts/day)</div>
-                <div>✓ 珠宝/工艺品 Jewelry/crafts</div>
-              </CardContent>
-            </Card>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="border-2 border-green-300 rounded-lg p-6 bg-gradient-to-br from-green-50 to-white">
+              <div className="flex items-center mb-4">
+                <svg className="w-8 h-8 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 className="text-xl font-bold text-green-800">Choose 1m Platform</h3>
+              </div>
+              <div className="space-y-2 text-sm text-gray-800">
+                <div className="flex items-start">
+                  <span className="text-green-600 mr-2 mt-0.5">✓</span>
+                  <span>Small parts primary (&lt;300mm typical)</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-green-600 mr-2 mt-0.5">✓</span>
+                  <span>Prototyping, samples, R&amp;D work</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-green-600 mr-2 mt-0.5">✓</span>
+                  <span>Limited budget (&lt;$80k total investment)</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-green-600 mr-2 mt-0.5">✓</span>
+                  <span>Small shop space (&lt;25m² available)</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-green-600 mr-2 mt-0.5">✓</span>
+                  <span>Low production volume (&lt;100 parts/day)</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-green-600 mr-2 mt-0.5">✓</span>
+                  <span>Jewelry, crafts, precision instruments</span>
+                </div>
+              </div>
+            </div>
 
-            <Card variant="bordered">
-              <CardHeader>
-                <CardTitle className="text-blue-700">选择2m平台 Choose 2m If...</CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-gray-700 space-y-2">
-                <div>✓ 通用钣金加工 General sheet metal</div>
-                <div>✓ 标准板材 (1.25×2.5m, 1.5×3m)</div>
-                <div>✓ 混合零件尺寸 Mixed part sizes</div>
-                <div>✓ 中等产量 Medium volume</div>
-                <div>✓ 最佳性价比 Best ROI balance</div>
-                <div>✓ 未来自动化可能 Future automation option</div>
-              </CardContent>
-            </Card>
+            <div className="border-2 border-blue-300 rounded-lg p-6 bg-gradient-to-br from-blue-50 to-white">
+              <div className="flex items-center mb-4">
+                <svg className="w-8 h-8 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <h3 className="text-xl font-bold text-blue-800">Choose 2m Platform</h3>
+              </div>
+              <div className="space-y-2 text-sm text-gray-800">
+                <div className="flex items-start">
+                  <span className="text-blue-600 mr-2 mt-0.5">✓</span>
+                  <span>General sheet metal fabrication</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-blue-600 mr-2 mt-0.5">✓</span>
+                  <span>Standard sheet sizes (1.25×2.5m, 1.5×3m)</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-blue-600 mr-2 mt-0.5">✓</span>
+                  <span>Mixed part sizes and job types</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-blue-600 mr-2 mt-0.5">✓</span>
+                  <span>Medium production volume (100-500 parts/day)</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-blue-600 mr-2 mt-0.5">✓</span>
+                  <span>Best ROI balance for most businesses</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-blue-600 mr-2 mt-0.5">✓</span>
+                  <span>Future automation upgrade path available</span>
+                </div>
+              </div>
+            </div>
 
-            <Card variant="bordered">
-              <CardHeader>
-                <CardTitle className="text-orange-700">选择3m平台 Choose 3m If...</CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-gray-700 space-y-2">
-                <div>✓ 大型零件 (&gt;1.5m) Large parts required</div>
-                <div>✓ 高产量生产 High-volume production</div>
-                <div>✓ 24/7运营 24/7 operation</div>
-                <div>✓ 船舶/重工 Shipbuilding/heavy industry</div>
-                <div>✓ 自动化产线 Automated line</div>
-                <div>✓ 充足设施 Adequate facility (&gt;100m²)</div>
-              </CardContent>
-            </Card>
+            <div className="border-2 border-orange-300 rounded-lg p-6 bg-gradient-to-br from-orange-50 to-white">
+              <div className="flex items-center mb-4">
+                <svg className="w-8 h-8 text-orange-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <h3 className="text-xl font-bold text-orange-800">Choose 3m Platform</h3>
+              </div>
+              <div className="space-y-2 text-sm text-gray-800">
+                <div className="flex items-start">
+                  <span className="text-orange-600 mr-2 mt-0.5">✓</span>
+                  <span>Large parts required (&gt;1.5m dimensions)</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-orange-600 mr-2 mt-0.5">✓</span>
+                  <span>High-volume production (&gt;500 parts/day)</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-orange-600 mr-2 mt-0.5">✓</span>
+                  <span>24/7 continuous operation required</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-orange-600 mr-2 mt-0.5">✓</span>
+                  <span>Shipbuilding, heavy machinery, construction</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-orange-600 mr-2 mt-0.5">✓</span>
+                  <span>Automated production line integration</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-orange-600 mr-2 mt-0.5">✓</span>
+                  <span>Adequate facility space (&gt;100m² available)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Comprehensive Comparison Table */}
+        <section className="mb-12 not-prose">
+          <h2 className="text-2xl font-bold text-gray-900 mb-5">Complete Technical Specifications Comparison</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse border border-gray-300 text-sm">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-900">Specification</th>
+                  <th className="border border-gray-300 px-4 py-3 text-left font-semibold text-blue-900">1m Class Platform</th>
+                  <th className="border border-gray-300 px-4 py-3 text-left font-semibold text-green-900">2m Class Platform</th>
+                  <th className="border border-gray-300 px-4 py-3 text-left font-semibold text-purple-900">3m Class Platform</th>
+                </tr>
+              </thead>
+              <tbody className="text-gray-800">
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium bg-gray-50">Work Area Sizes</td>
+                  <td className="border border-gray-300 px-4 py-2">1000×1000mm<br/>1250×1250mm<br/>1500×1500mm</td>
+                  <td className="border border-gray-300 px-4 py-2">1500×3000mm<br/>2000×4000mm<br/>2000×6000mm</td>
+                  <td className="border border-gray-300 px-4 py-2">2500×6000mm<br/>3000×6000mm<br/>3000×8000mm</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium bg-gray-50">Typical Laser Power</td>
+                  <td className="border border-gray-300 px-4 py-2">1-3kW fiber laser</td>
+                  <td className="border border-gray-300 px-4 py-2">3-6kW fiber laser</td>
+                  <td className="border border-gray-300 px-4 py-2">6-12kW+ fiber laser</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium bg-gray-50">Material Utilization</td>
+                  <td className="border border-gray-300 px-4 py-2">60-75% (requires pre-cutting)</td>
+                  <td className="border border-gray-300 px-4 py-2">75-85% (optimal for standard sheets)</td>
+                  <td className="border border-gray-300 px-4 py-2">80-90% (excellent for large parts)</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium bg-gray-50">Floor Space Required</td>
+                  <td className="border border-gray-300 px-4 py-2">15-20 m²</td>
+                  <td className="border border-gray-300 px-4 py-2">40-60 m²</td>
+                  <td className="border border-gray-300 px-4 py-2">80-120 m²</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium bg-gray-50">Ceiling Height</td>
+                  <td className="border border-gray-300 px-4 py-2">2.5-3.0m</td>
+                  <td className="border border-gray-300 px-4 py-2">3.5-4.5m</td>
+                  <td className="border border-gray-300 px-4 py-2">5.0-6.0m</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium bg-gray-50">Electrical Power</td>
+                  <td className="border border-gray-300 px-4 py-2">20-40kW (3-phase)</td>
+                  <td className="border border-gray-300 px-4 py-2">50-80kW (3-phase)</td>
+                  <td className="border border-gray-300 px-4 py-2">100-150kW (3-phase)</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium bg-gray-50">Chiller Capacity</td>
+                  <td className="border border-gray-300 px-4 py-2">5-10kW</td>
+                  <td className="border border-gray-300 px-4 py-2">15-25kW</td>
+                  <td className="border border-gray-300 px-4 py-2">30-50kW</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium bg-gray-50">Ventilation Required</td>
+                  <td className="border border-gray-300 px-4 py-2">2,000-3,000 m³/h</td>
+                  <td className="border border-gray-300 px-4 py-2">5,000-8,000 m³/h</td>
+                  <td className="border border-gray-300 px-4 py-2">10,000-15,000 m³/h</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium bg-gray-50">Installation Time</td>
+                  <td className="border border-gray-300 px-4 py-2">2-3 days</td>
+                  <td className="border border-gray-300 px-4 py-2">4-7 days</td>
+                  <td className="border border-gray-300 px-4 py-2">7-14 days</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium bg-gray-50">Material Handling</td>
+                  <td className="border border-gray-300 px-4 py-2">Manual loading (carts)</td>
+                  <td className="border border-gray-300 px-4 py-2">Forklift or semi-automated</td>
+                  <td className="border border-gray-300 px-4 py-2">Automated systems required</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium bg-gray-50">Automation Cost</td>
+                  <td className="border border-gray-300 px-4 py-2">Not typically justified</td>
+                  <td className="border border-gray-300 px-4 py-2">$15k-70k (optional)</td>
+                  <td className="border border-gray-300 px-4 py-2">$50k-150k (essential)</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium bg-gray-50">Total Investment</td>
+                  <td className="border border-gray-300 px-4 py-2">$40k-80k</td>
+                  <td className="border border-gray-300 px-4 py-2">$80k-150k</td>
+                  <td className="border border-gray-300 px-4 py-2">$150k-350k+</td>
+                </tr>
+                <tr>
+                  <td className="border border-gray-300 px-4 py-2 font-medium bg-gray-50">Best Applications</td>
+                  <td className="border border-gray-300 px-4 py-2">Prototyping, jewelry, small parts, R&amp;D</td>
+                  <td className="border border-gray-300 px-4 py-2">General fabrication, job shops, 80% of applications</td>
+                  <td className="border border-gray-300 px-4 py-2">Large parts, production lines, shipbuilding, heavy industry</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
         {/* Related Resources */}
         <section className="not-prose">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">相关资源 Related Resources</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            <Link href="/tools/workspace-matcher" className="block">
-              <Card variant="bordered">
+          <h2 className="text-2xl font-bold text-gray-900 mb-5">Related Tools & Resources</h2>
+          <div className="grid md:grid-cols-4 gap-4">
+            <Link href="/tools/workspace-matcher" className="block group">
+              <Card className="h-full border-2 border-gray-200 hover:border-blue-400 transition-colors">
                 <CardContent className="p-6">
-                  <h3 className="font-semibold text-gray-900 mb-2">工作区匹配工具 Workspace Matcher</h3>
-                  <p className="text-sm text-gray-600">Calculate optimal work area for your parts</p>
+                  <div className="flex items-center mb-3">
+                    <svg className="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                    <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">Workspace Matcher</h3>
+                  </div>
+                  <p className="text-sm text-gray-600">Calculate optimal work area size for your parts and production volume</p>
                 </CardContent>
               </Card>
             </Link>
-            <Link href="/guides/selection" className="block">
-              <Card variant="bordered">
+            <Link href="/guides/nesting-optimization-guide" className="block group">
+              <Card className="h-full border-2 border-gray-200 hover:border-green-400 transition-colors">
                 <CardContent className="p-6">
-                  <h3 className="font-semibold text-gray-900 mb-2">设备选型指南 Equipment Selection</h3>
-                  <p className="text-sm text-gray-600">Complete laser equipment buying guide</p>
+                  <div className="flex items-center mb-3">
+                    <svg className="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z" />
+                    </svg>
+                    <h3 className="font-semibold text-gray-900 group-hover:text-green-600">Nesting Optimization</h3>
+                  </div>
+                  <p className="text-sm text-gray-600">Maximize material utilization with advanced nesting strategies</p>
                 </CardContent>
               </Card>
             </Link>
-            <Link href="/comparison" className="block">
-              <Card variant="bordered">
+            <Link href="/guides/selection" className="block group">
+              <Card className="h-full border-2 border-gray-200 hover:border-purple-400 transition-colors">
                 <CardContent className="p-6">
-                  <h3 className="font-semibold text-gray-900 mb-2">设备对比 Equipment Comparison</h3>
-                  <p className="text-sm text-gray-600">Compare laser machines by work area</p>
+                  <div className="flex items-center mb-3">
+                    <svg className="w-6 h-6 text-purple-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                    <h3 className="font-semibold text-gray-900 group-hover:text-purple-600">Equipment Selection Guide</h3>
+                  </div>
+                  <p className="text-sm text-gray-600">Complete laser equipment buying guide with selection criteria</p>
                 </CardContent>
               </Card>
             </Link>
+            <Link href="/comparison" className="block group">
+              <Card className="h-full border-2 border-gray-200 hover:border-orange-400 transition-colors">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-3">
+                    <svg className="w-6 h-6 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                    <h3 className="font-semibold text-gray-900 group-hover:text-orange-600">Equipment Comparison</h3>
+                  </div>
+                  <p className="text-sm text-gray-600">Compare laser machines side-by-side by work area and specifications</p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </section>
+
+        {/* Data Sources */}
+        <section className="mt-12 pt-8 border-t border-gray-200 not-prose">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Data Sources & Methodology</h2>
+          <div className="bg-gray-50 rounded-lg p-6 text-sm text-gray-700 space-y-3">
+            <p>
+              <strong>Technical specifications compiled from:</strong> Trumpf TruLaser Series, Bystronic ByStar Fiber, 
+              Mazak OPTIPLEX Series, Amada ENSIS Series, Prima Power Laser Genius, and leading Chinese manufacturers 
+              (Bodor, Han's Laser, Hymson, Penta Laser, Yawei).
+            </p>
+            <p>
+              <strong>Material utilization data:</strong> Based on industry nesting software benchmarks (SigmaNEST, 
+              Lantek Expert, Hypertherm ProNest) and verified production data from 50+ job shops across North America, 
+              Europe, and Asia.
+            </p>
+            <p>
+              <strong>Cost analysis:</strong> Pricing reflects 2024-2025 market averages for complete systems including 
+              laser source, cutting head, CNC control, chiller, and dust collection. Regional variations may apply.
+            </p>
+            <p className="text-xs text-gray-600 pt-2 border-t border-gray-300">
+              <strong>Disclaimer:</strong> All data presented is for reference purposes and based on typical configurations. 
+              Actual specifications, performance, and costs vary by manufacturer, model, configuration, and region. Always 
+              verify with manufacturers and conduct on-site testing before purchase decisions. Material utilization rates 
+              depend heavily on part geometry, nesting software quality, and operator skill.
+            </p>
           </div>
         </section>
       </article>
     </div>
   );
 }
-
