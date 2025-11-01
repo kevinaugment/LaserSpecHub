@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/utils/metadata';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'About Us',

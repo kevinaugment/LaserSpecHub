@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { AdminNav } from '@/components/admin/admin-nav';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -52,7 +52,7 @@ export default function SubmissionDetailPage({ params }: { params: { id: string 
     loadSubmission();
   }, [params.id]);
 
-  const loadSubmission = async () => {
+  const loadSubmission = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch(`/api/admin/submissions/${params.id}`);
@@ -68,7 +68,11 @@ export default function SubmissionDetailPage({ params }: { params: { id: string 
     } finally {
       setLoading(false);
     }
-  };
+  }, [params.id]);
+
+  useEffect(() => {
+    loadSubmission();
+  }, [loadSubmission]);
 
   const handleReview = async (action: 'approve' | 'reject') => {
     if (!submission) return;

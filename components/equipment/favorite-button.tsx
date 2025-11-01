@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
@@ -16,15 +16,7 @@ export function FavoriteButton({ equipmentId }: FavoriteButtonProps) {
   const [loading, setLoading] = useState(false);
   const [checking, setChecking] = useState(true);
 
-  useEffect(() => {
-    if (status === 'authenticated' && session?.user) {
-      checkFavoriteStatus();
-    } else {
-      setChecking(false);
-    }
-  }, [status, session, equipmentId]);
-
-  const checkFavoriteStatus = async () => {
+  const checkFavoriteStatus = useCallback(async () => {
     try {
       const response = await fetch('/api/user/favorites');
       const result = await response.json();
@@ -38,7 +30,15 @@ export function FavoriteButton({ equipmentId }: FavoriteButtonProps) {
     } finally {
       setChecking(false);
     }
-  };
+  }, [equipmentId]);
+
+  useEffect(() => {
+    if (status === 'authenticated' && session?.user) {
+      checkFavoriteStatus();
+    } else {
+      setChecking(false);
+    }
+  }, [status, session, checkFavoriteStatus]);
 
   const handleToggleFavorite = async () => {
     if (status !== 'authenticated') {

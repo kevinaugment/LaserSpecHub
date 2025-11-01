@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
@@ -17,11 +17,7 @@ export default function AdminEquipmentEditPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    loadEquipment();
-  }, [id]);
-
-  const loadEquipment = async () => {
+  const loadEquipment = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -39,7 +35,11 @@ export default function AdminEquipmentEditPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    loadEquipment();
+  }, [loadEquipment]);
 
   const handleSubmit = async (data: any) => {
     const response = await fetch(`/api/equipment/${id}`, {

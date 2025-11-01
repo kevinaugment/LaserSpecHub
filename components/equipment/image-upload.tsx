@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -182,9 +183,11 @@ export function ImageUpload({ equipmentId, onUploadSuccess }: ImageUploadProps) 
           {previewUrl && (
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Preview</label>
-              <img
+              <Image
                 src={previewUrl}
                 alt="Preview"
+                width={400}
+                height={300}
                 className="max-w-xs max-h-48 rounded-lg border border-gray-200"
               />
             </div>
@@ -279,9 +282,11 @@ export function ImageUpload({ equipmentId, onUploadSuccess }: ImageUploadProps) 
                 key={image.id}
                 className="relative group border border-gray-200 rounded-lg overflow-hidden"
               >
-                <img
+                <Image
                   src={image.image_url}
                   alt={image.alt_text || 'Equipment image'}
+                  width={400}
+                  height={300}
                   className="w-full h-48 object-cover"
                 />
                 {image.is_primary && (

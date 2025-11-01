@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -28,7 +28,7 @@ export default function AdminEquipmentPage() {
   });
 
   // 加载设备列表
-  const loadEquipment = async () => {
+  const loadEquipment = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -56,11 +56,11 @@ export default function AdminEquipmentPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [page, pageSize, filters]);
 
   useEffect(() => {
     loadEquipment();
-  }, [page, pageSize, filters]);
+  }, [loadEquipment]);
 
   // 获取品牌列表
   const [brands, setBrands] = useState<string[]>([]);

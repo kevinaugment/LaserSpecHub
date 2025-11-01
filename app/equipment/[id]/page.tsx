@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getDatabase } from '@/lib/db/client';
 import type { LaserEquipment } from '@/types/equipment';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -219,9 +220,11 @@ export default async function EquipmentDetailPage({
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {images.map((image: any) => (
               <div key={image.id} className="relative group overflow-hidden rounded-lg border border-gray-200">
-                <img
+                <Image
                   src={image.image_url}
                   alt={image.alt_text || `${equipment.brand} ${equipment.model}`}
+                  width={400}
+                  height={300}
                   className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-200"
                 />
                 {image.is_primary === 1 && (

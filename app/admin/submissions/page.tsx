@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { AdminNav } from '@/components/admin/admin-nav';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -23,11 +23,7 @@ export default function SubmissionsPage() {
   const [error, setError] = useState<string | null>(null);
   const [statusFilter, setStatusFilter] = useState<string>('all');
 
-  useEffect(() => {
-    loadSubmissions();
-  }, [statusFilter]);
-
-  const loadSubmissions = async () => {
+  const loadSubmissions = useCallback(async () => {
     try {
       setLoading(true);
       const url = statusFilter === 'all' 
@@ -47,7 +43,11 @@ export default function SubmissionsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [statusFilter]);
+
+  useEffect(() => {
+    loadSubmissions();
+  }, [loadSubmissions]);
 
   const getStatusBadge = (status: string) => {
     const styles = {
