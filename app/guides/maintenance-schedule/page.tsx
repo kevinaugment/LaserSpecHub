@@ -39,10 +39,10 @@ export default function MaintenanceSchedulePage() {
           <Breadcrumbs />
 
           <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Laser Maintenance Schedule</h1>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">Laser Cutting Machine Maintenance Schedule & Cost Guide</h1>
             <p className="text-xl text-gray-600 mb-6">
-              Actionable maintenance plans and cost ranges for fiber and CO2 laser systems. Use this guide to
-              plan budgets, reduce downtime and extend component lifespan.
+              Comprehensive maintenance schedules and cost estimates for fiber and CO2 laser cutting systems. 
+              Use this professional guide to plan maintenance budgets, minimize downtime, and maximize equipment lifespan.
             </p>
             <div className="flex flex-wrap gap-2">
               <span className="inline-flex items-center px-3 py-1 bg-primary-100 text-primary-800 text-sm font-medium rounded-full">
@@ -61,6 +61,42 @@ export default function MaintenanceSchedulePage() {
             <MaintenanceSchedule />
           </div>
 
+          {/* Quick Reference Section */}
+          <div className="bg-gradient-to-r from-primary-50 to-blue-50 border border-primary-200 rounded-lg p-6 mb-8">
+            <div className="flex items-start">
+              <div className="flex-shrink-0">
+                <svg className="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div className="ml-4 flex-1">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Maintenance Quick Reference</h3>
+                <p className="text-gray-700 mb-4">
+                  Keep this maintenance schedule accessible to your operations team. Regular adherence to these schedules 
+                  ensures optimal performance, prevents costly breakdowns, and extends equipment life.
+                </p>
+                <div className="grid md:grid-cols-2 gap-3 text-sm">
+                  <div className="bg-white rounded-lg p-3 shadow-sm">
+                    <div className="font-semibold text-gray-900 mb-1">Daily Tasks (15-20 min)</div>
+                    <div className="text-gray-600">Temperature checks, waste removal, window inspection</div>
+                  </div>
+                  <div className="bg-white rounded-lg p-3 shadow-sm">
+                    <div className="font-semibold text-gray-900 mb-1">Weekly Tasks (45-85 min)</div>
+                    <div className="text-gray-600">Optical cleaning, nozzle inspection, system checks</div>
+                  </div>
+                  <div className="bg-white rounded-lg p-3 shadow-sm">
+                    <div className="font-semibold text-gray-900 mb-1">Monthly Tasks (90-150 min)</div>
+                    <div className="text-gray-600">Component replacement, deep cleaning, calibration</div>
+                  </div>
+                  <div className="bg-white rounded-lg p-3 shadow-sm">
+                    <div className="font-semibold text-gray-900 mb-1">Annual Service (8-15 hours)</div>
+                    <div className="text-gray-600">Professional inspection, major component replacement</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Strategic Maintenance Planning Section */}
           <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Strategic Maintenance Planning</h2>
@@ -68,20 +104,20 @@ export default function MaintenanceSchedulePage() {
             <div className="prose max-w-none">
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Preventive vs. Reactive Maintenance Economics</h3>
               <p className="text-gray-700 mb-4">
-                Industry data shows that facilities following structured preventive maintenance programs achieve 40-60% lower total maintenance costs compared to reactive approaches. A well-planned maintenance program prevents catastrophic failures that can cost $15,000-50,000 in emergency repairs and lost production for a 6kW fiber laser system. For example, replacing a $1,200 protective window quarterly costs $4,800 annually but prevents a $25,000 laser head replacement from contamination damage.
+                Industry data shows that facilities following structured preventive maintenance programs achieve 30-50% lower total maintenance costs compared to reactive approaches. A well-planned maintenance program prevents catastrophic failures that can cost $10,000-40,000 in emergency repairs and lost production for a 6kW fiber laser system. Regular protective window replacement ($80-150 monthly) prevents costly laser head contamination damage that can exceed $15,000 in repairs and downtime.
               </p>
               
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Critical Components and Replacement Cycles</h3>
               <p className="text-gray-700 mb-4">
-                <strong>Fiber Laser Systems:</strong> Laser source modules typically rated for 100,000 operational hours (11-12 years at single-shift operation) but power degradation begins around 70,000-80,000 hours. Cutting heads require rebuild every 8,000-12,000 hours ($2,500-4,500) including lens, nozzle holder, and ceramic components. Chiller maintenance every 2,000 hours and coolant replacement annually ($300-800) is critical for maintaining beam quality.
+                <strong>Fiber Laser Systems:</strong> Laser source modules are typically rated for 100,000 operational hours (11-14 years at single-shift operation), with gradual power degradation beginning around 70,000-80,000 hours. Focusing lens assemblies require replacement every 12-24 months ($400-900). Protective windows need monthly replacement ($80-150). Chiller coolant replacement quarterly ($100-150) maintains optimal beam quality and prevents thermal issues.
               </p>
               <p className="text-gray-700 mb-4">
-                <strong>CO2 Laser Systems:</strong> CO2 tubes degrade faster, requiring replacement every 10,000-20,000 hours ($8,000-15,000 for sealed tubes, $3,000-6,000 for refillable tubes plus annual gas refills at $1,200-2,000). Optics (mirrors and lenses) require cleaning every 40-80 hours and replacement every 1,000-2,000 hours ($600-1,200 per set). RF power supply maintenance every 5,000 hours ($1,500-3,000).
+                <strong>CO2 Laser Systems:</strong> Sealed CO2 tubes typically last 10,000-20,000 hours (2-4 years at single-shift operation) with replacement costs of $1,500-4,000. Optical components (mirrors and lenses) require weekly cleaning and replacement every 6-24 months ($400-800 per complete set). Protective windows need replacement every 2-8 weeks ($40-100). RF power supplies typically last 30,000-50,000 hours with service costs of $500-1,000.
               </p>
 
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Automation and Predictive Maintenance</h3>
               <p className="text-gray-700 mb-4">
-                Modern laser systems increasingly incorporate IoT sensors and predictive analytics to optimize maintenance timing. Advanced manufacturers like <a href="https://opmtlaser.com/technology/predictive-maintenance" className="text-primary-600 hover:text-primary-700 font-medium" target="_blank" rel="noopener">OPMT Laser integrate intelligent monitoring systems</a> that track critical parameters—laser power output, cutting head temperature, lens contamination, chiller performance—and alert operators before components fail. These systems can extend component life by 15-25% by identifying optimal maintenance windows and preventing premature replacements.
+                Modern laser systems increasingly incorporate IoT sensors and predictive analytics to optimize maintenance timing. Advanced monitoring systems track critical parameters including laser power output, cutting head temperature, lens contamination levels, and chiller performance. These systems alert operators before components fail, enabling scheduled maintenance during planned downtime. Predictive maintenance approaches can extend component life by 15-25% by identifying optimal maintenance windows and preventing premature replacements or catastrophic failures.
               </p>
 
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Production Scheduling and Maintenance Windows</h3>
@@ -91,12 +127,12 @@ export default function MaintenanceSchedulePage() {
 
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Spare Parts Inventory Strategy</h3>
               <p className="text-gray-700 mb-4">
-                Critical spare parts inventory prevents extended downtime when components fail. Minimum recommended stock for single-machine operations: protective windows (2-3 units), nozzles (full set of common sizes), focus lenses (2 units), collimating lenses (1 unit), cutting gas regulator (1 unit). Multi-machine facilities should maintain complete cutting head assembly ($6,000-12,000) for immediate swap during failures. Total recommended spare parts investment: 8-12% of machine purchase price for single machines, 5-8% per machine for fleets of 3+.
+                Critical spare parts inventory prevents extended downtime when components fail. Minimum recommended stock for single-machine operations includes protective windows (2-3 units), cutting nozzles (full set of common sizes 1.0-3.0mm), focusing lenses (1-2 units), and basic sensors. Multi-machine facilities should consider maintaining a complete cutting head assembly for immediate swap during failures. A reasonable spare parts investment ranges from 5-10% of machine purchase price for single machines, with economies of scale for larger fleets.
               </p>
 
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Environmental Factors and Maintenance Frequency</h3>
               <p className="text-gray-700 mb-4">
-                Operating environment significantly impacts maintenance requirements. Facilities with poor dust control, high humidity, or temperature fluctuations require 30-50% more frequent maintenance. Shops cutting dusty materials (wood, composites) or materials generating significant fume (plastics) need daily protective window inspection and weekly deep cleaning versus standard bi-weekly schedules. Installing proper extraction systems ($5,000-20,000) and environmental controls ($8,000-25,000) reduces maintenance costs by 25-40% annually through extended component life.
+                Operating environment significantly impacts maintenance requirements. Facilities with poor dust control, high humidity, or temperature fluctuations may require 20-40% more frequent maintenance. Shops cutting materials that generate significant particulates or fumes need more frequent protective window inspection and cleaning. Proper extraction systems and environmental controls reduce maintenance frequency and extend component life. Clean, climate-controlled facilities with effective fume extraction typically achieve the longest component lifespans and lowest maintenance costs.
               </p>
             </div>
           </div>
