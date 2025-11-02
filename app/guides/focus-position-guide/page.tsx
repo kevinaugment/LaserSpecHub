@@ -102,7 +102,7 @@ export default function Page() {
             <div className="grid gap-4 md:grid-cols-3">
               <div className="p-4 bg-red-50 dark:bg-red-950/20 rounded-lg border border-red-200 dark:border-red-800">
                 <h4 className="font-semibold text-red-900 dark:text-red-200 mb-2">
-                  负焦 (Negative Focus)
+                  Negative Focus
                 </h4>
                 <p className="text-sm text-red-800 dark:text-red-300 mb-2">
                   Focus inside material
@@ -117,7 +117,7 @@ export default function Page() {
 
               <div className="p-4 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
                 <h4 className="font-semibold text-green-900 dark:text-green-200 mb-2">
-                  零焦 (Zero Focus)
+                  Zero Focus
                 </h4>
                 <p className="text-sm text-green-800 dark:text-green-300 mb-2">
                   Focus at material surface
@@ -132,7 +132,7 @@ export default function Page() {
 
               <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
                 <h4 className="font-semibold text-blue-900 dark:text-blue-200 mb-2">
-                  正焦 (Positive Focus)
+                  Positive Focus
                 </h4>
                 <p className="text-sm text-blue-800 dark:text-blue-300 mb-2">
                   Focus above material
