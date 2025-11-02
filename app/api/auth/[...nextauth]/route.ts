@@ -102,7 +102,7 @@ const handler = NextAuth({
     async session({ session, token }) {
       // Add user info to session
       if (token && session.user) {
-        session.user.id = String(token.id);
+        (session.user as any).id = String(token.id);
         session.user.email = token.email as string;
         session.user.name = token.name as string;
         (session.user as any).role = token.role;
