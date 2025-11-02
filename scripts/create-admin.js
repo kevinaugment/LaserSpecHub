@@ -55,10 +55,12 @@ async function createAdmin() {
     });
 
     // Check if user already exists
-    const checkStmt = db.prepare('SELECT id FROM users WHERE email = ?');
-    const existingUser = await checkStmt.bind(email).all();
+    const existingUser = await db.execute({
+      sql: 'SELECT id FROM users WHERE email = ?',
+      args: [email]
+    });
 
-    if (existingUser.results && existingUser.results.length > 0) {
+    if (existingUser.rows && existingUser.rows.length > 0) {
       console.error(`❌ User with email ${email} already exists`);
       process.exit(1);
     }
@@ -68,12 +70,10 @@ async function createAdmin() {
     const passwordHash = await bcrypt.hash(password, 10);
 
     // Insert admin user
-    const insertStmt = db.prepare(`
-      INSERT INTO users (email, password_hash, name, role, email_verified)
-      VALUES (?, ?, ?, 'admin', 1)
-    `);
-
-    await insertStmt.bind(email, passwordHash, name).run();
+    await db.execute({
+      sql: 'INSERT INTO users (email, password_hash, name, role, email_verified) VALUES (?, ?, ?, ?, ?)',
+      args: [email, passwordHash, name, 'admin', 1]
+    });
 
     console.log('✅ Admin user created successfully!');
     console.log('');
