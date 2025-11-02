@@ -1,6 +1,12 @@
 import { Metadata } from 'next';
 import { LASER_SAFETY_LAST_UPDATE, DATA_DISCLAIMER } from '@/lib/data/cheatsheets/laser-safety-data';
 import { LaserSafetyClasses } from '@/components/cheatsheets/laser-safety-classes';
+import { 
+  ClassComparisonChart, 
+  WavelengthEffectsTable, 
+  MPETable, 
+  HazardDistanceTable 
+} from '@/components/cheatsheets/laser-safety-comparison';
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 
@@ -196,8 +202,30 @@ export default function LaserSafetyPage() {
             </div>
           </div>
 
+          {/* Quick Comparison Chart */}
+          <div className="mb-8">
+            <ClassComparisonChart />
+          </div>
+
+          {/* Detailed Class Information */}
           <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Detailed Class Specifications</h2>
             <LaserSafetyClasses />
+          </div>
+
+          {/* Wavelength Effects */}
+          <div className="mb-8">
+            <WavelengthEffectsTable />
+          </div>
+
+          {/* MPE Data */}
+          <div className="mb-8">
+            <MPETable />
+          </div>
+
+          {/* Hazard Distances */}
+          <div className="mb-8">
+            <HazardDistanceTable />
           </div>
 
           <div className="bg-gray-50 border border-gray-300 rounded-lg p-4 text-xs text-gray-600">

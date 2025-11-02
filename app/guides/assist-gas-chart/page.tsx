@@ -5,6 +5,10 @@ import {
   DATA_DISCLAIMER
 } from '@/lib/data/cheatsheets/assist-gas-data';
 import { AssistGasCards } from '@/components/cheatsheets/assist-gas-cards';
+import { MaterialGasMatrix } from '@/components/cheatsheets/material-gas-matrix';
+import { PressureThicknessChart } from '@/components/cheatsheets/pressure-thickness-chart';
+import { GasDecisionTree } from '@/components/cheatsheets/gas-decision-tree';
+import { GasFlowDiagram } from '@/components/cheatsheets/gas-flow-diagram';
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 
@@ -73,6 +77,22 @@ export default function AssistGasChartPage() {
                 Updated {ASSIST_GAS_LAST_UPDATE}
               </span>
             </div>
+          </div>
+
+          {/* Gas Selection Decision Tree */}
+          <div className="mb-8">
+            <GasDecisionTree />
+          </div>
+
+          {/* Gas Flow Visualization */}
+          <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              🌊 Gas Flow Dynamics Visualization
+            </h2>
+            <p className="text-gray-600 mb-4">
+              Understand how assist gas interacts with the laser beam and material during cutting.
+            </p>
+            <GasFlowDiagram />
           </div>
 
           {/* Why Assist Gas Matters */}
@@ -181,12 +201,116 @@ export default function AssistGasChartPage() {
             </div>
           </div>
 
+          {/* Material-Gas Compatibility Matrix */}
+          <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              📊 Material-Gas Compatibility Matrix
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Quick reference chart showing which gases work best for each material type. Click any cell for detailed information.
+            </p>
+            <MaterialGasMatrix />
+          </div>
+
           {/* Main Content */}
           <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">
               Assist Gas Detailed Parameters
             </h2>
             <AssistGasCards gasData={ASSIST_GAS_DATA} />
+          </div>
+
+          {/* Pressure-Thickness Relationship */}
+          <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              📈 Pressure vs Thickness Relationship
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Understand how gas pressure requirements increase with material thickness. Use this chart to determine optimal parameters for your specific application.
+            </p>
+            <PressureThicknessChart />
+          </div>
+
+          {/* Nozzle-Gas Pairing */}
+          <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              🔩 Nozzle-Gas Pairing Recommendations
+            </h2>
+            <p className="text-sm text-gray-700 mb-4">
+              Proper nozzle selection is critical for effective gas delivery. Different gases require specific nozzle types and diameters for optimal performance.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="min-w-full text-sm">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Gas Type</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Nozzle Type</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Diameter</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Pressure Range</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Optimal Thickness</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-4 py-3 font-medium text-gray-900">Oxygen</td>
+                    <td className="px-4 py-3 text-gray-700">Single conical</td>
+                    <td className="px-4 py-3 text-gray-700">1.0-1.5mm</td>
+                    <td className="px-4 py-3 text-gray-700">2-4 bar</td>
+                    <td className="px-4 py-3 text-gray-700">3-10mm carbon steel</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-4 py-3 font-medium text-gray-900">Oxygen</td>
+                    <td className="px-4 py-3 text-gray-700">Single conical</td>
+                    <td className="px-4 py-3 text-gray-700">1.5-2.0mm</td>
+                    <td className="px-4 py-3 text-gray-700">3-5 bar</td>
+                    <td className="px-4 py-3 text-gray-700">10-20mm carbon steel</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-4 py-3 font-medium text-gray-900">Nitrogen</td>
+                    <td className="px-4 py-3 text-gray-700">High-flow conical</td>
+                    <td className="px-4 py-3 text-gray-700">2.0-3.0mm</td>
+                    <td className="px-4 py-3 text-gray-700">8-15 bar</td>
+                    <td className="px-4 py-3 text-gray-700">0.5-6mm stainless steel</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-4 py-3 font-medium text-gray-900">Nitrogen</td>
+                    <td className="px-4 py-3 text-gray-700">High-flow conical</td>
+                    <td className="px-4 py-3 text-gray-700">3.0-4.0mm</td>
+                    <td className="px-4 py-3 text-gray-700">12-20 bar</td>
+                    <td className="px-4 py-3 text-gray-700">6-12mm stainless steel</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-4 py-3 font-medium text-gray-900">Nitrogen</td>
+                    <td className="px-4 py-3 text-gray-700">Double nozzle</td>
+                    <td className="px-4 py-3 text-gray-700">2.5mm</td>
+                    <td className="px-4 py-3 text-gray-700">10-18 bar</td>
+                    <td className="px-4 py-3 text-gray-700">3-10mm aluminum</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-4 py-3 font-medium text-gray-900">Compressed Air</td>
+                    <td className="px-4 py-3 text-gray-700">Single conical</td>
+                    <td className="px-4 py-3 text-gray-700">1.5-2.5mm</td>
+                    <td className="px-4 py-3 text-gray-700">6-10 bar</td>
+                    <td className="px-4 py-3 text-gray-700">0.5-3mm thin materials</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-4 py-3 font-medium text-gray-900">Argon</td>
+                    <td className="px-4 py-3 text-gray-700">High-purity conical</td>
+                    <td className="px-4 py-3 text-gray-700">1.5-2.5mm</td>
+                    <td className="px-4 py-3 text-gray-700">5-10 bar</td>
+                    <td className="px-4 py-3 text-gray-700">0.5-5mm titanium</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="mt-4 bg-yellow-50 border border-yellow-200 rounded p-3 text-sm text-yellow-800">
+              <strong>Important:</strong> Larger nozzle diameters (≥3mm) are required for high-pressure nitrogen cutting. 
+              Using too small a nozzle can restrict gas flow and reduce cut quality. See our{' '}
+              <a href="/guides/nozzle-selection-guide" className="text-primary-600 hover:text-primary-700 font-medium underline">
+                Nozzle Selection Guide
+              </a>{' '}
+              for detailed specifications.
+            </div>
           </div>
 
           {/* Pressure Guidelines */}
@@ -238,15 +362,78 @@ export default function AssistGasChartPage() {
             </div>
           </div>
 
+          {/* Gas Purity Impact */}
+          <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              ⚗️ Gas Purity Impact on Cut Quality
+            </h2>
+            <p className="text-sm text-gray-700 mb-4">
+              Gas purity significantly affects edge quality and oxidation prevention, especially for stainless steel and aluminum cutting.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="min-w-full text-sm">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Gas</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Purity Level</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Edge Quality Impact</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Cost Multiplier</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Typical Application</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-4 py-3 font-medium text-gray-900">Nitrogen</td>
+                    <td className="px-4 py-3 text-gray-700">99.5% (Industrial)</td>
+                    <td className="px-4 py-3 text-gray-700">Slight oxidation possible on SS</td>
+                    <td className="px-4 py-3 text-gray-700">1.0x (Baseline)</td>
+                    <td className="px-4 py-3 text-gray-700">Carbon steel, non-critical</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-4 py-3 font-medium text-gray-900">Nitrogen</td>
+                    <td className="px-4 py-3 text-gray-700">99.99% (High Purity)</td>
+                    <td className="px-4 py-3 text-green-700 font-medium">Clean, oxide-free edges</td>
+                    <td className="px-4 py-3 text-gray-700">1.3x</td>
+                    <td className="px-4 py-3 text-gray-700">Stainless steel, aluminum standard</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-4 py-3 font-medium text-gray-900">Nitrogen</td>
+                    <td className="px-4 py-3 text-gray-700">99.999% (Ultra-High)</td>
+                    <td className="px-4 py-3 text-green-700 font-medium">Perfect mirror finish</td>
+                    <td className="px-4 py-3 text-orange-700 font-medium">1.8x</td>
+                    <td className="px-4 py-3 text-gray-700">Aerospace, medical, critical</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-4 py-3 font-medium text-gray-900">Argon</td>
+                    <td className="px-4 py-3 text-gray-700">99.999% (Ultra-High)</td>
+                    <td className="px-4 py-3 text-green-700 font-medium">Pristine, contamination-free</td>
+                    <td className="px-4 py-3 text-gray-700">1.0x (for Argon)</td>
+                    <td className="px-4 py-3 text-gray-700">Titanium, reactive metals</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-4 py-3 font-medium text-gray-900">Argon</td>
+                    <td className="px-4 py-3 text-gray-700">99.9999% (Six-Nine)</td>
+                    <td className="px-4 py-3 text-green-700 font-medium">Absolute purity</td>
+                    <td className="px-4 py-3 text-orange-700 font-medium">1.5x (for Argon)</td>
+                    <td className="px-4 py-3 text-gray-700">Aerospace, medical implants</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="mt-4 bg-blue-50 border border-blue-200 rounded p-3 text-sm text-blue-800">
+              <strong>Key Insight:</strong> For stainless steel cutting, 99.99% nitrogen purity is the industry standard. 
+              Using lower purity (99.5%) may result in slight edge discoloration. For critical applications (aerospace, medical), 
+              99.999% purity ensures zero oxidation risk.
+            </div>
+          </div>
+
           {/* Cost Optimization */}
           <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">
               💰 Cost Optimization Strategies
             </h2>
-            <p className="text-sm text-gray-700 mb-4">
-              For shops aiming to lower nitrogen costs without sacrificing quality, manufacturers like
-              <a href="https://opmtlaser.com/solutions/nitrogen-generation" className="ml-1 text-primary-600 hover:text-primary-700 font-medium" target="_blank" rel="noopener"> OPMT Laser</a>
-              provide on-site nitrogen generation and high-pressure delivery packages that integrate with CNC libraries, reducing setup drift and cutting gas spend.
+              <p className="text-sm text-gray-700 mb-4">
+              Gas costs can significantly impact your bottom line. For high-volume operations, consider these strategies to optimize your assist gas expenses while maintaining quality standards.
             </p>
             <div className="space-y-4">
               <div className="border-l-4 border-green-500 pl-4">
@@ -332,11 +519,32 @@ export default function AssistGasChartPage() {
             </h2>
             <div className="grid md:grid-cols-3 gap-4">
               <a 
+                href="/guides/nozzle-selection-guide"
+                className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
+              >
+                <h3 className="font-medium text-gray-900 mb-1">Nozzle Selection Guide</h3>
+                <p className="text-sm text-gray-600">Pair the right nozzle with your gas choice</p>
+              </a>
+              <a 
                 href="/guides/cutting-speed-chart"
                 className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
               >
                 <h3 className="font-medium text-gray-900 mb-1">Cutting Speed Chart</h3>
                 <p className="text-sm text-gray-600">Reference speeds with different gases</p>
+              </a>
+              <a 
+                href="/guides/material-thickness-parameters"
+                className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
+              >
+                <h3 className="font-medium text-gray-900 mb-1">Material Thickness Parameters</h3>
+                <p className="text-sm text-gray-600">Complete parameter tables by material</p>
+              </a>
+              <a 
+                href="/guides/edge-quality-standards"
+                className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
+              >
+                <h3 className="font-medium text-gray-900 mb-1">Edge Quality Standards</h3>
+                <p className="text-sm text-gray-600">Understanding cut edge specifications</p>
               </a>
               <a 
                 href="/guides/power-selection-guide"
@@ -346,11 +554,32 @@ export default function AssistGasChartPage() {
                 <p className="text-sm text-gray-600">Choose the right laser power</p>
               </a>
               <a 
-                href="/tools/power-calculator"
+                href="/guides/troubleshooting-guide"
                 className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
               >
-                <h3 className="font-medium text-gray-900 mb-1">Power Calculator</h3>
-                <p className="text-sm text-gray-600">Calculate power requirements</p>
+                <h3 className="font-medium text-gray-900 mb-1">Troubleshooting Guide</h3>
+                <p className="text-sm text-gray-600">Solve common cutting issues</p>
+              </a>
+              <a 
+                href="/guides/safety-operations"
+                className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
+              >
+                <h3 className="font-medium text-gray-900 mb-1">Safety Operations</h3>
+                <p className="text-sm text-gray-600">Gas handling and safety procedures</p>
+              </a>
+              <a 
+                href="/guides/maintenance-schedule"
+                className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
+              >
+                <h3 className="font-medium text-gray-900 mb-1">Maintenance Schedule</h3>
+                <p className="text-sm text-gray-600">Gas system maintenance guidelines</p>
+              </a>
+              <a 
+                href="/tools/cost-calculator"
+                className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
+              >
+                <h3 className="font-medium text-gray-900 mb-1">Cost Calculator</h3>
+                <p className="text-sm text-gray-600">Calculate operational costs by gas type</p>
               </a>
             </div>
           </div>

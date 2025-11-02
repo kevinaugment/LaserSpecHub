@@ -7,6 +7,15 @@ import {
 import { CuttingSpeedTable } from '@/components/cheatsheets/cutting-speed-table';
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
+import { 
+  SpeedVsPowerCurve,
+  MaterialComparisonChart,
+  ThicknessImpactGraph,
+  GasTypeComparison,
+  QualitySpeedMatrix
+} from '@/components/cheatsheets/cutting-speed-visualizations';
+import { ProductionTimeCalculator } from '@/components/cheatsheets/production-time-calculator';
+import { SpeedComparisonTool } from '@/components/cheatsheets/speed-comparison-tool';
 
 export const metadata: Metadata = {
   title: 'Laser Cutting Speed Chart - Reference Data by Material & Thickness | LaserSpecHub',
@@ -90,31 +99,31 @@ export default function CuttingSpeedChartPage() {
                     <svg className="w-5 h-5 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span><strong>Laser Power:</strong> Higher power = faster cutting</span>
+                    <span><strong><a href="/guides/power-selection-guide" className="text-primary-600 hover:text-primary-700">Laser Power</a>:</strong> Higher power = faster cutting</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span><strong>Material Thickness:</strong> Thicker = slower cutting</span>
+                    <span><strong><a href="/guides/material-thickness-parameters" className="text-primary-600 hover:text-primary-700">Material Thickness</a>:</strong> Thicker = slower cutting</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span><strong>Material Type:</strong> Different absorption rates</span>
+                    <span><strong><a href="/guides/wavelength-absorption" className="text-primary-600 hover:text-primary-700">Material Type</a>:</strong> Different absorption rates</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span><strong>Assist Gas:</strong> Oxygen for speed, nitrogen for quality</span>
+                    <span><strong><a href="/guides/assist-gas-chart" className="text-primary-600 hover:text-primary-700">Assist Gas</a>:</strong> Oxygen for speed, nitrogen for quality</span>
                   </li>
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-primary-600 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span><strong>Quality Requirements:</strong> Precision cuts are slower</span>
+                    <span><strong><a href="/guides/edge-quality-standards" className="text-primary-600 hover:text-primary-700">Quality Requirements</a>:</strong> Precision cuts are slower</span>
                   </li>
                 </ul>
               </div>
@@ -137,6 +146,26 @@ export default function CuttingSpeedChartPage() {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Key Speed Visualizations */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              📊 Key Speed Relationships
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Visual representations of how power, thickness, materials, and gas types affect cutting speeds
+            </p>
+            
+            <div className="grid gap-6">
+              <SpeedVsPowerCurve material="Mild Steel" thickness={10} />
+              <ThicknessImpactGraph />
+              <div className="grid md:grid-cols-2 gap-6">
+                <MaterialComparisonChart power="6kW" thickness={5} />
+                <GasTypeComparison />
+              </div>
+              <QualitySpeedMatrix />
             </div>
           </div>
 
@@ -168,7 +197,7 @@ export default function CuttingSpeedChartPage() {
               <p>
                 For thick materials (12mm+), melt ejection becomes the bottleneck. Even with sufficient power to melt material, 
                 assist gas must physically remove molten metal through the entire thickness. This requires high gas pressure (15-20 bar 
-                for nitrogen) and larger nozzles, but ultimately limits speed regardless of available power. A 12kW laser cutting 20mm 
+                for nitrogen) and <a href="/guides/nozzle-selection-guide" className="text-primary-600 hover:text-primary-700">larger nozzles</a>, but ultimately limits speed regardless of available power. A 12kW laser cutting 20mm 
                 steel typically maxes out at 1.5-2.0 m/min, not due to power limitations but melt dynamics.
               </p>
 
@@ -189,10 +218,8 @@ export default function CuttingSpeedChartPage() {
               <p>
                 Aluminum presents the greatest challenge for fiber lasers due to extreme reflectivity (&gt;90% at 1.06μm) and high thermal 
                 conductivity. Successful aluminum cutting requires 30-50% more power than equivalent steel thickness. Modern fiber lasers 
-                with specialized aluminum cutting modes, such as those offered in 
-                <a href="https://opmtlaser.com/solutions/aluminum-cutting-systems" className="text-primary-600 hover:text-primary-700 font-medium" target="_blank" rel="noopener"> OPMT Laser's aluminum-optimized cutting systems</a>, 
-                employ dynamic power modulation and optimized wavelength characteristics to improve aluminum absorption, achieving speeds 
-                approaching 70-80% of steel cutting rates rather than the traditional 50-60%.
+                with specialized aluminum cutting modes employ dynamic power modulation and optimized beam characteristics to improve aluminum 
+                absorption, achieving speeds approaching 70-80% of steel cutting rates rather than the traditional 50-60%. <a href="/guides/wavelength-absorption" className="text-primary-600 hover:text-primary-700">Learn more about material absorption characteristics</a>.
               </p>
 
               <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Power Scaling and Speed Returns</h3>
@@ -242,9 +269,9 @@ export default function CuttingSpeedChartPage() {
                 distance, or risk incomplete cuts.
               </p>
               <p>
-                Equipment condition is critical. Worn nozzles reduce gas flow efficiency, requiring 5-10% speed reduction. Contaminated 
-                optics reduce delivered power, effectively operating as if with lower power. Focus drift due to thermal effects in 
-                continuous operation can reduce effective cutting speed by 10-15% after several hours of operation without recalibration.
+                Equipment condition is critical. <a href="/guides/nozzle-selection-guide" className="text-primary-600 hover:text-primary-700">Worn nozzles</a> reduce gas flow efficiency, requiring 5-10% speed reduction. Contaminated 
+                optics reduce delivered power, effectively operating as if with lower power. <a href="/guides/focus-position-guide" className="text-primary-600 hover:text-primary-700">Focus drift</a> due to thermal effects in 
+                continuous operation can reduce effective cutting speed by 10-15% after several hours of operation without recalibration. See our <a href="/guides/process-optimization-guide" className="text-primary-600 hover:text-primary-700">process optimization guide</a> for maintenance best practices.
               </p>
             </div>
           </div>
@@ -279,60 +306,88 @@ export default function CuttingSpeedChartPage() {
             </div>
           </div>
 
-          {/* Production Time Calculator Section */}
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6 mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-              💡 Calculating Production Time
-            </h2>
-            <div className="prose prose-blue max-w-none">
-              <p className="text-gray-700 mb-4">
-                To estimate how long it will take to cut a part:
-              </p>
-              <div className="bg-white rounded-lg p-4 mb-4">
-                <p className="font-mono text-sm text-gray-900">
-                  Cutting Time (seconds) = Total Cut Length (m) / Cutting Speed (m/min) × 60
-                </p>
-              </div>
-              <p className="text-sm text-gray-600 mb-2"><strong>Example:</strong></p>
-              <ul className="text-sm text-gray-700 space-y-1">
-                <li>Material: 3mm stainless steel</li>
-                <li>Laser: 3kW fiber laser</li>
-                <li>Cutting speed: 8.0 m/min (from table above)</li>
-                <li>Total cut length: 2 meters</li>
-                <li>Calculation: 2m ÷ 8.0 m/min × 60 = 15 seconds</li>
-              </ul>
-              <p className="text-sm text-gray-600 mt-3">
-                Don't forget to add time for: piercing, positioning, part handling, and quality checks.
-              </p>
-            </div>
+          {/* Advanced Production Time Calculator */}
+          <div className="mb-8">
+            <ProductionTimeCalculator />
           </div>
 
-          {/* Related Tools */}
+          {/* Power Level Comparison */}
+          <div className="mb-8">
+            <SpeedComparisonTool />
+          </div>
+
+          {/* Related Tools & Guides */}
           <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">
               🔧 Related Tools & Guides
             </h2>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-3 gap-4 mb-6">
               <a 
                 href="/tools/power-calculator"
                 className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
               >
-                <h3 className="font-medium text-gray-900 mb-1">Power Calculator</h3>
-                <p className="text-sm text-gray-600">Calculate required laser power for your material</p>
+                <h3 className="font-medium text-gray-900 mb-1">⚡ Power Calculator</h3>
+                <p className="text-sm text-gray-600">Calculate required laser power for your material and thickness</p>
               </a>
               <a 
-                href="/tools/laser-type-wizard"
+                href="/tools/kerf-calculator"
                 className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
               >
-                <h3 className="font-medium text-gray-900 mb-1">Laser Type Wizard</h3>
-                <p className="text-sm text-gray-600">Find the right laser type for your needs</p>
+                <h3 className="font-medium text-gray-900 mb-1">📏 Kerf Calculator</h3>
+                <p className="text-sm text-gray-600">Calculate kerf width and nesting efficiency</p>
               </a>
               <a 
-                href="/comparison"
+                href="/tools/cost-estimator"
                 className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
               >
-                <h3 className="font-medium text-gray-900 mb-1">Equipment Comparison</h3>
-                <p className="text-sm text-gray-600">Compare laser cutting equipment specs</p>
+                <h3 className="font-medium text-gray-900 mb-1">💰 Cost Estimator</h3>
+                <p className="text-sm text-gray-600">Estimate operating costs per part</p>
+              </a>
+            </div>
+            
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">Essential Parameter Guides</h3>
+            <div className="grid md:grid-cols-3 gap-4">
+              <a 
+                href="/guides/assist-gas-chart"
+                className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
+              >
+                <h3 className="font-medium text-gray-900 mb-1">💨 Assist Gas Chart</h3>
+                <p className="text-sm text-gray-600">Gas selection and pressure recommendations</p>
+              </a>
+              <a 
+                href="/guides/material-thickness-parameters"
+                className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
+              >
+                <h3 className="font-medium text-gray-900 mb-1">📊 Material Parameters</h3>
+                <p className="text-sm text-gray-600">Complete parameter sets by material and thickness</p>
+              </a>
+              <a 
+                href="/guides/nozzle-selection-guide"
+                className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
+              >
+                <h3 className="font-medium text-gray-900 mb-1">🔧 Nozzle Selection</h3>
+                <p className="text-sm text-gray-600">Choose the right nozzle for your application</p>
+              </a>
+              <a 
+                href="/guides/focus-position-guide"
+                className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
+              >
+                <h3 className="font-medium text-gray-900 mb-1">🎯 Focus Position</h3>
+                <p className="text-sm text-gray-600">Optimize focus position for different materials</p>
+              </a>
+              <a 
+                href="/guides/edge-quality-standards"
+                className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
+              >
+                <h3 className="font-medium text-gray-900 mb-1">✨ Edge Quality Standards</h3>
+                <p className="text-sm text-gray-600">Understanding quality grades and requirements</p>
+              </a>
+              <a 
+                href="/guides/process-optimization-guide"
+                className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
+              >
+                <h3 className="font-medium text-gray-900 mb-1">🚀 Process Optimization</h3>
+                <p className="text-sm text-gray-600">Advanced techniques for maximum efficiency</p>
               </a>
             </div>
           </div>
@@ -379,7 +434,57 @@ export default function CuttingSpeedChartPage() {
                 <p className="text-gray-700 text-sm">
                   For carbon steel: Use oxygen for maximum speed (speeds shown in table). Use nitrogen 
                   for oxidation-free edges (reduce speed by 30-40%). For stainless steel and aluminum: 
-                  Always use nitrogen to prevent oxidation.
+                  Always use nitrogen to prevent oxidation. See our <a href="/guides/assist-gas-chart" className="text-primary-600 hover:text-primary-700">assist gas chart</a> for detailed recommendations.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900 mb-2">
+                  How does piercing time affect total production time?
+                </h3>
+                <p className="text-gray-700 text-sm">
+                  Piercing time can be significant, especially for parts with many holes or complex geometries. 
+                  For thick materials (10mm+), piercing can take 1-3 seconds per pierce. On a part with 50 pierces, 
+                  this adds 50-150 seconds to production time. Use the production time calculator above to account for piercing.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900 mb-2">
+                  What gas pressure should I use?
+                </h3>
+                <p className="text-gray-700 text-sm">
+                  Gas pressure increases with material thickness. For mild steel with oxygen: 0.5-1.0 bar for thin materials, 
+                  up to 5-6 bar for 20mm+. For nitrogen cutting: 10-14 bar for thin materials, up to 25-30 bar for thick materials. 
+                  Higher pressure improves melt ejection but increases operating costs.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900 mb-2">
+                  How do I adjust speeds for rusty or painted material?
+                </h3>
+                <p className="text-gray-700 text-sm">
+                  Reduce speed by 10-15% for light rust, 20-25% for heavy rust or mill scale. For painted materials, 
+                  reduce speed by 15-20% to prevent excessive burning beyond the cut edge. Galvanized materials require 
+                  25-30% speed reduction. Clean material whenever possible for best results.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900 mb-2">
+                  What's the impact of worn nozzles on cutting speed?
+                </h3>
+                <p className="text-gray-700 text-sm">
+                  Worn nozzles reduce gas flow efficiency and focus quality, requiring 5-15% speed reduction depending on 
+                  wear severity. Replace nozzles every 100-200 pierces for thick materials, or when you notice increased 
+                  dross or incomplete cuts. See our <a href="/guides/nozzle-selection-guide" className="text-primary-600 hover:text-primary-700">nozzle selection guide</a> for maintenance schedules.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-900 mb-2">
+                  How do I calculate realistic production time for complex parts?
+                </h3>
+                <p className="text-gray-700 text-sm">
+                  Use the advanced production time calculator above. Account for: cutting time (length ÷ speed), piercing time 
+                  (number of pierces × pierce time), positioning time (~0.5s per pierce), and geometry complexity (reduce effective 
+                  speed by 15-50% for parts with many corners or curves). Add 20-30% buffer for sheet loading, part removal, and inspection.
                 </p>
               </div>
             </div>

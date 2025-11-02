@@ -490,6 +490,287 @@ export function getGasForMaterial(material: string): AssistGasData[] {
 
 export const DATA_DISCLAIMER = `Data Disclaimer: This assist gas parameter data is compiled from industrial gas supplier technical handbooks and equipment manufacturer guidelines, for reference only. Actual gas parameters should be optimized based on specific equipment, material batch, and quality requirements. Always follow equipment manufacturer recommendations and conduct test cuts. Data last updated: ${ASSIST_GAS_LAST_UPDATE}.`;
 
+// Nozzle-Gas Pairing Recommendations
+export interface NozzleGasPairing {
+  gasType: string;
+  nozzleType: string; // single, double, high-flow, conical
+  nozzleDiameter: string; // mm
+  recommendedPressure: string;
+  optimalThickness: string;
+  advantages: string[];
+}
+
+export const NOZZLE_GAS_PAIRING: NozzleGasPairing[] = [
+  {
+    gasType: "Oxygen",
+    nozzleType: "Single conical",
+    nozzleDiameter: "1.0-1.5mm",
+    recommendedPressure: "0.2-0.4 MPa (2-4 bar)",
+    optimalThickness: "3-10mm carbon steel",
+    advantages: ["Maximum speed", "Good dross removal", "Economical"]
+  },
+  {
+    gasType: "Oxygen",
+    nozzleType: "Single conical",
+    nozzleDiameter: "1.5-2.0mm",
+    recommendedPressure: "0.3-0.5 MPa (3-5 bar)",
+    optimalThickness: "10-20mm carbon steel",
+    advantages: ["Thick material capability", "High flow rate", "Fast cutting"]
+  },
+  {
+    gasType: "Nitrogen",
+    nozzleType: "High-flow conical",
+    nozzleDiameter: "2.0-3.0mm",
+    recommendedPressure: "0.8-1.5 MPa (8-15 bar)",
+    optimalThickness: "0.5-6mm stainless steel",
+    advantages: ["Clean edge", "High pressure delivery", "Minimal dross"]
+  },
+  {
+    gasType: "Nitrogen",
+    nozzleType: "High-flow conical",
+    nozzleDiameter: "3.0-4.0mm",
+    recommendedPressure: "1.2-2.0 MPa (12-20 bar)",
+    optimalThickness: "6-12mm stainless steel",
+    advantages: ["Very high pressure", "Thick stainless capability", "Excellent edge quality"]
+  },
+  {
+    gasType: "Nitrogen",
+    nozzleType: "Double nozzle",
+    nozzleDiameter: "2.5mm",
+    recommendedPressure: "1.0-1.8 MPa (10-18 bar)",
+    optimalThickness: "3-10mm aluminum",
+    advantages: ["Enhanced gas coverage", "Better heat dissipation", "Improved edge quality"]
+  },
+  {
+    gasType: "Compressed Air",
+    nozzleType: "Single conical",
+    nozzleDiameter: "1.5-2.5mm",
+    recommendedPressure: "0.6-1.0 MPa (6-10 bar)",
+    optimalThickness: "0.5-3mm thin materials",
+    advantages: ["Low cost", "Simple setup", "Good for high volume"]
+  },
+  {
+    gasType: "Compressed Air",
+    nozzleType: "High-flow conical",
+    nozzleDiameter: "2.5-3.5mm",
+    recommendedPressure: "0.8-1.2 MPa (8-12 bar)",
+    optimalThickness: "0.5-2mm stainless steel",
+    advantages: ["Cost effective", "Acceptable quality", "High pressure capable"]
+  },
+  {
+    gasType: "Argon",
+    nozzleType: "High-purity conical",
+    nozzleDiameter: "1.5-2.5mm",
+    recommendedPressure: "0.5-1.0 MPa (5-10 bar)",
+    optimalThickness: "0.5-5mm titanium",
+    advantages: ["Complete oxidation prevention", "Aerospace quality", "Reactive metal safe"]
+  }
+];
+
+// Gas Purity Level Comparisons
+export interface GasPurityComparison {
+  gasName: string;
+  purityLevel: string;
+  edgeQualityImpact: string;
+  costMultiplier: number;
+  typicalUse: string;
+  oxidationRisk: string;
+}
+
+export const GAS_PURITY_LEVELS: GasPurityComparison[] = [
+  {
+    gasName: "Nitrogen",
+    purityLevel: "99.5% (Industrial)",
+    edgeQualityImpact: "Slight oxidation possible on stainless steel",
+    costMultiplier: 1.0,
+    typicalUse: "Carbon steel, non-critical applications",
+    oxidationRisk: "Moderate"
+  },
+  {
+    gasName: "Nitrogen",
+    purityLevel: "99.99% (High Purity)",
+    edgeQualityImpact: "Clean, oxide-free edges on stainless steel",
+    costMultiplier: 1.3,
+    typicalUse: "Stainless steel, aluminum, standard quality",
+    oxidationRisk: "Low"
+  },
+  {
+    gasName: "Nitrogen",
+    purityLevel: "99.999% (Ultra-High Purity)",
+    edgeQualityImpact: "Perfect mirror finish, zero oxidation",
+    costMultiplier: 1.8,
+    typicalUse: "Aerospace, medical, critical applications",
+    oxidationRisk: "Minimal"
+  },
+  {
+    gasName: "Oxygen",
+    purityLevel: "99.5% (Industrial)",
+    edgeQualityImpact: "Standard oxidized edge, acceptable for most uses",
+    costMultiplier: 1.0,
+    typicalUse: "General carbon steel cutting",
+    oxidationRisk: "Expected (intentional)"
+  },
+  {
+    gasName: "Oxygen",
+    purityLevel: "99.9% (High Purity)",
+    edgeQualityImpact: "Consistent oxidation, cleaner reaction",
+    costMultiplier: 1.2,
+    typicalUse: "High-speed carbon steel, precision cutting",
+    oxidationRisk: "Expected (controlled)"
+  },
+  {
+    gasName: "Argon",
+    purityLevel: "99.999% (Ultra-High Purity)",
+    edgeQualityImpact: "Pristine, contamination-free edges",
+    costMultiplier: 1.0,
+    typicalUse: "Titanium, reactive metals only",
+    oxidationRisk: "None"
+  },
+  {
+    gasName: "Argon",
+    purityLevel: "99.9999% (Six-Nine)",
+    edgeQualityImpact: "Absolute purity, aerospace standard",
+    costMultiplier: 1.5,
+    typicalUse: "Critical aerospace, medical implants",
+    oxidationRisk: "None"
+  }
+];
+
+// Pressure-Thickness Relationship Data
+export interface PressureThicknessPoint {
+  thickness: number; // mm
+  pressure: string; // bar
+  flowRate: string; // L/min
+  speed: string; // mm/s
+}
+
+export interface PressureThicknessData {
+  material: string;
+  gasType: string;
+  dataPoints: PressureThicknessPoint[];
+}
+
+export const PRESSURE_THICKNESS_CURVES: PressureThicknessData[] = [
+  {
+    material: "Carbon Steel",
+    gasType: "Oxygen",
+    dataPoints: [
+      { thickness: 1, pressure: "2-3 bar", flowRate: "80-120 L/min", speed: "80-100 mm/s" },
+      { thickness: 2, pressure: "2-3 bar", flowRate: "100-150 L/min", speed: "60-80 mm/s" },
+      { thickness: 3, pressure: "2.5-3.5 bar", flowRate: "120-180 L/min", speed: "40-60 mm/s" },
+      { thickness: 5, pressure: "3-4 bar", flowRate: "150-220 L/min", speed: "25-40 mm/s" },
+      { thickness: 8, pressure: "3.5-4.5 bar", flowRate: "180-280 L/min", speed: "15-25 mm/s" },
+      { thickness: 10, pressure: "3.5-5 bar", flowRate: "200-320 L/min", speed: "10-20 mm/s" },
+      { thickness: 15, pressure: "4-5 bar", flowRate: "250-400 L/min", speed: "6-12 mm/s" },
+      { thickness: 20, pressure: "4-5 bar", flowRate: "300-450 L/min", speed: "3-8 mm/s" }
+    ]
+  },
+  {
+    material: "Stainless Steel",
+    gasType: "Nitrogen",
+    dataPoints: [
+      { thickness: 0.5, pressure: "6-8 bar", flowRate: "120-180 L/min", speed: "80-120 mm/s" },
+      { thickness: 1, pressure: "8-10 bar", flowRate: "150-220 L/min", speed: "50-80 mm/s" },
+      { thickness: 2, pressure: "10-12 bar", flowRate: "200-300 L/min", speed: "30-50 mm/s" },
+      { thickness: 3, pressure: "12-14 bar", flowRate: "250-380 L/min", speed: "20-35 mm/s" },
+      { thickness: 4, pressure: "14-16 bar", flowRate: "300-450 L/min", speed: "15-25 mm/s" },
+      { thickness: 6, pressure: "15-18 bar", flowRate: "350-520 L/min", speed: "10-18 mm/s" },
+      { thickness: 8, pressure: "16-20 bar", flowRate: "400-600 L/min", speed: "6-12 mm/s" },
+      { thickness: 10, pressure: "18-20 bar", flowRate: "450-650 L/min", speed: "4-10 mm/s" }
+    ]
+  },
+  {
+    material: "Aluminum",
+    gasType: "Nitrogen",
+    dataPoints: [
+      { thickness: 0.5, pressure: "6-8 bar", flowRate: "100-160 L/min", speed: "100-150 mm/s" },
+      { thickness: 1, pressure: "8-10 bar", flowRate: "130-200 L/min", speed: "60-100 mm/s" },
+      { thickness: 2, pressure: "10-12 bar", flowRate: "180-270 L/min", speed: "40-65 mm/s" },
+      { thickness: 3, pressure: "11-13 bar", flowRate: "220-330 L/min", speed: "25-45 mm/s" },
+      { thickness: 4, pressure: "12-14 bar", flowRate: "260-400 L/min", speed: "18-32 mm/s" },
+      { thickness: 5, pressure: "13-15 bar", flowRate: "300-450 L/min", speed: "12-25 mm/s" },
+      { thickness: 6, pressure: "14-16 bar", flowRate: "340-500 L/min", speed: "8-18 mm/s" },
+      { thickness: 8, pressure: "15-17 bar", flowRate: "380-550 L/min", speed: "5-12 mm/s" }
+    ]
+  },
+  {
+    material: "Carbon Steel",
+    gasType: "Compressed Air",
+    dataPoints: [
+      { thickness: 0.5, pressure: "6-8 bar", flowRate: "80-130 L/min", speed: "80-120 mm/s" },
+      { thickness: 1, pressure: "8-10 bar", flowRate: "100-160 L/min", speed: "50-80 mm/s" },
+      { thickness: 1.5, pressure: "9-11 bar", flowRate: "130-200 L/min", speed: "35-60 mm/s" },
+      { thickness: 2, pressure: "10-12 bar", flowRate: "150-240 L/min", speed: "25-45 mm/s" },
+      { thickness: 2.5, pressure: "10-12 bar", flowRate: "170-270 L/min", speed: "18-35 mm/s" },
+      { thickness: 3, pressure: "11-13 bar", flowRate: "200-300 L/min", speed: "12-28 mm/s" }
+    ]
+  }
+];
+
+// Material-Gas Compatibility Matrix
+export interface MaterialGasCompatibility {
+  material: string;
+  gas: string;
+  compatibility: "optimal" | "acceptable" | "limited" | "not-recommended";
+  thicknessRange: string;
+  edgeQuality: string;
+  notes: string;
+}
+
+export const MATERIAL_GAS_MATRIX: MaterialGasCompatibility[] = [
+  { material: "Carbon Steel", gas: "Oxygen", compatibility: "optimal", thicknessRange: "3-25mm", edgeQuality: "Oxidized", notes: "Maximum speed, lowest cost" },
+  { material: "Carbon Steel", gas: "Nitrogen", compatibility: "acceptable", thicknessRange: "0.5-12mm", edgeQuality: "Clean", notes: "Slower, higher cost, oxide-free" },
+  { material: "Carbon Steel", gas: "Compressed Air", compatibility: "acceptable", thicknessRange: "0.5-3mm", edgeQuality: "Slight oxidation", notes: "Very economical for thin materials" },
+  { material: "Carbon Steel", gas: "Argon", compatibility: "not-recommended", thicknessRange: "N/A", edgeQuality: "N/A", notes: "Unnecessarily expensive" },
+  
+  { material: "Stainless Steel", gas: "Oxygen", compatibility: "not-recommended", thicknessRange: "N/A", edgeQuality: "Heavy oxidation", notes: "Causes severe oxidation" },
+  { material: "Stainless Steel", gas: "Nitrogen", compatibility: "optimal", thicknessRange: "0.5-12mm", edgeQuality: "Bright, oxide-free", notes: "Industry standard, high pressure required" },
+  { material: "Stainless Steel", gas: "Compressed Air", compatibility: "limited", thicknessRange: "0.5-2mm", edgeQuality: "Slight discoloration", notes: "Thin materials only, cost-effective" },
+  { material: "Stainless Steel", gas: "Argon", compatibility: "acceptable", thicknessRange: "0.5-6mm", edgeQuality: "Perfect", notes: "Expensive, used for critical applications" },
+  
+  { material: "Aluminum", gas: "Oxygen", compatibility: "not-recommended", thicknessRange: "N/A", edgeQuality: "Poor", notes: "Oxidation issues" },
+  { material: "Aluminum", gas: "Nitrogen", compatibility: "optimal", thicknessRange: "0.5-10mm", edgeQuality: "Clean, smooth", notes: "Standard choice, prevents oxidation" },
+  { material: "Aluminum", gas: "Compressed Air", compatibility: "acceptable", thicknessRange: "0.5-3mm", edgeQuality: "Acceptable", notes: "Economical for non-critical parts" },
+  { material: "Aluminum", gas: "Argon", compatibility: "limited", thicknessRange: "0.5-5mm", edgeQuality: "Excellent", notes: "Too expensive for standard use" },
+  
+  { material: "Titanium", gas: "Oxygen", compatibility: "not-recommended", thicknessRange: "N/A", edgeQuality: "N/A", notes: "Fire risk, severe oxidation" },
+  { material: "Titanium", gas: "Nitrogen", compatibility: "limited", thicknessRange: "0.5-6mm", edgeQuality: "Acceptable", notes: "Can cause some oxidation" },
+  { material: "Titanium", gas: "Compressed Air", compatibility: "not-recommended", thicknessRange: "N/A", edgeQuality: "N/A", notes: "Oxygen content causes issues" },
+  { material: "Titanium", gas: "Argon", compatibility: "optimal", thicknessRange: "0.5-8mm", edgeQuality: "Perfect", notes: "Only recommended gas for aerospace quality" },
+  
+  { material: "Copper/Brass", gas: "Oxygen", compatibility: "not-recommended", thicknessRange: "N/A", edgeQuality: "Tarnished", notes: "Heavy oxidation, tarnishing" },
+  { material: "Copper/Brass", gas: "Nitrogen", compatibility: "optimal", thicknessRange: "0.5-6mm", edgeQuality: "Bright, clean", notes: "High pressure required, best quality" },
+  { material: "Copper/Brass", gas: "Compressed Air", compatibility: "limited", thicknessRange: "0.5-2mm", edgeQuality: "Some tarnishing", notes: "Budget option, quality varies" },
+  { material: "Copper/Brass", gas: "Argon", compatibility: "acceptable", thicknessRange: "0.5-4mm", edgeQuality: "Excellent", notes: "Very expensive, pristine finish" }
+];
+
+export function getNozzleRecommendation(gasType: string, thickness: number): NozzleGasPairing[] {
+  return NOZZLE_GAS_PAIRING.filter(pairing => pairing.gasType === gasType);
+}
+
+export function getPurityComparison(gasName: string): GasPurityComparison[] {
+  return GAS_PURITY_LEVELS.filter(purity => purity.gasName === gasName);
+}
+
+export function getPressureForThickness(material: string, gasType: string, thickness: number): PressureThicknessPoint | null {
+  const curve = PRESSURE_THICKNESS_CURVES.find(
+    c => c.material === material && c.gasType === gasType
+  );
+  if (!curve) return null;
+  
+  // Find closest thickness
+  const closest = curve.dataPoints.reduce((prev, curr) => 
+    Math.abs(curr.thickness - thickness) < Math.abs(prev.thickness - thickness) ? curr : prev
+  );
+  return closest;
+}
+
+export function getCompatibility(material: string, gas: string): MaterialGasCompatibility | null {
+  return MATERIAL_GAS_MATRIX.find(
+    m => m.material === material && m.gas === gas
+  ) || null;
+}
+
 
 
 

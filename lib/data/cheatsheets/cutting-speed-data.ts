@@ -9,12 +9,20 @@
  * Next Review: 2026-04-30
  */
 
-export const CUTTING_SPEED_VERSION = "1.0.0";
-export const CUTTING_SPEED_LAST_UPDATE = "2025-10-30";
+export const CUTTING_SPEED_VERSION = "2.0.0";
+export const CUTTING_SPEED_LAST_UPDATE = "2025-11-02";
 
 export interface CuttingSpeedEntry {
   thickness: number; // mm
   speeds: Record<string, number>; // power level -> speed (m/min)
+  piercingTime?: Record<string, number>; // power level -> piercing time (seconds)
+  gasPressure?: {
+    oxygen?: string; // pressure range in bar
+    nitrogen?: string; // pressure range in bar
+    air?: string; // pressure range in bar
+  };
+  kerfWidth?: Record<string, number>; // power level -> kerf width (mm)
+  edgeQuality?: 'excellent' | 'good' | 'fair'; // typical edge quality at standard speeds
 }
 
 export interface MaterialSpeedData {
@@ -53,7 +61,30 @@ export const FIBER_LASER_SPEED_DATA: LaserTypeSpeedData = {
             "6kW": 60.0,
             "8kW": 75.0,
             "12kW": 90.0
-          } 
+          },
+          piercingTime: {
+            "1kW": 0.3,
+            "2kW": 0.2,
+            "3kW": 0.15,
+            "4kW": 0.12,
+            "6kW": 0.10,
+            "8kW": 0.08,
+            "12kW": 0.06
+          },
+          gasPressure: {
+            oxygen: "0.5-1.0 bar",
+            nitrogen: "8-12 bar"
+          },
+          kerfWidth: {
+            "1kW": 0.15,
+            "2kW": 0.18,
+            "3kW": 0.20,
+            "4kW": 0.22,
+            "6kW": 0.25,
+            "8kW": 0.28,
+            "12kW": 0.32
+          },
+          edgeQuality: "excellent"
         },
         { 
           thickness: 2, 
@@ -65,7 +96,30 @@ export const FIBER_LASER_SPEED_DATA: LaserTypeSpeedData = {
             "6kW": 35.0,
             "8kW": 45.0,
             "12kW": 60.0
-          } 
+          },
+          piercingTime: {
+            "1kW": 0.5,
+            "2kW": 0.3,
+            "3kW": 0.25,
+            "4kW": 0.20,
+            "6kW": 0.15,
+            "8kW": 0.12,
+            "12kW": 0.10
+          },
+          gasPressure: {
+            oxygen: "0.6-1.2 bar",
+            nitrogen: "10-14 bar"
+          },
+          kerfWidth: {
+            "1kW": 0.16,
+            "2kW": 0.19,
+            "3kW": 0.21,
+            "4kW": 0.23,
+            "6kW": 0.26,
+            "8kW": 0.29,
+            "12kW": 0.33
+          },
+          edgeQuality: "excellent"
         },
         { 
           thickness: 3, 
@@ -77,7 +131,30 @@ export const FIBER_LASER_SPEED_DATA: LaserTypeSpeedData = {
             "6kW": 20.0,
             "8kW": 26.0,
             "12kW": 38.0
-          } 
+          },
+          piercingTime: {
+            "1kW": 0.8,
+            "2kW": 0.5,
+            "3kW": 0.35,
+            "4kW": 0.28,
+            "6kW": 0.22,
+            "8kW": 0.18,
+            "12kW": 0.15
+          },
+          gasPressure: {
+            oxygen: "0.8-1.5 bar",
+            nitrogen: "12-16 bar"
+          },
+          kerfWidth: {
+            "1kW": 0.17,
+            "2kW": 0.20,
+            "3kW": 0.22,
+            "4kW": 0.24,
+            "6kW": 0.27,
+            "8kW": 0.30,
+            "12kW": 0.34
+          },
+          edgeQuality: "excellent"
         },
         { 
           thickness: 5, 
@@ -89,7 +166,30 @@ export const FIBER_LASER_SPEED_DATA: LaserTypeSpeedData = {
             "6kW": 10.0,
             "8kW": 13.0,
             "12kW": 20.0
-          } 
+          },
+          piercingTime: {
+            "1kW": 1.5,
+            "2kW": 0.9,
+            "3kW": 0.6,
+            "4kW": 0.5,
+            "6kW": 0.38,
+            "8kW": 0.30,
+            "12kW": 0.25
+          },
+          gasPressure: {
+            oxygen: "1.0-2.0 bar",
+            nitrogen: "14-18 bar"
+          },
+          kerfWidth: {
+            "1kW": 0.18,
+            "2kW": 0.21,
+            "3kW": 0.23,
+            "4kW": 0.26,
+            "6kW": 0.29,
+            "8kW": 0.32,
+            "12kW": 0.36
+          },
+          edgeQuality: "good"
         },
         { 
           thickness: 8, 
@@ -101,7 +201,30 @@ export const FIBER_LASER_SPEED_DATA: LaserTypeSpeedData = {
             "6kW": 5.0,
             "8kW": 6.5,
             "12kW": 10.0
-          } 
+          },
+          piercingTime: {
+            "1kW": 2.5,
+            "2kW": 1.5,
+            "3kW": 1.0,
+            "4kW": 0.8,
+            "6kW": 0.6,
+            "8kW": 0.5,
+            "12kW": 0.4
+          },
+          gasPressure: {
+            oxygen: "1.2-2.5 bar",
+            nitrogen: "16-20 bar"
+          },
+          kerfWidth: {
+            "1kW": 0.20,
+            "2kW": 0.23,
+            "3kW": 0.25,
+            "4kW": 0.28,
+            "6kW": 0.31,
+            "8kW": 0.34,
+            "12kW": 0.38
+          },
+          edgeQuality: "good"
         },
         { 
           thickness: 10, 
@@ -113,7 +236,30 @@ export const FIBER_LASER_SPEED_DATA: LaserTypeSpeedData = {
             "6kW": 3.5,
             "8kW": 4.5,
             "12kW": 7.0
-          } 
+          },
+          piercingTime: {
+            "1kW": 3.5,
+            "2kW": 2.0,
+            "3kW": 1.4,
+            "4kW": 1.1,
+            "6kW": 0.8,
+            "8kW": 0.65,
+            "12kW": 0.5
+          },
+          gasPressure: {
+            oxygen: "1.5-3.0 bar",
+            nitrogen: "18-22 bar"
+          },
+          kerfWidth: {
+            "1kW": 0.22,
+            "2kW": 0.24,
+            "3kW": 0.27,
+            "4kW": 0.30,
+            "6kW": 0.33,
+            "8kW": 0.36,
+            "12kW": 0.40
+          },
+          edgeQuality: "good"
         },
         { 
           thickness: 12, 
@@ -124,7 +270,28 @@ export const FIBER_LASER_SPEED_DATA: LaserTypeSpeedData = {
             "6kW": 2.5,
             "8kW": 3.2,
             "12kW": 5.0
-          } 
+          },
+          piercingTime: {
+            "2kW": 3.0,
+            "3kW": 2.0,
+            "4kW": 1.5,
+            "6kW": 1.1,
+            "8kW": 0.9,
+            "12kW": 0.7
+          },
+          gasPressure: {
+            oxygen: "2.0-3.5 bar",
+            nitrogen: "20-25 bar"
+          },
+          kerfWidth: {
+            "2kW": 0.26,
+            "3kW": 0.29,
+            "4kW": 0.32,
+            "6kW": 0.35,
+            "8kW": 0.38,
+            "12kW": 0.42
+          },
+          edgeQuality: "fair"
         },
         { 
           thickness: 15, 
@@ -135,7 +302,28 @@ export const FIBER_LASER_SPEED_DATA: LaserTypeSpeedData = {
             "6kW": 1.8,
             "8kW": 2.3,
             "12kW": 3.5
-          } 
+          },
+          piercingTime: {
+            "2kW": 4.0,
+            "3kW": 2.8,
+            "4kW": 2.0,
+            "6kW": 1.5,
+            "8kW": 1.2,
+            "12kW": 0.9
+          },
+          gasPressure: {
+            oxygen: "2.5-4.0 bar",
+            nitrogen: "22-28 bar"
+          },
+          kerfWidth: {
+            "2kW": 0.28,
+            "3kW": 0.31,
+            "4kW": 0.34,
+            "6kW": 0.37,
+            "8kW": 0.40,
+            "12kW": 0.44
+          },
+          edgeQuality: "fair"
         },
         { 
           thickness: 20, 
@@ -146,7 +334,28 @@ export const FIBER_LASER_SPEED_DATA: LaserTypeSpeedData = {
             "8kW": 1.4,
             "12kW": 2.0,
             "15kW": 2.8
-          } 
+          },
+          piercingTime: {
+            "3kW": 4.5,
+            "4kW": 3.2,
+            "6kW": 2.3,
+            "8kW": 1.8,
+            "12kW": 1.3,
+            "15kW": 1.0
+          },
+          gasPressure: {
+            oxygen: "3.0-5.0 bar",
+            nitrogen: "25-30 bar"
+          },
+          kerfWidth: {
+            "3kW": 0.33,
+            "4kW": 0.36,
+            "6kW": 0.39,
+            "8kW": 0.42,
+            "12kW": 0.46,
+            "15kW": 0.50
+          },
+          edgeQuality: "fair"
         },
         { 
           thickness: 25, 
@@ -156,13 +365,34 @@ export const FIBER_LASER_SPEED_DATA: LaserTypeSpeedData = {
             "12kW": 1.2,
             "15kW": 1.8,
             "20kW": 2.5
-          } 
+          },
+          piercingTime: {
+            "6kW": 3.5,
+            "8kW": 2.8,
+            "12kW": 2.0,
+            "15kW": 1.5,
+            "20kW": 1.2
+          },
+          gasPressure: {
+            oxygen: "3.5-6.0 bar",
+            nitrogen: "28-35 bar"
+          },
+          kerfWidth: {
+            "6kW": 0.41,
+            "8kW": 0.44,
+            "12kW": 0.48,
+            "15kW": 0.52,
+            "20kW": 0.56
+          },
+          edgeQuality: "fair"
         }
       ],
       notes: [
         "Speeds based on oxygen assist gas for maximum speed",
         "Use nitrogen for oxidation-free edges (reduce speed by 30-40%)",
-        "Thicker materials may require multiple passes"
+        "Piercing times increase significantly with thickness",
+        "Gas pressure must increase with thickness for effective melt ejection",
+        "Kerf width increases with laser power due to larger focus spot"
       ]
     },
     {
@@ -180,7 +410,29 @@ export const FIBER_LASER_SPEED_DATA: LaserTypeSpeedData = {
             "6kW": 50.0,
             "8kW": 62.0,
             "12kW": 75.0
-          } 
+          },
+          piercingTime: {
+            "1kW": 0.4,
+            "2kW": 0.25,
+            "3kW": 0.18,
+            "4kW": 0.15,
+            "6kW": 0.12,
+            "8kW": 0.10,
+            "12kW": 0.08
+          },
+          gasPressure: {
+            nitrogen: "10-14 bar"
+          },
+          kerfWidth: {
+            "1kW": 0.16,
+            "2kW": 0.19,
+            "3kW": 0.21,
+            "4kW": 0.23,
+            "6kW": 0.26,
+            "8kW": 0.29,
+            "12kW": 0.33
+          },
+          edgeQuality: "excellent"
         },
         { 
           thickness: 2, 

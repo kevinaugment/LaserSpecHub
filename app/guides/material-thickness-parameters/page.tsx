@@ -3,11 +3,17 @@ import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 import { MaterialParametersTable } from '@/components/cheatsheets/material-thickness-parameters-table';
+import { MaterialQuickNav } from '@/components/cheatsheets/material-quick-nav';
+import { MaterialComparisonMatrix } from '@/components/cheatsheets/material-comparison-matrix';
+import { ParameterRelationshipChart } from '@/components/cheatsheets/parameter-relationship-chart';
+import { QuickParameterFinder } from '@/components/cheatsheets/quick-parameter-finder';
 import {
   ALL_MATERIAL_PARAMETERS,
   MATERIAL_PARAMETERS_VERSION,
   MATERIAL_PARAMETERS_LAST_UPDATE,
+  CARBON_STEEL_OXYGEN,
 } from '@/lib/data/cheatsheets/material-thickness-parameters-data';
+import { ALL_MATERIAL_CHARACTERISTICS } from '@/lib/data/cheatsheets/material-comparison-data';
 
 export const metadata: Metadata = {
   title: 'Laser Cutting Material Thickness Parameters Guide - LaserSpecHub',
@@ -63,38 +69,50 @@ export default function Page() {
         </div>
       </div>
 
+      {/* Quick Navigation Cards */}
+      <MaterialQuickNav />
+
       {/* Usage Guide */}
       <Card className="mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border-blue-200 dark:border-blue-800">
         <CardHeader>
-          <CardTitle className="text-lg">如何使用本速查表</CardTitle>
+          <CardTitle className="text-lg">How to Use This Reference Guide</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3 text-sm">
           <div>
-            <strong>1. 选择材料类型</strong>
+            <strong>1. Select Material Type</strong>
             <p className="text-muted-foreground mt-1">
-              根据您要切割的材料选择对应的参数表(碳钢/不锈钢/铝合金等)
+              Choose the parameter table corresponding to your material (carbon steel, stainless steel, aluminum alloy, etc.)
             </p>
           </div>
           <div>
-            <strong>2. 确定激光功率</strong>
+            <strong>2. Determine Laser Power</strong>
             <p className="text-muted-foreground mt-1">
-              使用下拉菜单选择您设备的激光功率等级(1kW-12kW)
+              Use the dropdown menu to select your equipment's laser power level (1kW-12kW)
             </p>
           </div>
           <div>
-            <strong>3. 查找对应厚度</strong>
+            <strong>3. Find Corresponding Thickness</strong>
             <p className="text-muted-foreground mt-1">
-              在表格中找到您要切割的材料厚度,获取完整的工艺参数
+              Locate your material thickness in the table to obtain complete process parameters
             </p>
           </div>
           <div>
-            <strong>4. 参数微调</strong>
+            <strong>4. Fine-Tune Parameters</strong>
             <p className="text-muted-foreground mt-1">
-              表中参数为参考值,实际使用时应根据设备状态、材料批次和质量要求适当调整±10-15%
+              Table parameters are reference values. Adjust ±10-15% based on equipment condition, material batch, and quality requirements
             </p>
           </div>
         </CardContent>
       </Card>
+
+      {/* Material Comparison Matrix */}
+      <MaterialComparisonMatrix materials={ALL_MATERIAL_CHARACTERISTICS} />
+
+      {/* Parameter Relationship Chart */}
+      <ParameterRelationshipChart materialData={CARBON_STEEL_OXYGEN} />
+
+      {/* Quick Parameter Finder */}
+      <QuickParameterFinder />
 
       {/* Deep Technical Content */}
       <Card className="mb-8">
@@ -138,10 +156,9 @@ export default function Page() {
               氮气和空气辅助之间的选择显著影响质量和运营成本。
             </p>
             <p className="mb-3">
-              For austenitic stainless (304, 316), nitrogen cutting at 10-18 bar produces oxide-free edges critical for food processing, 
+              For austenitic stainless (304, 316), <Link href="/guides/assist-gas-chart" className="text-primary-600 hover:text-primary-700 font-medium underline">nitrogen cutting</Link> at 10-18 bar produces oxide-free edges critical for food processing, 
               medical, and architectural applications. Air cutting offers 80% cost savings but produces slight oxidation acceptable for 
-              structural applications. Advanced parameter optimization and adaptive control systems, such as those integrated into 
-              <a href="https://opmtlaser.com/technology/adaptive-cutting-control" className="text-primary-600 hover:text-primary-700 font-medium" target="_blank" rel="noopener"> OPMT Laser's intelligent CNC systems</a>, 
+              structural applications. Advanced <Link href="/guides/process-optimization-guide" className="text-primary-600 hover:text-primary-700 font-medium underline">parameter optimization</Link> and adaptive control systems 
               can automatically adjust parameters real-time based on material feedback, ensuring consistent quality across varying material 
               conditions while minimizing gas consumption by 15-25%.
             </p>
@@ -162,9 +179,9 @@ export default function Page() {
               铝材切割是光纤激光切割中技术要求最高的应用之一。高反射率(特别是在1.06μm波长)和高导热率需要更高的功率密度和精确的参数控制才能获得可靠结果。
             </p>
             <p className="mb-3">
-              Key parameters for aluminum success include: (1) Higher power requirement - typically 30-40% more power than equivalent steel 
-              thickness; (2) Nitrogen pressure 12-18 bar minimum to prevent oxidation and ensure clean cuts; (3) Larger nozzle standoff 
-              (0.8-1.2mm) to manage melt ejection; (4) Focus position optimization - typically -2 to -4mm for thick aluminum to maximize 
+              Key parameters for aluminum success include: (1) Higher <Link href="/guides/power-selection-guide" className="text-primary-600 hover:text-primary-700 font-medium underline">power requirement</Link> - typically 30-40% more power than equivalent steel 
+              thickness; (2) Nitrogen pressure 12-18 bar minimum to prevent oxidation and ensure clean cuts; (3) Larger <Link href="/guides/nozzle-selection-guide" className="text-primary-600 hover:text-primary-700 font-medium underline">nozzle standoff</Link> 
+              (0.8-1.2mm) to manage melt ejection; (4) <Link href="/guides/focus-position-guide" className="text-primary-600 hover:text-primary-700 font-medium underline">Focus position optimization</Link> - typically -2 to -4mm for thick aluminum to maximize 
               power density penetration.
             </p>
             <p className="mb-3">
@@ -182,7 +199,7 @@ export default function Page() {
               but follows a complex curve influenced by material properties, desired cutting speed, and quality requirements.
             </p>
             <p className="mb-3">
-              For steel cutting, the rule of thumb suggests 1kW per 3-4mm thickness for economic cutting speeds (2-4 m/min). However, 
+              For steel cutting, the rule of thumb suggests 1kW per 3-4mm thickness for economic <Link href="/guides/cutting-speed-chart" className="text-primary-600 hover:text-primary-700 font-medium underline">cutting speeds</Link> (2-4 m/min). However, 
               this dramatically shifts at thickness extremes. Thin materials (0.5-2mm) can be cut very fast with lower power, where a 1kW 
               laser achieves 15-25 m/min. Thick materials (20mm+) require disproportionately high power - cutting 25mm steel economically 
               demands 12-15kW, not the 7-8kW that linear scaling would suggest.
@@ -226,7 +243,7 @@ export default function Page() {
             </p>
             <p className="mb-3">
               These variations can cause 10-20% fluctuation in optimal cutting speed. Professional shops maintain parameter libraries 
-              by material supplier and batch code. When changing material batches, always perform test cuts before production runs, 
+              by material supplier and batch code. When changing material batches, always perform <Link href="/guides/troubleshooting-guide" className="text-primary-600 hover:text-primary-700 font-medium underline">test cuts</Link> before production runs, 
               even with seemingly identical specifications.
             </p>
             <p className="mb-3">
@@ -251,31 +268,31 @@ export default function Page() {
       <div className="mt-12 grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>参数说明</CardTitle>
+            <CardTitle>Parameter Definitions</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-sm">
             <div>
-              <strong className="text-blue-600 dark:text-blue-400">切割速度 (m/min)</strong>
+              <strong className="text-blue-600 dark:text-blue-400">Cutting Speed (m/min)</strong>
               <p className="text-muted-foreground mt-1">
-                切割头沿切割路径移动的速度。速度过快会导致不穿透,过慢会产生挂渣和烧边。
+                The speed at which the cutting head moves along the cutting path. Too fast causes incomplete penetration; too slow produces dross and burn marks.
               </p>
             </div>
             <div>
-              <strong className="text-green-600 dark:text-green-400">气体压力 (bar)</strong>
+              <strong className="text-green-600 dark:text-green-400">Gas Pressure (bar)</strong>
               <p className="text-muted-foreground mt-1">
-                辅助气体的喷射压力。氧气切割通常0.3-0.6 bar,氮气切割需10-20 bar。
+                Assist gas jet pressure. Oxygen cutting typically uses 0.3-0.6 bar; nitrogen cutting requires 10-20 bar.
               </p>
             </div>
             <div>
-              <strong className="text-orange-600 dark:text-orange-400">喷嘴直径 (mm)</strong>
+              <strong className="text-orange-600 dark:text-orange-400">Nozzle Diameter (mm)</strong>
               <p className="text-muted-foreground mt-1">
-                喷嘴孔径大小。薄板用小喷嘴(1.0-1.5mm),厚板用大喷嘴(2.0-3.5mm)。
+                Nozzle orifice size. Thin sheets use small nozzles (1.0-1.5mm); thick plates use large nozzles (2.0-3.5mm).
               </p>
             </div>
             <div>
-              <strong className="text-red-600 dark:text-red-400">焦点位置 (mm)</strong>
+              <strong className="text-red-600 dark:text-red-400">Focus Position (mm)</strong>
               <p className="text-muted-foreground mt-1">
-                激光束焦点相对于材料表面的位置。负值=焦点在材料内部,正值=焦点在材料上方。
+                Laser beam focus position relative to material surface. Negative value = focus inside material; positive value = focus above material.
               </p>
             </div>
           </CardContent>
@@ -283,38 +300,38 @@ export default function Page() {
 
         <Card>
           <CardHeader>
-            <CardTitle>参数优化建议</CardTitle>
+            <CardTitle>Parameter Optimization Tips</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
                 <span className="text-green-500 mt-0.5">✓</span>
                 <span>
-                  <strong>速度优先</strong>: 在保证切割质量的前提下,尽量提高速度以提升产能
+                  <strong>Speed Priority</strong>: Maximize speed while maintaining cut quality to improve productivity
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-green-500 mt-0.5">✓</span>
                 <span>
-                  <strong>质量优先</strong>: 降低速度15-20%,可显著改善切边质量和垂直度
+                  <strong>Quality Priority</strong>: Reduce speed by 15-20% to significantly improve edge quality and perpendicularity
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-green-500 mt-0.5">✓</span>
                 <span>
-                  <strong>成本优化</strong>: 碳钢优先用氧气,不锈钢视质量要求选择氮气或空气
+                  <strong>Cost Optimization</strong>: Use oxygen for carbon steel; choose nitrogen or air for stainless based on quality requirements
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-green-500 mt-0.5">✓</span>
                 <span>
-                  <strong>首件试切</strong>: 新材料或批次更换时,建议先试切首件验证参数
+                  <strong>First Article Testing</strong>: Always perform test cuts when changing materials or batches to verify parameters
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-green-500 mt-0.5">✓</span>
                 <span>
-                  <strong>记录优化</strong>: 建立自己的参数数据库,记录实际最佳参数
+                  <strong>Documentation</strong>: Build your own parameter database and record actual optimal parameters
                 </span>
               </li>
             </ul>
@@ -326,31 +343,31 @@ export default function Page() {
       <div className="mt-10 grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>相关计算工具</CardTitle>
+            <CardTitle>Related Calculation Tools</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2 text-sm">
             <div>
               <Link href="/tools/power-calculator" className="underline hover:text-primary">
-                激光功率需求计算器
+                Laser Power Requirement Calculator
               </Link>
               <p className="text-xs text-muted-foreground mt-0.5">
-                根据材料和厚度计算所需激光功率
+                Calculate required laser power based on material and thickness
               </p>
             </div>
             <div>
               <Link href="/tools/kerf-calculator" className="underline hover:text-primary">
-                激光切割缝宽计算器
+                Laser Cutting Kerf Width Calculator
               </Link>
               <p className="text-xs text-muted-foreground mt-0.5">
-                估算切缝宽度和补偿值
+                Estimate kerf width and compensation values
               </p>
             </div>
             <div>
               <Link href="/tools/cost-estimator" className="underline hover:text-primary">
-                激光切割成本估算器
+                Laser Cutting Cost Estimator
               </Link>
               <p className="text-xs text-muted-foreground mt-0.5">
-                计算完整的切割成本
+                Calculate complete cutting costs including gas, power, and time
               </p>
             </div>
           </CardContent>
@@ -358,31 +375,31 @@ export default function Page() {
 
         <Card>
           <CardHeader>
-            <CardTitle>相关技术指南</CardTitle>
+            <CardTitle>Related Technical Guides</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2 text-sm">
             <div>
               <Link href="/guides/focus-position-guide" className="underline hover:text-primary">
-                焦点位置调整指南
+                Focus Position Adjustment Guide
               </Link>
               <p className="text-xs text-muted-foreground mt-0.5">
-                如何正确调整和校准焦点位置
+                How to properly adjust and calibrate focus position
               </p>
             </div>
             <div>
               <Link href="/guides/process-optimization-guide" className="underline hover:text-primary">
-                工艺优化指南
+                Process Optimization Guide
               </Link>
               <p className="text-xs text-muted-foreground mt-0.5">
-                系统化的参数优化方法
+                Systematic parameter optimization methodology
               </p>
             </div>
             <div>
               <Link href="/guides/troubleshooting-guide" className="underline hover:text-primary">
-                故障排除指南
+                Troubleshooting Guide
               </Link>
               <p className="text-xs text-muted-foreground mt-0.5">
-                解决常见切割质量问题
+                Resolve common cutting quality issues
               </p>
             </div>
           </CardContent>
@@ -393,17 +410,19 @@ export default function Page() {
       <Card className="mt-8 border-yellow-200 bg-yellow-50 dark:border-yellow-800 dark:bg-yellow-950/20">
         <CardContent className="pt-6">
           <h3 className="font-semibold text-sm mb-2 text-yellow-900 dark:text-yellow-200">
-            免责声明
+            Disclaimer
           </h3>
           <p className="text-xs text-yellow-800 dark:text-yellow-300 leading-relaxed">
-            本速查表数据基于主流激光设备制造商公开的技术文档和行业标准整理,仅供参考。
-            实际切割参数受设备型号、激光器状态、材料批次、环境条件、质量要求等多种因素影响,
-            可能与表中数据存在差异。使用时请结合设备制造商技术手册和现场试切结果进行调整。
-            对于因使用本数据导致的任何直接或间接损失,本站不承担责任。
+            This reference guide data is compiled from publicly available technical documentation and industry standards 
+            from mainstream laser equipment manufacturers, provided for reference only. Actual cutting parameters are 
+            influenced by multiple factors including equipment model, laser condition, material batch, environmental 
+            conditions, and quality requirements, and may differ from the values shown. Please adjust parameters based 
+            on your equipment manufacturer's technical manual and on-site test cutting results. This site assumes no 
+            responsibility for any direct or indirect losses resulting from the use of this data.
           </p>
           <p className="text-xs text-yellow-800 dark:text-yellow-300 mt-2">
-            数据更新日期: {MATERIAL_PARAMETERS_LAST_UPDATE} | 
-            建议每6个月审核一次参数有效性
+            Data Last Updated: {MATERIAL_PARAMETERS_LAST_UPDATE} | 
+            Recommended to review parameter validity every 6 months
           </p>
         </CardContent>
       </Card>

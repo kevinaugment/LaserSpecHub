@@ -9,15 +9,75 @@
  * Next Review: 2026-04-30
  */
 
-export const EDGE_QUALITY_VERSION = "1.0.0";
-export const EDGE_QUALITY_LAST_UPDATE = "2025-10-30";
+export const EDGE_QUALITY_VERSION = "2.0.0";
+export const EDGE_QUALITY_LAST_UPDATE = "2025-11-02";
 
 export interface QualityCharacteristics {
   perpendicularity: string;
   roughnessRa: string;
+  roughnessRz5: string; // ISO 9013:2017 primary metric
   dross: string;
   kerfWidth: string;
   heatAffectedZone: string;
+}
+
+export interface ThicknessTolerance {
+  thicknessRange: string;
+  grade1: string;
+  grade2: string;
+  grade3: string;
+  grade4: string;
+}
+
+export interface MaterialQualityAffinity {
+  material: string;
+  easiestGrade: number;
+  typicalGrade: number;
+  difficulty: 'easy' | 'medium' | 'difficult';
+  notes: string;
+}
+
+export interface InternationalStandard {
+  name: string;
+  fullName: string;
+  region: string;
+  grade1Equivalent: string;
+  grade2Equivalent: string;
+  grade3Equivalent: string;
+  grade4Equivalent: string;
+  keyDifferences: string[];
+}
+
+export interface IndustryAcceptance {
+  industry: string;
+  typicalGrade: number;
+  minimumGrade: number;
+  criticalParameters: string[];
+  notes: string;
+}
+
+export interface WeldingPreparation {
+  weldingProcess: string;
+  minimumGrade: number;
+  maxRoughness: string;
+  edgePreparation: string;
+  requirements: string[];
+}
+
+export interface RoughnessExplanation {
+  parameter: string;
+  definition: string;
+  measurement: string;
+  typicalUse: string;
+}
+
+export interface InspectionStep {
+  step: number;
+  parameter: string;
+  method: string;
+  equipment: string;
+  acceptanceCriteria: string;
+  frequency: string;
 }
 
 export interface QualityGrade {
@@ -63,6 +123,7 @@ export const ISO_9013_QUALITY_GRADES: QualityGrade[] = [
     characteristics: {
       perpendicularity: "±0.05mm",
       roughnessRa: "Ra 1.6-3.2 μm",
+      roughnessRz5: "Rz5 10-20 μm",
       dross: "None",
       kerfWidth: "Minimal (0.1-0.2mm)",
       heatAffectedZone: "< 0.1mm"
@@ -93,6 +154,7 @@ export const ISO_9013_QUALITY_GRADES: QualityGrade[] = [
     characteristics: {
       perpendicularity: "±0.15mm",
       roughnessRa: "Ra 3.2-6.3 μm",
+      roughnessRz5: "Rz5 20-40 μm",
       dross: "Minimal/trace amounts",
       kerfWidth: "Small (0.2-0.3mm)",
       heatAffectedZone: "0.1-0.2mm"
@@ -123,6 +185,7 @@ export const ISO_9013_QUALITY_GRADES: QualityGrade[] = [
     characteristics: {
       perpendicularity: "±0.30mm",
       roughnessRa: "Ra 6.3-12.5 μm",
+      roughnessRz5: "Rz5 40-100 μm",
       dross: "Small amount acceptable",
       kerfWidth: "Normal (0.3-0.5mm)",
       heatAffectedZone: "0.2-0.5mm"
@@ -153,6 +216,7 @@ export const ISO_9013_QUALITY_GRADES: QualityGrade[] = [
     characteristics: {
       perpendicularity: "±0.50mm",
       roughnessRa: "Ra 12.5-25 μm",
+      roughnessRz5: "Rz5 100-160 μm",
       dross: "Moderate amount",
       kerfWidth: "Wide (0.5-0.8mm)",
       heatAffectedZone: "0.5-1.0mm"
@@ -407,6 +471,342 @@ export function getDefectsBySeverity(severity: 'critical' | 'major' | 'minor'): 
 }
 
 export const DATA_DISCLAIMER = `Data Disclaimer: This edge quality data is based on ISO 9013:2017 international standard and industry best practices, for reference only. Actual quality grades and acceptance criteria depend on specific application requirements, customer specifications, and industry standards. Always refer to applicable standards and customer drawings. Data last updated: ${EDGE_QUALITY_LAST_UPDATE}.`;
+
+// Roughness Measurement Comparison
+export const ROUGHNESS_COMPARISON: RoughnessExplanation[] = [
+  {
+    parameter: "Ra (Arithmetic Average)",
+    definition: "Average of absolute values of profile heights over evaluation length",
+    measurement: "Most common roughness parameter, easy to measure with contact profilometer",
+    typicalUse: "General surface finish specification, machining quality control"
+  },
+  {
+    parameter: "Rz5 (Mean Height)",
+    definition: "Average of 5 largest peak-to-valley heights within sampling length",
+    measurement: "ISO 9013:2017 primary metric for thermal cutting edge quality",
+    typicalUse: "Thermal cutting quality classification, captures extreme variations"
+  }
+];
+
+// Thickness-Dependent Perpendicularity Tolerances (ISO 9013:2017)
+export const THICKNESS_TOLERANCES: ThicknessTolerance[] = [
+  {
+    thicknessRange: "0.5 - 3mm",
+    grade1: "±0.05mm",
+    grade2: "±0.10mm",
+    grade3: "±0.20mm",
+    grade4: "±0.40mm"
+  },
+  {
+    thicknessRange: "3 - 10mm",
+    grade1: "±0.05mm",
+    grade2: "±0.15mm",
+    grade3: "±0.30mm",
+    grade4: "±0.50mm"
+  },
+  {
+    thicknessRange: "10 - 20mm",
+    grade1: "±0.08mm",
+    grade2: "±0.20mm",
+    grade3: "±0.40mm",
+    grade4: "±0.70mm"
+  },
+  {
+    thicknessRange: "20 - 32mm",
+    grade1: "±0.10mm",
+    grade2: "±0.25mm",
+    grade3: "±0.50mm",
+    grade4: "±0.90mm"
+  }
+];
+
+// Material-Specific Quality Affinity
+export const MATERIAL_QUALITY_MATRIX: MaterialQualityAffinity[] = [
+  {
+    material: "Mild Steel",
+    easiestGrade: 3,
+    typicalGrade: 3,
+    difficulty: 'easy',
+    notes: "Excellent cut quality with oxygen assist. Grade 2-3 achievable with standard parameters"
+  },
+  {
+    material: "Stainless Steel 304/316",
+    easiestGrade: 2,
+    typicalGrade: 2,
+    difficulty: 'medium',
+    notes: "Requires nitrogen for Grade 1-2. Prone to oxidation with oxygen assist"
+  },
+  {
+    material: "Aluminum 5052/6061",
+    easiestGrade: 2,
+    typicalGrade: 2,
+    difficulty: 'medium',
+    notes: "Nitrogen or high-pressure air recommended. Reflective surface requires beam control"
+  },
+  {
+    material: "Copper/Brass",
+    easiestGrade: 3,
+    typicalGrade: 3,
+    difficulty: 'difficult',
+    notes: "High thermal conductivity and reflectivity. Fiber laser preferred over CO₂"
+  },
+  {
+    material: "Titanium",
+    easiestGrade: 2,
+    typicalGrade: 2,
+    difficulty: 'medium',
+    notes: "Argon or nitrogen assist required. Careful parameter control to prevent ignition"
+  },
+  {
+    material: "Galvanized Steel",
+    easiestGrade: 3,
+    typicalGrade: 3,
+    difficulty: 'easy',
+    notes: "Zinc coating vaporization affects cut quality. Air or nitrogen recommended"
+  }
+];
+
+// International Standards Comparison
+export const INTERNATIONAL_STANDARDS: InternationalStandard[] = [
+  {
+    name: "ISO 9013:2017",
+    fullName: "ISO 9013:2017 Thermal Cutting - Classification of thermal cuts",
+    region: "International",
+    grade1Equivalent: "Grade 1",
+    grade2Equivalent: "Grade 2",
+    grade3Equivalent: "Grade 3",
+    grade4Equivalent: "Grade 4",
+    keyDifferences: [
+      "Primary standard for thermal cutting worldwide",
+      "Uses Rz5 as primary roughness metric",
+      "Applies to laser, plasma, and oxyfuel cutting",
+      "Thickness range: 0.5-32mm for laser"
+    ]
+  },
+  {
+    name: "AWS D1.1",
+    fullName: "AWS D1.1 Structural Welding Code - Steel",
+    region: "North America",
+    grade1Equivalent: "N/A",
+    grade2Equivalent: "Acceptable for welding",
+    grade3Equivalent: "May require prep",
+    grade4Equivalent: "Requires preparation",
+    keyDifferences: [
+      "Focus on weldability, not cutting quality",
+      "Specifies edge preparation requirements",
+      "Dross must be removed for welding",
+      "Perpendicularity critical for groove welds"
+    ]
+  },
+  {
+    name: "EN 1090",
+    fullName: "EN 1090 Execution of steel structures",
+    region: "Europe",
+    grade1Equivalent: "EXC4",
+    grade2Equivalent: "EXC3",
+    grade3Equivalent: "EXC2",
+    grade4Equivalent: "EXC1",
+    keyDifferences: [
+      "Execution class system (EXC1-4)",
+      "Higher numbers = higher quality requirements",
+      "Covers entire fabrication process",
+      "CE marking compliance required"
+    ]
+  },
+  {
+    name: "JIS B0417",
+    fullName: "JIS B0417 Laser processing machines - Vocabulary",
+    region: "Japan",
+    grade1Equivalent: "Class A",
+    grade2Equivalent: "Class B",
+    grade3Equivalent: "Class C",
+    grade4Equivalent: "Class D",
+    keyDifferences: [
+      "Japanese Industrial Standard",
+      "Similar criteria to ISO 9013",
+      "Widely used in Asia-Pacific",
+      "Compatible with ISO standards"
+    ]
+  }
+];
+
+// Industry-Specific Acceptance Criteria
+export const INDUSTRY_ACCEPTANCE: IndustryAcceptance[] = [
+  {
+    industry: "Aerospace",
+    typicalGrade: 1,
+    minimumGrade: 1,
+    criticalParameters: ["Perpendicularity", "HAZ depth", "Micro-cracks", "Surface roughness"],
+    notes: "Strictest requirements. Grade 1 mandatory. 100% edge inspection required. Metallurgical analysis for critical parts"
+  },
+  {
+    industry: "Medical Devices",
+    typicalGrade: 1,
+    minimumGrade: 1,
+    criticalParameters: ["Surface finish", "Cleanliness", "Burr-free edges", "HAZ minimal"],
+    notes: "Grade 1 required for surgical instruments and implants. Biocompatibility and sterilization considerations"
+  },
+  {
+    industry: "Automotive (Structural)",
+    typicalGrade: 2,
+    minimumGrade: 2,
+    criticalParameters: ["Perpendicularity", "Weldability", "Dross removal"],
+    notes: "Grade 2 for safety-critical components. Grade 3 acceptable for non-structural parts"
+  },
+  {
+    industry: "Electronics Enclosures",
+    typicalGrade: 2,
+    minimumGrade: 2,
+    criticalParameters: ["Burr-free edges", "Dimensional accuracy", "Surface appearance"],
+    notes: "Grade 2 for visible surfaces. Grade 3 acceptable for internal brackets"
+  },
+  {
+    industry: "Construction & HVAC",
+    typicalGrade: 3,
+    minimumGrade: 3,
+    criticalParameters: ["Weldability", "Structural integrity", "Cost efficiency"],
+    notes: "Grade 3 standard for most applications. Grade 4 acceptable for rough blanking"
+  },
+  {
+    industry: "Furniture & Displays",
+    typicalGrade: 2,
+    minimumGrade: 2,
+    criticalParameters: ["Surface appearance", "Burr-free", "Minimal oxidation"],
+    notes: "Grade 2 for visible edges. Nitrogen cutting for stainless steel displays"
+  }
+];
+
+// Welding Edge Preparation Requirements
+export const WELDING_EDGE_REQUIREMENTS: WeldingPreparation[] = [
+  {
+    weldingProcess: "GMAW (MIG/MAG)",
+    minimumGrade: 2,
+    maxRoughness: "Ra 12.5 μm",
+    edgePreparation: "Dross-free, light deburring",
+    requirements: [
+      "Remove all dross and slag",
+      "Smooth burrs that interfere with fit-up",
+      "Clean oxidation for critical welds",
+      "Grade 2-3 acceptable for most applications"
+    ]
+  },
+  {
+    weldingProcess: "GTAW (TIG)",
+    minimumGrade: 1,
+    maxRoughness: "Ra 6.3 μm",
+    edgePreparation: "Mirror-smooth, zero dross",
+    requirements: [
+      "Grade 1-2 mandatory for quality welds",
+      "Absolutely no dross or contamination",
+      "Minimal HAZ to prevent brittleness",
+      "Nitrogen cutting recommended for stainless"
+    ]
+  },
+  {
+    weldingProcess: "SMAW (Stick)",
+    minimumGrade: 3,
+    maxRoughness: "Ra 25 μm",
+    edgePreparation: "Basic cleaning adequate",
+    requirements: [
+      "Grade 3-4 acceptable",
+      "Remove loose dross only",
+      "Flux compensates for surface contamination",
+      "Most forgiving welding process"
+    ]
+  },
+  {
+    weldingProcess: "Laser/Electron Beam",
+    minimumGrade: 1,
+    maxRoughness: "Ra 3.2 μm",
+    edgePreparation: "Perfect cleanliness required",
+    requirements: [
+      "Grade 1 mandatory",
+      "Zero dross, oxidation, or contamination",
+      "Precise edge geometry critical",
+      "Tight fit-up tolerances < 0.1mm"
+    ]
+  },
+  {
+    weldingProcess: "Resistance (Spot/Seam)",
+    minimumGrade: 2,
+    maxRoughness: "Ra 12.5 μm",
+    edgePreparation: "Clean surface contact",
+    requirements: [
+      "Grade 2-3 acceptable",
+      "Remove oxidation and scale",
+      "Edge quality less critical than surface",
+      "Focus on metal-to-metal contact"
+    ]
+  }
+];
+
+// Quality Inspection Checklist
+export const QUALITY_INSPECTION_STEPS: InspectionStep[] = [
+  {
+    step: 1,
+    parameter: "Visual Inspection",
+    method: "Naked eye and magnifying glass",
+    equipment: "10x magnifier, adequate lighting",
+    acceptanceCriteria: "No visible cracks, burns, or excessive dross per grade specification",
+    frequency: "Every part or 100% sampling"
+  },
+  {
+    step: 2,
+    parameter: "Dross Height",
+    method: "Go/no-go gauge or scraper test",
+    equipment: "Dross gauge, scraper",
+    acceptanceCriteria: "Grade 1: None, Grade 2: <0.1mm, Grade 3: <0.3mm, Grade 4: <0.5mm",
+    frequency: "Every part or statistical sampling"
+  },
+  {
+    step: 3,
+    parameter: "Perpendicularity",
+    method: "Dial indicator or square measurement",
+    equipment: "Dial indicator, engineer's square, CMM",
+    acceptanceCriteria: "Within tolerance for material thickness and grade (see THICKNESS_TOLERANCES)",
+    frequency: "First article, then every 50 parts or shift"
+  },
+  {
+    step: 4,
+    parameter: "Surface Roughness (Ra/Rz5)",
+    method: "Contact or optical profilometer",
+    equipment: "Surface profilometer (Mitutoyo, Mahr, etc.)",
+    acceptanceCriteria: "Within specified Ra/Rz5 range for grade",
+    frequency: "Sample basis: 1 per batch or process validation"
+  },
+  {
+    step: 5,
+    parameter: "Dimensional Accuracy",
+    method: "Caliper or CMM measurement",
+    equipment: "Digital caliper, CMM, optical comparator",
+    acceptanceCriteria: "Within drawing tolerances ±0.1mm typical",
+    frequency: "First article, then sampling per quality plan"
+  },
+  {
+    step: 6,
+    parameter: "Kerf Width Consistency",
+    method: "Measure kerf at multiple locations",
+    equipment: "Optical microscope or caliper",
+    acceptanceCriteria: "Variation <10% along cut length",
+    frequency: "Process validation and troubleshooting"
+  },
+  {
+    step: 7,
+    parameter: "Heat Affected Zone",
+    method: "Metallographic cross-section",
+    equipment: "Microscope, etching chemicals, polishing equipment",
+    acceptanceCriteria: "HAZ depth within grade specification",
+    frequency: "Initial qualification, then periodic audit"
+  },
+  {
+    step: 8,
+    parameter: "Burr Height",
+    method: "Tactile inspection and measurement",
+    equipment: "Micrometer, burr gauge",
+    acceptanceCriteria: "Grade 1-2: <0.05mm, Grade 3: <0.15mm, Grade 4: <0.30mm",
+    frequency: "Every part for safety and assembly concerns"
+  }
+];
 
 
 

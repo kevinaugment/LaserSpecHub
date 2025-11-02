@@ -109,25 +109,25 @@ export function MaterialParametersTable({ materialData }: MaterialParametersTabl
         {powerLevel.parameters.map((param, idx) => (
           <Card key={idx}>
             <CardHeader className="pb-3">
-              <CardTitle className="text-base">厚度: {param.thickness} mm</CardTitle>
+              <CardTitle className="text-base">Thickness: {param.thickness} mm</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-muted-foreground">切割速度:</span>
+                <span className="text-muted-foreground">Cutting Speed:</span>
                 <span className="font-medium text-blue-600 dark:text-blue-400">
                   {param.speedMPerMin} m/min
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">气体压力:</span>
+                <span className="text-muted-foreground">Gas Pressure:</span>
                 <span className="font-medium">{param.gasPressureBar} bar</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">喷嘴直径:</span>
+                <span className="text-muted-foreground">Nozzle Diameter:</span>
                 <span className="font-medium">ø {param.nozzleDiameterMm} mm</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">焦点位置:</span>
+                <span className="text-muted-foreground">Focus Position:</span>
                 <span className={`font-medium ${param.focusPositionMm < 0 ? 'text-red-600 dark:text-red-400' : param.focusPositionMm > 0 ? 'text-green-600 dark:text-green-400' : 'text-gray-600'}`}>
                   {param.focusPositionMm > 0 ? '+' : ''}{param.focusPositionMm} mm
                 </span>
@@ -147,7 +147,7 @@ export function MaterialParametersTable({ materialData }: MaterialParametersTabl
         <Card className="bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-800">
           <CardContent className="pt-4">
             <h4 className="text-sm font-semibold mb-2 text-blue-900 dark:text-blue-200">
-              重要提示
+              Important Notes
             </h4>
             <ul className="space-y-1 text-sm text-blue-800 dark:text-blue-300">
               {materialData.generalNotes.map((note, i) => (

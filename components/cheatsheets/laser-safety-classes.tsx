@@ -1,20 +1,45 @@
 'use client';
 
 import { LASER_SAFETY_CLASSES, EYE_PROTECTION, REGULATORY_STANDARDS } from '@/lib/data/cheatsheets/laser-safety-data';
+import { LaserSafetySymbol } from './laser-safety-symbols';
 
 export function LaserSafetyClasses() {
+  const getCardStyles = (laserClass: string) => {
+    if (laserClass === 'Class 1' || laserClass === 'Class 1M') {
+      return 'border-2 border-green-300 bg-green-50/30';
+    }
+    if (laserClass === 'Class 2' || laserClass === 'Class 2M') {
+      return 'border-2 border-yellow-300 bg-yellow-50/30';
+    }
+    if (laserClass === 'Class 3R') {
+      return 'border-2 border-orange-300 bg-orange-50/30';
+    }
+    if (laserClass === 'Class 3B') {
+      return 'border-2 border-orange-400 bg-orange-50/50';
+    }
+    if (laserClass === 'Class 4') {
+      return 'border-2 border-red-400 bg-red-50/50';
+    }
+    return 'border border-gray-200';
+  };
+
   return (
     <div className="space-y-8">
       {/* Classes Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {LASER_SAFETY_CLASSES.map((c) => (
-          <div key={c.class} className="border border-gray-200 rounded-lg p-5">
+          <div key={c.class} className={`${getCardStyles(c.class)} rounded-lg p-5`}>
             <div className="flex items-start justify-between mb-3">
-              <div>
-                <h3 className="text-xl font-bold text-gray-900">{c.class}</h3>
-                <div className="text-sm text-gray-600">{c.dangerLevel}</div>
+              <div className="flex items-center gap-3">
+                <LaserSafetySymbol laserClass={c.class} size={48} />
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">{c.class}</h3>
+                  <div className="text-sm text-gray-600">{c.dangerLevel}</div>
+                </div>
               </div>
-              <span className="px-3 py-1 bg-primary-100 text-primary-800 text-xs font-medium rounded-full">
+            </div>
+            <div className="mb-3">
+              <span className="px-3 py-1 bg-white border border-gray-300 text-gray-900 text-xs font-medium rounded-full">
                 {c.powerLimit}
               </span>
             </div>
@@ -23,13 +48,13 @@ export function LaserSafetyClasses() {
               <div className="text-xs font-medium text-gray-700 mb-1">Examples</div>
               <div className="flex flex-wrap gap-1">
                 {c.examples.map((e, i) => (
-                  <span key={i} className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-xs">{e}</span>
+                  <span key={i} className="px-2 py-0.5 bg-white text-gray-700 rounded text-xs border border-gray-200">{e}</span>
                 ))}
               </div>
             </div>
             <div className="mb-3">
               <div className="text-xs font-medium text-gray-700 mb-1">Protection</div>
-              <div className="text-sm text-gray-800">{c.protectionRequired}</div>
+              <div className="text-sm text-gray-800 font-medium">{c.protectionRequired}</div>
             </div>
             {c.workplaceRequirements.length > 0 && (
               <div>
