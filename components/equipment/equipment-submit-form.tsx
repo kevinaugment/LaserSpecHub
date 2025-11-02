@@ -14,13 +14,27 @@ export default function EquipmentSubmitForm() {
     setSuccess(null);
     setError(null);
     try {
+      // 辅助函数：转换为数字
+      const toNum = (key: string) => {
+        const val = formData.get(key);
+        if (!val || val === '') return null;
+        const n = Number(val);
+        return Number.isFinite(n) ? n : null;
+      };
+
+      // 解析应用领域
+      const applicationsText = formData.get('applications_text') as string;
+      const applications = applicationsText 
+        ? applicationsText.split(',').map(s => s.trim()).filter(Boolean)
+        : [];
+
       const payload: any = {
         brand: formData.get('brand'),
         model: formData.get('model'),
         laser_type: formData.get('laser_type'),
-        power_kw: formData.get('power_kw') ? Number(formData.get('power_kw')) : null,
-        work_area_length: formData.get('work_area_length') ? Number(formData.get('work_area_length')) : null,
-        work_area_width: formData.get('work_area_width') ? Number(formData.get('work_area_width')) : null,
+        power_kw: toNum('power_kw'),
+        work_area_length: toNum('work_area_length'),
+        work_area_width: toNum('work_area_width'),
         origin_country: formData.get('origin_country') || null,
         manufacturer_url: formData.get('manufacturer_url') || null,
         spec_sheet_url: formData.get('spec_sheet_url') || null,
@@ -29,6 +43,16 @@ export default function EquipmentSubmitForm() {
         submitter_name: formData.get('submitter_name') || null,
         submitter_email: formData.get('submitter_email') || null,
         source_url: formData.get('source_url') || null,
+        // 切割厚度（主要材料）
+        max_thickness_steel: toNum('max_thickness_steel'),
+        max_thickness_aluminum: toNum('max_thickness_aluminum'),
+        max_thickness_stainless: toNum('max_thickness_stainless'),
+        // 设备尺寸
+        dimension_length: toNum('dimension_length'),
+        dimension_width: toNum('dimension_width'),
+        dimension_height: toNum('dimension_height'),
+        // 应用领域
+        applications: applications.length > 0 ? applications : null,
       };
 
       const res = await fetch('/api/equipment/submit', {
@@ -119,14 +143,66 @@ export default function EquipmentSubmitForm() {
         <Input name="description" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="mb-1 block text-sm font-medium">Submitter Name</label>
-          <Input name="submitter_name" />
+      {/* 切割厚度 - 主要材料 */}
+      <div className="border-t pt-4 mt-4">
+        <h4 className="text-sm font-semibold mb-3">Max Cutting Thickness (mm) - Optional</h4>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label className="mb-1 block text-sm font-medium">Steel</label>
+            <Input name="max_thickness_steel" type="number" step="0.1" placeholder="20" />
+          </div>
+          <div>
+            <label className="mb-1 block text-sm font-medium">Aluminum</label>
+            <Input name="max_thickness_aluminum" type="number" step="0.1" placeholder="12" />
+          </div>
+          <div>
+            <label className="mb-1 block text-sm font-medium">Stainless Steel</label>
+            <Input name="max_thickness_stainless" type="number" step="0.1" placeholder="15" />
+          </div>
         </div>
-        <div>
-          <label className="mb-1 block text-sm font-medium">Submitter Email</label>
-          <Input name="submitter_email" type="email" />
+      </div>
+
+      {/* 设备尺寸 */}
+      <div className="border-t pt-4">
+        <h4 className="text-sm font-semibold mb-3">Equipment Dimensions (mm) - Optional</h4>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label className="mb-1 block text-sm font-medium">Length</label>
+            <Input name="dimension_length" type="number" placeholder="6800" />
+          </div>
+          <div>
+            <label className="mb-1 block text-sm font-medium">Width</label>
+            <Input name="dimension_width" type="number" placeholder="2600" />
+          </div>
+          <div>
+            <label className="mb-1 block text-sm font-medium">Height</label>
+            <Input name="dimension_height" type="number" placeholder="2100" />
+          </div>
+        </div>
+      </div>
+
+      {/* 应用领域 */}
+      <div className="border-t pt-4">
+        <label className="mb-1 block text-sm font-medium">Applications (comma-separated)</label>
+        <Input 
+          name="applications_text" 
+          placeholder="Sheet metal fabrication, Automotive parts, Electronics manufacturing" 
+        />
+        <p className="text-xs text-gray-500 mt-1">Separate multiple applications with commas</p>
+      </div>
+
+      {/* 提交者信息 */}
+      <div className="border-t pt-4">
+        <h4 className="text-sm font-semibold mb-3">Submitter Information - Optional</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="mb-1 block text-sm font-medium">Submitter Name</label>
+            <Input name="submitter_name" />
+          </div>
+          <div>
+            <label className="mb-1 block text-sm font-medium">Submitter Email</label>
+            <Input name="submitter_email" type="email" />
+          </div>
         </div>
       </div>
       <div>
