@@ -122,7 +122,7 @@ export function EquipmentCard({
         </div>
 
         {/* Applications */}
-        {equipment.applications && equipment.applications.length > 0 && (
+        {equipment.applications && Array.isArray(equipment.applications) && equipment.applications.length > 0 && (
           <div className="mt-4">
             <p className="text-xs text-gray-500 mb-2">Applications:</p>
             <div className="flex flex-wrap gap-1">
