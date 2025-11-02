@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDatabase } from '@/lib/db/client';
-import type { LaserEquipment } from '@/types/equipment';
 import { parseEquipmentFromDB, prepareEquipmentForDB } from '@/lib/utils/equipment-parser';
 
 export const runtime = 'nodejs';
