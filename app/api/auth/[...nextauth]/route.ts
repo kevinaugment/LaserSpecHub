@@ -7,6 +7,7 @@ import type { DatabaseUser } from '@/types/auth';
 export const runtime = 'nodejs';
 
 const authConfig: NextAuthConfig = {
+  debug: process.env.NODE_ENV === 'development',
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -16,19 +17,24 @@ const authConfig: NextAuthConfig = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
+          console.error('[Auth] Missing credentials');
           return null;
         }
 
         try {
+          console.log('[Auth] Attempting login for:', credentials.email);
+          
           const db = getDatabase();
           const stmt = db.prepare('SELECT * FROM users WHERE email = ?');
           const result = await stmt.bind(credentials.email as string).all();
           
           if (!result.results || result.results.length === 0) {
+            console.error('[Auth] User not found:', credentials.email);
             return null;
           }
 
           const user = result.results[0] as unknown as DatabaseUser;
+          console.log('[Auth] User found, verifying password...');
 
           // Verify password
           const isValidPassword = await bcrypt.compare(
@@ -37,8 +43,11 @@ const authConfig: NextAuthConfig = {
           );
 
           if (!isValidPassword) {
+            console.error('[Auth] Invalid password for:', credentials.email);
             return null;
           }
+
+          console.log('[Auth] Login successful for:', credentials.email, 'Role:', user.role);
 
           // Return user object (will be stored in JWT)
           return {
@@ -48,7 +57,11 @@ const authConfig: NextAuthConfig = {
             role: user.role,
           };
         } catch (error) {
-          console.error('Auth error:', error);
+          console.error('[Auth] Critical error during authentication:', error);
+          console.error('[Auth] Error details:', {
+            message: error instanceof Error ? error.message : 'Unknown error',
+            stack: error instanceof Error ? error.stack : undefined,
+          });
           return null;
         }
       },
