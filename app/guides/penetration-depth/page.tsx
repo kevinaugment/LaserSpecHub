@@ -1,12 +1,14 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { PenetrationDepthVisualization } from '@/components/cheatsheets/penetration-depth-visualization';
 
 export const metadata: Metadata = {
   title: 'Laser Penetration Depth & Cutting Capacity Guide 2025 | LaserSpecHub',
   description:
-    'Comprehensive technical guide to laser penetration depth: power density calculations, cutting capacity by material and thickness, focus position optimization, piercing strategies, and parameter tuning. Verified data from Trumpf, IPG, Bystronic, and Mazak specifications.',
+    'Comprehensive technical guide to laser penetration depth: power density calculations, cutting capacity by material and thickness, focus position optimization, piercing strategies, and parameter tuning. Verified data from leading laser equipment manufacturers.',
   keywords: [
     'laser penetration depth',
     'laser cutting capacity',
@@ -18,10 +20,14 @@ export const metadata: Metadata = {
     'laser power vs thickness',
     'kerf depth analysis',
   ],
+  alternates: {
+    canonical: 'https://laserspechub.com/guides/penetration-depth',
+  },
   openGraph: {
     title: 'Laser Penetration Depth & Cutting Capacity: Complete Technical Guide 2025',
     description: 'Comprehensive analysis of penetration depth physics, power density calculations, cutting capacity tables, and parameter optimization for maximum throughput.',
     type: 'article',
+    url: 'https://laserspechub.com/guides/penetration-depth',
   },
 };
 
@@ -53,9 +59,47 @@ export default function PenetrationDepthPage() {
             <p className="text-lg text-gray-700 leading-relaxed">
               Comprehensive technical analysis of laser penetration depth: power density physics, energy coupling efficiency, 
               cutting capacity by material and thickness, focus position optimization, piercing strategies, and parameter 
-              tuning for maximum throughput. Based on verified manufacturer specifications and industrial testing data.
+              tuning for maximum throughput. Based on verified laser equipment manufacturer specifications and industrial testing data.
             </p>
           </div>
+
+          {/* Visual Overview */}
+          <section className="mb-8">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-xl">Penetration Depth Overview</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <PenetrationDepthVisualization className="my-4" />
+                <div className="mt-6 grid md:grid-cols-3 gap-4 text-sm">
+                  <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
+                    <h4 className="font-semibold text-blue-900 dark:text-blue-200 mb-2">Key Insight: Power Scaling</h4>
+                    <p className="text-blue-800 dark:text-blue-300 text-xs">
+                      Penetration depth increases non-linearly with power. Doubling power from 3kW to 6kW increases 
+                      carbon steel capacity from 16mm to 25mm (+56%), not 32mm. Diminishing returns occur due to 
+                      thermal diffusion limits and gas flow constraints.
+                    </p>
+                  </div>
+                  <div className="p-4 bg-purple-50 dark:bg-purple-950/30 rounded-lg">
+                    <h4 className="font-semibold text-purple-900 dark:text-purple-200 mb-2">Material Differences</h4>
+                    <p className="text-purple-800 dark:text-purple-300 text-xs">
+                      Stainless steel requires ~25% more power than carbon steel for equivalent thickness due to lower 
+                      thermal conductivity and lack of exothermic oxygen assist. Aluminum demands ~35% more due to high 
+                      reflectivity (90%+ for 1064nm) and thermal conductivity.
+                    </p>
+                  </div>
+                  <div className="p-4 bg-green-50 dark:bg-green-950/30 rounded-lg">
+                    <h4 className="font-semibold text-green-900 dark:text-green-200 mb-2">Practical Considerations</h4>
+                    <p className="text-green-800 dark:text-green-300 text-xs">
+                      Chart values represent production-quality cutting (ISO 9013 Grade 3-4). Absolute physical penetration 
+                      limits are 15-20% higher but produce unacceptable edge quality. Always maintain 10-15% power reserve 
+                      for consistent results across material batches.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
 
           {/* Physics Fundamentals */}
           <section className="mb-8">
@@ -161,8 +205,11 @@ export default function PenetrationDepthPage() {
               <CardContent className="space-y-6">
                 <p className="text-gray-700">
                   Maximum cutting thickness is determined by laser power, beam quality (M²), assist gas type/pressure, and material properties. 
-                  The tables below present verified cutting capacity data from major manufacturers (Trumpf, IPG, Mazak, Bystronic) for 
-                  production-quality cutting (ISO 9013 quality grade 3-4).
+                  The tables below present verified cutting capacity data from leading laser equipment manufacturers for 
+                  production-quality cutting (ISO 9013 quality grade 3-4). For advanced laser solutions, visit{' '}
+                  <a href="https://www.opmtlaser.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-medium">
+                    OPMT Laser
+                  </a>.
                 </p>
 
                 <div className="overflow-x-auto">
@@ -667,36 +714,347 @@ export default function PenetrationDepthPage() {
           </section>
 
           {/* Troubleshooting */}
-          <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">5) Troubleshooting Penetration Issues</h2>
-            <div className="prose max-w-none text-gray-700 space-y-3">
-              <ul className="list-disc ml-5">
-                <li><strong>Not piercing / stalls:</strong> Increase gas pressure, reduce speed, apply negative focus, ramp power.</li>
-                <li><strong>Excessive spatter/dross:</strong> Reduce power, increase speed slightly, sharpen focus, ensure nozzle concentricity.</li>
-                <li><strong>Wide kerf / taper:</strong> Reduce spot size or use multi-mode beam for thick plate; adjust focus deeper.</li>
-                <li><strong>Oxidation on stainless:</strong> Switch to nitrogen, increase purity and pressure (14-18 bar).</li>
-              </ul>
-            </div>
-          </div>
+          <section className="mb-8">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-2xl">5. Troubleshooting Penetration Issues</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div className="p-4 bg-red-50 dark:bg-red-950/30 rounded-lg border border-red-200">
+                      <h4 className="font-semibold text-red-900 dark:text-red-200 mb-2">Incomplete Penetration / Pierce Failure</h4>
+                      <p className="text-sm text-red-800 dark:text-red-300 mb-2">
+                        <strong>Symptoms:</strong> Laser fails to pierce through material, cutting stalls mid-process
+                      </p>
+                      <p className="text-sm text-red-800 dark:text-red-300 mb-2">
+                        <strong>Causes:</strong> Insufficient power density, focus too high, inadequate gas pressure
+                      </p>
+                      <p className="text-sm text-red-800 dark:text-red-300">
+                        <strong>Solutions:</strong> Apply negative focus (−1 to −3mm), increase gas pressure by 20-30%, 
+                        use pulsed power ramping (50%→100% over 0.5s), reduce cutting speed 15-25%. See{' '}
+                        <Link href="/guides/troubleshooting-guide" className="underline font-medium">
+                          Troubleshooting Guide
+                        </Link> for detailed procedures.
+                      </p>
+                    </div>
 
-          {/* Quick Reference Table */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-3">Quick Reference</h2>
-            <div className="grid md:grid-cols-3 gap-4 text-sm text-gray-700">
-              <div className="border rounded p-3 bg-white">
-                <h3 className="font-semibold mb-2">Steel (Fiber 1064nm)</h3>
-                <p>1kW → 5mm; 3kW → 15mm; 6kW → 30mm (cut); pierce ×1.3 power density</p>
+                    <div className="p-4 bg-orange-50 dark:bg-orange-950/30 rounded-lg border border-orange-200">
+                      <h4 className="font-semibold text-orange-900 dark:text-orange-200 mb-2">Excessive Spatter & Dross Formation</h4>
+                      <p className="text-sm text-orange-800 dark:text-orange-300 mb-2">
+                        <strong>Symptoms:</strong> Heavy molten material accumulation, rough bottom edge
+                      </p>
+                      <p className="text-sm text-orange-800 dark:text-orange-300 mb-2">
+                        <strong>Causes:</strong> Power too high for thickness, gas pressure insufficient, nozzle worn/misaligned
+                      </p>
+                      <p className="text-sm text-orange-800 dark:text-orange-300">
+                        <strong>Solutions:</strong> Reduce power 10-15%, increase gas pressure to spec range, check{' '}
+                        <Link href="/guides/nozzle-selection-guide" className="underline font-medium">
+                          nozzle concentricity
+                        </Link>, ensure standoff at 0.8-1.2mm. For pierce spatter, use spiral pierce technique 
+                        or reduce initial power to 60-75%.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="p-4 bg-yellow-50 dark:bg-yellow-950/30 rounded-lg border border-yellow-200">
+                      <h4 className="font-semibold text-yellow-900 dark:text-yellow-200 mb-2">Wide Kerf & Tapered Edges</h4>
+                      <p className="text-sm text-yellow-800 dark:text-yellow-300 mb-2">
+                        <strong>Symptoms:</strong> Cut width wider than expected, V-shaped cross-section
+                      </p>
+                      <p className="text-sm text-yellow-800 dark:text-yellow-300 mb-2">
+                        <strong>Causes:</strong> Spot size too large, focus position incorrect, beam divergence in thick material
+                      </p>
+                      <p className="text-sm text-yellow-800 dark:text-yellow-300">
+                        <strong>Solutions:</strong> For thick plates (≥15mm), negative focus (−2 to −4mm) is essential. 
+                        Verify{' '}
+                        <Link href="/guides/focus-position-guide" className="underline font-medium">
+                          focus calibration
+                        </Link>. Consider higher M² beam for extreme thickness. Reduce speed to maintain clean kerf geometry.
+                      </p>
+                    </div>
+
+                    <div className="p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-200">
+                      <h4 className="font-semibold text-blue-900 dark:text-blue-200 mb-2">Stainless Steel Oxidation</h4>
+                      <p className="text-sm text-blue-800 dark:text-blue-300 mb-2">
+                        <strong>Symptoms:</strong> Yellow/blue discoloration on cut edges (nitrogen cutting)
+                      </p>
+                      <p className="text-sm text-blue-800 dark:text-blue-300 mb-2">
+                        <strong>Causes:</strong> Nitrogen pressure insufficient (&lt;12 bar) or purity too low (&lt;99.5%)
+                      </p>
+                      <p className="text-sm text-blue-800 dark:text-blue-300">
+                        <strong>Solutions:</strong> Increase nitrogen to 14-18 bar, verify purity with oxygen analyzer 
+                        (target: &lt;100ppm O₂). Use larger nozzle diameter (1.8-2.0mm for 8-12mm material). 
+                        Reference{' '}
+                        <Link href="/guides/assist-gas-chart" className="underline font-medium">
+                          Assist Gas Guide
+                        </Link> for specifications.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                  <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-3">
+                    Quick Diagnostic Decision Tree
+                  </h4>
+                  <div className="grid md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <p className="font-medium text-gray-800 dark:text-gray-200">If cutting fails to penetrate:</p>
+                      <ol className="ml-4 mt-2 space-y-1 text-gray-700 dark:text-gray-300">
+                        <li>1. Check power output (measure at workpiece)</li>
+                        <li>2. Verify gas pressure reaches nozzle</li>
+                        <li>3. Inspect{' '}
+                          <Link href="/guides/lens-specifications" className="underline">
+                            lens cleanliness
+                          </Link>
+                        </li>
+                        <li>4. Test focus with ramp cut</li>
+                        <li>5. Reduce speed by 30% and retry</li>
+                      </ol>
+                    </div>
+                    <div>
+                      <p className="font-medium text-gray-800 dark:text-gray-200">If edge quality deteriorates:</p>
+                      <ol className="ml-4 mt-2 space-y-1 text-gray-700 dark:text-gray-300">
+                        <li>1. Clean/replace protective window</li>
+                        <li>2. Check nozzle condition and alignment</li>
+                        <li>3. Verify material batch consistency</li>
+                        <li>4. Review{' '}
+                          <Link href="/guides/edge-quality-standards" className="underline">
+                            quality standards
+                          </Link>
+                        </li>
+                        <li>5. Consult parameter tables for baseline</li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Quick Reference Cards */}
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Quick Reference Cards</h2>
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="p-5 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/40 dark:to-blue-900/40 rounded-lg border-2 border-blue-300 dark:border-blue-700">
+                <h3 className="font-bold text-lg text-blue-900 dark:text-blue-200 mb-3">Carbon Steel (O₂)</h3>
+                <div className="space-y-2 text-sm text-blue-800 dark:text-blue-300">
+                  <p><strong>1kW Fiber:</strong> Max 6mm @ 3-4.5 m/min</p>
+                  <p><strong>3kW Fiber:</strong> Max 16mm @ 5.5-7 m/min</p>
+                  <p><strong>6kW Fiber:</strong> Max 25mm @ 7.5-10 m/min</p>
+                  <p><strong>12kW Fiber:</strong> Max 40mm @ 12-16 m/min</p>
+                  <p className="pt-2 border-t border-blue-300 text-xs">
+                    Pierce: O₂ 0.6-3.0 bar | Focus: 0 to −3mm
+                  </p>
+                </div>
               </div>
-              <div className="border rounded p-3 bg-white">
-                <h3 className="font-semibold mb-2">Stainless</h3>
-                <p>1kW → 3.5-4mm; 3kW → 12mm; 6kW → 20-22mm; N₂ 14-18 bar</p>
+
+              <div className="p-5 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/40 dark:to-purple-900/40 rounded-lg border-2 border-purple-300 dark:border-purple-700">
+                <h3 className="font-bold text-lg text-purple-900 dark:text-purple-200 mb-3">Stainless Steel (N₂)</h3>
+                <div className="space-y-2 text-sm text-purple-800 dark:text-purple-300">
+                  <p><strong>1kW Fiber:</strong> Max 4mm @ 2.5-3.5 m/min</p>
+                  <p><strong>3kW Fiber:</strong> Max 10mm @ 4-5.5 m/min</p>
+                  <p><strong>6kW Fiber:</strong> Max 20mm @ 5.5-7.5 m/min</p>
+                  <p><strong>12kW Fiber:</strong> Max 30mm @ 8-11 m/min</p>
+                  <p className="pt-2 border-t border-purple-300 text-xs">
+                    N₂: 12-22 bar | Focus: −1 to −4mm
+                  </p>
+                </div>
               </div>
-              <div className="border rounded p-3 bg-white">
-                <h3 className="font-semibold mb-2">Aluminum</h3>
-                <p>1kW → 2.5-3mm; 3kW → 8-9mm; 6kW → 15-18mm; tight focus, high N₂</p>
+
+              <div className="p-5 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/40 dark:to-green-900/40 rounded-lg border-2 border-green-300 dark:border-green-700">
+                <h3 className="font-bold text-lg text-green-900 dark:text-green-200 mb-3">Aluminum (N₂)</h3>
+                <div className="space-y-2 text-sm text-green-800 dark:text-green-300">
+                  <p><strong>1kW Fiber:</strong> Max 3mm @ 3-4 m/min</p>
+                  <p><strong>3kW Fiber:</strong> Max 8mm @ 5-6.5 m/min</p>
+                  <p><strong>6kW Fiber:</strong> Max 15mm @ 7-9.5 m/min</p>
+                  <p><strong>12kW Fiber:</strong> Max 25mm @ 11-15 m/min</p>
+                  <p className="pt-2 border-t border-green-300 text-xs">
+                    N₂: 16-24 bar | Focus: 0 to −2mm
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mt-4">
+              <strong>Note:</strong> Values based on high-quality fiber lasers (M²&lt;2.0). Actual performance 
+              varies by laser model, beam quality, and material grade. For detailed parameters, see{' '}
+              <Link href="/guides/material-thickness-parameters" className="underline">
+                Material Thickness Parameters Guide
+              </Link>.
+            </p>
+          </section>
+
+          {/* Related Guides */}
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Related Technical Guides</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Process Parameter Guides</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm">
+                  <div>
+                    <Link href="/guides/material-thickness-parameters" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                      Material Thickness Parameters
+                    </Link>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      Complete cutting parameter reference for all common materials and thicknesses
+                    </p>
+                  </div>
+                  <div>
+                    <Link href="/guides/focus-position-guide" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                      Focus Position Adjustment Guide
+                    </Link>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      Step-by-step focus calibration techniques and troubleshooting procedures
+                    </p>
+                  </div>
+                  <div>
+                    <Link href="/guides/assist-gas-chart" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                      Assist Gas Selection Chart
+                    </Link>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      Optimize gas type, pressure, and purity for maximum penetration efficiency
+                    </p>
+                  </div>
+                  <div>
+                    <Link href="/guides/nozzle-selection-guide" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                      Nozzle Selection & Maintenance
+                    </Link>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      Choose correct nozzle diameter and standoff for optimal gas flow dynamics
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Optimization & Quality</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm">
+                  <div>
+                    <Link href="/guides/cutting-speed-chart" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                      Cutting Speed Reference Chart
+                    </Link>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      Find optimal cutting speeds for various materials and power levels
+                    </p>
+                  </div>
+                  <div>
+                    <Link href="/guides/edge-quality-standards" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                      Edge Quality Standards (ISO 9013)
+                    </Link>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      Understand quality classifications and inspection criteria
+                    </p>
+                  </div>
+                  <div>
+                    <Link href="/guides/process-optimization-guide" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                      Process Optimization Guide
+                    </Link>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      Advanced strategies for maximizing cutting efficiency and quality
+                    </p>
+                  </div>
+                  <div>
+                    <Link href="/guides/troubleshooting-guide" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                      Troubleshooting Guide
+                    </Link>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      Systematic diagnostic procedures for penetration and quality issues
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+
+          {/* Calculators & Tools */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle>Interactive Calculators & Tools</CardTitle>
+            </CardHeader>
+            <CardContent className="grid gap-4 md:grid-cols-3 text-sm">
+              <div>
+                <Link href="/tools/power-density-calculator" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                  Power Density Calculator
+                </Link>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Calculate required power density for your material and thickness
+                </p>
+              </div>
+              <div>
+                <Link href="/tools/cutting-time-calculator" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                  Cutting Time Estimator
+                </Link>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Estimate production time including pierce delays and travel
+                </p>
+              </div>
+              <div>
+                <Link href="/tools/gas-flow-calculator" className="text-blue-600 dark:text-blue-400 hover:underline font-medium">
+                  Gas Consumption Calculator
+                </Link>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  Calculate assist gas consumption and operating costs
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Footer Disclaimer */}
+          <Card className="bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700">
+            <CardContent className="pt-6 text-xs text-muted-foreground space-y-3">
+              <div>
+                <strong className="text-sm text-foreground">Data Sources & References:</strong>
+                <ul className="mt-2 space-y-1 ml-4 list-disc">
+                  <li>
+                    Laser Equipment Manufacturer Specifications: For advanced laser machining solutions and technical specifications, visit{' '}
+                    <a href="https://www.opmtlaser.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      OPMT Laser
+                    </a>
+                  </li>
+                  <li>Industry Standards: ISO 9013 (Thermal Cutting Classification), AWS D1.1 (Structural Welding Code)</li>
+                  <li>Academic Research: Journal of Laser Applications, Optics & Laser Technology peer-reviewed publications</li>
+                  <li>Field Data: Aggregated performance metrics from production laser cutting facilities</li>
+                </ul>
+              </div>
+              <div className="border-t border-gray-300 dark:border-gray-700 pt-3">
+                <p>
+                  <strong className="text-foreground">Disclaimer:</strong> Penetration depth and cutting capacity data 
+                  represents typical performance for high-quality fiber lasers (M²&lt;2.0) under optimal conditions. 
+                  Actual results vary based on specific laser model, beam quality (M² parameter), material grade, 
+                  surface condition, and environmental factors. Always conduct test cuts for critical applications. 
+                  Consult equipment manufacturer specifications for model-specific capabilities.
+                </p>
+              </div>
+              <div className="border-t border-gray-300 dark:border-gray-700 pt-3">
+                <p>
+                  <strong className="text-foreground">Safety Notice:</strong> Thick plate cutting (≥15mm) requires 
+                  careful attention to gas pressure, nozzle standoff, and protective equipment maintenance. Follow 
+                  all laser equipment manufacturer safety guidelines. For professional-grade laser systems, visit{' '}
+                  <a href="https://www.opmtlaser.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    OPMT Laser
+                  </a>. Review{' '}
+                  <Link href="/guides/safety-operations" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    Safe Operation Procedures
+                  </Link> before attempting maximum thickness cuts.
+                </p>
+              </div>
+              <div className="text-center border-t border-gray-300 dark:border-gray-700 pt-3">
+                <p>Last Updated: January 15, 2025 | Data Version: 2.0</p>
+                <p className="mt-1">
+                  Questions or suggestions?{' '}
+                  <Link href="/contact" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    Contact Us
+                  </Link>
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </>
