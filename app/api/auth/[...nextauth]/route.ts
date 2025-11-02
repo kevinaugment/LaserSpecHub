@@ -6,7 +6,7 @@ import type { DatabaseUser } from '@/types/auth';
 
 export const runtime = 'nodejs';
 
-// NextAuth v5 handler configuration
+// NextAuth v4 handler configuration
 const handler = NextAuth({
   debug: process.env.NODE_ENV === 'development',
   providers: [
@@ -115,7 +115,7 @@ const handler = NextAuth({
     strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
-  secret: process.env.NEXTAUTH_SECRET || 'your-secret-key-change-in-production',
+  secret: process.env.NEXTAUTH_SECRET,
 });
 
 export { handler as GET, handler as POST };
