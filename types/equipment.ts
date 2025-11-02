@@ -73,10 +73,13 @@ export interface LaserEquipment {
   cutting_speed_aluminum_10mm: number | null;
   cutting_speed_stainless_5mm: number | null;
   cutting_speed_stainless_10mm: number | null;
+  cutting_speed_copper_5mm: number | null;
+  cutting_speed_brass_5mm: number | null;
   cutting_speed_acrylic_5mm: number | null;
   cutting_speed_acrylic_10mm: number | null;
   cutting_speed_wood_5mm: number | null;
   cutting_speed_wood_10mm: number | null;
+  cutting_speed_mdf_5mm: number | null;
   cutting_speed_titanium_5mm: number | null;
   
   // Dimensions - individual fields (NEW flattened structure)
