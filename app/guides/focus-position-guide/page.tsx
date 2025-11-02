@@ -30,28 +30,28 @@ export const metadata: Metadata = {
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
-  name: '激光切割焦点位置调整指南',
-  description: '详细的激光焦点位置调整操作步骤和方法',
+  name: 'Laser Cutting Focus Position Adjustment Guide',
+  description: 'Detailed step-by-step guide for laser focus position adjustment and calibration',
   step: [
     {
       '@type': 'HowToStep',
-      name: '理解焦点位置基础概念',
-      text: '了解正焦、零焦、负焦的定义和对切割质量的影响',
+      name: 'Understand Focus Position Fundamentals',
+      text: 'Learn definitions of positive, zero, and negative focus and their impact on cutting quality',
     },
     {
       '@type': 'HowToStep',
-      name: '选择适合的调整方法',
-      text: '根据设备和需求选择斜板法、打点法或自动对焦系统',
+      name: 'Select Appropriate Adjustment Method',
+      text: 'Choose ramp test, dot test, or auto-focus system based on equipment and requirements',
     },
     {
       '@type': 'HowToStep',
-      name: '执行焦点调整操作',
-      text: '按照标准步骤进行焦点位置的调整和校准',
+      name: 'Perform Focus Adjustment',
+      text: 'Follow standard procedures to adjust and calibrate focus position',
     },
     {
       '@type': 'HowToStep',
-      name: '验证和微调',
-      text: '通过试切验证焦点位置是否正确,并根据需要微调',
+      name: 'Verify and Fine-Tune',
+      text: 'Verify focus position through test cuts and fine-tune as needed',
     },
   ],
 };
@@ -62,41 +62,41 @@ export default function Page() {
       <StructuredData type="HowTo" data={structuredData} />
 
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-3">激光切割焦点位置调整指南</h1>
+        <h1 className="text-3xl font-bold mb-3">Laser Cutting Focus Position Adjustment Guide</h1>
         <p className="text-lg text-muted-foreground">
-          掌握正确的焦点位置调整方法,提升切割质量和效率
+          Master correct focus position adjustment methods to improve cutting quality and efficiency
         </p>
       </div>
 
       {/* Quick Start */}
       <Card className="mb-8 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/30 dark:to-cyan-950/30 border-blue-200 dark:border-blue-800">
         <CardHeader>
-          <CardTitle className="text-lg">快速开始</CardTitle>
+          <CardTitle className="text-lg">Quick Start</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3 text-sm">
           <div>
-            <strong>为什么需要调整焦点位置？</strong>
+            <strong>Why adjust focus position?</strong>
             <p className="text-muted-foreground mt-1">
-              焦点位置直接影响能量密度分布,从而影响切割速度、切边质量和穿透能力。
-              不同材料和厚度需要不同的焦点位置来获得最佳切割效果。
+              Focus position directly affects energy density distribution, thereby impacting cutting speed, edge quality, and penetration capability.
+              Different materials and thicknesses require different focus positions for optimal cutting results.
             </p>
           </div>
           <div>
-            <strong>多久需要调整一次？</strong>
+            <strong>How often should focus be adjusted?</strong>
             <p className="text-muted-foreground mt-1">
-              新设备安装时、更换聚焦镜片后、切割质量下降时、或每季度定期校准一次。
+              After new equipment installation, after replacing focusing lens, when cutting quality deteriorates, or perform quarterly calibration.
             </p>
           </div>
         </CardContent>
       </Card>
 
-      {/* 1. 焦点位置基础概念 */}
+      {/* 1. Focus Position Fundamentals */}
       <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">1. 焦点位置基础概念</h2>
+        <h2 className="text-2xl font-semibold mb-4">1. Focus Position Fundamentals</h2>
 
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle>焦点位置定义</CardTitle>
+            <CardTitle>Focus Position Definitions</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid gap-4 md:grid-cols-3">
@@ -105,13 +105,13 @@ export default function Page() {
                   负焦 (Negative Focus)
                 </h4>
                 <p className="text-sm text-red-800 dark:text-red-300 mb-2">
-                  焦点在材料内部
+                  Focus inside material
                 </p>
                 <div className="text-xs text-muted-foreground space-y-1">
-                  <div>• 焦点位置: -1 ~ -5 mm</div>
-                  <div>• 能量集中在内部</div>
-                  <div>• 适合厚板切割</div>
-                  <div>• 穿透能力强</div>
+                  <div>• Focus position: -1 ~ -5 mm</div>
+                  <div>• Energy concentrated internally</div>
+                  <div>• Suitable for thick plate cutting</div>
+                  <div>• Strong penetration capability</div>
                 </div>
               </div>
 
@@ -120,13 +120,13 @@ export default function Page() {
                   零焦 (Zero Focus)
                 </h4>
                 <p className="text-sm text-green-800 dark:text-green-300 mb-2">
-                  焦点在材料表面
+                  Focus at material surface
                 </p>
                 <div className="text-xs text-muted-foreground space-y-1">
-                  <div>• 焦点位置: 0 mm</div>
-                  <div>• 能量均匀分布</div>
-                  <div>• 通用切割设置</div>
-                  <div>• 平衡性能</div>
+                  <div>• Focus position: 0 mm</div>
+                  <div>• Energy evenly distributed</div>
+                  <div>• General cutting setting</div>
+                  <div>• Balanced performance</div>
                 </div>
               </div>
 
@@ -135,24 +135,24 @@ export default function Page() {
                   正焦 (Positive Focus)
                 </h4>
                 <p className="text-sm text-blue-800 dark:text-blue-300 mb-2">
-                  焦点在材料上方
+                  Focus above material
                 </p>
                 <div className="text-xs text-muted-foreground space-y-1">
-                  <div>• 焦点位置: +0.5 ~ +2 mm</div>
-                  <div>• 能量集中在表面</div>
-                  <div>• 适合薄板切割</div>
-                  <div>• 表面质量好</div>
+                  <div>• Focus position: +0.5 ~ +2 mm</div>
+                  <div>• Energy concentrated on surface</div>
+                  <div>• Suitable for thin sheet cutting</div>
+                  <div>• Good surface quality</div>
                 </div>
               </div>
             </div>
 
             <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-              <h4 className="font-semibold text-sm mb-2">焦点位置对切割质量的影响</h4>
+              <h4 className="font-semibold text-sm mb-2">Impact of Focus Position on Cutting Quality</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• <strong>穿透能力</strong>: 负焦增强穿透,正焦穿透能力较弱</li>
-                <li>• <strong>切边质量</strong>: 零焦和轻微负焦通常切边最平滑</li>
-                <li>• <strong>挂渣情况</strong>: 负焦过深容易在底部挂渣</li>
-                <li>• <strong>切割速度</strong>: 负焦可提高速度,但过深会降低质量</li>
+                <li>• <strong>Penetration Capability</strong>: Negative focus enhances penetration, positive focus has weaker penetration</li>
+                <li>• <strong>Edge Quality</strong>: Zero focus and slight negative focus typically produce smoothest edges</li>
+                <li>• <strong>Dross Formation</strong>: Excessive negative focus can cause bottom dross</li>
+                <li>• <strong>Cutting Speed</strong>: Negative focus can increase speed, but too deep reduces quality</li>
               </ul>
             </div>
           </CardContent>
@@ -160,79 +160,79 @@ export default function Page() {
 
         <Card>
           <CardHeader>
-            <CardTitle>不同材料的最佳焦点位置</CardTitle>
+            <CardTitle>Optimal Focus Position by Material</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b">
-                    <th className="text-left py-3 px-4">材料类型</th>
-                    <th className="text-left py-3 px-4">厚度范围</th>
-                    <th className="text-left py-3 px-4">推荐焦点位置</th>
-                    <th className="text-left py-3 px-4">备注</th>
+                    <th className="text-left py-3 px-4">Material Type</th>
+                    <th className="text-left py-3 px-4">Thickness Range</th>
+                    <th className="text-left py-3 px-4">Recommended Focus Position</th>
+                    <th className="text-left py-3 px-4">Notes</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y">
                   <tr>
-                    <td className="py-3 px-4 font-medium">碳钢</td>
+                    <td className="py-3 px-4 font-medium">Carbon Steel</td>
                     <td className="py-3 px-4">1-6mm</td>
                     <td className="py-3 px-4">
                       <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
                         -1 ~ 0 mm
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-xs text-muted-foreground">氧气切割</td>
+                    <td className="py-3 px-4 text-xs text-muted-foreground">Oxygen cutting</td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-medium">碳钢</td>
+                    <td className="py-3 px-4 font-medium">Carbon Steel</td>
                     <td className="py-3 px-4">6-20mm</td>
                     <td className="py-3 px-4">
                       <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
                         -2 ~ -1 mm
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-xs text-muted-foreground">氧气切割,厚板</td>
+                    <td className="py-3 px-4 text-xs text-muted-foreground">Oxygen cutting, thick plate</td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-medium">不锈钢</td>
+                    <td className="py-3 px-4 font-medium">Stainless Steel</td>
                     <td className="py-3 px-4">1-10mm</td>
                     <td className="py-3 px-4">
                       <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
                         -1 ~ 0 mm
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-xs text-muted-foreground">氮气切割</td>
+                    <td className="py-3 px-4 text-xs text-muted-foreground">Nitrogen cutting</td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-medium">铝合金</td>
+                    <td className="py-3 px-4 font-medium">Aluminum Alloy</td>
                     <td className="py-3 px-4">1-8mm</td>
                     <td className="py-3 px-4">
                       <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
                         0 ~ +1 mm
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-xs text-muted-foreground">氮气切割,正焦或零焦</td>
+                    <td className="py-3 px-4 text-xs text-muted-foreground">Nitrogen cutting, positive or zero focus</td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-medium">铜</td>
+                    <td className="py-3 px-4 font-medium">Copper</td>
                     <td className="py-3 px-4">1-5mm</td>
                     <td className="py-3 px-4">
                       <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
                         +0.5 ~ +1 mm
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-xs text-muted-foreground">高反射材料,正焦</td>
+                    <td className="py-3 px-4 text-xs text-muted-foreground">Highly reflective material, positive focus</td>
                   </tr>
                   <tr>
-                    <td className="py-3 px-4 font-medium">亚克力</td>
+                    <td className="py-3 px-4 font-medium">Acrylic</td>
                     <td className="py-3 px-4">1-20mm</td>
                     <td className="py-3 px-4">
                       <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
                         0 mm
                       </span>
                     </td>
-                    <td className="py-3 px-4 text-xs text-muted-foreground">CO₂激光,零焦</td>
+                    <td className="py-3 px-4 text-xs text-muted-foreground">CO₂ laser, zero focus</td>
                   </tr>
                 </tbody>
               </table>
@@ -241,52 +241,52 @@ export default function Page() {
         </Card>
       </section>
 
-      {/* 2. 焦点位置调整方法 */}
+      {/* 2. Focus Position Adjustment Methods */}
       <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">2. 焦点位置调整方法</h2>
+        <h2 className="text-2xl font-semibold mb-4">2. Focus Position Adjustment Methods</h2>
 
         <p className="text-sm text-muted-foreground mb-4">
-          结合智能控制可显著提升一次性成功率与一致性。部分厂商(如
+          Combined with intelligent control systems, this significantly improves first-time success rate and consistency. Some manufacturers (such as
           <a href="https://opmtlaser.com/technology/auto-focus-tracking" target="_blank" rel="noopener" className="mx-1 underline text-primary"> OPMT Laser</a>
-          )提供自适应对焦/高度跟踪方案,在材料起伏和长时间加工条件下保持稳定焦点。
+          ) offer adaptive focus/height tracking solutions that maintain stable focus under material warpage and long-duration processing conditions.
         </p>
 
-        {/* 方法1: 斜板法 */}
+        {/* Method 1: Ramp Test */}
         <Card className="mb-6">
           <CardHeader>
             <div className="flex items-start justify-between">
               <div>
-                <CardTitle>方法1: 斜板法(最常用)</CardTitle>
+                <CardTitle>Method 1: Ramp Test (Most Common)</CardTitle>
                 <p className="text-sm text-muted-foreground mt-1">
-                  精度高,操作简单,适合大多数设备
+                  High accuracy, simple operation, suitable for most equipment
                 </p>
               </div>
               <span className="px-3 py-1 bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 text-xs font-semibold rounded-full">
-                推荐
+                Recommended
               </span>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <h4 className="font-semibold text-sm mb-2">准备工具</h4>
+              <h4 className="font-semibold text-sm mb-2">Required Tools</h4>
               <ul className="space-y-1 text-sm text-muted-foreground ml-4 list-disc">
-                <li>45°斜铁或斜板(专用工具)</li>
-                <li>测试板材(通常用薄不锈钢或碳钢)</li>
-                <li>卷尺或钢尺</li>
+                <li>45° ramp block or dedicated ramp tool</li>
+                <li>Test plate (typically thin stainless steel or carbon steel)</li>
+                <li>Tape measure or steel ruler</li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold text-sm mb-2">操作步骤</h4>
+              <h4 className="font-semibold text-sm mb-2">Procedure</h4>
               <ol className="space-y-3 text-sm">
                 <li className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-6 h-6 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-xs font-bold">
                     1
                   </span>
                   <div>
-                    <strong>放置斜板</strong>
+                    <strong>Place Ramp Block</strong>
                     <p className="text-muted-foreground mt-1">
-                      将45°斜铁放置在切割台面上,确保斜面朝向激光束。斜铁高度通常为40-60mm。
+                      Place the 45° ramp block on the cutting table, ensuring the ramp surface faces the laser beam. Ramp height is typically 40-60mm.
                     </p>
                   </div>
                 </li>
@@ -295,9 +295,9 @@ export default function Page() {
                     2
                   </span>
                   <div>
-                    <strong>调整切割头高度</strong>
+                    <strong>Adjust Cutting Head Height</strong>
                     <p className="text-muted-foreground mt-1">
-                      将切割头移动到斜板上方,调整Z轴高度,使喷嘴距离斜板表面约1-2mm(正常切割高度)。
+                      Move the cutting head above the ramp block, adjust Z-axis height so the nozzle is approximately 1-2mm from the ramp surface (normal cutting height).
                     </p>
                   </div>
                 </li>
@@ -306,9 +306,9 @@ export default function Page() {
                     3
                   </span>
                   <div>
-                    <strong>脉冲打点</strong>
+                    <strong>Pulse Marking</strong>
                     <p className="text-muted-foreground mt-1">
-                      在斜面上连续打多个脉冲点(5-10个),沿着斜面倾斜方向,间隔5-10mm。使用低功率(100-300W)和短脉冲(10-30ms)。
+                      Fire multiple pulse marks (5-10) along the ramp surface in the inclined direction, spaced 5-10mm apart. Use low power (100-300W) and short pulses (10-30ms).
                     </p>
                   </div>
                 </li>
@@ -317,10 +317,10 @@ export default function Page() {
                     4
                   </span>
                   <div>
-                    <strong>观察结果</strong>
+                    <strong>Observe Results</strong>
                     <p className="text-muted-foreground mt-1">
-                      取下斜板,观察脉冲点。<strong className="text-foreground">最小、最圆、最深的点</strong>即为焦点位置。
-                      使用卷尺测量该点到斜板底部的垂直高度。
+                      Remove the ramp block and observe the pulse marks. The <strong className="text-foreground">smallest, roundest, and deepest mark</strong> indicates the focus position.
+                      Use a tape measure to measure the vertical height from this point to the ramp base.
                     </p>
                   </div>
                 </li>
@@ -329,10 +329,10 @@ export default function Page() {
                     5
                   </span>
                   <div>
-                    <strong>计算焦点偏移</strong>
+                    <strong>Calculate Focus Offset</strong>
                     <p className="text-muted-foreground mt-1">
-                      根据45°斜面几何关系,焦点位置偏移量 = 测量高度 - (斜板高度 / √2)。
-                      调整Z轴参数使焦点位于所需位置(通常为材料表面或略内)。
+                      Based on 45° ramp geometry, focus position offset = measured height - (ramp height / √2).
+                      Adjust Z-axis parameters to position focus at the desired location (typically at material surface or slightly inside).
                     </p>
                   </div>
                 </li>
@@ -341,164 +341,164 @@ export default function Page() {
 
             <div className="bg-blue-50 dark:bg-blue-950/30 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
               <h4 className="font-semibold text-sm mb-2 text-blue-900 dark:text-blue-200">
-                结果判读技巧
+                Result Interpretation Tips
               </h4>
               <ul className="space-y-1 text-sm text-blue-800 dark:text-blue-300">
-                <li>• <strong>最深的点</strong>: 能量密度最高,即为焦点位置</li>
-                <li>• <strong>点的形状</strong>: 应该是圆形,如果是椭圆说明光轴不正</li>
-                <li>• <strong>点的大小</strong>: 焦点处光斑最小,偏离焦点则变大</li>
-                <li>• <strong>重复性</strong>: 建议测量2-3次取平均值,确保准确性</li>
+                <li>• <strong>Deepest Mark</strong>: Highest energy density, indicates focus position</li>
+                <li>• <strong>Mark Shape</strong>: Should be circular; elliptical shape indicates beam axis misalignment</li>
+                <li>• <strong>Mark Size</strong>: Smallest spot at focus, increases when defocused</li>
+                <li>• <strong>Repeatability</strong>: Recommend measuring 2-3 times and averaging for accuracy</li>
               </ul>
             </div>
           </CardContent>
         </Card>
 
-        {/* 方法2: 打点法 */}
+        {/* Method 2: Dot Test */}
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle>方法2: 打点法</CardTitle>
+            <CardTitle>Method 2: Dot Test</CardTitle>
             <p className="text-sm text-muted-foreground mt-1">
-              简单快速,适合快速检查和粗调
+              Simple and fast, suitable for quick checks and rough adjustments
             </p>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <h4 className="font-semibold text-sm mb-2">适用场景</h4>
+              <h4 className="font-semibold text-sm mb-2">Applicable Scenarios</h4>
               <ul className="space-y-1 text-sm text-muted-foreground ml-4 list-disc">
-                <li>快速检查焦点是否偏移</li>
-                <li>没有专用斜板工具时的替代方法</li>
-                <li>定期维护时的快速验证</li>
+                <li>Quick check if focus has shifted</li>
+                <li>Alternative method when dedicated ramp tool unavailable</li>
+                <li>Rapid verification during routine maintenance</li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold text-sm mb-2">操作步骤</h4>
+              <h4 className="font-semibold text-sm mb-2">Procedure</h4>
               <ol className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-bold">1.</span>
-                  <span>在平板材料上,在不同Z高度打多个脉冲点(间隔2-3mm)</span>
+                  <span>Fire multiple pulse marks at different Z heights on flat material (spaced 2-3mm apart)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-bold">2.</span>
-                  <span>观察哪个点最小、最圆、穿透最深</span>
+                  <span>Observe which mark is smallest, roundest, and penetrates deepest</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-bold">3.</span>
-                  <span>该位置即为当前焦点,调整Z轴使其与目标位置一致</span>
+                  <span>This position indicates current focus; adjust Z-axis to match target position</span>
                 </li>
               </ol>
             </div>
 
             <div className="bg-yellow-50 dark:bg-yellow-950/20 p-3 rounded border border-yellow-200 dark:border-yellow-800">
               <p className="text-xs text-yellow-800 dark:text-yellow-300">
-                <strong>注意:</strong> 打点法精度较低,仅适合快速检查。精确调整建议使用斜板法。
+                <strong>Note:</strong> Dot test has lower accuracy, suitable only for quick checks. For precise adjustment, use the ramp test method.
               </p>
             </div>
           </CardContent>
         </Card>
 
-        {/* 方法3: 自动对焦系统 */}
+        {/* Method 3: Auto-Focus System */}
         <Card>
           <CardHeader>
-            <CardTitle>方法3: 自动对焦系统</CardTitle>
+            <CardTitle>Method 3: Auto-Focus System</CardTitle>
             <p className="text-sm text-muted-foreground mt-1">
-              高端设备配备,自动化程度高
+              High-end equipment feature with high automation level
             </p>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <h4 className="font-semibold text-sm mb-2">电容式对焦原理</h4>
+              <h4 className="font-semibold text-sm mb-2">Capacitive Focus Principle</h4>
               <p className="text-sm text-muted-foreground">
-                利用喷嘴与材料表面之间的电容变化,自动检测并调整焦点位置。
-                适用于不平整材料或需要频繁切换厚度的场景。
+                Uses capacitance changes between nozzle and material surface to automatically detect and adjust focus position.
+                Suitable for warped materials or scenarios requiring frequent thickness changes.
               </p>
             </div>
 
             <div>
-              <h4 className="font-semibold text-sm mb-2">操作流程</h4>
+              <h4 className="font-semibold text-sm mb-2">Operation Procedure</h4>
               <ol className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-bold">1.</span>
-                  <span>在控制系统中启用自动对焦功能</span>
+                  <span>Enable auto-focus function in control system</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-bold">2.</span>
-                  <span>设置目标焦点位置偏移量(如-1mm)</span>
+                  <span>Set target focus position offset (e.g., -1mm)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-bold">3.</span>
-                  <span>系统自动检测材料表面并调整Z轴</span>
+                  <span>System automatically detects material surface and adjusts Z-axis</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary font-bold">4.</span>
-                  <span>开始切割,系统实时跟踪焦点位置</span>
+                  <span>Begin cutting; system tracks focus position in real-time</span>
                 </li>
               </ol>
             </div>
 
             <div>
-              <h4 className="font-semibold text-sm mb-2">校准频率建议</h4>
+              <h4 className="font-semibold text-sm mb-2">Calibration Frequency Recommendations</h4>
               <ul className="space-y-1 text-sm text-muted-foreground">
-                <li>• <strong>每天</strong>: 检查电容传感器清洁度</li>
-                <li>• <strong>每周</strong>: 验证校准精度(用标准块)</li>
-                <li>• <strong>每月</strong>: 重新校准系统(如发现偏差)</li>
+                <li>• <strong>Daily</strong>: Check capacitive sensor cleanliness</li>
+                <li>• <strong>Weekly</strong>: Verify calibration accuracy (using standard block)</li>
+                <li>• <strong>Monthly</strong>: Recalibrate system (if deviation detected)</li>
               </ul>
             </div>
           </CardContent>
         </Card>
       </section>
 
-      {/* 3. 焦点位置错误的诊断 */}
+      {/* 3. Focus Position Error Diagnosis */}
       <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">3. 焦点位置错误的诊断</h2>
+        <h2 className="text-2xl font-semibold mb-4">3. Focus Position Error Diagnosis</h2>
 
         <div className="grid gap-6 md:grid-cols-2">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">焦点过高的切割特征</CardTitle>
+              <CardTitle className="text-lg">Cutting Characteristics: Focus Too High</CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="space-y-3 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-red-500 font-bold">×</span>
                   <div>
-                    <strong>切割不穿透</strong>
+                    <strong>Incomplete Penetration</strong>
                     <p className="text-muted-foreground text-xs mt-0.5">
-                      能量密度不足以穿透材料底部
+                      Insufficient energy density to penetrate material bottom
                     </p>
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-red-500 font-bold">×</span>
                   <div>
-                    <strong>底部有毛刺或挂渣</strong>
+                    <strong>Bottom Dross or Burrs</strong>
                     <p className="text-muted-foreground text-xs mt-0.5">
-                      能量不足导致熔融物无法完全吹出
+                      Insufficient energy prevents complete melt ejection
                     </p>
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-red-500 font-bold">×</span>
                   <div>
-                    <strong>切割速度需要降低很多</strong>
+                    <strong>Significant Speed Reduction Required</strong>
                     <p className="text-muted-foreground text-xs mt-0.5">
-                      补偿能量密度不足
+                      Compensates for insufficient energy density
                     </p>
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-red-500 font-bold">×</span>
                   <div>
-                    <strong>表面过度烧蚀</strong>
+                    <strong>Excessive Surface Ablation</strong>
                     <p className="text-muted-foreground text-xs mt-0.5">
-                      能量集中在表面,底部能量不足
+                      Energy concentrated on surface, insufficient at bottom
                     </p>
                   </div>
                 </li>
               </ul>
               <div className="mt-4 p-3 bg-green-50 dark:bg-green-950/20 rounded border border-green-200 dark:border-green-800">
                 <p className="text-xs font-semibold text-green-900 dark:text-green-200">
-                  解决方案: 降低Z轴位置,使焦点下移
+                  Solution: Lower Z-axis position to move focus downward
                 </p>
               </div>
             </CardContent>
@@ -506,50 +506,50 @@ export default function Page() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">焦点过低的切割特征</CardTitle>
+              <CardTitle className="text-lg">Cutting Characteristics: Focus Too Low</CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="space-y-3 text-sm">
                 <li className="flex items-start gap-2">
                   <span className="text-red-500 font-bold">×</span>
                   <div>
-                    <strong>表面切缝过宽</strong>
+                    <strong>Excessively Wide Surface Kerf</strong>
                     <p className="text-muted-foreground text-xs mt-0.5">
-                      焦点在内部,表面光斑较大
+                      Focus inside material, larger surface spot size
                     </p>
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-red-500 font-bold">×</span>
                   <div>
-                    <strong>表面质量差,粗糙度高</strong>
+                    <strong>Poor Surface Quality, High Roughness</strong>
                     <p className="text-muted-foreground text-xs mt-0.5">
-                      表面能量密度不足
+                      Insufficient surface energy density
                     </p>
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-red-500 font-bold">×</span>
                   <div>
-                    <strong>底部切口过窄或烧边</strong>
+                    <strong>Bottom Kerf Too Narrow or Burnt Edge</strong>
                     <p className="text-muted-foreground text-xs mt-0.5">
-                      能量集中在底部
+                      Energy concentrated at bottom
                     </p>
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-red-500 font-bold">×</span>
                   <div>
-                    <strong>切口不垂直,上宽下窄</strong>
+                    <strong>Non-Vertical Kerf, Wide at Top Narrow at Bottom</strong>
                     <p className="text-muted-foreground text-xs mt-0.5">
-                      能量分布不均
+                      Uneven energy distribution
                     </p>
                   </div>
                 </li>
               </ul>
               <div className="mt-4 p-3 bg-green-50 dark:bg-green-950/20 rounded border border-green-200 dark:border-green-800">
                 <p className="text-xs font-semibold text-green-900 dark:text-green-200">
-                  解决方案: 提高Z轴位置,使焦点上移
+                  Solution: Raise Z-axis position to move focus upward
                 </p>
               </div>
             </CardContent>
@@ -558,38 +558,38 @@ export default function Page() {
 
         <Card className="mt-6">
           <CardHeader>
-            <CardTitle>快速诊断流程图</CardTitle>
+            <CardTitle>Quick Diagnostic Flowchart</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3 text-sm">
               <div className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg border">
-                <div className="font-semibold mb-3">症状 → 可能原因 → 解决方案</div>
+                <div className="font-semibold mb-3">Symptom → Possible Cause → Solution</div>
                 
                 <div className="space-y-3 text-xs">
                   <div className="flex items-center gap-3">
-                    <span className="w-32 flex-shrink-0 font-medium">不穿透</span>
-                    <span className="flex-1 text-muted-foreground">焦点过高或功率不足</span>
-                    <span className="w-28 text-right text-green-600 dark:text-green-400">降低Z轴</span>
+                    <span className="w-32 flex-shrink-0 font-medium">No Penetration</span>
+                    <span className="flex-1 text-muted-foreground">Focus too high or insufficient power</span>
+                    <span className="w-28 text-right text-green-600 dark:text-green-400">Lower Z-axis</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="w-32 flex-shrink-0 font-medium">表面质量差</span>
-                    <span className="flex-1 text-muted-foreground">焦点过低</span>
-                    <span className="w-28 text-right text-green-600 dark:text-green-400">提高Z轴</span>
+                    <span className="w-32 flex-shrink-0 font-medium">Poor Surface Quality</span>
+                    <span className="flex-1 text-muted-foreground">Focus too low</span>
+                    <span className="w-28 text-right text-green-600 dark:text-green-400">Raise Z-axis</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="w-32 flex-shrink-0 font-medium">底部挂渣</span>
-                    <span className="flex-1 text-muted-foreground">焦点过高或气压不足</span>
-                    <span className="w-28 text-right text-green-600 dark:text-green-400">降低Z轴或增压</span>
+                    <span className="w-32 flex-shrink-0 font-medium">Bottom Dross</span>
+                    <span className="flex-1 text-muted-foreground">Focus too high or insufficient pressure</span>
+                    <span className="w-28 text-right text-green-600 dark:text-green-400">Lower Z-axis or increase pressure</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="w-32 flex-shrink-0 font-medium">切缝上宽下窄</span>
-                    <span className="flex-1 text-muted-foreground">焦点过低</span>
-                    <span className="w-28 text-right text-green-600 dark:text-green-400">提高Z轴</span>
+                    <span className="w-32 flex-shrink-0 font-medium">Wide Top Narrow Bottom</span>
+                    <span className="flex-1 text-muted-foreground">Focus too low</span>
+                    <span className="w-28 text-right text-green-600 dark:text-green-400">Raise Z-axis</span>
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="w-32 flex-shrink-0 font-medium">切缝过宽</span>
-                    <span className="flex-1 text-muted-foreground">焦点偏离或功率过高</span>
-                    <span className="w-28 text-right text-green-600 dark:text-green-400">重新校准</span>
+                    <span className="w-32 flex-shrink-0 font-medium">Excessively Wide Kerf</span>
+                    <span className="flex-1 text-muted-foreground">Focus misaligned or excessive power</span>
+                    <span className="w-28 text-right text-green-600 dark:text-green-400">Recalibrate</span>
                   </div>
                 </div>
               </div>
@@ -598,65 +598,65 @@ export default function Page() {
         </Card>
       </section>
 
-      {/* 4. 常见问题解答 */}
+      {/* 4. Frequently Asked Questions */}
       <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">4. 常见问题解答(FAQ)</h2>
+        <h2 className="text-2xl font-semibold mb-4">4. Frequently Asked Questions (FAQ)</h2>
 
         <div className="space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Q1: 多久需要重新校准焦点？</CardTitle>
+              <CardTitle className="text-lg">Q1: How often should focus be recalibrated?</CardTitle>
             </CardHeader>
             <CardContent className="text-sm space-y-2">
-              <p><strong>A:</strong> 取决于使用频率和精度要求:</p>
+              <p><strong>A:</strong> Depends on usage frequency and accuracy requirements:</p>
               <ul className="ml-4 space-y-1 text-muted-foreground list-disc">
-                <li><strong>高精度加工</strong>: 每周检查,发现偏差立即校准</li>
-                <li><strong>通用切割</strong>: 每月定期校准一次</li>
-                <li><strong>必须校准情况</strong>: 更换镜片后、撞头后、切割质量明显下降时</li>
+                <li><strong>High Precision Processing</strong>: Weekly check, calibrate immediately if deviation detected</li>
+                <li><strong>General Cutting</strong>: Monthly periodic calibration</li>
+                <li><strong>Required Calibration Situations</strong>: After lens replacement, after head collision, when cutting quality significantly deteriorates</li>
               </ul>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Q2: 镜片污染如何影响焦点位置？</CardTitle>
+              <CardTitle className="text-lg">Q2: How does lens contamination affect focus position?</CardTitle>
             </CardHeader>
             <CardContent className="text-sm">
-              <p><strong>A:</strong> 镜片污染不会改变物理焦点位置,但会:</p>
+              <p><strong>A:</strong> Lens contamination does not change physical focus position, but:</p>
               <ul className="mt-2 ml-4 space-y-1 text-muted-foreground list-disc">
-                <li>降低透光率,导致能量密度下降</li>
-                <li>引起光束畸变,影响光斑质量</li>
-                <li>造成类似"焦点偏离"的切割效果</li>
-                <li>建议每天清洁保护镜片,每周检查聚焦镜片</li>
+                <li>Reduces transmittance, causing energy density decrease</li>
+                <li>Causes beam distortion, affecting spot quality</li>
+                <li>Results in cutting effects similar to "focus misalignment"</li>
+                <li>Recommend daily cleaning of protective lens, weekly inspection of focusing lens</li>
               </ul>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Q3: 不同镜头焦距如何选择？</CardTitle>
+              <CardTitle className="text-lg">Q3: How to select different lens focal lengths?</CardTitle>
             </CardHeader>
             <CardContent className="text-sm">
-              <p><strong>A:</strong> 焦距影响焦斑大小和焦深:</p>
+              <p><strong>A:</strong> Focal length affects spot size and depth of focus:</p>
               <div className="mt-2 space-y-2 text-muted-foreground">
-                <div>• <strong>短焦距(50-75mm)</strong>: 焦斑小,精度高,适合薄板精密切割</div>
-                <div>• <strong>标准焦距(127mm/5英寸)</strong>: 平衡性能,最常用</div>
-                <div>• <strong>长焦距(190mm以上)</strong>: 焦深大,容错性高,适合厚板切割</div>
+                <div>• <strong>Short Focal Length (50-75mm)</strong>: Small spot, high precision, suitable for thin sheet precision cutting</div>
+                <div>• <strong>Standard Focal Length (127mm/5 inches)</strong>: Balanced performance, most commonly used</div>
+                <div>• <strong>Long Focal Length (190mm+)</strong>: Large depth of focus, high tolerance, suitable for thick plate cutting</div>
               </div>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Q4: 自动对焦系统还需要手动校准吗？</CardTitle>
+              <CardTitle className="text-lg">Q4: Does auto-focus system still require manual calibration?</CardTitle>
             </CardHeader>
             <CardContent className="text-sm">
-              <p><strong>A:</strong> 需要。自动对焦系统虽然方便,但:</p>
+              <p><strong>A:</strong> Yes. Although auto-focus systems are convenient:</p>
               <ul className="mt-2 ml-4 space-y-1 text-muted-foreground list-disc">
-                <li>系统本身需要定期校准(通常每月一次)</li>
-                <li>不同材料的电容特性不同,可能影响检测精度</li>
-                <li>建议每季度用斜板法验证自动对焦的准确性</li>
-                <li>首次使用新材料时,应手动验证焦点位置</li>
+                <li>The system itself requires periodic calibration (typically monthly)</li>
+                <li>Different materials have different capacitive properties, which may affect detection accuracy</li>
+                <li>Recommend quarterly verification of auto-focus accuracy using ramp test method</li>
+                <li>When first using new materials, manually verify focus position</li>
               </ul>
             </CardContent>
           </Card>
@@ -667,31 +667,31 @@ export default function Page() {
       <div className="mt-10 grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>相关指南</CardTitle>
+            <CardTitle>Related Guides</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2 text-sm">
             <div>
               <Link href="/guides/material-thickness-parameters" className="underline hover:text-primary">
-                材料厚度切割参数表
+                Material Thickness Cutting Parameters
               </Link>
               <p className="text-xs text-muted-foreground mt-0.5">
-                查看不同材料的推荐焦点位置
+                View recommended focus positions for different materials
               </p>
             </div>
             <div>
               <Link href="/guides/troubleshooting-guide" className="underline hover:text-primary">
-                激光切割故障排除指南
+                Laser Cutting Troubleshooting Guide
               </Link>
               <p className="text-xs text-muted-foreground mt-0.5">
-                诊断和解决切割质量问题
+                Diagnose and resolve cutting quality issues
               </p>
             </div>
             <div>
               <Link href="/guides/lens-specifications" className="underline hover:text-primary">
-                激光聚焦镜片规格表
+                Laser Focusing Lens Specifications
               </Link>
               <p className="text-xs text-muted-foreground mt-0.5">
-                了解不同焦距镜片的特性
+                Understand characteristics of different focal length lenses
               </p>
             </div>
           </CardContent>
@@ -699,23 +699,23 @@ export default function Page() {
 
         <Card>
           <CardHeader>
-            <CardTitle>相关工具</CardTitle>
+            <CardTitle>Related Tools</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2 text-sm">
             <div>
               <Link href="/tools/power-density-calculator" className="underline hover:text-primary">
-                激光功率密度计算器
+                Laser Power Density Calculator
               </Link>
               <p className="text-xs text-muted-foreground mt-0.5">
-                计算不同焦点位置的功率密度
+                Calculate power density at different focus positions
               </p>
             </div>
             <div>
               <Link href="/tools/kerf-calculator" className="underline hover:text-primary">
-                激光切割缝宽计算器
+                Laser Cutting Kerf Width Calculator
               </Link>
               <p className="text-xs text-muted-foreground mt-0.5">
-                焦点位置影响切缝宽度
+                Focus position affects kerf width
               </p>
             </div>
           </CardContent>
@@ -725,16 +725,16 @@ export default function Page() {
       {/* Data Source */}
       <Card className="mt-8 bg-gray-50 dark:bg-gray-900">
         <CardContent className="pt-6 text-xs text-muted-foreground">
-          <strong>参考资料:</strong>
+          <strong>References:</strong>
           <ul className="mt-2 space-y-1 ml-4 list-disc">
-            <li>TRUMPF 操作手册 - 激光切割机焦点校准程序</li>
-            <li>Bystronic 培训资料 - 焦点位置调整与优化</li>
-            <li>ISO 9013 - 热切割质量与公差标准</li>
-            <li>行业专家经验和最佳实践</li>
+            <li>TRUMPF Operating Manual - Laser Cutting Machine Focus Calibration Procedures</li>
+            <li>Bystronic Training Materials - Focus Position Adjustment and Optimization</li>
+            <li>ISO 9013 - Thermal Cutting Quality and Tolerance Standards</li>
+            <li>Industry Expert Experience and Best Practices</li>
           </ul>
           <p className="mt-3">
-            更新日期: 2025-10-31 | 
-            本指南内容基于主流激光设备制造商操作手册和行业标准,供操作人员参考学习使用。
+            Last Updated: 2025-10-31 | 
+            This guide is based on operating manuals from mainstream laser equipment manufacturers and industry standards, provided for operator reference and learning.
           </p>
         </CardContent>
       </Card>

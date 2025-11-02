@@ -509,49 +509,49 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 4. ROI评估 */}
+      {/* 4. ROI Assessment */}
       <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4">4. ROI评估</h2>
+        <h2 className="text-2xl font-semibold mb-4">4. ROI Assessment</h2>
         <Card>
           <CardContent className="pt-6 text-sm text-muted-foreground space-y-2">
-            <div>• 输入：月材料量、单价、当前利用率</div>
-            <div>• 输出：提升5%的年度节省、软件回收期</div>
-            <div>• 建议：结合订单结构评估真实收益</div>
+            <div>• Input: Monthly material volume, unit price, current utilization rate</div>
+            <div>• Output: Annual savings from 5% improvement, software payback period</div>
+            <div>• Recommendation: Evaluate real benefits considering order structure</div>
           </CardContent>
         </Card>
       </section>
 
-      {/* 5. 相关链接 */}
+      {/* 5. Related Resources */}
       <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>相关工具</CardTitle>
+            <CardTitle>Related Tools</CardTitle>
           </CardHeader>
           <CardContent className="text-sm space-y-2">
             <div>
-              <Link href="/tools/cost-estimator" className="underline">切割成本估算器</Link>
+              <Link href="/tools/cost-estimator" className="underline">Cutting Cost Estimator</Link>
             </div>
             <div>
-              <Link href="/tools/kerf-calculator" className="underline">切缝估算器</Link>
+              <Link href="/tools/kerf-calculator" className="underline">Kerf Calculator</Link>
             </div>
           </CardContent>
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>配套指南</CardTitle>
+            <CardTitle>Related Guides</CardTitle>
           </CardHeader>
           <CardContent className="text-sm space-y-2">
             <div>
-              <Link href="/guides/process-optimization-guide" className="underline">工艺优化指南</Link>
+              <Link href="/guides/process-optimization-guide" className="underline">Process Optimization Guide</Link>
             </div>
             <div>
-              <Link href="/guides/material-thickness-parameters" className="underline">材料厚度参数表</Link>
+              <Link href="/guides/material-thickness-parameters" className="underline">Material Thickness Parameters</Link>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      <p className="mt-8 text-xs text-muted-foreground">提示：排版前优化CAD图纸（闭合、共边、简化小特征），可显著提升利用率与加工效率。</p>
+      <p className="mt-8 text-xs text-muted-foreground">Tip: Optimize CAD drawings before nesting (closed contours, shared edges, simplified small features) to significantly improve utilization and processing efficiency.</p>
     </div>
   );
 }

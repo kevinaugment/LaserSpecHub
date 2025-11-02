@@ -109,48 +109,48 @@ export function RoughnessComparison({ data }: RoughnessComparisonProps) {
 
       {/* Comparison Table */}
       <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Aspect</th>
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Aspect</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ra (Arithmetic Average)</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rz5 (Mean Height)</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            <tr>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              <tr>
               <td className="px-6 py-4 text-sm font-medium text-gray-900">Calculation Method</td>
-              <td className="px-6 py-4 text-sm text-gray-700">Average of all absolute deviations</td>
-              <td className="px-6 py-4 text-sm text-gray-700">Average of 5 largest peak-to-valley heights</td>
-            </tr>
+                <td className="px-6 py-4 text-sm text-gray-700">Average of all absolute deviations</td>
+                <td className="px-6 py-4 text-sm text-gray-700">Average of 5 largest peak-to-valley heights</td>
+              </tr>
             <tr className="bg-gray-50">
-              <td className="px-6 py-4 text-sm font-medium text-gray-900">Sensitivity</td>
+                <td className="px-6 py-4 text-sm font-medium text-gray-900">Sensitivity</td>
               <td className="px-6 py-4 text-sm text-gray-700">Less sensitive to extreme variations</td>
               <td className="px-6 py-4 text-sm text-gray-700">Highly sensitive to extreme variations</td>
-            </tr>
-            <tr>
-              <td className="px-6 py-4 text-sm font-medium text-gray-900">ISO 9013:2017</td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 text-sm font-medium text-gray-900">ISO 9013:2017</td>
               <td className="px-6 py-4 text-sm text-gray-700">Secondary reference</td>
               <td className="px-6 py-4 text-sm text-gray-700 font-bold text-green-700">Primary metric ✓</td>
-            </tr>
-            <tr className="bg-gray-50">
+              </tr>
+              <tr className="bg-gray-50">
               <td className="px-6 py-4 text-sm font-medium text-gray-900">Typical Values</td>
               <td className="px-6 py-4 text-sm text-gray-700">1.6 - 25 μm (laser cutting)</td>
               <td className="px-6 py-4 text-sm text-gray-700">10 - 160 μm (laser cutting)</td>
-            </tr>
-            <tr>
+              </tr>
+              <tr>
               <td className="px-6 py-4 text-sm font-medium text-gray-900">Conversion</td>
               <td className="px-6 py-4 text-sm text-gray-700" colSpan={2}>
                 Approximate: <strong>Rz5 ≈ 5-8 × Ra</strong> (varies by process)
               </td>
             </tr>
             <tr className="bg-gray-50">
-              <td className="px-6 py-4 text-sm font-medium text-gray-900">Best For</td>
+                <td className="px-6 py-4 text-sm font-medium text-gray-900">Best For</td>
               <td className="px-6 py-4 text-sm text-gray-700">General machining, consistent surfaces</td>
               <td className="px-6 py-4 text-sm text-gray-700">Thermal cutting, surfaces with striations</td>
-            </tr>
-          </tbody>
-        </table>
+              </tr>
+            </tbody>
+          </table>
       </div>
 
       {/* Key Takeaways */}

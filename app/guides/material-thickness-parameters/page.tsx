@@ -117,19 +117,15 @@ export default function Page() {
       {/* Deep Technical Content */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle className="text-2xl">Understanding Material-Specific Parameters | 材料特性深度解析</CardTitle>
+          <CardTitle className="text-2xl">Understanding Material-Specific Parameters</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6 text-sm text-gray-700">
           <div>
-            <h3 className="font-semibold text-lg text-gray-900 mb-2">Carbon Steel Cutting Characteristics | 碳钢切割特性</h3>
+            <h3 className="font-semibold text-lg text-gray-900 mb-2">Carbon Steel Cutting Characteristics</h3>
             <p className="mb-3">
               Carbon steel remains the most common material in laser cutting operations, accounting for over 60% of industrial cutting applications. 
               Its favorable laser absorption characteristics and oxygen-assist cutting capability make it economical to process. However, understanding 
               the nuances between different carbon steel grades is crucial for optimal results.
-            </p>
-            <p className="mb-3">
-              碳钢是激光切割中最常见的材料,占工业切割应用的60%以上。其良好的激光吸收特性和氧气助燃切割能力使其加工经济高效。
-              但理解不同碳钢等级之间的细微差别对获得最佳结果至关重要。
             </p>
             <p className="mb-3">
               For mild steel (Q235, SPCC), oxygen-assist cutting provides the fastest speeds and lowest operating costs. The exothermic reaction 
@@ -145,15 +141,11 @@ export default function Page() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg text-gray-900 mb-2">Stainless Steel Complexity | 不锈钢的复杂性</h3>
+            <h3 className="font-semibold text-lg text-gray-900 mb-2">Stainless Steel Complexity</h3>
             <p className="mb-3">
               Stainless steel presents unique challenges due to its low thermal conductivity and high reflectivity. Heat accumulation during 
               cutting can cause edge oxidation and warping if parameters aren't optimized. The choice between nitrogen and air assist significantly 
               impacts both quality and operating costs.
-            </p>
-            <p className="mb-3">
-              不锈钢因其低导热性和高反射率而带来独特挑战。如果参数未优化,切割过程中的热量积累会导致边缘氧化和变形。
-              氮气和空气辅助之间的选择显著影响质量和运营成本。
             </p>
             <p className="mb-3">
               For austenitic stainless (304, 316), <Link href="/guides/assist-gas-chart" className="text-primary-600 hover:text-primary-700 font-medium underline">nitrogen cutting</Link> at 10-18 bar produces oxide-free edges critical for food processing, 
@@ -169,14 +161,11 @@ export default function Page() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg text-gray-900 mb-2">Aluminum Alloy Challenges | 铝合金挑战</h3>
+            <h3 className="font-semibold text-lg text-gray-900 mb-2">Aluminum Alloy Challenges</h3>
             <p className="mb-3">
               Aluminum cutting represents one of the most technically demanding applications in fiber laser cutting. High reflectivity 
               (particularly at 1.06μm wavelength) and high thermal conductivity require higher power density and precise parameter control 
               to achieve reliable results.
-            </p>
-            <p className="mb-3">
-              铝材切割是光纤激光切割中技术要求最高的应用之一。高反射率(特别是在1.06μm波长)和高导热率需要更高的功率密度和精确的参数控制才能获得可靠结果。
             </p>
             <p className="mb-3">
               Key parameters for aluminum success include: (1) Higher <Link href="/guides/power-selection-guide" className="text-primary-600 hover:text-primary-700 font-medium underline">power requirement</Link> - typically 30-40% more power than equivalent steel 
@@ -193,7 +182,7 @@ export default function Page() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg text-gray-900 mb-2">Power-Thickness Relationships | 功率-厚度关系</h3>
+            <h3 className="font-semibold text-lg text-gray-900 mb-2">Power-Thickness Relationships</h3>
             <p className="mb-3">
               Understanding the power-thickness relationship is fundamental to effective parameter selection. The relationship is not linear 
               but follows a complex curve influenced by material properties, desired cutting speed, and quality requirements.
@@ -212,13 +201,10 @@ export default function Page() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg text-gray-900 mb-2">Parameter Optimization Methodology | 参数优化方法论</h3>
+            <h3 className="font-semibold text-lg text-gray-900 mb-2">Parameter Optimization Methodology</h3>
             <p className="mb-3">
               The parameters in this guide provide tested starting points, but optimal parameters for your specific equipment, material 
               supply, and quality requirements require systematic optimization. A structured approach yields the best results:
-            </p>
-            <p className="mb-3">
-              本指南中的参数提供了经过测试的起点,但针对您的特定设备、材料供应和质量要求的最佳参数需要系统化优化。结构化方法产生最佳结果。
             </p>
             <ul className="list-disc pl-6 space-y-2 mb-3">
               <li><strong>Baseline Establishment</strong>: Start with table values at mid-range for thickness and power</li>
@@ -235,7 +221,7 @@ export default function Page() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg text-gray-900 mb-2">Material Batch Variation Impact | 材料批次变化影响</h3>
+            <h3 className="font-semibold text-lg text-gray-900 mb-2">Material Batch Variation Impact</h3>
             <p className="mb-3">
               One of the most underestimated factors in parameter optimization is material batch variation. Even from the same supplier 
               with identical specifications, batches can vary in: surface condition (mill scale, rust, oil), chemical composition within 
