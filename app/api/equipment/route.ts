@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDatabase } from '@/lib/db/client';
 import type { LaserEquipment } from '@/types/equipment';
+import { parseEquipmentFromDB, prepareEquipmentForDB } from '@/lib/utils/equipment-parser';
 
 export const runtime = 'nodejs';
 
@@ -102,23 +103,8 @@ export async function GET(request: NextRequest) {
 
     const equipment = results.results as any[];
 
-    // Parse JSON fields
-    const parsedEquipment: LaserEquipment[] = equipment.map((eq) => ({
-      ...eq,
-      max_cutting_thickness: eq.max_cutting_thickness
-        ? JSON.parse(eq.max_cutting_thickness as string)
-        : null,
-      cutting_speed: eq.cutting_speed
-        ? JSON.parse(eq.cutting_speed as string)
-        : null,
-      dimensions: eq.dimensions
-        ? JSON.parse(eq.dimensions as string)
-        : null,
-      applications: eq.applications
-        ? JSON.parse(eq.applications as string)
-        : [],
-      is_active: Boolean(eq.is_active),
-    }));
+    // Parse equipment data (supports both flattened and legacy JSON fields)
+    const parsedEquipment: LaserEquipment[] = equipment.map(parseEquipmentFromDB);
 
     return NextResponse.json({ 
       success: true, 
@@ -154,61 +140,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 准备字段值
-    const val = (k: string) => body[k] ?? null;
-    const num = (k: string) => {
-      const v = body[k];
-      if (v === undefined || v === null || v === '') return null;
-      const n = Number(v);
-      return Number.isFinite(n) ? n : null;
-    };
-    const json = (k: string) => {
-      const v = body[k];
-      if (v === undefined || v === null || v === '') return null;
-      try {
-        if (typeof v === 'string') return JSON.stringify(JSON.parse(v));
-        return JSON.stringify(v);
-      } catch {
-        return null;
-      }
-    };
+    // Prepare data for database (converts to both flattened and JSON fields)
+    const { fields, values } = prepareEquipmentForDB(body);
 
-    const insertSql = `INSERT INTO laser_equipment (
-      brand, model, laser_type, power_kw, work_area_length, work_area_width,
-      max_cutting_thickness, cutting_speed, positioning_accuracy, repeat_accuracy,
-      beam_quality, wavelength, control_system, cooling_type, power_consumption,
-      dimensions, weight, price_range, manufacturer_url, spec_sheet_url,
-      image_url, description, applications, origin_country, is_active
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    // Build INSERT query dynamically
+    const placeholders = fields.map(() => '?').join(', ');
+    const insertSql = `INSERT INTO laser_equipment (${fields.join(', ')}) VALUES (${placeholders})`;
 
     const stmt = db.prepare(insertSql);
-    const result = await stmt.bind(
-      val('brand'),
-      val('model'),
-      val('laser_type'),
-      num('power_kw'),
-      num('work_area_length'),
-      num('work_area_width'),
-      json('max_cutting_thickness'),
-      json('cutting_speed'),
-      num('positioning_accuracy'),
-      num('repeat_accuracy'),
-      num('beam_quality'),
-      num('wavelength'),
-      val('control_system'),
-      val('cooling_type'),
-      num('power_consumption'),
-      json('dimensions'),
-      num('weight'),
-      val('price_range'),
-      val('manufacturer_url'),
-      val('spec_sheet_url'),
-      val('image_url'),
-      val('description'),
-      json('applications'),
-      val('origin_country'),
-      body.is_active !== undefined ? Number(body.is_active) : 1
-    ).run();
+    const result = await stmt.bind(...values).run();
 
     const newId = result.meta?.last_row_id || 0;
 
@@ -223,23 +163,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Parse JSON fields
-    const parsedEquipment = {
-      ...newEquipment,
-      max_cutting_thickness: newEquipment.max_cutting_thickness
-        ? JSON.parse(newEquipment.max_cutting_thickness as string)
-        : null,
-      cutting_speed: newEquipment.cutting_speed
-        ? JSON.parse(newEquipment.cutting_speed as string)
-        : null,
-      dimensions: newEquipment.dimensions
-        ? JSON.parse(newEquipment.dimensions as string)
-        : null,
-      applications: newEquipment.applications
-        ? JSON.parse(newEquipment.applications as string)
-        : [],
-      is_active: Boolean(newEquipment.is_active),
-    };
+    // Parse equipment data (supports both flattened and legacy JSON fields)
+    const parsedEquipment = parseEquipmentFromDB(newEquipment);
 
     return NextResponse.json({
       success: true,
