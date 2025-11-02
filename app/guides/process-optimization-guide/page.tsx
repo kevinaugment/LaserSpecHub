@@ -10,10 +10,7 @@ import {
   CostBreakdownChart
 } from '@/components/cheatsheets/process-optimization-tables';
 import {
-  SPEED_QUALITY_COST_TRADEOFFS,
   COST_BREAKDOWN_DATA,
-  KPI_METRICS,
-  PROCESS_DATABASE_SCHEMA,
   DATA_DISCLAIMER
 } from '@/lib/data/cheatsheets/process-optimization-data';
 

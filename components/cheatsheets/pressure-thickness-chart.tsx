@@ -9,9 +9,6 @@ export function PressureThicknessChart() {
 
   const materialData = PRESSURE_THICKNESS_CURVES.filter(c => c.material === selectedMaterial);
 
-  // Get all unique gas types for this material
-  const gasTypes = materialData.map(d => d.gasType);
-
   const gasColors: { [key: string]: string } = {
     'Oxygen': '#ef4444',
     'Nitrogen': '#3b82f6',

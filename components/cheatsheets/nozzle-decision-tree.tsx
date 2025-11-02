@@ -12,32 +12,27 @@ export function NozzleDecisionTree() {
   const [step, setStep] = useState(1);
   const [material, setMaterial] = useState<Material>('');
   const [thickness, setThickness] = useState<ThicknessRange>('');
-  const [gas, setGas] = useState<AssistGas>('');
   const [recommendation, setRecommendation] = useState<NozzleRecommendation | null>(null);
 
   const handleMaterialSelect = (selectedMaterial: Material) => {
     setMaterial(selectedMaterial);
     setThickness('');
-    setGas('');
     setRecommendation(null);
     setStep(2);
   };
 
   const handleThicknessSelect = (selectedThickness: ThicknessRange) => {
     setThickness(selectedThickness);
-    setGas('');
     setRecommendation(null);
     setStep(3);
   };
 
   const handleGasSelect = (selectedGas: AssistGas) => {
-    setGas(selectedGas);
-    
     // Find recommendation
     const found = NOZZLE_RECOMMENDATIONS.find(
       (rec) =>
         rec.material === material &&
-        rec.thicknessRange === selectedThickness &&
+        rec.thicknessRange === thickness &&
         rec.assistGas === selectedGas
     );
 
@@ -47,7 +42,7 @@ export function NozzleDecisionTree() {
     } else {
       // Fallback: find closest match
       const fallback = NOZZLE_RECOMMENDATIONS.find(
-        (rec) => rec.material === material && rec.thicknessRange === selectedThickness
+        (rec) => rec.material === material && rec.thicknessRange === thickness
       );
       setRecommendation(fallback || null);
       setStep(4);
@@ -58,7 +53,6 @@ export function NozzleDecisionTree() {
     setStep(1);
     setMaterial('');
     setThickness('');
-    setGas('');
     setRecommendation(null);
   };
 

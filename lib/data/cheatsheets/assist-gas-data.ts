@@ -744,7 +744,7 @@ export const MATERIAL_GAS_MATRIX: MaterialGasCompatibility[] = [
   { material: "Copper/Brass", gas: "Argon", compatibility: "acceptable", thicknessRange: "0.5-4mm", edgeQuality: "Excellent", notes: "Very expensive, pristine finish" }
 ];
 
-export function getNozzleRecommendation(gasType: string, thickness: number): NozzleGasPairing[] {
+export function getNozzleRecommendation(gasType: string, _thickness: number): NozzleGasPairing[] {
   return NOZZLE_GAS_PAIRING.filter(pairing => pairing.gasType === gasType);
 }
 

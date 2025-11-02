@@ -5,13 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   QUALITY_TROUBLESHOOTING_MATRIX,
   MATERIAL_OPTIMIZATION_GUIDELINES,
-  COST_BREAKDOWN_DATA,
-  SPEED_QUALITY_COST_TRADEOFFS,
-  PROCESS_DATABASE_SCHEMA,
-  KPI_METRICS,
-  type QualityIssue,
-  type MaterialOptimizationGuideline,
-  type CostComponent
+  COST_BREAKDOWN_DATA
 } from '@/lib/data/cheatsheets/process-optimization-data';
 
 // ============================================================================
@@ -598,7 +592,8 @@ export function ParameterInteractionDiagram({ className = '' }: { className?: st
 // ============================================================================
 
 export function CostBreakdownChart({ className = '' }: { className?: string }) {
-  const total = COST_BREAKDOWN_DATA.reduce((sum, item) => sum + item.typicalPercentage, 0);
+  // Note: total could be used for validation (should sum to 100%), but not needed for rendering
+  // const total = COST_BREAKDOWN_DATA.reduce((sum, item) => sum + item.typicalPercentage, 0);
   
   let currentAngle = -90; // Start from top
   const centerX = 200;
