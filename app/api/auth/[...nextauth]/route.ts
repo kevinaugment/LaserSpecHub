@@ -72,6 +72,21 @@ const authConfig: NextAuthConfig = {
     error: '/auth/error',
   },
   callbacks: {
+    async signIn({ user }) {
+      // Verify user has admin role
+      if (!user || !(user as any).role) {
+        console.error('[Auth] SignIn callback: User has no role');
+        return false;
+      }
+      
+      if ((user as any).role !== 'admin') {
+        console.error('[Auth] SignIn callback: User is not admin, role:', (user as any).role);
+        return '/auth/error?error=unauthorized';
+      }
+      
+      console.log('[Auth] SignIn callback: Admin verified, allowing sign in');
+      return true;
+    },
     async jwt({ token, user }) {
       // Initial sign in
       if (user) {
@@ -79,6 +94,7 @@ const authConfig: NextAuthConfig = {
         token.email = user.email;
         token.name = user.name;
         token.role = (user as any).role;
+        console.log('[Auth] JWT callback: Token created for user', user.email, 'with role', (user as any).role);
       }
       return token;
     },
@@ -89,6 +105,7 @@ const authConfig: NextAuthConfig = {
         session.user.email = token.email as string;
         session.user.name = token.name as string;
         (session.user as any).role = token.role;
+        console.log('[Auth] Session callback: Session created for', session.user.email);
       }
       return session;
     },

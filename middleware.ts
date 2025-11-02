@@ -12,28 +12,42 @@ export async function middleware(request: NextRequest) {
       return NextResponse.next();
     }
 
-    // Check authentication
-    const token = await getToken({
-      req: request,
-      secret: process.env.NEXTAUTH_SECRET || 'your-secret-key-change-in-production',
-    });
+    try {
+      // Check authentication
+      const token = await getToken({
+        req: request,
+        secret: process.env.NEXTAUTH_SECRET || 'your-secret-key-change-in-production',
+      });
 
-    // Not authenticated - redirect to login
-    if (!token) {
+      console.log('[Middleware] Checking access to:', pathname);
+      console.log('[Middleware] Token present:', !!token);
+      console.log('[Middleware] Token role:', token?.role);
+
+      // Not authenticated - redirect to login
+      if (!token) {
+        console.log('[Middleware] No token, redirecting to login');
+        const loginUrl = new URL('/admin/login', request.url);
+        loginUrl.searchParams.set('callbackUrl', pathname);
+        return NextResponse.redirect(loginUrl);
+      }
+
+      // Check if user is admin
+      if (token.role !== 'admin') {
+        console.error('[Middleware] User is not admin, role:', token.role);
+        const loginUrl = new URL('/admin/login', request.url);
+        loginUrl.searchParams.set('error', 'unauthorized');
+        return NextResponse.redirect(loginUrl);
+      }
+
+      console.log('[Middleware] Access granted to admin');
+      // Authenticated and authorized - allow access
+      return NextResponse.next();
+    } catch (error) {
+      console.error('[Middleware] Error checking authentication:', error);
       const loginUrl = new URL('/admin/login', request.url);
-      loginUrl.searchParams.set('callbackUrl', pathname);
+      loginUrl.searchParams.set('error', 'auth_error');
       return NextResponse.redirect(loginUrl);
     }
-
-    // Check if user is admin
-    if (token.role !== 'admin') {
-      const loginUrl = new URL('/admin/login', request.url);
-      loginUrl.searchParams.set('error', 'unauthorized');
-      return NextResponse.redirect(loginUrl);
-    }
-
-    // Authenticated and authorized - allow access
-    return NextResponse.next();
   }
 
   return NextResponse.next();

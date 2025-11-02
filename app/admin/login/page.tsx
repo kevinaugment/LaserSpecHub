@@ -39,24 +39,38 @@ function AdminLoginContent() {
     setLoading(true);
 
     try {
+      console.log('[AdminLogin] Attempting sign in for:', email);
+      
       const result = await signIn('credentials', {
         email,
         password,
         redirect: false,
       });
 
+      console.log('[AdminLogin] Sign in result:', result);
+
       if (result?.error) {
+        console.error('[AdminLogin] Sign in error:', result.error);
         setError('Invalid email or password');
         setLoading(false);
         return;
       }
 
       if (result?.ok) {
-        // Successful login - redirect will happen via useEffect
-        router.push(callbackUrl);
-        router.refresh();
+        console.log('[AdminLogin] Sign in successful, redirecting to:', callbackUrl);
+        
+        // Wait a moment for session to be established
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Force a hard refresh to ensure session is loaded
+        window.location.href = callbackUrl;
+      } else {
+        console.error('[AdminLogin] Unexpected result:', result);
+        setError('Login failed. Please try again.');
+        setLoading(false);
       }
     } catch (err) {
+      console.error('[AdminLogin] Exception during login:', err);
       setError('An error occurred during login');
       setLoading(false);
     }
