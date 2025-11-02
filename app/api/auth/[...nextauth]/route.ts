@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthConfig } from 'next-auth';
+import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import { getDatabase } from '@/lib/db/client';
@@ -6,7 +6,8 @@ import type { DatabaseUser } from '@/types/auth';
 
 export const runtime = 'nodejs';
 
-const authConfig: NextAuthConfig = {
+// NextAuth v5 handler configuration
+const handler = NextAuth({
   debug: process.env.NODE_ENV === 'development',
   providers: [
     CredentialsProvider({
@@ -115,9 +116,7 @@ const authConfig: NextAuthConfig = {
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   secret: process.env.NEXTAUTH_SECRET || 'your-secret-key-change-in-production',
-};
-
-const handler = NextAuth(authConfig);
+});
 
 export { handler as GET, handler as POST };
 
