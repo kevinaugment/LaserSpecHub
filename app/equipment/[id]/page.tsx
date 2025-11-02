@@ -346,7 +346,7 @@ export default async function EquipmentDetailPage({
             </CardHeader>
             <CardContent>
               <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {equipment.dimensions && (
+                {equipment.dimensions && typeof equipment.dimensions === 'object' && (
                   <div className="border-b border-gray-100 pb-3">
                     <dt className="text-sm text-gray-600 mb-1">Dimensions (L×W×H)</dt>
                     <dd className="text-base font-medium text-gray-900">
