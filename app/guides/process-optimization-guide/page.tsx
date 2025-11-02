@@ -11,6 +11,7 @@ import {
 } from '@/components/cheatsheets/process-optimization-tables';
 import {
   COST_BREAKDOWN_DATA,
+  PROCESS_DATABASE_SCHEMA,
   DATA_DISCLAIMER
 } from '@/lib/data/cheatsheets/process-optimization-data';
 
