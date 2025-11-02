@@ -12,6 +12,7 @@ import {
 import {
   COST_BREAKDOWN_DATA,
   PROCESS_DATABASE_SCHEMA,
+  KPI_METRICS,
   DATA_DISCLAIMER
 } from '@/lib/data/cheatsheets/process-optimization-data';
 
