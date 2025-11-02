@@ -421,7 +421,7 @@ export default async function EquipmentDetailPage({
           </Card>
 
           {/* Applications */}
-          {equipment.applications && equipment.applications.length > 0 && (
+          {equipment.applications && Array.isArray(equipment.applications) && equipment.applications.length > 0 && (
             <Card variant="bordered">
               <CardHeader>
                 <CardTitle>Applications</CardTitle>
