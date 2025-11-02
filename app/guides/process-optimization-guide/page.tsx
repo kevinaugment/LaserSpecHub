@@ -334,10 +334,10 @@ export default function Page() {
         <div className="grid gap-6 md:grid-cols-2 mt-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Thick Plate Cutting (>20mm)</CardTitle>
+              <CardTitle className="text-lg">Thick Plate Cutting (&gt;20mm)</CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground space-y-2">
-              <div><strong className="text-foreground">Multi-Pass Strategy:</strong> For plates >25mm, consider 2-pass cutting: rough cut at high speed, finish cut at reduced speed for quality.</div>
+              <div><strong className="text-foreground">Multi-Pass Strategy:</strong> For plates &gt;25mm, consider 2-pass cutting: rough cut at high speed, finish cut at reduced speed for quality.</div>
               <div><strong className="text-foreground">Oxygen Pressure Progression:</strong> Start pierce at low pressure (1-2 bar), ramp to cutting pressure (4-6 bar) over 0.5-1 second to prevent blowback.</div>
               <div><strong className="text-foreground">Focus Position:</strong> Use negative focus (-2 to -4mm) to position focal waist at mid-thickness for better penetration.</div>
               <div><strong className="text-foreground">Speed Ramping:</strong> Reduce speed by 40-60% compared to thin plate. Monitor for incomplete penetration at corners.</div>
@@ -348,7 +348,7 @@ export default function Page() {
               <CardTitle className="text-lg">Tube and Pipe Cutting</CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground space-y-2">
-              <div><strong className="text-foreground">Rotary Axis Calibration:</strong> Verify chuck concentricity and rotary axis alignment before production. Runout >0.2mm causes quality issues.</div>
+              <div><strong className="text-foreground">Rotary Axis Calibration:</strong> Verify chuck concentricity and rotary axis alignment before production. Runout &gt;0.2mm causes quality issues.</div>
               <div><strong className="text-foreground">Gas Flow Considerations:</strong> Internal assist gas delivery through tube end or external nozzle. Internal delivery more efficient for thin-wall tubes.</div>
               <div><strong className="text-foreground">Speed Adjustment:</strong> Reduce linear speed by 20-30% vs flat sheet due to curved surface geometry and reduced gas effectiveness.</div>
               <div><strong className="text-foreground">Programming Tips:</strong> Use tube-specific CAM software for automatic collision detection and optimal nozzle positioning.</div>
@@ -436,7 +436,7 @@ export default function Page() {
             <ul className="ml-4 list-disc text-muted-foreground space-y-1">
               <li><strong className="text-foreground">Control Charts:</strong> Plot key metrics (cutting speed, gas pressure, edge roughness) over time. Set control limits at ±3 standard deviations from mean.</li>
               <li><strong className="text-foreground">Trend Analysis:</strong> Identify gradual parameter drift (e.g., lens contamination causing power loss). Address before reaching control limits.</li>
-              <li><strong className="text-foreground">Capability Analysis:</strong> Calculate Cpk for critical dimensions. Target Cpk ≥1.33 for process capability. Cpk <1.0 indicates process cannot meet specifications consistently.</li>
+              <li><strong className="text-foreground">Capability Analysis:</strong> Calculate Cpk for critical dimensions. Target Cpk ≥1.33 for process capability. Cpk &lt;1.0 indicates process cannot meet specifications consistently.</li>
               <li><strong className="text-foreground">Quarterly Review:</strong> Analyze SPC data to identify improvement opportunities, update parameter targets, and retire obsolete entries.</li>
             </ul>
           </CardContent>
