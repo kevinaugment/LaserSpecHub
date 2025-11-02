@@ -97,8 +97,8 @@ export function PressureThicknessChart() {
                 {gasData.dataPoints.map((point, idx) => {
                   // Parse pressure range (e.g., "2-3 bar" -> average 2.5)
                   const pressureMatch = point.pressure.match(/(\d+)-(\d+)/);
-                  const avgPressure = pressureMatch
-                    ? (parseInt(pressureMatch[1]) + parseInt(pressureMatch[2])) / 2
+                  const avgPressure = pressureMatch && pressureMatch[1] && pressureMatch[2]
+                    ? (parseInt(pressureMatch[1], 10) + parseInt(pressureMatch[2], 10)) / 2
                     : 10;
                   const maxPressure = 25; // Max bar for visualization
                   const widthPercent = (avgPressure / maxPressure) * 100;

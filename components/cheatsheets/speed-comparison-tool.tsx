@@ -18,7 +18,7 @@ export function SpeedComparisonTool() {
   const [pierceCount, setPierceCount] = useState('20');
 
   // Sample data - in production, this would come from the actual data file
-  const speedData: Record<string, Record<string, ComparisonData>> = {
+  const speedData: Record<string, Record<string, Record<string, ComparisonData>>> = {
     'mild-steel': {
       '10': {
         '3kW': { power: '3kW', speed: 1.8, piercingTime: 1.4, estimatedCost: 30 },

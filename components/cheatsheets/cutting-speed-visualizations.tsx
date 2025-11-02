@@ -41,13 +41,35 @@ export function SpeedVsPowerCurve({ material = "Mild Steel", thickness = 10 }: S
   const generatePath = () => {
     const points = dataPoints.map(d => ({ x: scaleX(d.power), y: scaleY(d.speed) }));
     
-    let path = `M ${points[0].x} ${points[0].y}`;
-    for (let i = 0; i < points.length - 1; i++) {
-      const xc = (points[i].x + points[i + 1].x) / 2;
-      const yc = (points[i].y + points[i + 1].y) / 2;
-      path += ` Q ${points[i].x} ${points[i].y}, ${xc} ${yc}`;
+    // Type guard: ensure we have at least one point
+    if (points.length === 0) {
+      return '';
     }
-    path += ` T ${points[points.length - 1].x} ${points[points.length - 1].y}`;
+    
+    const firstPoint = points[0];
+    if (!firstPoint) {
+      return '';
+    }
+    
+    if (points.length === 1) {
+      return `M ${firstPoint.x} ${firstPoint.y}`;
+    }
+    
+    let path = `M ${firstPoint.x} ${firstPoint.y}`;
+    for (let i = 0; i < points.length - 1; i++) {
+      const currentPoint = points[i];
+      const nextPoint = points[i + 1];
+      if (!currentPoint || !nextPoint) continue;
+      
+      const xc = (currentPoint.x + nextPoint.x) / 2;
+      const yc = (currentPoint.y + nextPoint.y) / 2;
+      path += ` Q ${currentPoint.x} ${currentPoint.y}, ${xc} ${yc}`;
+    }
+    
+    const lastPoint = points[points.length - 1];
+    if (lastPoint) {
+      path += ` T ${lastPoint.x} ${lastPoint.y}`;
+    }
     return path;
   };
 
@@ -720,7 +742,8 @@ export function QualitySpeedMatrix() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {qualityLevels.map((quality, index) => {
           const adjustedSpeed = (baseSpeed * quality.multiplier).toFixed(1);
-          const percentage = ((quality.multiplier - 1) * 100).toFixed(0);
+          const percentageValue = (quality.multiplier - 1) * 100;
+          const percentage = percentageValue.toFixed(0);
           
           return (
             <div key={index} className="text-center">
@@ -742,7 +765,7 @@ export function QualitySpeedMatrix() {
                   </div>
                   <div className="text-sm text-gray-600">m/min</div>
                   <div className="text-xs text-gray-500 mt-2">
-                    {percentage > 0 ? '+' : ''}{percentage}%
+                    {percentageValue > 0 ? '+' : ''}{percentage}%
                   </div>
                 </div>
               </div>
