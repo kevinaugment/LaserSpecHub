@@ -12,8 +12,8 @@ const structuredData = {
   headline: '2025 Laser Cutting Equipment Market Research Report',
   description:
     'Comprehensive market analysis and equipment comparison report covering 50+ laser systems',
-  datePublished: '2025-10-31',
-  dateModified: '2025-10-31',
+  datePublished: '2025-11-04',
+  dateModified: '2025-11-04',
   author: {
     '@type': 'Organization',
     name: 'LaserSpecHub',
@@ -362,7 +362,7 @@ export default function MarketReportPage() {
       </section>
 
       <p className="mt-10 text-xs text-muted-foreground">
-        Report last updated: October 31, 2025 • Equipment specifications subject to change • Contact
+        Report last updated: November 4, 2025 • Equipment specifications subject to change • Contact
         manufacturers for most current pricing and availability
       </p>
     </div>

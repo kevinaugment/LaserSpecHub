@@ -1,21 +1,15 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Cutting Troubleshooting Guide - LaserSpecHub',
-  description:
-    'Comprehensive laser cutting and engraving troubleshooting guide: 31 common issues covering quality problems, equipment faults, CO2 vs fiber laser differences, emergency procedures, and preventive maintenance schedules.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Cutting Troubleshooting Guide',
+  description: 'Comprehensive laser cutting and engraving troubleshooting guide: 31 common issues covering quality problems, equipment faults, CO2 vs fiber laser differences, emergency procedures, and preventive maintenance schedules.',
+  path: '/guides/troubleshooting-guide',
   keywords: ['laser cutting troubleshooting', 'laser engraving problems', 'quality problems', 'equipment fault', 'diagnostics', 'laser repair', 'CO2 vs fiber', 'emergency procedures', 'preventive maintenance'],
-  alternates: { canonical: 'https://laserspechub.com/guides/troubleshooting-guide' },
-  openGraph: {
-    title: 'Laser Cutting Troubleshooting Guide - System Diagnostics & Quick Fixes',
-    description: 'Complete troubleshooting guide: 31 issues, emergency procedures, CO2 vs fiber comparison, preventive maintenance',
-    type: 'article',
-    url: 'https://laserspechub.com/guides/troubleshooting-guide',
-  },
-};
+});
 
 const structuredData = {
   '@context': 'https://schema.org',

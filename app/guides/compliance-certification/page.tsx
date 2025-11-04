@@ -1,11 +1,12 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Equipment Compliance & Certification (OSHA, IEC 60825, CE, UL) | LaserSpecHub',
-  description:
-    'Compliance roadmap for industrial laser systems: OSHA, IEC 60825-1, ANSI Z136.1, CE, UL/ETL, NFPA, local permits. Practical checklists and documentation templates.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Equipment Compliance & Certification (OSHA, IEC 60825, CE, UL)',
+  description: 'Compliance roadmap for industrial laser systems: OSHA, IEC 60825-1, ANSI Z136.1, CE, UL/ETL, NFPA, local permits. Practical checklists and documentation templates.',
+  path: '/guides/compliance-certification',
   keywords: [
     'laser compliance',
     'IEC 60825-1 certification',
@@ -15,12 +16,7 @@ export const metadata: Metadata = {
     'UL certification laser',
     'NFPA ventilation',
   ],
-  openGraph: {
-    title: 'Laser Equipment Compliance & Certification Roadmap | LaserSpecHub',
-    description: 'Step-by-step compliance checklists: OSHA, IEC, ANSI, CE, UL, NFPA, local permits',
-    type: 'article',
-  },
-};
+});
 
 export default function ComplianceCertificationPage() {
   const structuredData = {
@@ -171,6 +167,8 @@ export default function ComplianceCertificationPage() {
     </>
   );
 }
+
+
 
 
 

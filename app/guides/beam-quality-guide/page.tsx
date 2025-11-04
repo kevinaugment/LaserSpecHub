@@ -1,12 +1,13 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Beam Quality M² Factor: Complete Technical Guide 2025 | LaserSpecHub',
-  description:
-    'Comprehensive technical analysis of laser beam quality M² factor: ISO 11146 measurement standards, BPP calculations, focus spot size impact, cutting performance comparison, and equipment selection criteria. Verified data from IPG, Trumpf, nLIGHT, and Raycus specifications.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Beam Quality M² Factor: Complete Technical Guide 2025',
+  description: 'Comprehensive technical analysis of laser beam quality M² factor: ISO 11146 measurement standards, BPP calculations, focus spot size impact, cutting performance comparison, and equipment selection criteria. Verified data from IPG, Trumpf, nLIGHT, and Raycus specifications.',
+  path: '/guides/beam-quality-guide',
   keywords: [
     'laser beam quality',
     'M² factor',
@@ -19,17 +20,7 @@ export const metadata: Metadata = {
     'beam quality measurement',
     'laser brightness',
   ],
-  alternates: {
-    canonical: 'https://laserspechub.com/guides/beam-quality-guide',
-  },
-  openGraph: {
-    title: 'Laser Beam Quality M² Factor: Complete Technical Guide 2025',
-    description:
-      'Comprehensive technical analysis: M² measurement methods, BPP calculations, cutting performance impact, and laser selection criteria based on verified manufacturer data.',
-    type: 'article',
-    url: 'https://laserspechub.com/guides/beam-quality-guide',
-  },
-};
+});
 
 const structuredData = {
   '@context': 'https://schema.org',

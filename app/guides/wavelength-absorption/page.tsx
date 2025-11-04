@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import {
   MATERIAL_ABSORPTION_DATA,
   LASER_TYPES,
@@ -9,9 +10,10 @@ import { WavelengthAbsorptionMatrix } from '@/components/cheatsheets/wavelength-
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Wavelength Absorption Chart - Material Compatibility Guide | LaserSpecHub',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Wavelength Absorption Chart - Material Compatibility Guide',
   description: 'Comprehensive wavelength absorption data for laser materials. Compare how different materials absorb CO2, fiber, Nd:YAG, green, and UV laser wavelengths. Scientific data for optimal laser selection.',
+  path: '/guides/wavelength-absorption',
   keywords: [
     'laser wavelength absorption',
     'material absorption rate',
@@ -22,12 +24,7 @@ export const metadata: Metadata = {
     'fiber vs CO2 laser',
     'laser material interaction'
   ],
-  openGraph: {
-    title: 'Laser Wavelength & Material Absorption Chart | LaserSpecHub',
-    description: 'Scientific reference for laser wavelength absorption rates across metals and non-metals',
-    type: 'article',
-  },
-};
+});
 
 export default function WavelengthAbsorptionPage() {
   const structuredData = {

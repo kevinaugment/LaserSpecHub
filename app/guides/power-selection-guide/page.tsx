@@ -1,4 +1,6 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
+import Link from 'next/link';
 import {
   ALL_POWER_GUIDES,
   POWER_SELECTION_LAST_UPDATE,
@@ -8,9 +10,10 @@ import { PowerSelectionCards } from '@/components/cheatsheets/power-selection-ca
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Power Selection Guide - Choose the Right Power Level | LaserSpecHub',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Power Selection Guide - Choose the Right Power Level',
   description: 'Complete guide to selecting laser power levels for your application. Compare 1kW-20kW fiber lasers and 40W-300W CO2 lasers with detailed specifications, pricing, and recommendations.',
+  path: '/guides/power-selection-guide',
   keywords: [
     'laser power selection',
     'laser wattage guide',
@@ -21,12 +24,7 @@ export const metadata: Metadata = {
     'laser buying guide',
     'laser power requirements'
   ],
-  openGraph: {
-    title: 'Laser Power Selection Guide | LaserSpecHub',
-    description: 'Find the optimal laser power for your material thickness and production needs',
-    type: 'article',
-  },
-};
+});
 
 export default function PowerSelectionGuidePage() {
   const structuredData = {
@@ -74,7 +72,20 @@ export default function PowerSelectionGuidePage() {
             </h1>
             <p className="text-xl text-gray-600 mb-6">
               Choose the optimal laser power level for your application. This comprehensive guide 
-              helps you match material thickness, production volume, and budget to the right equipment.
+              helps you match material thickness, production volume, and budget to the right equipment. 
+              Need help determining your material thickness requirements? Check our{' '}
+              <Link href="/guides/material-thickness-parameters" className="text-blue-600 hover:text-blue-800 font-medium underline">
+                Material Thickness Parameters Guide
+              </Link>
+              {' '}or use our{' '}
+              <Link href="/tools/power-calculator" className="text-blue-600 hover:text-blue-800 font-medium underline">
+                Power Calculator
+              </Link>
+              {' '}for automated recommendations. For complete equipment selection guidance, see our{' '}
+              <Link href="/guides/selection" className="text-blue-600 hover:text-blue-800 font-medium underline">
+                Complete Selection Guide
+              </Link>
+              .
             </p>
             <div className="flex flex-wrap gap-2">
               <span className="inline-flex items-center px-3 py-1 bg-primary-100 text-primary-800 text-sm font-medium rounded-full">

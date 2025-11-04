@@ -1,7 +1,12 @@
-export const metadata = {
+import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
+
+export const metadata: Metadata = generatePageMetadata({
   title: 'Terms of Service',
   description: 'LaserSpecHub Terms of Service - Rules and guidelines for using our platform',
-}
+  path: '/terms',
+  keywords: ['terms of service', 'user agreement', 'legal', 'terms and conditions'],
+});
 
 export default function TermsPage() {
   return (
@@ -296,7 +301,7 @@ export default function TermsPage() {
           <p className="text-gray-700 mb-2"><strong>LaserSpecHub</strong></p>
           <p className="text-gray-700 mb-2">Email: <a href="mailto:support@laserspechub.com" className="text-blue-600 hover:underline">support@laserspechub.com</a></p>
           <p className="text-gray-700 mb-2">Legal: <a href="mailto:legal@laserspechub.com" className="text-blue-600 hover:underline">legal@laserspechub.com</a></p>
-          <p className="text-gray-700 mb-2">Website: <a href="https://laser-spec-hub.vercel.app" className="text-blue-600 hover:underline">https://laser-spec-hub.vercel.app</a></p>
+          <p className="text-gray-700 mb-2">Website: <a href="https://www.laserspechub.com" className="text-blue-600 hover:underline">https://www.laserspechub.com</a></p>
           <p className="text-gray-700">Contact Form: <a href="/contact" className="text-blue-600 hover:underline">/contact</a></p>
         </div>
       </section>

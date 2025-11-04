@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
+import Link from 'next/link';
 import { generatePageMetadata } from '@/lib/utils/metadata';
 import { getDatabase } from '@/lib/db/client';
 import type { LaserEquipment } from '@/types/equipment';
@@ -117,9 +118,36 @@ export default async function EquipmentPage({
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
           Equipment Database
         </h1>
-        <p className="text-lg text-gray-600">
-          Browse our comprehensive database of laser cutting machines with detailed specifications and advanced filters.
+        <p className="text-lg text-gray-600 mb-4">
+          Browse our comprehensive database of laser cutting machines with detailed specifications and advanced filters. 
+          Compare multiple machines using our{' '}
+          <Link href="/comparison" className="text-blue-600 hover:text-blue-800 font-medium underline">
+            comparison tool
+          </Link>
+          {' '}or learn how to select the right equipment with our{' '}
+          <Link href="/guides/selection" className="text-blue-600 hover:text-blue-800 font-medium underline">
+            comprehensive selection guide
+          </Link>
+          .
         </p>
+        <div className="flex flex-wrap gap-4 text-sm">
+          <span className="text-gray-600">Helpful resources:</span>
+          <Link href="/tools/power-calculator" className="text-blue-600 hover:text-blue-800 underline">
+            Power Calculator
+          </Link>
+          <span className="text-gray-400">•</span>
+          <Link href="/guides/power-selection-guide" className="text-blue-600 hover:text-blue-800 underline">
+            Power Selection Guide
+          </Link>
+          <span className="text-gray-400">•</span>
+          <Link href="/guides/co2-vs-fiber-laser" className="text-blue-600 hover:text-blue-800 underline">
+            CO2 vs Fiber Comparison
+          </Link>
+          <span className="text-gray-400">•</span>
+          <Link href="/guides/material-thickness-parameters" className="text-blue-600 hover:text-blue-800 underline">
+            Material Parameters
+          </Link>
+        </div>
       </div>
       
       <Suspense fallback={

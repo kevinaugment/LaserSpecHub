@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import { LASER_SAFETY_LAST_UPDATE, DATA_DISCLAIMER } from '@/lib/data/cheatsheets/laser-safety-data';
 import { LaserSafetyClasses } from '@/components/cheatsheets/laser-safety-classes';
 import { 
@@ -10,9 +11,10 @@ import {
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Safety Classes and Protection Standards (IEC 60825-1) | LaserSpecHub',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Safety Classes and Protection Standards (IEC 60825-1)',
   description: 'Authoritative reference of laser safety classes (IEC 60825-1) with PPE, workplace requirements and regulatory standards for industrial laser systems.',
+  path: '/guides/laser-safety-classes',
   keywords: [
     'laser safety classes',
     'IEC 60825-1',
@@ -21,12 +23,7 @@ export const metadata: Metadata = {
     'Class 4 laser safety',
     'laser safety standards'
   ],
-  openGraph: {
-    title: 'Laser Safety Classes (IEC 60825-1) | LaserSpecHub',
-    description: 'Safety classes, PPE and workplace requirements for industrial lasers',
-    type: 'article',
-  },
-};
+});
 
 export default function LaserSafetyPage() {
   const structuredData = {

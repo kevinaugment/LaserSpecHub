@@ -1,20 +1,14 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Cutting Safety Operations Guide - Complete OSHA & IEC Compliance | LaserSpecHub',
-  description:
-    'Comprehensive laser cutting safety operations guide covering PPE requirements, daily inspection checklists, SOPs, emergency response protocols, training programs, and OSHA/ANSI/IEC compliance. Protect personnel and equipment with industry-standard safety procedures.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Cutting Safety Operations Guide - Complete OSHA & IEC Compliance',
+  description: 'Comprehensive laser cutting safety operations guide covering PPE requirements, daily inspection checklists, SOPs, emergency response protocols, training programs, and OSHA/ANSI/IEC compliance. Protect personnel and equipment with industry-standard safety procedures.',
+  path: '/guides/safety-operations',
   keywords: ['laser safety', 'OSHA compliance', 'laser safety training', 'PPE requirements', 'IEC 60825-1', 'emergency response', 'safety SOP', 'Class 4 laser', 'laser hazards', 'safety checklist'],
-  alternates: { canonical: 'https://laserspechub.com/guides/safety-operations' },
-  openGraph: {
-    title: 'Laser Cutting Safety Operations - OSHA/IEC Compliance Guide',
-    description: 'Complete safety guide: PPE, inspections, SOPs, training, emergency response, and regulatory compliance',
-    type: 'article',
-    url: 'https://laserspechub.com/guides/safety-operations',
-  },
-};
+});
 
 const structuredData = {
   '@context': 'https://schema.org',

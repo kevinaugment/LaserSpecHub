@@ -1,12 +1,13 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Cutting Focus Position Guide - LaserSpecHub',
-  description:
-    'Detailed laser cutting focus position adjustment guide. Includes definitions of positive, zero, and negative focus, step-by-step methods for ramp test and dot test, focus position recommendations for different materials, and diagnostic methods for focus errors. Based on TRUMPF and Bystronic operation manuals.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Cutting Focus Position Guide',
+  description: 'Detailed laser cutting focus position adjustment guide. Includes definitions of positive, zero, and negative focus, step-by-step methods for ramp test and dot test, focus position recommendations for different materials, and diagnostic methods for focus errors. Based on TRUMPF and Bystronic operation manuals.',
+  path: '/guides/focus-position-guide',
   keywords: [
     'laser focus adjustment',
     'focus position',
@@ -15,17 +16,7 @@ export const metadata: Metadata = {
     'dot test',
     'laser focusing',
   ],
-  alternates: {
-    canonical: 'https://laserspechub.com/guides/focus-position-guide',
-  },
-  openGraph: {
-    title: 'Laser Cutting Focus Position Guide - Complete Operation Steps',
-    description:
-      'Learn to correctly adjust and calibrate laser focus position, master practical methods like ramp test and dot test',
-    type: 'article',
-    url: 'https://laserspechub.com/guides/focus-position-guide',
-  },
-};
+});
 
 const structuredData = {
   '@context': 'https://schema.org',

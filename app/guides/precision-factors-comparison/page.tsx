@@ -1,12 +1,13 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Cutting Precision Comparison: 5 Key Factors Affecting Positioning Accuracy | LaserSpecHub',
-  description:
-    'Comprehensive analysis of the 5 critical factors that determine laser cutting precision: mechanical structure, servo systems, beam quality, thermal stability, and software algorithms. Compare positioning accuracy specifications across equipment classes with real-world performance data.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Cutting Precision Comparison: 5 Key Factors Affecting Positioning Accuracy',
+  description: 'Comprehensive analysis of the 5 critical factors that determine laser cutting precision: mechanical structure, servo systems, beam quality, thermal stability, and software algorithms. Compare positioning accuracy specifications across equipment classes with real-world performance data.',
+  path: '/guides/precision-factors-comparison',
   keywords: [
     'laser cutting precision',
     'positioning accuracy',
@@ -18,13 +19,7 @@ export const metadata: Metadata = {
     'servo control',
     'laser tolerance',
   ],
-  openGraph: {
-    title: 'Laser Cutting Precision Comparison: 5 Key Factors | LaserSpecHub',
-    description:
-      'Deep dive into the engineering factors that determine laser cutting accuracy and how to evaluate precision specifications',
-    type: 'article',
-  },
-};
+});
 
 const structuredData = {
   '@context': 'https://schema.org',

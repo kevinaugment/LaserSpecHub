@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generatePageMetadata({
   title: 'Laser CNC Control Systems Comparison: Beckhoff vs Siemens vs Cypcut vs PA 2025',
-  description:
-    'Professional comparison of laser cutting CNC control systems: Beckhoff TwinCAT, Siemens 840D, Cypcut, PA, NUM, and Fanuc. Technical specs, performance data, feature comparison, TCO analysis, and selection criteria for laser fabrication.',
+  description: 'Professional comparison of laser cutting CNC control systems: Beckhoff TwinCAT, Siemens 840D, Cypcut, PA, NUM, and Fanuc. Technical specs, performance data, feature comparison, TCO analysis, and selection criteria for laser fabrication.',
+  path: '/guides/control-systems-comparison',
   keywords: [
     'laser CNC control systems comparison',
     'Beckhoff TwinCAT laser control',
@@ -18,13 +19,7 @@ export const metadata: Metadata = {
     'CNC system selection guide',
     'laser control software comparison',
   ],
-  openGraph: {
-    title: 'Laser CNC Control Systems: Complete Technical Comparison 2025',
-    description:
-      'In-depth comparison of leading laser CNC control systems: specifications, performance benchmarks, software integration, reliability data, and total cost of ownership analysis.',
-    type: 'article',
-  },
-};
+});
 
 export default function Page() {
   const structuredData = {

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import {
   ISO_9013_QUALITY_GRADES,
   MEASUREMENT_METHODS,
@@ -26,9 +27,10 @@ import { QualityInspectionChecklist } from '@/components/cheatsheets/quality-ins
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Cutting Edge Quality Standards - ISO 9013 Guide | LaserSpecHub',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Cutting Edge Quality Standards - ISO 9013 Guide',
   description: 'Complete guide to laser cutting edge quality standards based on ISO 9013. Compare Grade 1-4 quality levels, defects, and improvement methods for optimal cutting results.',
+  path: '/guides/edge-quality-standards',
   keywords: [
     'laser cutting edge quality',
     'ISO 9013 standard',
@@ -44,12 +46,7 @@ export const metadata: Metadata = {
     'AWS D1.1',
     'EN 1090'
   ],
-  openGraph: {
-    title: 'Laser Cutting Edge Quality Standards | LaserSpecHub',
-    description: 'ISO 9013 quality grades and defect troubleshooting guide',
-    type: 'article',
-  },
-};
+});
 
 export default function EdgeQualityStandardsPage() {
   const structuredData = {

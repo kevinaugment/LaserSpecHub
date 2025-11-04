@@ -1,11 +1,12 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Cutter Installation Requirements (Power, Ventilation, Floor, Safety) | LaserSpecHub',
-  description:
-    'Complete installation checklist for industrial laser cutters: electrical power, ventilation, cooling, floor/load, space, logistics, and safety requirements with cost benchmarks.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Cutter Installation Requirements (Power, Ventilation, Floor, Safety)',
+  description: 'Complete installation checklist for industrial laser cutters: electrical power, ventilation, cooling, floor/load, space, logistics, and safety requirements with cost benchmarks.',
+  path: '/guides/installation-requirements',
   keywords: [
     'laser cutter installation requirements',
     'industrial laser power requirements',
@@ -14,12 +15,7 @@ export const metadata: Metadata = {
     'laser foundation floor load',
     'laser site preparation',
   ],
-  openGraph: {
-    title: 'Laser Cutter Installation Requirements & Site Preparation | LaserSpecHub',
-    description: 'Power, ventilation, cooling, floor load, space, logistics, safety—complete checklist with costs',
-    type: 'article',
-  },
-};
+});
 
 export default function InstallationRequirementsPage() {
   const structuredData = {
@@ -194,6 +190,8 @@ export default function InstallationRequirementsPage() {
     </>
   );
 }
+
+
 
 
 

@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import {
   LENS_FOCAL_LENGTHS,
   LENS_MAINTENANCE,
@@ -9,9 +10,10 @@ import { LensSpecsComparison } from '@/components/cheatsheets/lens-specs-compari
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Focusing Lens Specifications Guide - Focal Length Comparison | LaserSpecHub',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Focusing Lens Specifications Guide - Focal Length Comparison',
   description: 'Complete guide to laser focusing lenses. Compare 50mm to 254mm focal lengths with specifications, applications, and selection criteria for optimal cutting performance.',
+  path: '/guides/lens-specifications',
   keywords: [
     'laser focusing lens',
     'focal length selection',
@@ -22,12 +24,7 @@ export const metadata: Metadata = {
     'spot size',
     'laser optics'
   ],
-  openGraph: {
-    title: 'Laser Focusing Lens Specifications | LaserSpecHub',
-    description: 'Choose the right focusing lens focal length for your laser cutting application',
-    type: 'article',
-  },
-};
+});
 
 export default function LensSpecificationsPage() {
   const structuredData = {

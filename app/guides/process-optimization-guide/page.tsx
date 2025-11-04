@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
@@ -16,10 +17,10 @@ import {
   DATA_DISCLAIMER
 } from '@/lib/data/cheatsheets/process-optimization-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Cutting Process Optimization Guide - LaserSpecHub',
-  description:
-    'Systematic laser cutting process optimization guide: speed optimization, quality improvement, material utilization, cost control, specialized processes, and process database development. Based on TRUMPF, Bystronic engineering guidelines and lean production practices.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Cutting Process Optimization Guide',
+  description: 'Systematic laser cutting process optimization guide: speed optimization, quality improvement, material utilization, cost control, specialized processes, and process database development. Based on TRUMPF, Bystronic engineering guidelines and lean production practices.',
+  path: '/guides/process-optimization-guide',
   keywords: [
     'laser cutting process optimization',
     'speed optimization',
@@ -27,17 +28,7 @@ export const metadata: Metadata = {
     'cost optimization',
     'lean manufacturing',
   ],
-  alternates: {
-    canonical: 'https://laserspechub.com/guides/process-optimization-guide',
-  },
-  openGraph: {
-    title: 'Laser Cutting Process Optimization Guide - Efficiency, Quality & Cost Reduction',
-    description:
-      'Comprehensive optimization guide covering speed, quality, material utilization, cost and specialized processes',
-    type: 'article',
-    url: 'https://laserspechub.com/guides/process-optimization-guide',
-  },
-};
+});
 
 const structuredData = {
   '@context': 'https://schema.org',

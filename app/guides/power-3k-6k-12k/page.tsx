@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generatePageMetadata({
   title: '3kW vs 6kW vs 12kW Fiber Laser Power Comparison: Complete Guide 2025',
-  description:
-    'Professional comparison of 3kW, 6kW and 12kW fiber laser cutting systems. Detailed analysis of cutting speeds, material capabilities, operating costs, ROI calculations, and infrastructure requirements. Data-backed guide for optimal power selection.',
+  description: 'Professional comparison of 3kW, 6kW and 12kW fiber laser cutting systems. Detailed analysis of cutting speeds, material capabilities, operating costs, ROI calculations, and infrastructure requirements. Data-backed guide for optimal power selection.',
+  path: '/guides/power-3k-6k-12k',
   keywords: [
     '3kW vs 6kW vs 12kW fiber laser',
     'fiber laser power comparison',
@@ -18,13 +19,7 @@ export const metadata: Metadata = {
     '6kW fiber laser',
     '12kW fiber laser',
   ],
-  openGraph: {
-    title: '3kW vs 6kW vs 12kW Fiber Laser: Data-Driven Power Comparison',
-    description:
-      'Comprehensive comparison: cutting speeds, material capabilities, operating costs, ROI analysis, and infrastructure requirements for 3kW, 6kW, and 12kW fiber lasers.',
-    type: 'article',
-  },
-};
+});
 
 export default function Page() {
   const structuredData = {

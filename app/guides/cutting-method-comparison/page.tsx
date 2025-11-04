@@ -1,20 +1,14 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'Laser vs Plasma vs Waterjet Cutting: Complete Comparison Guide 2025 | LaserSpecHub',
-  description:
-    'Comprehensive comparison of laser, plasma, and waterjet cutting technologies. Detailed analysis of precision, speed, cost, thickness capability, material compatibility, and ROI. Includes 4 real-world case studies and decision matrices for equipment selection.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser vs Plasma vs Waterjet Cutting: Complete Comparison Guide 2025',
+  description: 'Comprehensive comparison of laser, plasma, and waterjet cutting technologies. Detailed analysis of precision, speed, cost, thickness capability, material compatibility, and ROI. Includes 4 real-world case studies and decision matrices for equipment selection.',
+  path: '/guides/cutting-method-comparison',
   keywords: ['laser vs plasma vs waterjet', 'cutting method comparison', 'laser cutting cost', 'plasma cutting speed', 'waterjet thickness', 'equipment selection guide', 'cutting technology ROI'],
-  alternates: { canonical: 'https://laserspechub.com/guides/cutting-method-comparison' },
-  openGraph: {
-    title: 'Laser vs Plasma vs Waterjet: Complete Cutting Technology Comparison',
-    description: 'Expert comparison covering precision, cost, speed, and material capability with real case studies',
-    type: 'article',
-    url: 'https://laserspechub.com/guides/cutting-method-comparison',
-  },
-};
+});
 
 const structuredData = {
   '@context': 'https://schema.org',

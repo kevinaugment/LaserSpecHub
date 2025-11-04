@@ -1,7 +1,12 @@
-export const metadata = {
+import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
+
+export const metadata: Metadata = generatePageMetadata({
   title: 'Privacy Policy',
   description: 'LaserSpecHub Privacy Policy - How we collect, use, and protect your data',
-}
+  path: '/privacy',
+  keywords: ['privacy policy', 'data protection', 'user privacy', 'data security'],
+});
 
 export default function PrivacyPage() {
   return (
@@ -236,7 +241,7 @@ export default function PrivacyPage() {
         <div className="bg-gray-50 p-6 rounded-lg">
           <p className="text-gray-700 mb-2"><strong>LaserSpecHub</strong></p>
           <p className="text-gray-700 mb-2">Email: <a href="mailto:privacy@laserspechub.com" className="text-blue-600 hover:underline">privacy@laserspechub.com</a></p>
-          <p className="text-gray-700 mb-2">Website: <a href="https://laser-spec-hub.vercel.app" className="text-blue-600 hover:underline">https://laser-spec-hub.vercel.app</a></p>
+          <p className="text-gray-700 mb-2">Website: <a href="https://www.laserspechub.com" className="text-blue-600 hover:underline">https://www.laserspechub.com</a></p>
           <p className="text-gray-700">Contact Form: <a href="/contact" className="text-blue-600 hover:underline">/contact</a></p>
         </div>
       </section>

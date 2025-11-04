@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'CO2 Laser vs Fiber Laser: Technical Comparison & Application Guide | LaserSpecHub',
-  description:
-    'Comprehensive comparison of CO2 and fiber laser technology: wavelength physics, material absorption, cutting performance, efficiency, maintenance, and cost analysis to guide your equipment selection.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'CO2 Laser vs Fiber Laser: Technical Comparison & Application Guide',
+  description: 'Comprehensive comparison of CO2 and fiber laser technology: wavelength physics, material absorption, cutting performance, efficiency, maintenance, and cost analysis to guide your equipment selection.',
+  path: '/guides/co2-vs-fiber-laser',
   keywords: [
     'CO2 vs fiber laser',
     'laser technology comparison',
@@ -15,13 +16,7 @@ export const metadata: Metadata = {
     'laser wavelength comparison',
     'laser cutting technology',
   ],
-  openGraph: {
-    title: 'CO2 Laser vs Fiber Laser: Complete Technical Comparison',
-    description:
-      'Physics, performance, efficiency and cost comparison between CO2 and fiber laser cutting technologies.',
-    type: 'article',
-  },
-};
+});
 
 export default function Page() {
   const structuredData = {
@@ -45,7 +40,23 @@ export default function Page() {
         <p className="text-lg text-gray-700 mb-8">
           CO2 and fiber lasers represent fundamentally different approaches to generating laser light, each with distinct 
           advantages. Understanding the physics, material interactions, and practical implications helps you choose the 
-          right technology for your application and budget.
+          right technology for your application and budget. For a complete equipment selection framework, see our{' '}
+          <Link href="/guides/selection" className="text-blue-600 hover:text-blue-800 font-medium underline">
+            Equipment Selection Guide
+          </Link>
+          {' '}or compare specific power levels in our{' '}
+          <Link href="/guides/power-selection-guide" className="text-blue-600 hover:text-blue-800 font-medium underline">
+            Power Selection Guide
+          </Link>
+          {' '}. You can also{' '}
+          <Link href="/equipment" className="text-blue-600 hover:text-blue-800 font-medium underline">
+            browse our equipment database
+          </Link>
+          {' '}to see real-world specifications and{' '}
+          <Link href="/comparison" className="text-blue-600 hover:text-blue-800 font-medium underline">
+            compare machines side-by-side
+          </Link>
+          .
         </p>
 
         {/* Quick Comparison Table */}

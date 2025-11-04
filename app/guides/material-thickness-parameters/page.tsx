@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
@@ -15,10 +16,10 @@ import {
 } from '@/lib/data/cheatsheets/material-thickness-parameters-data';
 import { ALL_MATERIAL_CHARACTERISTICS } from '@/lib/data/cheatsheets/material-comparison-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Cutting Material Thickness Parameters Guide - LaserSpecHub',
-  description:
-    'Comprehensive laser cutting material thickness parameter reference table, including cutting speed, gas pressure, nozzle diameter and focus position parameters for carbon steel, stainless steel, aluminum alloy and other materials at different powers and thicknesses. Based on data from mainstream manufacturers like TRUMPF and Bystronic.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Cutting Material Thickness Parameters Guide',
+  description: 'Comprehensive laser cutting material thickness parameter reference table, including cutting speed, gas pressure, nozzle diameter and focus position parameters for carbon steel, stainless steel, aluminum alloy and other materials at different powers and thicknesses. Based on data from mainstream manufacturers like TRUMPF and Bystronic.',
+  path: '/guides/material-thickness-parameters',
   keywords: [
     'laser cutting parameters',
     'cutting speed table',
@@ -26,17 +27,7 @@ export const metadata: Metadata = {
     'process parameter reference',
     'cutting parameters',
   ],
-  alternates: {
-    canonical: 'https://laserspechub.com/guides/material-thickness-parameters',
-  },
-  openGraph: {
-    title: 'Laser Cutting Material Thickness Parameters - Complete Process Parameter Guide',
-    description:
-      'Quickly find cutting parameters for different materials, thicknesses and powers, including speed, gas pressure, nozzle and focus position.',
-    type: 'article',
-    url: 'https://laserspechub.com/guides/material-thickness-parameters',
-  },
-};
+});
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -59,10 +50,32 @@ export default function Page() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-3">Laser Cutting Material Thickness Parameters Guide</h1>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground mb-4">
           Compiled based on process manuals from mainstream laser equipment manufacturers such as TRUMPF, Bystronic, Amada, and Mazak.
           Covers recommended cutting parameters for common materials like carbon steel, stainless steel, and aluminum alloy at different powers and thicknesses.
         </p>
+        <div className="flex flex-wrap gap-4 text-sm">
+          <span className="text-gray-600">Related resources:</span>
+          <Link href="/guides/power-selection-guide" className="text-blue-600 hover:text-blue-800 underline">
+            Power Selection Guide
+          </Link>
+          <span className="text-gray-400">•</span>
+          <Link href="/guides/assist-gas-chart" className="text-blue-600 hover:text-blue-800 underline">
+            Assist Gas Selection
+          </Link>
+          <span className="text-gray-400">•</span>
+          <Link href="/guides/cutting-speed-chart" className="text-blue-600 hover:text-blue-800 underline">
+            Cutting Speed Chart
+          </Link>
+          <span className="text-gray-400">•</span>
+          <Link href="/tools/power-calculator" className="text-blue-600 hover:text-blue-800 underline">
+            Power Calculator
+          </Link>
+          <span className="text-gray-400">•</span>
+          <Link href="/guides/co2-vs-fiber-laser" className="text-blue-600 hover:text-blue-800 underline">
+            CO2 vs Fiber Comparison
+          </Link>
+        </div>
         <div className="mt-2 text-sm text-muted-foreground">
           Data Version: {MATERIAL_PARAMETERS_VERSION} | 
           Last Updated: {MATERIAL_PARAMETERS_LAST_UPDATE}

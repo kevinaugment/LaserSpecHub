@@ -1,21 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import Link from 'next/link';
 
-export const metadata: Metadata = {
-  title: 'Laser Cutting Nesting Optimization Guide - Maximize Material Utilization | LaserSpecHub',
-  description:
-    'Complete guide to laser cutting nesting optimization: achieve 85-95% material utilization with advanced algorithms, common-line cutting, remnant management, and ROI-proven software comparison. Practical strategies and real-world case studies.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Cutting Nesting Optimization Guide - Maximize Material Utilization',
+  description: 'Complete guide to laser cutting nesting optimization: achieve 85-95% material utilization with advanced algorithms, common-line cutting, remnant management, and ROI-proven software comparison. Practical strategies and real-world case studies.',
+  path: '/guides/nesting-optimization-guide',
   keywords: ['nesting optimization', 'material utilization', 'common line cutting', 'nesting software', 'remnant management', 'laser cutting efficiency', 'SigmaNEST', 'FastCAM', 'Lantek'],
-  alternates: { canonical: 'https://laserspechub.com/guides/nesting-optimization-guide' },
-  openGraph: {
-    title: 'Laser Cutting Nesting Optimization - Achieve 85-95% Material Utilization',
-    description: 'Comprehensive guide covering principles, software, techniques, and ROI calculation',
-    type: 'article',
-    url: 'https://laserspechub.com/guides/nesting-optimization-guide',
-  },
-};
+});
 
 const structuredData = {
   '@context': 'https://schema.org',

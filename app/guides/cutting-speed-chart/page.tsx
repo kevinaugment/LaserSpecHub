@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import { 
   ALL_LASER_SPEED_DATA,
   CUTTING_SPEED_LAST_UPDATE,
@@ -17,9 +18,10 @@ import {
 import { ProductionTimeCalculator } from '@/components/cheatsheets/production-time-calculator';
 import { SpeedComparisonTool } from '@/components/cheatsheets/speed-comparison-tool';
 
-export const metadata: Metadata = {
-  title: 'Laser Cutting Speed Chart - Reference Data by Material & Thickness | LaserSpecHub',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Cutting Speed Chart - Reference Data by Material & Thickness',
   description: 'Comprehensive laser cutting speed reference chart covering fiber laser and CO2 laser cutting speeds for stainless steel, carbon steel, aluminum, acrylic, and more. Based on real equipment test data from major manufacturers.',
+  path: '/guides/cutting-speed-chart',
   keywords: [
     'laser cutting speed chart',
     'cutting speed by material',
@@ -30,12 +32,7 @@ export const metadata: Metadata = {
     'metal cutting speed',
     'laser speed table'
   ],
-  openGraph: {
-    title: 'Laser Cutting Speed Reference Chart | LaserSpecHub',
-    description: 'Quick reference for laser cutting speeds across different materials, thicknesses, and power levels',
-    type: 'article',
-  },
-};
+});
 
 export default function CuttingSpeedChartPage() {
   const structuredData = {

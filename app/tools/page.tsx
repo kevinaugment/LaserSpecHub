@@ -1,11 +1,12 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-export const metadata: Metadata = {
-  title: 'Laser Cutting Calculators & Tools - LaserSpecHub',
-  description:
-    'Interactive laser cutting calculators and tools: power density, kerf width, cost estimation, gas flow, chiller sizing, and equipment selection wizards.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Cutting Calculators & Tools',
+  description: 'Interactive laser cutting calculators and tools: power density, kerf width, cost estimation, gas flow, chiller sizing, and equipment selection wizards.',
+  path: '/tools',
   keywords: [
     'laser cutting calculator',
     'power density calculator',
@@ -14,14 +15,7 @@ export const metadata: Metadata = {
     'laser selection tool',
     'gas flow calculator',
   ],
-  alternates: { canonical: 'https://laserspechub.com/tools' },
-  openGraph: {
-    title: 'Laser Cutting Calculators & Interactive Tools',
-    description: 'Free online calculators for laser cutting parameter optimization and equipment selection',
-    type: 'website',
-    url: 'https://laserspechub.com/tools',
-  },
-};
+});
 
 const tools = [
   {

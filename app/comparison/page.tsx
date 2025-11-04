@@ -3,7 +3,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import Head from 'next/head';
+import Link from 'next/link';
 import type { LaserEquipment } from '@/types/equipment';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -192,18 +192,6 @@ function ComparisonContent() {
 
   return (
     <>
-      <Head>
-        <meta name="description" content="Compare laser cutting machines side-by-side with detailed specifications, pricing, and performance metrics. Free comparison tool for fiber lasers, CO2 lasers, and more. Export to PDF or share your comparison." />
-        <meta name="keywords" content="laser equipment comparison, laser cutter comparison, fiber laser vs CO2, laser machine specs, equipment comparison tool, laser specifications, laser price comparison" />
-        <meta property="og:title" content="Laser Equipment Comparison Tool - Compare Specifications & Pricing" />
-        <meta property="og:description" content="Compare up to 5 laser cutting machines side-by-side. Detailed specs, pricing, performance metrics. Export to PDF or share link." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://laserspechub.com/comparison" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Laser Equipment Comparison Tool" />
-        <meta name="twitter:description" content="Compare laser cutting machines side-by-side with detailed specifications and pricing" />
-        <link rel="canonical" href="https://laserspechub.com/comparison" />
-      </Head>
       <StructuredData data={structuredData} />
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
         <div className="mb-8">
@@ -211,11 +199,29 @@ function ComparisonContent() {
             Laser Equipment Comparison Tool
           </h1>
           <p className="text-xl text-gray-600 mb-4">
-            Compare up to 5 laser cutting machines side-by-side with detailed specifications, pricing, and key differences highlighted. Make informed decisions with our free comparison tool.
+            Compare up to 5 laser cutting machines side-by-side with detailed specifications, pricing, and key differences highlighted. Make informed decisions with our free comparison tool. 
+            Browse our{' '}
+            <Link href="/equipment" className="text-blue-600 hover:text-blue-800 font-medium underline">
+              equipment database
+            </Link>
+            {' '}to find machines to compare, or read our{' '}
+            <Link href="/guides/selection" className="text-blue-600 hover:text-blue-800 font-medium underline">
+              equipment selection guide
+            </Link>
+            {' '}for help choosing the right laser type and power.
           </p>
           <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
             <p className="text-blue-900 text-sm">
-              <strong>💡 Pro Tip:</strong> Select equipment from different manufacturers or power classes to understand your options. All comparisons can be exported to PDF or shared via link for team discussions.
+              <strong>💡 Pro Tip:</strong> Select equipment from different manufacturers or power classes to understand your options. All comparisons can be exported to PDF or shared via link for team discussions. 
+              Need help determining power requirements? Use our{' '}
+              <Link href="/tools/power-calculator" className="text-blue-700 hover:text-blue-900 font-medium underline">
+                Power Calculator
+              </Link>
+              {' '}or check the{' '}
+              <Link href="/guides/power-selection-guide" className="text-blue-700 hover:text-blue-900 font-medium underline">
+                Power Selection Guide
+              </Link>
+              .
             </p>
           </div>
         </div>

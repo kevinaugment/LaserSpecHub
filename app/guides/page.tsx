@@ -1,11 +1,12 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-export const metadata: Metadata = {
-  title: 'Laser Cutting Guides & Resources - LaserSpecHub',
-  description:
-    'Comprehensive laser cutting and engraving guides: technical parameters, safety protocols, troubleshooting, process optimization, and equipment selection resources.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Cutting Guides & Resources',
+  description: 'Comprehensive laser cutting and engraving guides: technical parameters, safety protocols, troubleshooting, process optimization, and equipment selection resources.',
+  path: '/guides',
   keywords: [
     'laser cutting guides',
     'laser parameters',
@@ -15,14 +16,7 @@ export const metadata: Metadata = {
     'process optimization',
     'equipment selection',
   ],
-  alternates: { canonical: 'https://laserspechub.com/guides' },
-  openGraph: {
-    title: 'Laser Cutting Guides & Resources',
-    description: 'Complete collection of laser cutting technical guides and reference materials',
-    type: 'website',
-    url: 'https://laserspechub.com/guides',
-  },
-};
+});
 
 const guideCategories = [
   {

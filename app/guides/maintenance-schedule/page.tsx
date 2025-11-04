@@ -1,12 +1,14 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import { MAINTENANCE_LAST_UPDATE, DATA_DISCLAIMER } from '@/lib/data/cheatsheets/maintenance-schedule-data';
 import { MaintenanceSchedule } from '@/components/cheatsheets/maintenance-schedule';
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Maintenance Schedule and Operating Cost Guide | LaserSpecHub',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Maintenance Schedule and Operating Cost Guide',
   description: 'Practical maintenance schedules and cost estimates for fiber and CO2 laser systems: daily, weekly, monthly, quarterly and annual tasks with annual cost benchmarks.',
+  path: '/guides/maintenance-schedule',
   keywords: [
     'laser maintenance schedule',
     'fiber laser maintenance',
@@ -14,12 +16,7 @@ export const metadata: Metadata = {
     'laser operating cost',
     'laser service guide'
   ],
-  openGraph: {
-    title: 'Laser Maintenance Schedule & Cost Guide | LaserSpecHub',
-    description: 'Daily-to-annual maintenance tasks and cost ranges for fiber and CO2 lasers',
-    type: 'article',
-  },
-};
+});
 
 export default function MaintenanceSchedulePage() {
   const structuredData = {

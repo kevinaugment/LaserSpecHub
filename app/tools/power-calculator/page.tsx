@@ -53,7 +53,24 @@ export default function PowerCalculatorPage() {
             Laser Power Calculator
           </h1>
           <p className="text-base text-gray-600">
-            Calculate required laser power for fiber and CO2 laser cutting based on material properties and cutting parameters.
+            Calculate required laser power for fiber and CO2 laser cutting based on material properties and cutting parameters. 
+            For detailed power selection guidance, see our{' '}
+            <Link href="/guides/power-selection-guide" className="text-blue-600 hover:text-blue-800 font-medium underline">
+              Power Selection Guide
+            </Link>
+            {' '}or check{' '}
+            <Link href="/guides/material-thickness-parameters" className="text-blue-600 hover:text-blue-800 font-medium underline">
+              Material Thickness Parameters
+            </Link>
+            {' '}for cutting speed references. After calculating power,{' '}
+            <Link href="/equipment" className="text-blue-600 hover:text-blue-800 font-medium underline">
+              browse our equipment database
+            </Link>
+            {' '}to find matching machines or{' '}
+            <Link href="/comparison" className="text-blue-600 hover:text-blue-800 font-medium underline">
+              compare equipment side-by-side
+            </Link>
+            .
           </p>
         </div>
         

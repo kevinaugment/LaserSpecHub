@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import {
   ASSIST_GAS_DATA,
   ASSIST_GAS_LAST_UPDATE,
@@ -12,9 +13,10 @@ import { GasFlowDiagram } from '@/components/cheatsheets/gas-flow-diagram';
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Assist Gas Selection Chart - Parameters & Cost Comparison | LaserSpecHub',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Assist Gas Selection Chart - Parameters & Cost Comparison',
   description: 'Complete guide to assist gas selection for laser cutting. Compare oxygen, nitrogen, compressed air, and argon with detailed parameters, costs, and applications for different materials.',
+  path: '/guides/assist-gas-chart',
   keywords: [
     'laser assist gas',
     'cutting gas selection',
@@ -25,12 +27,7 @@ export const metadata: Metadata = {
     'oxygen cutting',
     'compressed air laser'
   ],
-  openGraph: {
-    title: 'Laser Assist Gas Selection Chart | LaserSpecHub',
-    description: 'Choose the right assist gas for your laser cutting application with detailed parameters and cost analysis',
-    type: 'article',
-  },
-};
+});
 
 export default function AssistGasChartPage() {
   const structuredData = {

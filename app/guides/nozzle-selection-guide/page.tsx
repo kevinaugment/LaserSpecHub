@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
@@ -15,10 +16,10 @@ import {
   ALIGNMENT_PROCEDURE,
 } from '@/lib/data/cheatsheets/nozzle-selection-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Cutting Nozzle Selection Guide - Complete Technical Reference | LaserSpecHub',
-  description:
-    'Comprehensive nozzle selection guide for laser cutting: types, diameter selection, standoff distance, gas flow rates, maintenance, and troubleshooting. Based on Precitec and Raytools specifications.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Cutting Nozzle Selection Guide - Complete Technical Reference',
+  description: 'Comprehensive nozzle selection guide for laser cutting: types, diameter selection, standoff distance, gas flow rates, maintenance, and troubleshooting. Based on Precitec and Raytools specifications.',
+  path: '/guides/nozzle-selection-guide',
   keywords: [
     'laser cutting nozzle',
     'nozzle selection guide',
@@ -35,17 +36,7 @@ export const metadata: Metadata = {
     'Laval nozzle',
     'high speed nozzle',
   ],
-  alternates: {
-    canonical: 'https://laserspechub.com/guides/nozzle-selection-guide',
-  },
-  openGraph: {
-    title: 'Laser Cutting Nozzle Selection Guide - Complete Technical Reference',
-    description:
-      'Master nozzle selection for laser cutting with detailed specifications, interactive tools, and expert recommendations',
-    type: 'article',
-    url: 'https://laserspechub.com/guides/nozzle-selection-guide',
-  },
-};
+});
 
 const structuredData = {
   '@context': 'https://schema.org',

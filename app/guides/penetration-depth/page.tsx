@@ -1,14 +1,15 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PenetrationDepthVisualization } from '@/components/cheatsheets/penetration-depth-visualization';
 
-export const metadata: Metadata = {
-  title: 'Laser Penetration Depth & Cutting Capacity Guide 2025 | LaserSpecHub',
-  description:
-    'Comprehensive technical guide to laser penetration depth: power density calculations, cutting capacity by material and thickness, focus position optimization, piercing strategies, and parameter tuning. Verified data from leading laser equipment manufacturers.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Penetration Depth & Cutting Capacity Guide 2025',
+  description: 'Comprehensive technical guide to laser penetration depth: power density calculations, cutting capacity by material and thickness, focus position optimization, piercing strategies, and parameter tuning. Verified data from leading laser equipment manufacturers.',
+  path: '/guides/penetration-depth',
   keywords: [
     'laser penetration depth',
     'laser cutting capacity',
@@ -20,16 +21,7 @@ export const metadata: Metadata = {
     'laser power vs thickness',
     'kerf depth analysis',
   ],
-  alternates: {
-    canonical: 'https://laserspechub.com/guides/penetration-depth',
-  },
-  openGraph: {
-    title: 'Laser Penetration Depth & Cutting Capacity: Complete Technical Guide 2025',
-    description: 'Comprehensive analysis of penetration depth physics, power density calculations, cutting capacity tables, and parameter optimization for maximum throughput.',
-    type: 'article',
-    url: 'https://laserspechub.com/guides/penetration-depth',
-  },
-};
+});
 
 export default function PenetrationDepthPage() {
   const structuredData = {

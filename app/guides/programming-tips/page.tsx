@@ -1,20 +1,14 @@
 import { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
-  title: 'Laser Cutting Programming Tips Guide - LaserSpecHub',
-  description:
-    'Programming tips for laser cutting engineers: CAD drawing preparation, path planning, parameter settings, automated programming, and common error avoidance to significantly improve programming efficiency and quality.',
+export const metadata: Metadata = generatePageMetadata({
+  title: 'Laser Cutting Programming Tips Guide',
+  description: 'Programming tips for laser cutting engineers: CAD drawing preparation, path planning, parameter settings, automated programming, and common error avoidance to significantly improve programming efficiency and quality.',
+  path: '/guides/programming-tips',
   keywords: ['programming tips', 'CAM software', 'FastCAM', 'automated nesting', 'parameter library'],
-  alternates: { canonical: 'https://laserspechub.com/guides/programming-tips' },
-  openGraph: {
-    title: 'Laser Cutting Programming Tips Guide - Efficiency & Quality',
-    description: 'Systematic experience from drawings to paths and parameters',
-    type: 'article',
-    url: 'https://laserspechub.com/guides/programming-tips',
-  },
-};
+});
 
 const structuredData = {
   '@context': 'https://schema.org',

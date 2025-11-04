@@ -1,14 +1,14 @@
 import { MetadataRoute } from 'next'
  
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://laser-spec-hub.vercel.app'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.laserspechub.com'
   
   return {
     rules: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin/', '/api/'],
+        disallow: ['/admin/', '/api/', '/auth/'],
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,

@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StructuredData } from '@/components/ui/structured-data';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generatePageMetadata({
   title: 'Laser Work Area Size Comparison: 1m vs 2m vs 3m Platform Guide 2025',
-  description:
-    'Complete technical comparison of laser cutting work area sizes: 1m, 2m, and 3m platforms. Material utilization rates, throughput analysis, facility requirements, automation integration, and cost-benefit analysis for optimal table size selection.',
+  description: 'Complete technical comparison of laser cutting work area sizes: 1m, 2m, and 3m platforms. Material utilization rates, throughput analysis, facility requirements, automation integration, and cost-benefit analysis for optimal table size selection.',
+  path: '/guides/work-area-size-comparison',
   keywords: [
     'laser work area size comparison',
     'cutting bed size selection',
@@ -17,13 +18,7 @@ export const metadata: Metadata = {
     'nesting optimization work area',
     'laser table size selection',
   ],
-  openGraph: {
-    title: 'Laser Work Area Size: Complete 1m vs 2m vs 3m Platform Comparison 2025',
-    description:
-      'Comprehensive technical guide: material utilization, throughput benchmarks, facility requirements, automation options, and total cost analysis for laser cutting table sizes.',
-    type: 'article',
-  },
-};
+});
 
 export default function Page() {
   const structuredData = {
