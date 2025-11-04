@@ -575,7 +575,7 @@ export default function AssistGasChartPage() {
                 <p className="text-sm text-gray-600">Gas system maintenance guidelines</p>
               </a>
               <a 
-                href="/tools/cost-calculator"
+                href="/tools/cost-estimator"
                 className="block p-4 border border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors"
               >
                 <h3 className="font-medium text-gray-900 mb-1">Cost Calculator</h3>
