@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Metadata } from 'next';
 
 export default function GasFlowCalculatorPage() {
   const [gasType, setGasType] = useState<'oxygen' | 'nitrogen' | 'air' | 'argon'>('nitrogen');

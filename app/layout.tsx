@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
@@ -27,6 +28,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'LaserSpecHub Team' }],
   creator: 'LaserSpecHub Team',
   publisher: 'LaserSpecHub',
+  verification: {
+    google: 'sV81Tkm9lE61Q6N-0yS9wQlPvTC786gVFXAxzqbHHGE',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -78,6 +82,20 @@ export default function RootLayout({
         <meta name="theme-color" content="#3B82F6" />
       </head>
       <body className="min-h-screen bg-white antialiased flex flex-col">
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-WZ5DQY2HHK"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-WZ5DQY2HHK');
+          `}
+        </Script>
+        
         <Providers>
           <Header />
           <Breadcrumbs />

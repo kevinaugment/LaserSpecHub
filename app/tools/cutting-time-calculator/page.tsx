@@ -17,7 +17,6 @@ export default function CuttingTimeCalculatorPage() {
   const rapidTimeSeconds = (rapidDistance / rapidSpeed) * 60;
   const totalTimeSeconds = cuttingTimeSeconds + totalPierceTime + rapidTimeSeconds;
   
-  const cuttingTimeMinutes = cuttingTimeSeconds / 60;
   const totalTimeMinutes = totalTimeSeconds / 60;
 
   // Parts per hour calculation
