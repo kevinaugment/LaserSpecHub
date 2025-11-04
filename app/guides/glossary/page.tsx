@@ -569,9 +569,9 @@ export default function GlossaryPage() {
                     {/* Cut line */}
                     <line x1="300" y1="80" x2="300" y2="120" stroke="#ef4444" strokeWidth="3" />
                     {/* Kerf width */}
-                    <line x1="295" y1="60" x2="305" y1="60" stroke="#3b82f6" strokeWidth="2" />
-                    <line x1="295" y1="55" x2="295" y1="65" stroke="#3b82f6" strokeWidth="2" />
-                    <line x1="305" y1="55" x2="305" y1="65" stroke="#3b82f6" strokeWidth="2" />
+                    <line x1="295" y1="60" x2="305" y2="60" stroke="#3b82f6" strokeWidth="2" />
+                    <line x1="295" y1="55" x2="295" y2="65" stroke="#3b82f6" strokeWidth="2" />
+                    <line x1="305" y1="55" x2="305" y2="65" stroke="#3b82f6" strokeWidth="2" />
                     <text x="300" y="50" textAnchor="middle" className="text-sm fill-gray-700 font-medium">
                       Kerf Width
                     </text>
@@ -615,13 +615,13 @@ export default function GlossaryPage() {
                     <rect x="100" y="200" width="400" height="60" fill="#e5e7eb" stroke="#374151" strokeWidth="2" />
                     <text x="300" y="285" textAnchor="middle" className="text-sm fill-gray-600">Material Surface</text>
                     {/* DOF range */}
-                    <line x1="280" y1="115" x2="280" y1="130" stroke="#10b981" strokeWidth="3" />
-                    <line x1="320" y1="115" x2="320" y1="130" stroke="#10b981" strokeWidth="3" />
-                    <line x1="280" y1="115" x2="320" y1="115" stroke="#10b981" strokeWidth="2" strokeDasharray="3,3" />
-                    <line x1="280" y1="130" x2="320" y1="130" stroke="#10b981" strokeWidth="2" strokeDasharray="3,3" />
+                    <line x1="280" y1="115" x2="280" y2="130" stroke="#10b981" strokeWidth="3" />
+                    <line x1="320" y1="115" x2="320" y2="130" stroke="#10b981" strokeWidth="3" />
+                    <line x1="280" y1="115" x2="320" y2="115" stroke="#10b981" strokeWidth="2" strokeDasharray="3,3" />
+                    <line x1="280" y1="130" x2="320" y2="130" stroke="#10b981" strokeWidth="2" strokeDasharray="3,3" />
                     <text x="200" y="125" className="text-xs fill-green-600 font-medium">Depth of Focus (DOF)</text>
                     {/* Focus position indicator */}
-                    <line x1="300" y1="120" x2="300" y1="200" stroke="#f59e0b" strokeWidth="2" strokeDasharray="5,5" />
+                    <line x1="300" y1="120" x2="300" y2="200" stroke="#f59e0b" strokeWidth="2" strokeDasharray="5,5" />
                     <text x="310" y="160" className="text-xs fill-amber-600">Focus Position</text>
                   </svg>
                 </div>
