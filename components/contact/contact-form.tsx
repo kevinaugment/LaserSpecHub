@@ -17,9 +17,43 @@ export function ContactForm() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
 
+  const validateForm = () => {
+    const errors: string[] = [];
+    
+    if (!formData.name.trim()) {
+      errors.push('Name is required');
+    }
+    
+    if (!formData.email.trim()) {
+      errors.push('Email is required');
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.push('Please enter a valid email address');
+    }
+    
+    if (!formData.message.trim()) {
+      errors.push('Message is required');
+    } else if (formData.message.trim().length < 10) {
+      errors.push('Message must be at least 10 characters long');
+    }
+    
+    if (formData.phone && !/^[\d\s\-\+\(\)]+$/.test(formData.phone)) {
+      errors.push('Please enter a valid phone number');
+    }
+    
+    return errors;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    
+    // Client-side validation
+    const validationErrors = validateForm();
+    if (validationErrors.length > 0) {
+      setError(validationErrors.join('. '));
+      return;
+    }
+    
     setLoading(true);
 
     try {
@@ -29,9 +63,13 @@ export function ContactForm() {
         body: JSON.stringify({
           ...formData,
           form_type: 'contact_page',
-          source_page: window.location.pathname,
+          source_page: typeof window !== 'undefined' ? window.location.pathname : '',
         }),
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
       const result = await response.json();
 
@@ -39,10 +77,11 @@ export function ContactForm() {
         setSuccess(true);
         setFormData({ name: '', email: '', company: '', phone: '', message: '' });
       } else {
-        setError(result.error || 'Failed to send message');
+        setError(result.error || 'Failed to send message. Please try again.');
       }
     } catch (err: any) {
-      setError(err.message || 'Failed to send message');
+      console.error('Contact form error:', err);
+      setError(err.message || 'Failed to send message. Please check your connection and try again.');
     } finally {
       setLoading(false);
     }
@@ -174,6 +213,7 @@ export function ContactForm() {
     </Card>
   );
 }
+
 
 
 

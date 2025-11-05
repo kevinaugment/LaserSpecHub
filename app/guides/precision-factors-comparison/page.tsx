@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { generatePageMetadata } from '@/lib/utils/metadata';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 
 export const metadata: Metadata = generatePageMetadata({
@@ -41,7 +40,6 @@ export default function PrecisionFactorsComparisonPage() {
       
       <div className="min-h-screen bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Breadcrumbs />
 
           {/* Header */}
           <div className="mb-8">

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { generatePageMetadata } from '@/lib/utils/metadata';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 import Link from 'next/link';
 
@@ -60,7 +59,6 @@ export default function SelectionGuidePage() {
 
   return (
     <>
-      <Breadcrumbs />
       <StructuredData type="HowTo" data={structuredData} />
       
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-10">

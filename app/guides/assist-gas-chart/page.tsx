@@ -10,7 +10,6 @@ import { MaterialGasMatrix } from '@/components/cheatsheets/material-gas-matrix'
 import { PressureThicknessChart } from '@/components/cheatsheets/pressure-thickness-chart';
 import { GasDecisionTree } from '@/components/cheatsheets/gas-decision-tree';
 import { GasFlowDiagram } from '@/components/cheatsheets/gas-flow-diagram';
-import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 
 export const metadata: Metadata = generatePageMetadata({
@@ -49,7 +48,6 @@ export default function AssistGasChartPage() {
       
       <div className="min-h-screen bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Breadcrumbs />
 
           {/* Header */}
           <div className="mb-8">

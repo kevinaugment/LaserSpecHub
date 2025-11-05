@@ -6,7 +6,6 @@ import {
   DATA_DISCLAIMER
 } from '@/lib/data/cheatsheets/cutting-speed-data';
 import { CuttingSpeedTable } from '@/components/cheatsheets/cutting-speed-table';
-import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 import { 
   SpeedVsPowerCurve,
@@ -54,7 +53,6 @@ export default function CuttingSpeedChartPage() {
       
       <div className="min-h-screen bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Breadcrumbs />
 
           {/* Header */}
           <div className="mb-8">

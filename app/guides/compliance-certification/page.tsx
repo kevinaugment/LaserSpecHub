@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import { generatePageMetadata } from '@/lib/utils/metadata';
-import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 
 export const metadata: Metadata = generatePageMetadata({
@@ -34,7 +33,6 @@ export default function ComplianceCertificationPage() {
       <StructuredData data={structuredData} />
       <div className="min-h-screen bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Breadcrumbs />
 
           <div className="mb-8">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">Laser Equipment Compliance & Certification</h1>

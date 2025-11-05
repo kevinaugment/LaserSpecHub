@@ -219,21 +219,29 @@ export default async function EquipmentDetailPage({
           <h2 className="text-xl font-bold text-gray-900 mb-4">Product Images</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {images.map((image: any) => (
-              <div key={image.id} className="relative group overflow-hidden rounded-lg border border-gray-200">
+              <div key={image.id} className="relative group overflow-hidden rounded-lg border border-gray-200 bg-gray-50">
                 <Image
                   src={image.image_url}
                   alt={image.alt_text || `${equipment.brand} ${equipment.model}`}
                   width={400}
                   height={300}
                   className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-200"
+                  onError={(e) => {
+                    // Fallback to placeholder on error
+                    const target = e.target as HTMLImageElement;
+                    target.src = '/placeholder-equipment.png';
+                    target.onerror = null; // Prevent infinite loop
+                  }}
+                  placeholder="blur"
+                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzljYTNhZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkxvYWRpbmcuLi48L3RleHQ+PC9zdmc+"
                 />
                 {image.is_primary === 1 && (
-                  <div className="absolute top-2 left-2 px-2 py-1 bg-blue-600 text-white text-xs font-medium rounded">
+                  <div className="absolute top-2 left-2 px-2 py-1 bg-blue-600 text-white text-xs font-medium rounded z-10">
                     Primary
                   </div>
                 )}
                 {image.caption && (
-                  <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white text-xs p-2">
+                  <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-70 text-white text-xs p-2 z-10">
                     {image.caption}
                   </div>
                 )}

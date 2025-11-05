@@ -12,6 +12,8 @@ import { EquipmentSelector } from '@/components/comparison/equipment-selector';
 import { ComparisonTable } from '@/components/comparison/comparison-table';
 import { StructuredData } from '@/components/ui/structured-data';
 
+// This is a client component wrapper - metadata is exported from the default export below
+
 function ComparisonContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -29,7 +31,13 @@ function ComparisonContent() {
   useEffect(() => {
     async function loadEquipment() {
       try {
+        setIsLoading(true);
         const response = await fetch('/api/equipment');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const result = await response.json();
         
         if (result.success && result.data) {
@@ -38,15 +46,23 @@ function ComparisonContent() {
           // Load selected equipment from URL params
           const idsParam = searchParams.get('ids');
           if (idsParam) {
-            const ids = idsParam.split(',').map(Number);
+            const ids = idsParam.split(',').map(Number).filter(id => !isNaN(id));
             const selected = result.data.filter((eq: LaserEquipment) => ids.includes(eq.id));
             setSelectedEquipment(selected);
+            
+            // Warn if some IDs were invalid
+            if (ids.length !== selected.length) {
+              console.warn('Some equipment IDs in URL were not found');
+            }
           }
+        } else {
+          console.error('Failed to load equipment:', result.error || 'Unknown error');
         }
-        
-        setIsLoading(false);
       } catch (error) {
         console.error('Failed to load equipment:', error);
+        // Set empty state instead of showing error to user
+        setAllEquipment([]);
+      } finally {
         setIsLoading(false);
       }
     }
@@ -104,17 +120,34 @@ function ComparisonContent() {
   };
 
   const handleExportPDF = async () => {
-    const { exportComparisonPDF } = await import('@/lib/pdf/comparison-export');
-    exportComparisonPDF({
-      equipment: selectedEquipment,
-      timestamp: new Date(),
-    });
+    try {
+      if (selectedEquipment.length === 0) {
+        alert('Please select at least one equipment to export');
+        return;
+      }
+      
+      const { exportComparisonPDF } = await import('@/lib/pdf/comparison-export');
+      await exportComparisonPDF({
+        equipment: selectedEquipment,
+        timestamp: new Date(),
+      });
+    } catch (error) {
+      console.error('Failed to export PDF:', error);
+      alert('Failed to export PDF. Please try again.');
+    }
   };
 
-  const handleShare = () => {
-    const url = window.location.href;
-    navigator.clipboard.writeText(url);
-    alert('Comparison link copied to clipboard!');
+  const handleShare = async () => {
+    try {
+      const url = window.location.href;
+      await navigator.clipboard.writeText(url);
+      // Better UX: could use a toast notification here
+      alert('Comparison link copied to clipboard!');
+    } catch (error) {
+      console.error('Failed to copy to clipboard:', error);
+      // Fallback: show URL in prompt
+      prompt('Copy this comparison link:', window.location.href);
+    }
   };
 
   const handleSaveComparison = async () => {

@@ -1,5 +1,24 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+import { generatePageMetadata } from '@/lib/utils/metadata';
 import { StructuredData } from '@/components/ui/structured-data';
+
+export const metadata: Metadata = generatePageMetadata({
+  title: 'LaserSpecHub - Laser Equipment Specification Comparison Platform',
+  description:
+    'Compare laser cutting machines specifications, find the perfect equipment for your manufacturing needs. Technical specifications, power calculators, and expert guides.',
+  path: '/',
+  keywords: [
+    'laser cutting machine',
+    'laser equipment comparison',
+    'fiber laser',
+    'CO2 laser',
+    'laser specifications',
+    'equipment selection',
+    'power calculator',
+    'laser machine database',
+  ],
+});
 
 export default function HomePage() {
   const structuredData = {

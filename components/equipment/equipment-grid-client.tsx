@@ -63,7 +63,14 @@ export function EquipmentGridClient({ equipment, brands }: EquipmentGridClientPr
     } else {
       // Add to comparison (max 5 items)
       if (comparisonItems.length >= MAX_COMPARISON_ITEMS) {
-        alert(`You can compare up to ${MAX_COMPARISON_ITEMS} items at once. Please remove an item before adding another.`);
+        // Use a more user-friendly notification instead of alert
+        const message = `You can compare up to ${MAX_COMPARISON_ITEMS} items at once. Please remove an item before adding another.`;
+        // Show toast notification (if available) or fallback to alert
+        if (typeof window !== 'undefined' && 'Notification' in window) {
+          // You can integrate a toast library here
+          console.warn(message);
+        }
+        alert(message); // Temporary fallback
         return;
       }
       setComparisonItems(items => [...items, equipment]);
@@ -72,17 +79,19 @@ export function EquipmentGridClient({ equipment, brands }: EquipmentGridClientPr
 
   const handleViewComparison = () => {
     if (comparisonItems.length < 2) {
-      alert('Please select at least 2 items to compare.');
+      const message = 'Please select at least 2 items to compare.';
+      console.warn(message);
+      alert(message); // Temporary fallback
       return;
     }
     
     // Navigate to comparison page with selected equipment IDs
     const ids = comparisonItems.map(item => item.id).join(',');
-    router.push(`/equipment/compare?ids=${ids}`);
+    router.push(`/comparison?ids=${ids}`);
   };
 
   const handleClearComparison = () => {
-    if (confirm('Remove all items from comparison?')) {
+    if (window.confirm('Remove all items from comparison?')) {
       setComparisonItems([]);
     }
   };

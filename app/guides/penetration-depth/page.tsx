@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { generatePageMetadata } from '@/lib/utils/metadata';
 import Link from 'next/link';
-import { Breadcrumbs } from '@/components/layout/breadcrumbs';
 import { StructuredData } from '@/components/ui/structured-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PenetrationDepthVisualization } from '@/components/cheatsheets/penetration-depth-visualization';
@@ -42,7 +41,6 @@ export default function PenetrationDepthPage() {
       <StructuredData data={structuredData} />
       <div className="min-h-screen bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Breadcrumbs />
 
           <div className="mb-8">
             <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">

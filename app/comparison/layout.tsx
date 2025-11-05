@@ -1,18 +1,18 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { generatePageMetadata } from '@/lib/utils/metadata';
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Laser Equipment Comparison Tool - Compare Specifications & Pricing',
-  description: 'Compare up to 5 laser cutting machines side-by-side with detailed specifications, pricing, and performance metrics. Free comparison tool for fiber lasers, CO2 lasers, and more. Export to PDF or share your comparison.',
+  title: 'Laser Equipment Comparison Tool - Compare Up to 5 Machines',
+  description:
+    'Compare up to 5 laser cutting machines side-by-side with detailed specifications, pricing, and key differences highlighted. Free comparison tool for making informed equipment decisions.',
   path: '/comparison',
   keywords: [
     'laser equipment comparison',
-    'laser cutter comparison',
-    'fiber laser vs CO2',
-    'laser machine specs',
+    'laser machine comparison',
+    'compare laser cutters',
     'equipment comparison tool',
-    'laser specifications',
-    'laser price comparison',
+    'laser specification comparison',
+    'side-by-side comparison',
   ],
 });
 
@@ -23,4 +23,3 @@ export default function ComparisonLayout({
 }) {
   return <>{children}</>;
 }
-
