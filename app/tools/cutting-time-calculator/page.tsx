@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { generatePageMetadata, generateHowToSchema, generateFAQSchema, generateCalculatorSchema } from '@/lib/utils/metadata';
 import { StructuredData } from '@/components/ui/structured-data';
 import { CuttingTimeCalculatorForm } from './cutting-time-calculator-form';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Laser Cutting Time Calculator 2025 - Calculate Cycle Time & Production Capacity',
