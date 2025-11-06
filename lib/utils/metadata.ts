@@ -156,6 +156,40 @@ export function generateBreadcrumbSchema(items: Array<{ name: string; url: strin
   };
 }
 
+export function generateCalculatorSchema(calculator: {
+  name: string;
+  description: string;
+  url: string;
+  input: Array<{ name: string; description: string }>;
+  output: Array<{ name: string; description: string }>;
+  applicationCategory: string;
+  operatingSystem: string;
+  softwareVersion?: string;
+}) {
+  const fullUrl = `${SITE_URL}${calculator.url}`;
+  
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    '@id': fullUrl,
+    name: calculator.name,
+    description: calculator.description,
+    url: fullUrl,
+    applicationCategory: calculator.applicationCategory,
+    operatingSystem: calculator.operatingSystem,
+    ...(calculator.softwareVersion && { softwareVersion: calculator.softwareVersion }),
+    featureList: [
+      ...calculator.input.map((input) => `Input: ${input.name} - ${input.description}`),
+      ...calculator.output.map((output) => `Output: ${output.name} - ${output.description}`),
+    ],
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+  };
+}
+
 
 
 
