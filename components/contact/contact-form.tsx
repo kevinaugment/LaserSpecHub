@@ -36,7 +36,7 @@ export function ContactForm() {
       errors.push('Message must be at least 10 characters long');
     }
     
-    if (formData.phone && !/^[\d\s\-\+\(\)]+$/.test(formData.phone)) {
+    if (formData.phone && !/^[\d\s\-+()]+$/.test(formData.phone)) {
       errors.push('Please enter a valid phone number');
     }
     
